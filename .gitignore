@@ -31,3 +31,6 @@ tb-wbs-dashboard/.wrangler/
 tb-wbs-dashboard/.openai/
 tb-wbs-dashboard/next-env.d.ts
 tb-wbs-dashboard/.env*
+
+# ── 기밀 문서함: 별도 저장소 (confidential/.repo-name 참조) ──
+confidential/

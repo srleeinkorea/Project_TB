@@ -17,7 +17,7 @@
 
 ## 폴더 안내
 
-- 구조와 규칙은 `README.md`. 2026-10-14 재편: 공개 산출물 `docs/briefs/`·`docs/regulatory/`, 내부 검토 산출물 `docs/internal/`(git 제외), 받은·보낸 원본 `source/`(git 제외), 기밀 문서함 `confidential/`(암호화본만 커밋).
+- 구조와 규칙은 `README.md`. 2026-10-14 재편: 공개 산출물 `docs/briefs/`·`docs/regulatory/`, 내부 검토 산출물 `docs/internal/`(git 제외), 받은·보낸 원본 `source/`(git 제외), 기밀 문서함 `confidential/`(별도 GitHub 저장소, 암호화본만 커밋, 상위 git 제외).
 - 새 `YYMMDD_*` 산출물은 실명·내부 판단이 들어가면 `docs/internal/`, 아니면 `docs/briefs/`. 기밀 문서함에 올리려면 `confidential/manifest.txt`에 추가 후 `python tools/vault_build.py`.
 - `tb-wbs-dashboard/`: WBS 대시보드 (Next.js). `working/`, `tmp/`: 작업용.
 - `.claude/skills/decision-brief/`: 의사결정 브리핑 HTML 작성 규칙 (아래 참조).

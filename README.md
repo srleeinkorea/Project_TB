@@ -8,7 +8,7 @@ CXR(흉부 X-ray) 기반 결핵 진단보조 AI 공동연구의 작업 공간. 2
 |---|---|---|---|
 | **로컬 원본** | `C:\Users\이사라\Documents\Project_TB` | 전부. 여기서만 고친다 | 나 |
 | **GitHub Project_TB** | github.com/srleeinkorea/Project_TB | 공개 산출물·인허가 문서 세트·대시보드·도구. `source/`와 `docs/internal/` 평문은 제외 | 공개 |
-| **기밀 문서함** | GitHub Pages `/confidential/` | `source/`·`docs/internal/`을 비밀번호로 암호화한 사본. 브라우저에서 복호화 | 비밀번호 아는 사람 |
+| **기밀 문서함** | github.com/srleeinkorea/tb-confidential-63279adc25a7 → srleeinkorea.github.io/tb-confidential-63279adc25a7 | `source/`·`docs/internal/`을 비밀번호로 암호화한 사본. 별도 저장소이며 로컬 `confidential/`가 그 클론. 브라우저에서 복호화 | 비밀번호·주소 아는 사람 |
 
 흐름은 **로컬 원본 → 사본** 한 방향이다.
 
@@ -27,7 +27,7 @@ source/          [git 제외] 받은·보낸 원본
   meetings/      회의록
   consulting/    KHIDI Medtech Insight 신청서
   references/    WHO TPP · CAD 가이드 등 외부 참고문헌
-confidential/    기밀 문서함. manifest.txt(목록) · index.html(로그인 뷰어) · vault/(암호문)
+confidential/    [상위 git 제외, 자체 저장소] 기밀 문서함. manifest.txt(목록) · index.html(로그인 뷰어) · vault/(암호문)
 tb-wbs-dashboard/  WBS 대시보드 (Next.js)
 tools/           hwp·docx 추출기, 요약 빌더, vault_build.py
 working/, tmp/   [git 제외] 작업용
@@ -47,7 +47,10 @@ working/, tmp/   [git 제외] 작업용
    ```bash
    python tools/vault_build.py
    ```
-3. `confidential/vault/`를 커밋·푸시한다. 평문은 `.gitignore`로 올라가지 않는다.
+3. `confidential/` 안에서 커밋·푸시한다 (별도 저장소). 평문은 상위 `.gitignore`로 올라가지 않는다.
+   ```bash
+   git -C confidential add -A && git -C confidential commit -m "vault 갱신" && git -C confidential push
+   ```
 
 암호화는 PBKDF2-SHA256(600,000회) + AES-256-GCM. 비밀번호를 바꾸면 전체를 다시 빌드한다. 비밀번호를 잃으면 복구할 수 없다.
 
