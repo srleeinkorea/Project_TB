@@ -60,3 +60,10 @@ working/, tmp/   [git 제외] 작업용
 python -m http.server 8787
 ```
 `http://localhost:8787/confidential/` 로 연다. `file://`로는 열리지 않는다(fetch 제한).
+
+## 잠금 문서 (공개 사이트, 비밀번호)
+
+`docs/locked/<이름>/`에는 암호문·params·잠금 뷰어만 둔다. 갱신:
+```bash
+python tools/lock_doc.py docs/internal/<원본>.html docs/locked/review "제목"
+```
