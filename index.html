@@ -3,69 +3,92 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TB 공동연구 문서함</title>
+<title>결핵 AI 공동연구 문서</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f1f5f9;--side:#0f172a;--side-2:#1e293b;--text:#e2e8f0;--muted:#94a3b8;--accent:#6366f1}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;font-family:"Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif;background:var(--bg)}
-body{display:flex;height:100dvh;overflow:hidden}
-nav{flex:0 0 220px;background:var(--side);color:var(--text);display:flex;flex-direction:column;padding:18px 12px;gap:4px;overflow-y:auto}
-.brand{display:flex;align-items:center;gap:10px;padding:4px 8px 18px}
-.logo{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#4338ca,#0891b2);display:grid;place-items:center;font-weight:800;font-size:12px;color:#fff}
-.brand b{font-size:14px}.brand small{display:block;font-size:10px;color:var(--muted)}
-.sec{font-size:10px;color:var(--muted);letter-spacing:.06em;padding:12px 10px 6px}
-nav a{display:flex;align-items:center;gap:9px;color:var(--text);text-decoration:none;padding:9px 10px;border-radius:8px;font-size:13px}
-nav a:hover{background:var(--side-2)}
-nav a[aria-current=page]{background:var(--accent);color:#fff;font-weight:700}
-nav a.ext{color:#fbbf24}
-.tools{margin-top:auto;padding:8px 4px}
-.tools .who{font-size:10px;color:var(--muted);line-height:1.6}
-main{flex:1;min-width:0;display:flex;flex-direction:column}
-iframe{flex:1;border:0;width:100%;min-height:0;background:#fff}
-@media(max-width:760px){
- body{flex-direction:column}
- nav{flex:none;flex-direction:row;align-items:center;padding:8px;gap:4px;overflow-x:auto}
- .brand{padding:0 8px 0 4px}.brand div,.sec,.tools{display:none}
- nav a{white-space:nowrap;padding:7px 10px}
-}
+:root{--bg:#fbfbfd;--paper:#fff;--ink:#1b1d24;--mute:#6b6f7c;--line:#e6e7ee;--blue:#5170FF;--blue2:#eaeeff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans','Noto Sans KR',sans-serif;font-size:15px;line-height:1.65}
+.serif{font-family:'DM Serif Display','Noto Sans KR',serif;font-weight:400}
+.wrap{max-width:880px;margin:0 auto;padding:64px 20px 80px}
+.kicker{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);font-weight:600}
+h1{font-size:40px;line-height:1.2;margin:10px 0 12px}
+h1 em{font-style:normal;color:var(--blue)}
+.sub{color:var(--mute);font-size:15px;max-width:620px;margin:0 0 40px}
+.meta{font-size:13px;color:var(--mute);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;margin-bottom:44px;display:flex;gap:28px;flex-wrap:wrap}
+.meta b{color:var(--ink);font-weight:600;margin-right:6px}
+section{display:grid;grid-template-columns:72px 1fr;gap:18px;margin-bottom:40px}
+.no{font-family:'DM Serif Display',serif;font-size:30px;color:var(--blue);line-height:1}
+h2{font-size:22px;margin:0 0 4px}
+.lead{color:var(--mute);font-size:14px;margin:0 0 14px}
+ul{list-style:none;padding:0;margin:0;border-top:1px solid var(--line)}
+li{border-bottom:1px solid var(--line)}
+li a{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:12px 6px;color:var(--ink);text-decoration:none}
+li a:hover{background:var(--blue2)}
+li a span{color:var(--mute);font-size:12.5px;white-space:nowrap}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.06em;padding:3px 10px;border-radius:3px;background:var(--blue2);color:var(--blue);margin-left:8px;vertical-align:middle}
+.lock a{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:18px 20px;margin-top:4px}
+.lock a:hover{border-color:var(--blue)}
+.note{font-size:13px;color:var(--mute);margin-top:12px}
+footer{margin-top:56px;font-size:12.5px;color:var(--mute);border-top:1px solid var(--line);padding-top:14px}
+@media(max-width:640px){section{grid-template-columns:1fr;gap:6px}h1{font-size:32px}.wrap{padding:40px 16px 60px}}
 </style>
 </head>
 <body>
-<nav aria-label="문서 탭">
- <div class="brand"><span class="logo">TB</span><div><b>TB 공동연구</b><small>대한결핵협회 × 마이허브</small></div></div>
- <span class="sec">소개</span>
- <a href="#intro" data-src="docs/briefs/TB_프로젝트_소개.html">📄 프로젝트 소개</a>
- <a href="#guide" data-src="docs/briefs/결핵_의학_가이드.html">📘 결핵 의학 가이드</a>
- <a href="#wbs" data-src="docs/briefs/결핵진단_AI_프로젝트_WBS_GoogleSites용.html">🗂️ WBS 개요</a>
- <span class="sec">인허가 문서 세트</span>
- <a href="#reg" data-src="docs/regulatory/index.html">📋 문서 세트 목차</a>
- <a href="#khidi" data-src="docs/regulatory/00_KHIDI_컨설팅_상담신청서.html">📝 KHIDI 컨설팅 상담신청서</a>
- <a href="#khidi-1p" data-src="docs/regulatory/00_KHIDI_컨설팅_제품소개_1페이지.html">📝 KHIDI 제품소개 1페이지</a>
- <a href="#drf" data-src="docs/regulatory/01_DRF_개발의뢰서.html">📗 DRF 개발의뢰서</a>
- <a href="#mrs" data-src="docs/regulatory/02_MRS_시장요구사항명세서.html">📗 MRS 시장요구사항명세서</a>
- <a href="#sdp" data-src="docs/regulatory/03_SDP_소프트웨어개발계획서.html">📗 SDP 소프트웨어개발계획서</a>
- <a href="#rrs" data-src="docs/regulatory/04_RRS_규제요구사항명세서.html">📗 RRS 규제요구사항명세서</a>
- <a href="#dmp" data-src="docs/regulatory/05_DMP_LBL_데이터및레이블링계획서.html">📗 DMP 데이터·레이블링계획서</a>
- <a href="#rmp" data-src="docs/regulatory/06_RMP_위험관리계획서.html">📗 RMP 위험관리계획서</a>
- <a href="#srs" data-src="docs/regulatory/07_SRS_소프트웨어요구사항명세서.html">📗 SRS 소프트웨어요구사항명세서</a>
- <a href="#sap" data-src="docs/regulatory/08_SAP_RTM_독립검증및추적계획.html">📗 SAP·RTM 독립검증·추적계획</a>
- <span class="sec">기밀</span>
- <a class="ext" href="https://srleeinkorea.github.io/tb-confidential-63279adc25a7/" target="_blank" rel="noopener">🔒 기밀 문서함 (비밀번호)</a>
- <div class="tools"><span class="who">공개 문서만 수록. 계약·IRB·내부 검토 자료는 기밀 문서함.</span></div>
-</nav>
-<main><iframe id="view" title="문서 보기"></iframe></main>
-<script>
-const links=[...document.querySelectorAll('nav a[data-src]')];
-function go(){
-  const h=location.hash||'#intro';
-  const a=links.find(x=>x.getAttribute('href')===h)||links[0];
-  links.forEach(x=>x.removeAttribute('aria-current'));
-  a.setAttribute('aria-current','page');
-  const v=document.getElementById('view');
-  if(v.getAttribute('src')!==a.dataset.src)v.src=a.dataset.src;
-  document.title=a.textContent.trim().replace(/^\S+\s/,'')+' · TB 공동연구';
-}
-addEventListener('hashchange',go);go();
-</script>
+<div class="wrap">
+  <div class="kicker">Document Hub · 대한결핵협회 × 마이허브</div>
+  <h1 class="serif">결핵 AI 공동연구<br><em>문서</em> 안내</h1>
+  <p class="sub">흉부 X-ray 기반 결핵 진단보조 AI 공동연구의 공개 산출물과 인허가 문서 세트를 모아 둔 페이지. 회의자료·계약·IRB 등 내부 문서는 기밀 문서함에서 비밀번호로 열람한다.</p>
+  <div class="meta"><span><b>연구기간</b>2026.08 ~ 2029.06</span><span><b>공동연구기관</b>대한결핵협회 · ㈜마이허브</span><span><b>갱신</b>2026.10.14</span></div>
+
+  <section>
+    <div class="no">01</div>
+    <div>
+      <h2 class="serif">소개</h2>
+      <p class="lead">과제 개요와 배경 지식.</p>
+      <ul>
+        <li><a href="docs/briefs/TB_프로젝트_소개.html">프로젝트 소개<span>HTML</span></a></li>
+        <li><a href="docs/briefs/결핵_의학_가이드.html">결핵 의학 가이드<span>HTML</span></a></li>
+        <li><a href="docs/briefs/결핵진단_AI_프로젝트_WBS_GoogleSites용.html">WBS 개요<span>HTML</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="no">02</div>
+    <div>
+      <h2 class="serif">인허가 문서 세트</h2>
+      <p class="lead">KHIDI 컨설팅 자료와 의료기기 소프트웨어 개발·규제 문서 초안.</p>
+      <ul>
+        <li><a href="docs/regulatory/index.html">문서 세트 목차<span>목차</span></a></li>
+        <li><a href="docs/regulatory/00_KHIDI_컨설팅_상담신청서.html">KHIDI 컨설팅 상담신청서<span>00</span></a></li>
+        <li><a href="docs/regulatory/00_KHIDI_컨설팅_제품소개_1페이지.html">KHIDI 제품소개 1페이지<span>00</span></a></li>
+        <li><a href="docs/regulatory/01_DRF_개발의뢰서.html">DRF 개발의뢰서<span>01</span></a></li>
+        <li><a href="docs/regulatory/02_MRS_시장요구사항명세서.html">MRS 시장요구사항명세서<span>02</span></a></li>
+        <li><a href="docs/regulatory/03_SDP_소프트웨어개발계획서.html">SDP 소프트웨어개발계획서<span>03</span></a></li>
+        <li><a href="docs/regulatory/04_RRS_규제요구사항명세서.html">RRS 규제요구사항명세서<span>04</span></a></li>
+        <li><a href="docs/regulatory/05_DMP_LBL_데이터및레이블링계획서.html">DMP 데이터·레이블링계획서<span>05</span></a></li>
+        <li><a href="docs/regulatory/06_RMP_위험관리계획서.html">RMP 위험관리계획서<span>06</span></a></li>
+        <li><a href="docs/regulatory/07_SRS_소프트웨어요구사항명세서.html">SRS 소프트웨어요구사항명세서<span>07</span></a></li>
+        <li><a href="docs/regulatory/08_SAP_RTM_독립검증및추적계획.html">SAP·RTM 독립검증·추적계획<span>08</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="no">03</div>
+    <div>
+      <h2 class="serif">기밀 문서함</h2>
+      <p class="lead">회의자료, 계약서, 연구계획서, IRB 서류. 비밀번호를 아는 사람만 열람할 수 있다.</p>
+      <ul class="lock">
+        <li><a href="https://srleeinkorea.github.io/tb-confidential-63279adc25a7/" target="_blank" rel="noopener">기밀 문서함 열기<span class="tag">비밀번호</span><span>새 창</span></a></li>
+      </ul>
+      <p class="note">문서는 암호화되어 저장되며 브라우저 안에서만 복호화된다.</p>
+    </div>
+  </section>
+
+  <footer>마이허브 의학전략실 · 문서 구조와 규칙은 저장소 README 참조</footer>
+</div>
 </body>
 </html>
