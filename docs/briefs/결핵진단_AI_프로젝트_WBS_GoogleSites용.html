@@ -7,6 +7,7 @@
   <meta name="robots" content="noindex,nofollow">
   <title>결핵 진단 AI · 프로젝트 WBS</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap');
     :root{
       --navy:#17324d;--blue:#2b6bdc;--blue-soft:#eaf2ff;--ink:#1f2a37;
       --muted:#667386;--line:#dbe2ea;--line-dark:#bac5d2;--paper:#fff;
@@ -68,6 +69,19 @@
     @media(max-width:900px){.page-shell{padding:26px 18px 52px}.intro{align-items:flex-start;flex-direction:column}.intro-actions{width:100%}.year-switch{width:100%;overflow-x:auto}.year-button{flex:1}.summary-grid{grid-template-columns:repeat(2,1fr)}.section-head{align-items:flex-start;flex-direction:column}.section-tools{width:100%;align-items:flex-start}.dataset-grid{grid-template-columns:1fr}.dataset-grid article{min-height:auto;border-right:0;border-bottom:1px solid var(--line)}.dataset-grid article:last-child{border-bottom:0}}
     @media(max-width:560px){.topbar-inner{padding:0 18px}.asof{display:none}.summary-grid{grid-template-columns:1fr}.intro-actions{align-items:stretch;flex-direction:column}.print-button{width:100%}.now-panel{align-items:flex-start}.now-label{white-space:normal}.dataset-head{align-items:flex-start;flex-direction:column}.dataset-total{min-width:0;padding-left:0;border-left:0;text-align:left}.dataset-rule{flex-direction:column;gap:5px}.table-footer{flex-direction:column}}
     @media print{body{background:#fff}.topbar,.year-switch,.print-button,.status-filters,.now-panel,.year-note{display:none}.page-shell{max-width:none;padding:0}.summary-card,.dataset-panel,.wbs-section{box-shadow:none;break-inside:avoid}.wbs-table-wrap{overflow:visible}.wbs-table{min-width:0}.wbs-row{grid-template-columns:260px 1fr 220px 130px}.section-head{padding:12px}.table-footer{font-size:8px}}
+  
+    /* ── brief 톤 통일 (2026-10-14) ── */
+    :root{--navy:#0f1222;--blue:#5170FF;--blue-soft:#eef1ff;--ink:#0f1222;--muted:#6b7083;--line:#e3e6ef;--line-dark:#d6dae6;--paper:#fff;--canvas:#fbfbfd;--green:#1f9d5a;--green-soft:#eaf8f0;--orange:#c7861c;--orange-soft:#fff6e6;--slate:#8a90a5;--slate-soft:#f0f1f5;--red:#e0453f;--shadow:none}
+    body{background:var(--canvas);font-family:'DM Sans','Noto Sans KR',sans-serif}
+    h1,.section-head h2,.dataset-head h2,.summary-card strong{font-family:'DM Serif Display','Noto Sans KR',serif;font-weight:400;letter-spacing:0}
+    .eyebrow,.section-kicker{font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+    .brand-mark{border-radius:4px;font-weight:700}.brand-title{font-weight:600}.asof{border-radius:3px;font-weight:500}
+    .summary-card,.now-panel,.year-note,.dataset-panel,.wbs-section,.year-switch,.print-button{border-radius:6px;box-shadow:none}
+    .summary-icon{border-radius:4px;font-weight:600}.year-button,.filter-button,.status-filters{border-radius:3px;font-weight:600}
+    .dataset-head{background:var(--navy)}.dataset-head span{color:#c9cdd9}
+    .dataset-chips span,.status-badge,.phase-chip{border-radius:3px;font-weight:600}
+    .summary-card span,.wbs-head,.task-id,.dataset-grid h3{font-weight:600}
+    .accent-card{background:var(--navy)}
   </style>
 </head>
 <body>

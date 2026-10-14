@@ -6,6 +6,7 @@
   <meta name="description" content="기초 개념부터 임상 전문 수준까지 단계적으로 설명하는 의학근거 기반 결핵 가이드">
   <title>결핵 의학 가이드 | 기초부터 전문의 수준까지</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap');
     :root {
       color-scheme: light;
       --ink: #15231f;
@@ -194,6 +195,25 @@
       a { color: #000; text-decoration: none; }
       a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .72em; word-break: break-all; }
     }
+  
+    /* ── brief 톤 통일 (2026-10-14) ── */
+    :root { --ink:#0f1222; --muted:#6b7083; --paper:#fbfbfd; --surface:#fff; --line:#e3e6ef; --brand:#5170FF; --brand-dark:#0f1222; --brand-soft:#eef1ff; --blue-soft:#eef1ff; --warn:#c7861c; --warn-soft:#fff6e6; --danger:#e0453f; --danger-soft:#fdeeed; --shadow:none; --radius:6px; }
+    body { font-family:'DM Sans','Noto Sans KR',sans-serif; line-height:1.7; }
+    h1, h2, h3 { font-family:'DM Serif Display','Noto Sans KR',serif; font-weight:400; letter-spacing:0; color:var(--ink); }
+    h2 { border-bottom:1px solid var(--line); }
+    .eyebrow { color:var(--brand); font-weight:600; letter-spacing:.14em; text-transform:uppercase; font-size:12px; }
+    .brand-mark { border-radius:4px; background:var(--ink); font-weight:700; }
+    .brand-title { font-weight:600; } .asof { border-radius:3px; font-weight:500; }
+    .toc { border-radius:6px; background:#fff; box-shadow:none; backdrop-filter:none; }
+    .toc a { border-radius:3px; }
+    .card, .figure, .table-wrap, .flow > div, details, .notice, .warning, .emergency { border-radius:6px; box-shadow:none; }
+    .figure svg { background:#fff; }
+    .flow > div::before { background:var(--brand); font-weight:600; }
+    .level, .button, .button.primary, code { border-radius:3px; }
+    .button.primary { background:var(--brand); border-color:var(--brand); color:#fff; }
+    blockquote, .lead { border-left-color:var(--brand); background:var(--brand-soft); border-radius:0; }
+    table th { font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); background:transparent; border-top:2px solid var(--ink); font-weight:600; }
+    strong, b { font-weight:600; }
   </style>
 </head>
 <body>
