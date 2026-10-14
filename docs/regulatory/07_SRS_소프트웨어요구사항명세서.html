@@ -1,0 +1,37 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SRS | TB 소프트웨어 요구사항 명세서</title><link rel="stylesheet" href="document.css"></head><body>
+<header class="toolbar"><a class="toolbar-brand" href="index.html"><span class="toolbar-mark">TB</span>문서 실행 허브</a><div class="toolbar-actions"><a class="action" href="index.html">목록</a><button onclick="window.print()">인쇄 / PDF</button></div></header>
+<main class="page">
+<div class="doc-head"><div><div class="doc-kicker">SOFTWARE REQUIREMENTS</div><h1>소프트웨어 요구사항 명세서</h1><p class="doc-subtitle">TB AI 시스템의 기능·성능·인터페이스·데이터·보안·로그·배포·재현성 요구를 검증 가능한 형태로 정의합니다.</p></div><div class="doc-code"><span>DOCUMENT CODE</span><strong>SRS-TB-001</strong></div></div>
+<div class="approval"><div><span>상태</span><strong><span class="status draft">설계입력 초안</span></strong></div><div><span>버전 / 기준일</span><strong>0.9 / 2026.08.31</strong></div><div><span>작성</span><strong>SW개발팀</strong></div><div><span>검토</span><strong>SW개발팀장</strong></div><div><span>승인</span><strong>연구소장</strong></div></div>
+
+<section><h2>1. 시스템 범위</h2><p class="lead">입력 CXR의 적합성을 확인하고 AI 추론을 수행해 활동성·비활동성·정상 분류, 결핵 의심 확률과 의심 부위 시각화 정보를 SDK/API로 제공합니다. 연구용 학습·검증·재학습 환경과 인허가용 고정 모델을 분리 관리합니다.</p></section>
+
+<section><h2>2. 기능 요구사항</h2><div class="table-wrap"><table><thead><tr><th>ID</th><th>요구사항</th><th>수용 기준 초안</th><th>검증</th><th>상태</th></tr></thead><tbody>
+<tr><td class="id">SRS-F-01</td><td>지원 형식의 흉부 X-ray 입력을 수신해야 한다.</td><td>Interface Table의 필수 필드·형식 검증</td><td>SIT/SST</td><td class="req">DICOM 범위</td></tr>
+<tr><td class="id">SRS-F-02</td><td>지원되지 않거나 손상·누락된 입력을 탐지하고 추론을 차단해야 한다.</td><td>정의된 오류코드·사용자 메시지·로그</td><td>SUT/SIT</td><td>필수</td></tr>
+<tr><td class="id">SRS-F-03</td><td>활동성 결핵·비활동성 결핵·정상군 분류 결과를 산출해야 한다.</td><td>클래스 스키마·출력값·버전 일치</td><td>SST/SVAR</td><td class="req">임상 정의</td></tr>
+<tr><td class="id">SRS-F-04</td><td>결핵 의심 확률 또는 클래스별 점수를 산출해야 한다.</td><td>0–1 또는 합의 형식, 반올림·정밀도 고정</td><td>SUT/SST</td><td class="req">점수 의미</td></tr>
+<tr><td class="id">SRS-F-05</td><td>결핵 의심 부위를 Heatmap으로 산출해야 한다.</td><td>원본 좌표 정합·해상도·색상·불가 시 처리</td><td>SUT/SST/UHA</td><td class="req">표현 기준</td></tr>
+<tr><td class="id">SRS-F-06</td><td>임계값에 따른 결과 상태를 제공해야 한다.</td><td>승인 임계값만 배포, 변경 이력·모델 연결</td><td>SUT/SST</td><td class="req">정책</td></tr>
+<tr><td class="id">SRS-F-07</td><td>API 응답에 모델·소프트웨어 버전과 결과 식별자를 포함해야 한다.</td><td>모델 ID, 릴리스, 요청/결과 ID 추적 가능</td><td>SIT</td><td>필수</td></tr>
+<tr><td class="id">SRS-F-08</td><td>실패·시간초과·부분결과를 성공결과와 명확히 구분해야 한다.</td><td>오류코드·재시도 가능 여부·대체절차 제공</td><td>SIT/SST</td><td>필수</td></tr>
+<tr><td class="id">SRS-F-09</td><td>연구용 학습·검증·재학습 파이프라인을 제공해야 한다.</td><td>데이터·코드·시드·환경 지정 시 재실행 가능</td><td>재현성 시험</td><td class="req">허용오차</td></tr>
+<tr><td class="id">SRS-F-10</td><td>인허가 전 연구용임과 최종진단 대체 불가 정보를 제공해야 한다.</td><td>API 메타·문서·화면 적용범위에서 확인</td><td>SST/UHA</td><td>필수</td></tr>
+</tbody></table></div></section>
+
+<section><h2>3. 성능·통계 요구사항</h2><div class="table-wrap"><table><thead><tr><th>ID</th><th>요구사항</th><th>현재 기준</th><th>확정 필요</th></tr></thead><tbody>
+<tr><td class="id">SRS-P-01</td><td>잠금된 독립시험세트에서 Sens, Spec, AUC, FP/FN과 95% CI를 보고한다.</td><td>WHO TPP 참고</td><td>분석단위·통계법</td></tr>
+<tr><td class="id">SRS-P-02</td><td>개발목표 Sens ≥90%, Spec ≥80%를 평가한다.</td><td>보장값 아님</td><td>허가 합격기준·CI 하한</td></tr>
+<tr><td class="id">SRS-P-03</td><td>연령·성별·기관·장비·촬영방식·클래스별 성능을 보고한다.</td><td>분포관리 요구</td><td>최소 표본·탐색/확증 구분</td></tr>
+<tr><td class="id">SRS-P-04</td><td>처리량·응답시간·가용자원 한계를 시험한다.</td><td>운영 요구</td><td class="req">협회 환경·SLA</td></tr>
+</tbody></table></div></section>
+
+<section><h2>4. 인터페이스·환경 요구사항</h2><div class="grid grid-2"><div class="card"><span class="label">INPUT</span><strong>CXR·메타데이터 스키마</strong><p>지원 형식, 필수 태그, 방향·촬영방식, 크기, 픽셀 범위, 환자 식별정보 제외를 Interface Table에서 확정합니다.</p></div><div class="card"><span class="label">OUTPUT</span><strong>결과·Heatmap·오류 스키마</strong><p>클래스, 점수, 임계값 상태, Heatmap 참조, 모델버전, 처리시간, 경고·오류를 버전 관리합니다.</p></div><div class="card"><span class="label">RUNTIME</span><strong>Docker 기반 배포</strong><p>OS, CPU/GPU, CUDA, 메모리, 저장공간, 네트워크, Docker digest와 환경설정 범위를 문서화합니다.</p></div><div class="card"><span class="label">BOUNDARY</span><strong>판독시스템은 외부 시스템</strong><p>UI·운영관리는 범위 밖이며 API 계약, 인증, 오류·타임아웃·로그와 데이터 흐름만 시스템 경계에서 검증합니다.</p></div></div></section>
+
+<section><h2>5. 보안·개인정보·감사 요구사항</h2><div class="table-wrap"><table><thead><tr><th>ID</th><th>요구사항</th><th>검증</th></tr></thead><tbody><tr><td class="id">SRS-S-01</td><td>최소권한과 승인된 사용자·시스템만 접근하도록 인증·인가를 적용한다.</td><td>권한시험·설정검토</td></tr><tr><td class="id">SRS-S-02</td><td>전송·저장 데이터와 비밀정보를 승인된 방식으로 보호한다.</td><td>구성·암호화 검토</td></tr><tr><td class="id">SRS-S-03</td><td>요청·모델버전·결과·오류·관리작업을 감사 가능한 로그로 기록한다.</td><td>로그 완전성 시험</td></tr><tr><td class="id">SRS-S-04</td><td>SBOM/SOTS, 라이선스, 알려진 취약점과 패치상태를 관리한다.</td><td>목록·스캔·조치기록</td></tr><tr><td class="id">SRS-S-05</td><td>개인식별정보가 입력·로그·출력에 포함되지 않도록 검증하고 발견 시 차단·보고한다.</td><td>익명화·로그 시험</td></tr></tbody></table></div></section>
+
+<section><h2>6. 형상·배포·재현성</h2><ul><li>모델 가중치 해시, 코드 커밋, 데이터 버전, Docker digest, SBOM, 임계값과 문서 버전을 하나의 릴리스 기준선으로 묶습니다.</li><li>허가모델·검증모델·연구모델은 저장소·이름·접근권한·표시를 분리합니다.</li><li>협회 환경에서 동일 입력의 추론결과와 승인된 범위의 재학습 절차를 재현합니다.</li><li>변경은 영향평가·승인·회귀시험·규제검토·릴리스 통보 후 배포합니다.</li></ul></section>
+
+<section><h2>7. 설계입력 기준선 전 미결정</h2><ul><li>품목분류·사용목적·대상 사용자·환자군·연령·제외조건</li><li>3군 레이블과 확진근거, 모호사례·기타 폐질환 처리</li><li>API Interface Table, 협회 서버·네트워크·성능 요구</li><li>Heatmap·확률점수 표현·임계값·실패 시 임상 워크플로</li><li>독립시험 표본수·합격기준·허용 신뢰구간</li></ul><div class="note decision">이 항목이 확정되기 전 SRS 1.0 승인은 보류합니다. 초안 요구사항은 설계 탐색에 사용할 수 있으나 검증 기준선으로 사용하지 않습니다.</div></section>
+<div class="signatures"><div class="signature"><span>작성</span><strong>SW개발팀</strong></div><div class="signature"><span>검토</span><strong>SW개발팀장</strong></div><div class="signature"><span>승인</span><strong>연구소장</strong></div></div><div class="foot">상위 문서: MRS, CRD, RRS, DMP/LBL, RMP · 하위 문서: SAD, SDS, SVEP/SVAP, SUT/SIT/SST, RTM</div>
+</main></body></html>

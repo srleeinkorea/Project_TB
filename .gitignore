@@ -1,0 +1,33 @@
+# ── 기밀·원본 (평문은 올리지 않는다. 암호화본은 confidential/vault/ 로 올린다) ──
+source/
+docs/internal/
+
+# ── 작업용·임시 ──
+working/
+tmp/
+.tmp_*/
+.build/
+.analysis/
+outputs/
+.pnpm-store/
+__pycache__/
+*.inspect.ndjson
+~$*
+*.tmp
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# ── Claude 세션 (skills만 추적) ──
+.claude/*
+!.claude/skills/
+
+# ── tb-wbs-dashboard (Next.js) ──
+tb-wbs-dashboard/node_modules/
+tb-wbs-dashboard/.next/
+tb-wbs-dashboard/.vinext/
+tb-wbs-dashboard/dist/
+tb-wbs-dashboard/.wrangler/
+tb-wbs-dashboard/.openai/
+tb-wbs-dashboard/next-env.d.ts
+tb-wbs-dashboard/.env*

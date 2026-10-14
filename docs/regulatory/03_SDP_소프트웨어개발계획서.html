@@ -1,0 +1,48 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SDP | TB 프로젝트 소프트웨어 개발계획서</title><link rel="stylesheet" href="document.css"></head><body>
+<header class="toolbar"><a class="toolbar-brand" href="index.html"><span class="toolbar-mark">TB</span>문서 실행 허브</a><div class="toolbar-actions"><a class="action" href="index.html">목록</a><button onclick="window.print()">인쇄 / PDF</button></div></header>
+<main class="page">
+  <div class="doc-head"><div><div class="doc-kicker">SOFTWARE LIFE CYCLE PLANNING</div><h1>소프트웨어 개발계획서</h1><p class="doc-subtitle">요구사항 분석부터 설계·구현·검증·유효성 확인·기술이전·유지보수와 형상관리까지의 실행 기준입니다.</p></div><div class="doc-code"><span>DOCUMENT CODE</span><strong>SDP-TB-001</strong></div></div>
+  <div class="approval"><div><span>문서상태</span><strong><span class="status draft">검토용 초안</span></strong></div><div><span>버전 / 기준일</span><strong>0.9 / 2026.08.28</strong></div><div><span>작성</span><strong>SW개발팀</strong></div><div><span>검토</span><strong>SW개발팀장</strong></div><div><span>승인</span><strong>연구소장</strong></div></div>
+
+  <section><h2>1. 목적과 적용범위</h2><p class="lead">본 계획은 TB AI 시스템의 데이터 전처리, 모델 학습·검증, 추론, Heatmap·Probability Score 출력, SDK/API, Docker 기반 재학습 환경과 관련 문서에 적용합니다. 판독 UI 및 운영관리 시스템 신규 개발은 범위에서 제외합니다.</p></section>
+
+  <section><h2>2. 개발 생명주기와 게이트</h2><div class="table-wrap"><table><thead><tr><th>게이트</th><th>단계</th><th>필수 입력</th><th>주요 출력</th><th>완료 기준</th><th>승인</th></tr></thead><tbody>
+    <tr><td class="id">G0</td><td>착수 승인</td><td>사업계획, 계약, DRF</td><td>DMM, 역할·일정 기준선</td><td>범위·책임·선행결정 승인</td><td>대표이사</td></tr>
+    <tr><td class="id">G1</td><td>설계입력 기준선</td><td>MRS, CRD, RRS, 데이터·레이블 입력</td><td>SRS, RMP, UPL, RTM</td><td>검증 가능하고 상충 없는 요구사항</td><td>연구소장</td></tr>
+    <tr><td class="id">G2</td><td>데이터 잠금</td><td>DMP/LBL, 익명화·QC 기록</td><td>학습·검증·독립시험 데이터 잠금기록</td><td>환자 중복 없음, 참조표준·분포 승인</td><td>연구소장 + 협회</td></tr>
+    <tr><td class="id">G3</td><td>설계·모델 동결</td><td>SAD, SDS, 실험기록, SBOM/SOTS</td><td>동결 모델·코드·가중치·환경</td><td>검증 대상 식별자와 임계값 고정</td><td>연구소장</td></tr>
+    <tr><td class="id">G4</td><td>설계 검증 완료</td><td>SVEP, SUT/SIT/SST 계획</td><td>SVER, PRR, 결함·잔여위험</td><td>요구사항·위험통제 검증 및 결함처리</td><td>연구소장</td></tr>
+    <tr><td class="id">G5</td><td>유효성 확인</td><td>SAP/SVAP, 잠금 시험세트</td><td>SVAR, 사용성·임상근거</td><td>사전 기준에 따른 독립 평가 완료</td><td>연구소장</td></tr>
+    <tr><td class="id">G6</td><td>인허가 제출준비</td><td>TD/RSD, RMR, IFU, V&amp;V</td><td>제출본·보완대응 기록</td><td>적용성 체크·QMS·제출자료 승인</td><td>대표이사</td></tr>
+    <tr><td class="id">G7</td><td>완료·이관</td><td>최종 코드·가중치·Docker·문서</td><td>DDR/DCR, 재현·이관 확인서</td><td>협회 환경 재현·교육·인수 승인</td><td>대표이사 + 협회</td></tr>
+  </tbody></table></div></section>
+
+  <section><h2>3. 역할과 독립성</h2><div class="table-wrap"><table><thead><tr><th>역할</th><th>책임</th><th>독립성 원칙</th></tr></thead><tbody>
+    <tr><td><strong>Product Manager</strong></td><td>범위·일정·이해관계자·결정사항·대외협의</td><td>기술 합격판정을 단독 변경하지 않음</td></tr>
+    <tr><td><strong>SW개발팀장/팀</strong></td><td>요구사항, 설계, 구현, 단위·통합·시스템시험, 형상관리, 기술이전</td><td>개발자가 자신의 시험 결과만으로 독립 유효성 합격을 승인하지 않음</td></tr>
+    <tr><td><strong>RA&amp;QA/품질책임자</strong></td><td>규제 적용성, 위험·검증·변경·문서 독립검토</td><td>시험 전 계획·데이터 잠금·합격기준 확인</td></tr>
+    <tr><td><strong>대한결핵협회</strong></td><td>데이터, 익명화, 전문의 자문, 독립시험, 재현성·기술이전 인수</td><td>독립시험세트를 개발·튜닝에 공개하지 않음</td></tr>
+    <tr><td><strong>전문의/통계담당</strong></td><td>참조표준, 중재, 임상적 타당성, 통계분석 검토</td><td>모호사례 처리와 분석변경을 사후 임의 변경하지 않음</td></tr>
+  </tbody></table></div></section>
+
+  <section><h2>4. 개발 방법과 주요 기록</h2><div class="grid grid-2">
+    <div class="card"><span class="label">REQUIREMENTS</span><strong>검증 가능하게 작성</strong><p>MRS/RRS/CRD를 SRS 항목으로 분해하고 고유 ID, 근거, 우선순위, 수용기준, 시험 연결을 유지합니다.</p></div>
+    <div class="card"><span class="label">DATA</span><strong>환자 단위 분할·잠금</strong><p>학습·검증·독립시험 간 환자·검사 중복을 방지하고 데이터 선정·제외·익명화·레이블 변경 이력을 보존합니다.</p></div>
+    <div class="card"><span class="label">MODEL</span><strong>실험과 동결 분리</strong><p>실험 ID, 코드 커밋, 데이터 버전, 시드, 하이퍼파라미터, 라이브러리, 지표를 기록한 뒤 검증 모델을 동결합니다.</p></div>
+    <div class="card"><span class="label">TEST</span><strong>계획 선승인</strong><p>시험 목적·입력·절차·예상결과·수용기준을 실행 전에 승인하고 결함·재시험·일탈을 기록합니다.</p></div>
+  </div></section>
+
+  <section><h2>5. 형상·변경·문제관리</h2><div class="table-wrap"><table><thead><tr><th>형상항목</th><th>최소 식별정보</th><th>변경 시 필수 영향평가</th></tr></thead><tbody>
+    <tr><td>소스코드·API</td><td>저장소, 커밋, 릴리스 태그, 빌드</td><td>기능·인터페이스·보안·시험·문서</td></tr>
+    <tr><td>모델·임계값</td><td>모델 ID, 가중치 해시, 임계값, 학습실험</td><td>성능·위험·임상적 의미·허가 영향</td></tr>
+    <tr><td>데이터·레이블</td><td>데이터셋 ID, 환자목록 해시, 레이블 버전, 잠금일</td><td>누수·분포·참조표준·성능 재평가</td></tr>
+    <tr><td>환경·SBOM/SOTS</td><td>Docker digest, OS/CUDA, 라이브러리·라이선스</td><td>재현성·취약점·호환성·회귀시험</td></tr>
+    <tr><td>문서</td><td>문서코드, 버전, 승인일, 기준선</td><td>연결 문서·교육·배포·규제 제출본</td></tr>
+  </tbody></table></div><div class="note">모든 변경은 변경요청 → 기술·품질·규제 영향평가 → 승인 → 구현 → 검증 → 릴리스 통보 순으로 처리합니다. 승인 전 모델과 허가 모델은 별도 기준선으로 관리합니다.</div></section>
+
+  <section><h2>6. 검토·보고 주기</h2><ul><li>주간: 작업·위험·의사결정·결함·데이터 처리 현황</li><li>월간: 일정·문서·형상·보안·외부기관 의존성, 변경대장 검토</li><li>게이트 전: 입력·출력·미해결 결함·잔여위험·추적성·외부확인 검토</li><li>보안사고·중대 결함·데이터 누수 의심: 즉시 보고 및 사용 중지 판단</li></ul></section>
+
+  <section><h2>7. 계획 확정 전 입력 필요</h2><ul><li>확정 계약일과 연구 종료일, 계약 연장 또는 잔여업무 처리 방식</li><li>회사 형상관리 저장소·접근권한·백업·전자결재 환경</li><li>협회 추론·재학습 서버 사양과 연계 Interface Table</li><li>전문의 판독·중재 인력과 독립시험 통계 담당자</li><li>규제 사전상담 일정과 제출자료 적용성 책임자</li></ul></section>
+  <div class="signatures"><div class="signature"><span>작성</span><strong>SW개발팀</strong></div><div class="signature"><span>검토</span><strong>SW개발팀장</strong></div><div class="signature"><span>승인</span><strong>연구소장</strong></div></div>
+  <div class="foot">상위 문서: DRF, MRS, RRS · 연결 문서: SRS, RMP, SCP/SCR, SVEP/SVAP, RTM, DDR/DCR</div>
+</main></body></html>

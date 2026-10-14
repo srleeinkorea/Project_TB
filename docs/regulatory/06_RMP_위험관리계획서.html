@@ -1,0 +1,30 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RMP | TB 프로젝트 위험관리 계획서</title><link rel="stylesheet" href="document.css"></head><body>
+<header class="toolbar"><a class="toolbar-brand" href="index.html"><span class="toolbar-mark">TB</span>문서 실행 허브</a><div class="toolbar-actions"><a class="action" href="index.html">목록</a><button onclick="window.print()">인쇄 / PDF</button></div></header>
+<main class="page">
+<div class="doc-head"><div><div class="doc-kicker">RISK MANAGEMENT</div><h1>위험관리 계획서</h1><p class="doc-subtitle">데이터·AI·소프트웨어·사용·보안·운영·규제 위험을 식별하고 통제와 검증까지 추적하기 위한 기준입니다.</p></div><div class="doc-code"><span>DOCUMENT CODE</span><strong>RMP-TB-001</strong></div></div>
+<div class="approval"><div><span>상태</span><strong><span class="status draft">검토용 초안</span></strong></div><div><span>버전 / 기준일</span><strong>0.9 / 2026.08.31</strong></div><div><span>작성</span><strong>SW개발팀</strong></div><div><span>검토</span><strong>SW팀장 / RA&amp;QA</strong></div><div><span>승인</span><strong>연구소장</strong></div></div>
+
+<section><h2>1. 목적과 범위</h2><p class="lead">제품 수명주기 전반에서 예측 가능한 위해를 식별하고, 위험통제의 구현·검증·잔여위험·변경 영향을 문서화합니다. 본 초안은 위험관리 방법을 정하며, 최종 위험수용 기준은 회사 QMS와 적용 규제·표준 검토 후 승인합니다.</p></section>
+
+<section><h2>2. 위험관리 방법</h2><ol><li>의도된 사용·합리적으로 예측 가능한 오사용·사용환경·시스템 경계를 정의합니다.</li><li>위해요인 → 사건의 연쇄 → 위해상황 → 위해를 식별하고 발생가능성·심각도를 평가합니다.</li><li>본질적 안전 설계, 보호조치, 안전정보 순으로 통제를 선택합니다.</li><li>각 통제를 SRS·설계·시험 ID에 연결하고 효과와 신규 위험을 검증합니다.</li><li>개별·전체 잔여위험을 승인하고 변경·시험·현장정보에 따라 파일을 갱신합니다.</li></ol></section>
+
+<section><h2>3. 초기 위험등록부</h2><div class="table-wrap"><table><thead><tr><th>ID</th><th>위해상황</th><th>가능한 위해</th><th>초기 통제</th><th>검증</th><th>결정</th></tr></thead><tbody>
+<tr><td class="id">R-01</td><td>활동성 결핵을 정상·비활동성으로 오분류</td><td>후속검사 지연·전파 위험</td><td>민감도 기준, 경고, 의료인 최종판단, 하위군 평가</td><td>SAP/SVAR, 사용성</td><td class="req">수용기준</td></tr>
+<tr><td class="id">R-02</td><td>정상·비결핵 영상을 결핵 의심으로 오분류</td><td>불필요한 추가검사·불안·업무 증가</td><td>특이도 기준, 임계값 관리, 결과 해석 안내</td><td>SAP/SVAR</td><td class="req">임계값 정책</td></tr>
+<tr><td class="id">R-03</td><td>잘못된 Heatmap 또는 점수 해석</td><td>의료인의 부적절한 판단</td><td>출력 정의, 한계·주의, 사용자 교육, 형성평가</td><td>SST, UHA/UTF</td><td class="req">UI 범위</td></tr>
+<tr><td class="id">R-04</td><td>잘못된 영상·환자·방향·촬영유형 입력</td><td>잘못된 결과 연결</td><td>DICOM 검증, 입력 적합성·좌우·중복 확인, 오류 차단</td><td>SIT/SST</td><td class="req">인터페이스</td></tr>
+<tr><td class="id">R-05</td><td>참조표준 오류·레이블 불일치</td><td>왜곡된 학습·성능평가</td><td>복수 독립판독, 확진근거, 중재, 파일럿 일치도</td><td>LBL-QC, 감사</td><td class="req">판독자 수</td></tr>
+<tr><td class="id">R-06</td><td>동일 환자 누수 또는 시험세트 노출</td><td>성능 과대평가</td><td>환자단위 분할, 해시검사, 접근분리, 데이터 잠금</td><td>DATA-LOCK 검토</td><td>필수</td></tr>
+<tr><td class="id">R-07</td><td>연령·장비·기관 등 편향</td><td>특정 하위군 성능 저하</td><td>분포관리, 하위군 성능·CI 보고, 제한사항 표시</td><td>SAP/SVAR</td><td class="req">하위군</td></tr>
+<tr><td class="id">R-08</td><td>코드·가중치·환경 불일치</td><td>결과 비재현·승인되지 않은 모델 사용</td><td>해시·릴리스 태그·Docker digest·모델 ID 표시</td><td>재현성 시험</td><td>필수</td></tr>
+<tr><td class="id">R-09</td><td>API 장애·시간초과·결과 누락</td><td>업무중단·불완전한 판단</td><td>명확한 오류·타임아웃·재시도·대체절차·로그</td><td>SIT/SST</td><td class="req">SLA</td></tr>
+<tr><td class="id">R-10</td><td>무단접근·취약 구성요소·데이터 유출</td><td>개인정보·연구데이터·서비스 침해</td><td>최소권한, 암호화, SBOM, 취약점·패치·사고대응</td><td>보안시험·점검</td><td class="req">위협모델</td></tr>
+<tr><td class="id">R-11</td><td>연구·재학습 모델을 허가모델로 오배포</td><td>승인되지 않은 임상 사용</td><td>환경·저장소·표시 분리, 규제영향평가, 릴리스 승인</td><td>배포검증·감사</td><td>필수</td></tr>
+<tr><td class="id">R-12</td><td>인허가 전 진단목적 사용</td><td>법규 위반·환자 위해</td><td>연구용 표시, 접근제한, IFU 경고, 계약·교육</td><td>사용성·교육기록</td><td>필수</td></tr>
+</tbody></table></div></section>
+
+<section><h2>4. 위험관리 산출물과 검토 시점</h2><div class="table-wrap"><table><thead><tr><th>시점</th><th>활동</th><th>산출물</th><th>승인 조건</th></tr></thead><tbody><tr><td>G1</td><td>위험분석·수용기준·통제계획</td><td>RMP, 위험표 초안</td><td>모든 SRS 안전요구 연결</td></tr><tr><td>G2</td><td>데이터·레이블 위험 검토</td><td>편향·누수·참조표준 위험 갱신</td><td>데이터 잠금 승인</td></tr><tr><td>G3</td><td>설계·모델 동결 위험 검토</td><td>통제 구현상태·잔여위험</td><td>미구현 통제 없음</td></tr><tr><td>G4–G5</td><td>통제 검증·유효성 확인</td><td>시험 증거, RMR 초안</td><td>통제 실패·중대 결함 처리</td></tr><tr><td>G6–G7</td><td>전체 잔여위험·정보제공·이관</td><td>RMR, IFU, 교육·릴리스 기록</td><td>이익-위험·잔여위험 승인</td></tr></tbody></table></div></section>
+
+<section><h2>5. 위험수용 기준 결정 필요</h2><ul><li>심각도·발생가능성 정의와 위험행렬</li><li>개별 위험 및 전체 잔여위험의 수용권한</li><li>임상 성능 하한과 하위군 성능 저하 허용기준</li><li>보안 취약점 심각도별 조치·배포 기한</li><li>미해결 결함의 릴리스 허용조건과 에스컬레이션</li></ul><div class="note decision">위 기준은 본 초안이 임의로 수치화하지 않습니다. RA&amp;QA와 임상·기술 책임자가 제품 사용목적과 적용 표준을 검토한 후 승인합니다.</div></section>
+<div class="signatures"><div class="signature"><span>작성</span><strong>SW개발팀</strong></div><div class="signature"><span>검토</span><strong>SW팀장 / RA&amp;QA</strong></div><div class="signature"><span>승인</span><strong>연구소장</strong></div></div><div class="foot">연결 문서: MRS, RRS, SRS, DMP/LBL, UHA/UPL, SVEP/SVAP, RMR, IFU, SCP/SCR</div>
+</main></body></html>

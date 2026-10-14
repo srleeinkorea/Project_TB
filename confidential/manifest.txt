@@ -1,0 +1,38 @@
+# 기밀 문서 보관함 목록. 경로 | 표시 제목 | 분류
+# 빌드: python tools/vault_build.py  (평문은 git 제외, vault/만 커밋)
+
+# ── 내부 검토 산출물 ──
+docs/internal/261015_TB_협회미팅_설득자료_v3.html | 협회 미팅 설득자료 v3 (2026-10-15) | 내부 검토
+docs/internal/261015_TB_협회미팅_설득자료_v2.html | 협회 미팅 설득자료 v2 | 내부 검토
+docs/internal/261015_TB_협회미팅_설득자료_v1.html | 협회 미팅 설득자료 v1 | 내부 검토
+docs/internal/261014_TB_AI_공동연구_추진현황_종합보고.md | 추진현황 종합보고 (2026-10-14) | 내부 검토
+docs/internal/260826_DRB_심의_및_데이터부족사항_분석.md | DRB 심의 및 데이터 부족사항 분석 (2026-08-26) | 내부 검토
+docs/internal/TB_프로젝트_WBS_및_문서승인매트릭스.xlsx | WBS 및 문서승인 매트릭스 | 내부 검토
+
+# ── 킥오프 자료 ──
+docs/internal/decks/260903_TB_AI_Kickoff_Meeting_보완본_v2.pptx | 킥오프 미팅 보완본 v2 (2026-09-03) | 킥오프
+docs/internal/decks/260903_TB_AI_Kickoff_Flow_Review_Script_v2.pptx | 킥오프 흐름 리뷰 스크립트 v2 | 킥오프
+docs/internal/decks/260903_DRB_필요성_근거_1장.pptx | DRB 필요성 근거 1장 | 킥오프
+docs/internal/decks/260828_TB_AI_Kickoff_Meeting_Flow_2026_SRLEE_v2_표본수검토반영.pptx | 킥오프 흐름 v2 표본수 검토 반영 (2026-08-28) | 킥오프
+
+# ── 계약 ──
+source/contracts/공동연구개발계약서(안)_마이허브_대한결핵협회_.pdf | 공동연구개발계약서(안) 최종 PDF | 계약
+source/contracts/공동연구개발계약서(안)_마이허브_대한결핵협회_.hwp | 공동연구개발계약서(안) 최종 HWP | 계약
+source/contracts/공동연구개발계약서(안)_마이허브_대한결핵협회(2026.6.19)_RA.hwp | 계약서 2026-06-19 인허가 조항 반영본 | 계약
+source/contracts/공동연구개발계약서(안)_대한결핵협회_SEUM검토_v1_260312.hwp | 계약서 법무검토본 (2026-03-12) | 계약
+
+# ── 연구계획 ──
+source/plans/대한결핵협회 연구과제 신청서 및 계획서(2026.6.9).pdf | 연구과제 신청서 및 계획서 (2026-06-09) | 연구계획
+source/plans/대한결핵협회 연구과제 신청서 및 계획서(2026.6.19)_RA.hwpx | 연구과제 계획서 2026-06-19 인허가 조항 반영본 | 연구계획
+source/plans/결핵진단 AI 사업계획서.hwp | 결핵진단 AI 사업계획서 | 연구계획
+source/plans/TB_프로젝트_사업계획_종합정리.docx | 사업계획 종합정리 | 연구계획
+source/plans/인허가 관련 사항 정리.hwpx | 인허가 관련 사항 정리 | 연구계획
+
+# ── IRB ──
+source/irb/1. 기관생명윤리위원회 연구계획서.pdf | IRB 연구계획서 | IRB
+source/irb/2. 기관생명윤리위원회 심의면제 자가점검표.pdf | IRB 심의면제 자가점검표 | IRB
+source/irb/연구 데이터의 안전성 확보 조치 및 파기 계획서.docx | 연구 데이터 안전성 확보 및 파기 계획서 | IRB
+
+# ── 회의 ──
+source/meetings/참고_대한결핵협회 CXR TB 모델관련 회의_20251211.docx | 협회 CXR TB 모델 회의 (2025-12-11) | 회의
+source/consulting/Medtech Insight 2026 연계 사전 상담 신청서.hwp | KHIDI Medtech Insight 2026 사전 상담 신청서 | 회의

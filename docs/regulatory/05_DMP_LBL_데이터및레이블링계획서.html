@@ -1,0 +1,31 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DMP/LBL | TB 데이터·레이블링 계획서</title><link rel="stylesheet" href="document.css"></head><body>
+<header class="toolbar"><a class="toolbar-brand" href="index.html"><span class="toolbar-mark">TB</span>문서 실행 허브</a><div class="toolbar-actions"><a class="action" href="index.html">목록</a><button onclick="window.print()">인쇄 / PDF</button></div></header>
+<main class="page">
+<div class="doc-head"><div><div class="doc-kicker">DATA GOVERNANCE &amp; REFERENCE STANDARD</div><h1>데이터·레이블링 관리계획서</h1><p class="doc-subtitle">학습용 CXR 5,000건의 선정·익명화·품질관리·환자단위 분할·전문의 참조표준·데이터 잠금 기준입니다.</p></div><div class="doc-code"><span>DOCUMENT CODE</span><strong>DMP/LBL-TB-001</strong></div></div>
+<div class="approval"><div><span>상태</span><strong><span class="status draft">의학 검토 필요</span></strong></div><div><span>버전 / 기준일</span><strong>0.9 / 2026.08.31</strong></div><div><span>작성</span><strong>SW개발팀 / 협회</strong></div><div><span>검토</span><strong>RA&amp;QA / 전문의</strong></div><div><span>승인</span><strong>연구소장 + 협회</strong></div></div>
+
+<section><h2>1. 데이터 범위와 원칙</h2><p class="lead">대한결핵협회가 적법하게 보유하고 승인된 범위에서 추출한 흉부 X-ray와 판독·검사 정보를 사용합니다. 개발사는 계약 목적에 한해 처리하며, 데이터와 파생데이터의 권리는 협회에 귀속됩니다.</p><div class="grid grid-3"><div class="card"><span class="label">TARGET</span><strong>CXR 약 5,000건</strong><p>활동성 결핵·비활동성 결핵·정상군. 기타 폐질환군은 별도 결정.</p></div><div class="card"><span class="label">IDENTITY</span><strong>환자 단위 관리</strong><p>동일 환자의 반복 촬영이 서로 다른 분할에 포함되지 않도록 고유 연구키로 통제.</p></div><div class="card"><span class="label">PRIVACY</span><strong>비가역적 익명화 원칙</strong><p>DICOM·영상 내 식별정보를 제거하고 원본 연결 가능성을 차단.</p></div></div></section>
+
+<section><h2>2. 선정·제외·품질관리</h2><div class="table-wrap"><table><thead><tr><th>ID</th><th>기준</th><th>기록</th><th>결정 필요</th></tr></thead><tbody>
+<tr><td class="id">DATA-01</td><td>연구 승인 범위의 흉부 X-ray이며 판독 또는 확진 근거가 존재</td><td>선정대장·근거유형</td><td class="req">검사 시간창</td></tr>
+<tr><td class="id">DATA-02</td><td>중복·손상·판독불가·심각한 품질저하 영상 제외</td><td>제외사유 코드·QC 기록</td><td class="req">최소 품질기준</td></tr>
+<tr><td class="id">DATA-03</td><td>동일 환자·동일 검사 중복을 탐지해 대표 영상 선정</td><td>중복검사 로그</td><td class="req">반복촬영 처리</td></tr>
+<tr><td class="id">DATA-04</td><td>연령·성별·기관·장비·촬영방식·클래스 분포를 보고</td><td>분포표·편향검토</td><td class="req">하위군 최소수</td></tr>
+<tr><td class="id">DATA-05</td><td>식별자·태그·Burned-in text 제거 후 재식별 위험 검토</td><td>익명화 로그·샘플검수</td><td>승인 기준 적용</td></tr>
+</tbody></table></div></section>
+
+<section><h2>3. 참조표준과 레이블링</h2><div class="table-wrap"><table><thead><tr><th>항목</th><th>초안 기준</th><th>승인 전 결정</th></tr></thead><tbody>
+<tr><td><strong>레이블 클래스</strong></td><td>활동성 결핵 / 비활동성 결핵 / 정상</td><td>기타 폐질환·모호·판독불가 별도 코드</td></tr>
+<tr><td><strong>근거 우선순위</strong></td><td>미생물학적 검사, 임상진단·치료, 추적검사, 영상판독 등 가용 근거 조합</td><td>클래스별 필수 근거와 영상-검사 시간창</td></tr>
+<tr><td><strong>판독 방식</strong></td><td>독립 판독 후 불일치 중재를 권고</td><td>판독자 수·자격·맹검·중재자</td></tr>
+<tr><td><strong>병변 표시</strong></td><td>위치·유형·확신도·판독불가 사유 기록</td><td>박스/마스크/좌표, 최소 병변단위</td></tr>
+<tr><td><strong>품질 지표</strong></td><td>일치율과 클래스별 불일치·중재율 보고</td><td>Kappa 등 통계와 합격기준</td></tr>
+</tbody></table></div><div class="note decision">전문의 1인의 ‘최종 검수’만으로 참조표준을 확정하지 않습니다. 판독자 수, 독립성, 확진근거와 중재규칙을 파일럿 전에 승인해야 합니다.</div></section>
+
+<section><h2>4. 데이터 분할·잠금</h2><ol><li>환자 단위로 학습·튜닝용 검증·독립시험 세트를 분리합니다.</li><li>동일 환자, 동일 검사, 파생 이미지가 다른 세트에 중복되지 않도록 해시·연구키로 확인합니다.</li><li>클래스·연령·성별·기관·장비 분포를 비교하고 차이를 문서화합니다.</li><li>독립시험 세트는 개발팀이 레이블·결과를 볼 수 없도록 접근을 분리합니다.</li><li>잠금 후 변경은 변경요청, 근거, 영향평가, 재잠금 승인과 새 버전으로만 수행합니다.</li></ol><div class="note">분할 비율과 클래스별 사례 수는 SAP의 표본수 계산 후 확정합니다. 임의의 70/15/15 비율을 기준값으로 고정하지 않습니다.</div></section>
+
+<section><h2>5. 보안·보존·파기</h2><ul><li>승인된 저장소, 최소권한, 승인 IP, 전송·저장 암호화, 접근·반출 로그를 적용합니다.</li><li>개인 PC·개인 클라우드·이메일·외부 저장매체로 임의 반출하지 않습니다.</li><li>유출·무단접근·훼손 의심 시 즉시 이용을 중지하고 개발사·협회 책임자에게 보고합니다.</li><li>연구 완료 또는 계약 해지 후 5일 이내 복구 불가능하게 파기하고 파기확약서를 제출합니다.</li><li>인허가 유지에 법정 보존이 필요한 경우 대상·근거를 서면 통보하고 외부망 차단 암호화 저장소에 격리합니다.</li></ul></section>
+
+<section><h2>6. 데이터 잠금 승인 체크</h2><div class="table-wrap"><table><thead><tr><th>확인</th><th>완료 증빙</th><th>상태</th></tr></thead><tbody><tr><td>연구·데이터 이용 승인 범위</td><td>IRB/심의면제·개인정보심의·질병관리청 등 해당 승인</td><td class="req">확인 필요</td></tr><tr><td>익명화·QC</td><td>익명화 로그, 샘플검수, 제외대장</td><td>미착수</td></tr><tr><td>참조표준</td><td>LBL-SOP, 판독·중재 기록, 일치도</td><td class="req">의학 결정 필요</td></tr><tr><td>분할·누수</td><td>환자 중복검사, 분포표, 잠금 해시</td><td>미착수</td></tr><tr><td>독립성·접근권한</td><td>시험세트 관리자, 권한대장, 공개금지</td><td class="req">담당 지정 필요</td></tr></tbody></table></div></section>
+<div class="signatures"><div class="signature"><span>작성</span><strong>SW개발팀 / 협회</strong></div><div class="signature"><span>검토</span><strong>RA&amp;QA / 전문의</strong></div><div class="signature"><span>승인</span><strong>연구소장 / 협회</strong></div></div><div class="foot">연결 문서: SRS, RMP, SAP/SVAP, 데이터 안전성 확보·파기 계획, RTM · 외부 의학 검토 없이는 기준선 승인 불가</div>
+</main></body></html>

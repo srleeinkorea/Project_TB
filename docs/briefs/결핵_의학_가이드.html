@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="기초 개념부터 임상 전문 수준까지 단계적으로 설명하는 의학근거 기반 결핵 가이드">
+  <title>결핵 의학 가이드 | 기초부터 전문의 수준까지</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #15231f;
+      --muted: #53635e;
+      --paper: #fffdf8;
+      --surface: #f4f6ee;
+      --line: #d8ded6;
+      --brand: #0d6b57;
+      --brand-dark: #08493d;
+      --brand-soft: #dcefe8;
+      --blue-soft: #e7f0f6;
+      --warn: #9b4b15;
+      --warn-soft: #fff0df;
+      --danger: #9e2f2f;
+      --danger-soft: #fde9e7;
+      --shadow: 0 16px 40px rgba(24, 45, 37, .08);
+      --radius: 18px;
+      --content: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+      line-height: 1.78;
+      word-break: keep-all;
+    }
+    a { color: var(--brand-dark); text-underline-offset: .18em; }
+    a:hover { color: var(--brand); }
+    .skip-link {
+      position: fixed; left: 1rem; top: -5rem; z-index: 100;
+      padding: .7rem 1rem; background: #fff; border: 2px solid var(--brand);
+    }
+    .skip-link:focus { top: 1rem; }
+
+    header { background: rgba(255,255,255,.98); border-bottom: 1px solid var(--line); }
+    .topbar-inner {
+      max-width: var(--content); min-height: 68px; margin: auto; padding: .7rem 1.5rem;
+      display: flex; align-items: center; gap: .75rem;
+    }
+    .brand-mark {
+      flex: none; width: 39px; height: 39px; border-radius: 9px;
+      display: grid; place-items: center; background: var(--brand-dark); color: #fff;
+      font-size: .76rem; font-weight: 900; letter-spacing: .04em;
+    }
+    .brand-title, .brand-sub { margin: 0; line-height: 1.35; }
+    .brand-title { color: var(--ink); font-size: .92rem; font-weight: 850; }
+    .brand-sub { margin-top: .1rem; color: var(--muted); font-size: .7rem; }
+    .asof {
+      margin-left: auto; padding: .3rem .65rem; border: 1px solid var(--line); border-radius: 999px;
+      background: #fff; color: var(--muted); font-size: .72rem; font-weight: 750; white-space: nowrap;
+    }
+
+    .document-intro {
+      display: flex; align-items: flex-end; justify-content: space-between; gap: 1.5rem;
+      margin: 0 0 1.35rem; padding: .25rem 0 1.3rem; border-bottom: 1px solid var(--line);
+    }
+    .eyebrow { margin: 0 0 .35rem; color: var(--brand); font-size: .7rem; font-weight: 900; letter-spacing: .12em; }
+    h1 { margin: 0; max-width: 760px; font-size: clamp(1.8rem, 4vw, 2.75rem); line-height: 1.12; letter-spacing: -.045em; color: var(--brand-dark); }
+    .subtitle { max-width: 730px; margin: .65rem 0 0; color: var(--muted); font-size: .93rem; line-height: 1.65; }
+    .intro-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .55rem; flex: none; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 40px; padding: .55rem .85rem; border: 1px solid var(--line);
+      border-radius: 8px; background: #fff; color: var(--brand-dark); text-decoration: none;
+      font-size: .82rem; font-weight: 800;
+    }
+    .button:hover, .button:focus { border-color: var(--brand); background: var(--brand-soft); color: var(--brand-dark); }
+    .button.primary { background: var(--brand-dark); color: #fff; border-color: var(--brand-dark); }
+    .button.primary:hover, .button.primary:focus { background: var(--brand); color: #fff; }
+
+    .page {
+      display: grid; grid-template-columns: 255px minmax(0, 1fr); gap: 3.2rem;
+      max-width: var(--content); margin: 0 auto; padding: 2rem 1.5rem 6rem;
+    }
+    nav { position: sticky; top: 1.2rem; align-self: start; }
+    .toc {
+      padding: 1.1rem; border: 1px solid var(--line); border-radius: 15px;
+      background: rgba(255,255,255,.78); box-shadow: var(--shadow); backdrop-filter: blur(8px);
+    }
+    .toc strong { display: block; margin-bottom: .6rem; font-size: .9rem; color: var(--muted); }
+    .toc ol { margin: 0; padding: 0; list-style: none; }
+    .toc a { display: block; padding: .36rem .45rem; border-radius: 7px; color: #34433e; text-decoration: none; font-size: .9rem; line-height: 1.4; }
+    .toc a:hover, .toc a:focus { background: var(--brand-soft); color: var(--brand-dark); }
+
+    main { min-width: 0; }
+    section { scroll-margin-top: 1.2rem; margin-bottom: 4.4rem; }
+    h2 { margin: 0 0 1.25rem; padding-bottom: .65rem; border-bottom: 2px solid var(--line); font-size: clamp(1.6rem, 3vw, 2.25rem); line-height: 1.25; letter-spacing: -.035em; }
+    h3 { margin: 2.15rem 0 .8rem; font-size: 1.28rem; line-height: 1.35; letter-spacing: -.02em; }
+    h4 { margin: 1.5rem 0 .45rem; font-size: 1.05rem; }
+    p { margin: .65rem 0 1.05rem; }
+    ul, ol { padding-left: 1.35rem; }
+    li + li { margin-top: .32rem; }
+    strong { color: #0d3e34; }
+    code { padding: .12em .35em; border-radius: 5px; background: #eef1ec; font-family: ui-monospace, monospace; font-size: .9em; }
+    sup a { text-decoration: none; }
+
+    .lead {
+      padding: 1.35rem 1.45rem; border-left: 5px solid var(--brand);
+      border-radius: 0 12px 12px 0; background: var(--brand-soft); font-size: 1.07rem;
+    }
+    .notice, .warning, .emergency {
+      margin: 1.25rem 0; padding: 1rem 1.15rem; border: 1px solid; border-radius: 12px;
+    }
+    .notice { background: var(--blue-soft); border-color: #b8cfdd; }
+    .warning { background: var(--warn-soft); border-color: #e6bd92; }
+    .emergency { background: var(--danger-soft); border-color: #e3aaaa; }
+    .notice > :first-child, .warning > :first-child, .emergency > :first-child { margin-top: 0; }
+    .notice > :last-child, .warning > :last-child, .emergency > :last-child { margin-bottom: 0; }
+    .level {
+      display: inline-flex; align-items: center; gap: .45rem; margin-bottom: .7rem;
+      padding: .3rem .7rem; border-radius: 99px; background: var(--brand-soft);
+      color: var(--brand-dark); font-weight: 800; font-size: .84rem;
+    }
+    .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1.25rem 0; }
+    .card { padding: 1.15rem; border: 1px solid var(--line); border-radius: 14px; background: #fff; box-shadow: 0 8px 24px rgba(20,52,42,.04); }
+    .card h3, .card h4 { margin-top: 0; }
+
+    .figure {
+      margin: 1.5rem 0 1.8rem; overflow: hidden;
+      border: 1px solid var(--line); border-radius: 16px; background: #fff;
+      box-shadow: 0 10px 28px rgba(20,52,42,.05);
+    }
+    .figure svg { display: block; width: 100%; height: auto; background: linear-gradient(180deg, #fbfdf9, #f4f8f3); }
+    .figure figcaption { padding: .85rem 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+    .figure figcaption strong { display: block; margin-bottom: .18rem; }
+    .figure-note { color: var(--muted); font-size: .86rem; }
+
+    .table-wrap { margin: 1.3rem 0; overflow-x: auto; border: 1px solid var(--line); border-radius: 13px; background: #fff; }
+    table { width: 100%; border-collapse: collapse; min-width: 650px; font-size: .93rem; }
+    caption { padding: .75rem 1rem; text-align: left; font-weight: 700; color: var(--muted); }
+    th, td { padding: .75rem .85rem; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
+    th { background: var(--surface); color: #293a34; }
+    tr:last-child td { border-bottom: 0; }
+    blockquote { margin: 1.3rem 0; padding: 1rem 1.2rem; border-left: 5px solid var(--brand); background: var(--surface); font-size: 1.12rem; font-weight: 700; }
+
+    .flow { counter-reset: flow; display: grid; gap: .75rem; margin: 1.2rem 0; }
+    .flow > div { position: relative; padding: .9rem 1rem .9rem 3.6rem; border: 1px solid var(--line); border-radius: 11px; background: #fff; }
+    .flow > div::before {
+      counter-increment: flow; content: counter(flow);
+      position: absolute; left: .9rem; top: .8rem; display: grid; place-items: center;
+      width: 1.85rem; height: 1.85rem; border-radius: 50%; background: var(--brand); color: #fff; font-weight: 800;
+    }
+    details { margin: .85rem 0; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+    summary { padding: .9rem 1rem; cursor: pointer; font-weight: 750; color: #173f35; }
+    details > div { padding: 0 1rem 1rem; }
+
+    .refs { padding-left: 1.3rem; font-size: .94rem; }
+    .refs li { margin-bottom: .7rem; }
+    .back { display: inline-block; margin-top: 1rem; font-size: .9rem; }
+    footer { border-top: 1px solid var(--line); background: var(--surface); }
+    footer > div { max-width: var(--content); margin: auto; padding: 2rem 1.5rem; color: var(--muted); font-size: .88rem; }
+
+    @media (max-width: 880px) {
+      .page { grid-template-columns: 1fr; gap: 1.5rem; padding-top: 1.5rem; }
+      nav { position: static; }
+      .toc ol { columns: 2; column-gap: .8rem; }
+      .document-intro { align-items: flex-start; flex-direction: column; }
+      .intro-actions { justify-content: flex-start; }
+    }
+    @media (max-width: 620px) {
+      .topbar-inner { padding-inline: 1rem; }
+      .asof { display: none; }
+      .page { padding-inline: 1rem; }
+      .toc ol { columns: 1; }
+      .cards { grid-template-columns: 1fr; }
+      .intro-actions { width: 100%; }
+      .intro-actions .button { flex: 1; }
+      body { word-break: normal; overflow-wrap: anywhere; }
+    }
+    @media print {
+      @page { margin: 16mm; }
+      body { background: #fff; color: #000; font-size: 10.5pt; }
+      header { background: #fff; color: #000; border-bottom: 1px solid #000; }
+      nav, .intro-actions, .skip-link { display: none !important; }
+      .topbar-inner { padding: .4rem 0; }
+      .document-intro { padding-top: .5rem; }
+      .subtitle { color: #222; }
+      .page { display: block; max-width: none; padding: 1.3rem 0; }
+      section { margin-bottom: 2rem; break-inside: auto; }
+      h2, h3 { break-after: avoid; }
+      table, .card, .notice, .warning, .emergency, blockquote { break-inside: avoid; box-shadow: none; }
+      a { color: #000; text-decoration: none; }
+      a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .72em; word-break: break-all; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main" target="_self">본문 바로가기</a>
+
+  <header id="top">
+    <div class="topbar-inner">
+      <div class="brand-mark" aria-hidden="true">TB</div>
+      <div>
+        <p class="brand-title">결핵 의학 가이드</p>
+        <p class="brand-sub">근거 기반 교육자료 · 국내외 최신 지침 반영</p>
+      </div>
+      <span class="asof">2026.09.01 기준</span>
+    </div>
+  </header>
+
+  <div class="page">
+    <nav aria-label="문서 목차">
+      <div class="toc">
+        <strong>문서 목차</strong>
+        <ol>
+          <li><a href="#summary" target="_self">핵심 10줄</a></li>
+          <li><a href="#elementary" target="_self">기초 · 핵심 개념</a></li>
+          <li><a href="#general" target="_self">기본 · 감염과 증상</a></li>
+          <li><a href="#medical" target="_self">의학 원리 · 병태생리</a></li>
+          <li><a href="#diagnosis" target="_self">진단 알고리즘</a></li>
+          <li><a href="#treatment" target="_self">약제감수성 치료</a></li>
+          <li><a href="#ltbi" target="_self">잠복결핵 치료</a></li>
+          <li><a href="#extrapulmonary" target="_self">폐외결핵</a></li>
+          <li><a href="#special" target="_self">특수 상황</a></li>
+          <li><a href="#expert" target="_self">임상 심화 · 전문 진료</a></li>
+          <li><a href="#prevention" target="_self">예방과 접촉자 조사</a></li>
+          <li><a href="#aftercare" target="_self">치료 후 관리</a></li>
+          <li><a href="#myths" target="_self">오해 바로잡기</a></li>
+          <li><a href="#urgent" target="_self">진료가 필요한 경우</a></li>
+          <li><a href="#references" target="_self">근거문헌</a></li>
+        </ol>
+      </div>
+    </nav>
+
+    <main id="main">
+      <section class="document-intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">EVIDENCE-BASED TUBERCULOSIS GUIDE</p>
+          <h1 id="page-title">결핵, 기초부터 전문 진료까지</h1>
+          <p class="subtitle">기본 개념부터 진단 알고리즘, 약제감수성·내성결핵 치료와 특수상황까지 단계적으로 설명합니다. 국내 결핵 진료지침 제5판(2024)을 중심으로 WHO·ATS/CDC/ERS/IDSA 2025 지침을 구분해 반영했습니다.</p>
+        </div>
+        <div class="intro-actions" aria-label="빠른 이동">
+          <a class="button primary" href="#summary" target="_self">핵심부터 읽기</a>
+          <a class="button" href="#references" target="_self">근거문헌 보기</a>
+        </div>
+      </section>
+      <section aria-label="문서 안내">
+        <div class="warning">
+          <strong>의학적 사용 범위</strong>
+          <p>이 문서는 교육자료이며 개인 진단이나 처방을 대신하지 않습니다. 실제 치료는 체중, 임신, HIV, 간·신장 기능, 약제감수성, 복용 약물과 국내 허가·급여 기준에 따라 달라집니다.</p>
+        </div>
+      </section>
+
+      <section id="summary">
+        <span class="level">먼저 읽기 · 3분</span>
+        <h2>핵심 10줄</h2>
+        <ol class="lead">
+          <li>결핵은 <strong>결핵균(Mycobacterium tuberculosis)</strong>이 일으키는 감염병이다.</li>
+          <li>주로 폐에 생기지만 림프절, 뇌수막, 뼈, 신장 등 거의 모든 장기를 침범할 수 있다.</li>
+          <li>폐·후두 결핵 환자가 말하거나 기침할 때 나온 작은 입자를 들이마셔 전파된다.</li>
+          <li>악수, 식기, 변기, 침구 공유로 전파되는 병은 아니다.</li>
+          <li>감염됐어도 아프지 않고 전염시키지 않는 상태가 <strong>결핵감염·잠복결핵감염</strong>이다.</li>
+          <li>균이 증식해 조직을 손상시키는 상태가 <strong>활동성 결핵</strong>이다.</li>
+          <li>2～3주 이상 기침, 체중 감소, 야간 발한, 발열, 피로, 객혈이 대표 증상이다.</li>
+          <li>흉부 X선만으로 확진하지 않고 객담 분자검사·도말·배양·약제감수성검사를 한다.</li>
+          <li>국내 약제감수성 폐결핵의 대표 표준치료는 <strong>2개월 HRZE + 4개월 HR</strong>이다.</li>
+          <li>정확히 치료하면 대부분 낫지만 임의 중단은 재발·전파·약제내성을 부른다.</li>
+        </ol>
+        <p>WHO에 따르면 2024년 세계에서 약 1,070만 명이 결핵에 걸렸고 123만 명이 사망했다. 한국에서도 2025년 신규 환자 13,713명이 신고됐다.<sup><a href="#ref-4">[4]</a></sup><sup><a href="#ref-5">[5]</a></sup></p>
+      </section>
+
+      <section id="elementary">
+        <span class="level">기초 · 핵심 개념</span>
+        <h2>결핵균과 면역의 ‘성벽’ 개념</h2>
+        <p>결핵균은 아주 작고 천천히 자라는 세균이다. 전염성이 있는 결핵 환자가 기침하거나 말하면 균을 담은 작은 입자가 공기 중에 나오고, 가까운 공간에서 오랫동안 함께 지낸 사람이 그 공기를 들이마시면 균이 폐로 들어갈 수 있다.</p>
+        <figure class="figure">
+          <svg viewBox="0 0 900 390" role="img" aria-labelledby="airborne-title airborne-desc">
+            <title id="airborne-title">결핵의 공기 전파 과정</title>
+            <desc id="airborne-desc">폐결핵 환자가 기침할 때 나온 작은 공기 입자가 환기가 나쁜 실내를 지나 다른 사람의 폐로 들어가는 과정을 나타낸 개념도</desc>
+            <defs>
+              <marker id="arrow-air" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+                <path d="M0,0 L0,6 L9,3 z" fill="#0d6b57"/>
+              </marker>
+              <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#153c32" flood-opacity=".12"/>
+              </filter>
+            </defs>
+            <rect x="28" y="44" width="844" height="282" rx="28" fill="#ffffff" stroke="#d8ded6"/>
+            <path d="M294 72V300 M612 72V300" stroke="#d8ded6" stroke-dasharray="7 8"/>
+
+            <g transform="translate(74 92)" filter="url(#soft-shadow)">
+              <circle cx="78" cy="43" r="36" fill="#f4c8ab"/>
+              <path d="M49 39c10-27 45-35 66-13 8 8 10 17 9 29-16-13-33-18-54-16-6 1-13 2-21 0z" fill="#34433e"/>
+              <path d="M45 175c4-64 16-88 34-91 18 0 33 15 43 44l16 47z" fill="#1b7d67"/>
+              <path d="M107 64c16 4 27 10 38 19" fill="none" stroke="#9b4b15" stroke-width="5" stroke-linecap="round"/>
+              <path d="M141 75l13 8-15 4" fill="#9b4b15"/>
+              <text x="78" y="216" text-anchor="middle" font-size="19" font-weight="700" fill="#173f35">전염성 폐·후두 결핵</text>
+              <text x="78" y="244" text-anchor="middle" font-size="16" fill="#53635e">기침 · 말 · 노래</text>
+            </g>
+
+            <g aria-label="공기 중 작은 입자">
+              <path d="M260 175C360 128 455 130 565 174" fill="none" stroke="#0d6b57" stroke-width="4" stroke-dasharray="9 10" marker-end="url(#arrow-air)"/>
+              <circle cx="340" cy="149" r="8" fill="#d86854"/><circle cx="386" cy="135" r="5" fill="#d86854"/>
+              <circle cx="429" cy="148" r="7" fill="#d86854"/><circle cx="474" cy="153" r="4" fill="#d86854"/>
+              <circle cx="510" cy="165" r="6" fill="#d86854"/>
+              <text x="430" y="100" text-anchor="middle" font-size="20" font-weight="700" fill="#173f35">공기 중의 작은 비말핵</text>
+              <text x="430" y="217" text-anchor="middle" font-size="16" fill="#53635e">좁고 환기가 나쁠수록 위험 증가</text>
+            </g>
+
+            <g transform="translate(658 80)" filter="url(#soft-shadow)">
+              <circle cx="75" cy="45" r="36" fill="#f4c8ab"/>
+              <path d="M43 42c7-33 52-43 70-12 3 6 5 13 5 22-25-10-50-12-75-10z" fill="#4b3531"/>
+              <path d="M44 184c4-60 15-86 31-89 18 0 31 15 43 44l16 45z" fill="#5676a7"/>
+              <g transform="translate(26 85)">
+                <path d="M48 7v38" stroke="#53635e" stroke-width="5" stroke-linecap="round"/>
+                <path d="M48 44c-8 1-17 8-22 16-10 18-9 44-2 51 9 8 27-2 29-18V51c0-4-2-7-5-7z" fill="#e8a39c" stroke="#9e5650" stroke-width="2"/>
+                <path d="M48 44c8 1 17 8 22 16 10 18 9 44 2 51-9 8-27-2-29-18V51c0-4 2-7 5-7z" fill="#e8a39c" stroke="#9e5650" stroke-width="2"/>
+              </g>
+              <text x="75" y="244" text-anchor="middle" font-size="19" font-weight="700" fill="#173f35">들이마신 사람의 폐</text>
+            </g>
+            <text x="450" y="361" text-anchor="middle" font-size="17" fill="#53635e">악수·식기·변기 공유가 아니라, 같은 공간의 공기를 통해 전파됩니다.</text>
+          </svg>
+          <figcaption><strong>그림 1. 결핵의 공기 전파</strong>전염성 폐·후두 결핵에서 배출된 작은 입자를 다른 사람이 들이마시는 과정의 개념도입니다. 실제 위험은 노출시간, 환기, 객담 균량과 치료 효과에 따라 달라집니다.</figcaption>
+        </figure>
+        <div class="cards">
+          <article class="card">
+            <h3>성벽이 균을 가둔 상태</h3>
+            <p><strong>잠복결핵감염</strong>이라고 부른다. 아프지 않고, 다른 사람에게 옮기지 않는다.</p>
+          </article>
+          <article class="card">
+            <h3>성벽이 무너진 상태</h3>
+            <p>균이 늘어나 몸을 손상시키는 <strong>활동성 결핵</strong>이다. 폐결핵이면 공기로 전파할 수 있다.</p>
+          </article>
+        </div>
+        <figure class="figure">
+          <svg viewBox="0 0 900 355" role="img" aria-labelledby="spectrum-title spectrum-desc">
+            <title id="spectrum-title">결핵 감염과 질병의 연속선</title>
+            <desc id="spectrum-desc">결핵균 노출 후 면역계가 균을 통제하는 상태에서 무증상 초기 질병과 증상성 활동성 결핵으로 이어질 수 있음을 보여주는 개념도</desc>
+            <defs>
+              <linearGradient id="spectrum-bar" x1="0" x2="1">
+                <stop offset="0" stop-color="#dcefe8"/><stop offset=".56" stop-color="#f6d99f"/><stop offset="1" stop-color="#e8a19a"/>
+              </linearGradient>
+              <marker id="arrow-spectrum" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#173f35"/></marker>
+            </defs>
+            <rect x="30" y="35" width="840" height="250" rx="24" fill="#fff" stroke="#d8ded6"/>
+            <rect x="80" y="198" width="740" height="20" rx="10" fill="url(#spectrum-bar)"/>
+            <path d="M92 178H805" stroke="#173f35" stroke-width="3" marker-end="url(#arrow-spectrum)"/>
+            <g font-family="inherit" text-anchor="middle">
+              <circle cx="125" cy="125" r="39" fill="#eaf5f0" stroke="#0d6b57" stroke-width="3"/>
+              <path d="M106 126l13 13 26-31" fill="none" stroke="#0d6b57" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+              <text x="125" y="252" font-size="18" font-weight="700" fill="#173f35">균 제거 또는</text><text x="125" y="277" font-size="18" font-weight="700" fill="#173f35">감염 없음</text>
+
+              <circle cx="342" cy="125" r="39" fill="#dcefe8" stroke="#0d6b57" stroke-width="3"/>
+              <circle cx="342" cy="125" r="9" fill="#d86854"/>
+              <path d="M311 126c16-30 46-30 62 0M314 139c18 25 42 25 57 0" fill="none" stroke="#0d6b57" stroke-width="4"/>
+              <text x="342" y="252" font-size="18" font-weight="700" fill="#173f35">통제된 감염</text><text x="342" y="277" font-size="16" fill="#53635e">증상·전염 없음</text>
+
+              <circle cx="559" cy="125" r="39" fill="#f9e2b4" stroke="#b57424" stroke-width="3"/>
+              <circle cx="548" cy="116" r="8" fill="#d86854"/><circle cx="570" cy="133" r="8" fill="#d86854"/><circle cx="550" cy="140" r="5" fill="#d86854"/>
+              <text x="559" y="252" font-size="18" font-weight="700" fill="#173f35">초기·무증상 질병</text><text x="559" y="277" font-size="16" fill="#53635e">검사에서 먼저 발견 가능</text>
+
+              <circle cx="776" cy="125" r="39" fill="#f5cfca" stroke="#9e2f2f" stroke-width="3"/>
+              <circle cx="761" cy="114" r="8" fill="#9e2f2f"/><circle cx="783" cy="111" r="8" fill="#9e2f2f"/><circle cx="794" cy="133" r="8" fill="#9e2f2f"/><circle cx="770" cy="139" r="7" fill="#9e2f2f"/>
+              <text x="776" y="252" font-size="18" font-weight="700" fill="#173f35">활동성 결핵</text><text x="776" y="277" font-size="16" fill="#53635e">증상·조직 손상 가능</text>
+              <text x="450" y="319" font-size="16" fill="#53635e">실제 생물학은 딱 잘라 나뉘지 않으며 치료·면역상태에 따라 이동할 수 있습니다.</text>
+            </g>
+          </svg>
+          <figcaption><strong>그림 2. 결핵은 연속적인 스펙트럼</strong>‘잠복’과 ‘활동성’은 진료에 유용한 구분이지만, 실제 감염 상태는 여러 중간단계를 포함합니다.</figcaption>
+        </figure>
+        <p>여러 약을 같이 쓰는 이유는 결핵균 중 일부가 한 가지 약을 견딜 수 있기 때문이다. 서로 다른 약으로 동시에 공격하면 균이 살아남을 가능성이 크게 줄어든다.</p>
+        <div class="notice">
+          <strong>낙인은 의학적 근거가 없다</strong>
+          <p>결핵은 부끄러운 병이 아니며 식기를 버릴 필요도 없다. 효과적인 치료를 정확히 받으면 대부분 완치된다.</p>
+        </div>
+      </section>
+
+      <section id="general">
+        <span class="level">기본 · 감염과 증상</span>
+        <h2>감염, 발병, 전파와 증상</h2>
+        <div class="table-wrap">
+          <table>
+            <caption>잠복결핵감염과 활동성 결핵의 차이</caption>
+            <thead><tr><th>구분</th><th>잠복결핵감염</th><th>활동성 결핵</th></tr></thead>
+            <tbody>
+              <tr><td>몸속 결핵균</td><td>면역체계가 억제하고 있을 가능성</td><td>증식하며 조직을 손상</td></tr>
+              <tr><td>증상</td><td>없음</td><td>기침, 발열, 체중 감소 등</td></tr>
+              <tr><td>흉부 X선</td><td>대개 정상 또는 과거 흔적</td><td>침윤, 결절, 공동 등 가능</td></tr>
+              <tr><td>객담검사</td><td>음성</td><td>양성일 수 있음</td></tr>
+              <tr><td>전염성</td><td>없음</td><td>폐·후두 결핵에서 가능</td></tr>
+              <tr><td>치료 목적</td><td>미래 발병 예방</td><td>현재 질병 치료와 전파 차단</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>감염된 사람 중 평생 약 5～10%가 활동성 결핵으로 진행하며, 특히 감염 후 첫 2년 위험이 크다. HIV, 영양결핍, 당뇨병, 흡연, 과도한 음주, 면역억제 치료가 있으면 위험이 증가한다.<sup><a href="#ref-1">[1]</a></sup><sup><a href="#ref-4">[4]</a></sup></p>
+
+        <h3>어떻게 전파되는가</h3>
+        <p>전염성이 있는 폐·후두 결핵 환자가 기침, 말 또는 노래를 할 때 공기 중으로 배출된 작은 비말핵을 들이마셔 전파된다. 좁고 환기가 나쁜 실내에서 오래 함께 지낼수록 위험하다. 악수, 음식, 변기, 칫솔, 침구 공유로 전파되지는 않는다.<sup><a href="#ref-8">[8]</a></sup></p>
+        <p>“약을 먹은 지 2주가 지나면 무조건 전염성이 없다”는 것은 정확하지 않다. 효과적인 치료 후 대개 빠르게 감소하지만 기침, 공동, 객담 도말, 약제내성, 복약 상태를 종합해 판단한다.</p>
+
+        <h3>흔한 증상</h3>
+        <div class="cards">
+          <div class="card"><strong>호흡기 증상</strong><br>2～3주 이상 기침, 가래, 객혈, 흉통, 호흡곤란</div>
+          <div class="card"><strong>전신 증상</strong><br>미열, 야간 발한, 체중 감소, 식욕부진, 무기력</div>
+        </div>
+        <p>아무 증상 없이 건강검진 흉부 X선에서 발견되기도 한다.</p>
+
+        <h3>고위험군</h3>
+        <ul>
+          <li>결핵 환자와 함께 생활한 가족·밀접접촉자</li>
+          <li>감염 후 2년 이내인 사람, 영유아와 고령자</li>
+          <li>HIV, 장기이식, 항암치료 또는 면역억제 치료 중인 사람</li>
+          <li>당뇨병, 만성신장질환, 규폐증, 저체중·영양결핍</li>
+          <li>흡연·과도한 음주, 밀집생활 환경 노출</li>
+        </ul>
+      </section>
+
+      <section id="medical">
+        <span class="level">의학 원리 · 병태생리</span>
+        <h2>미생물학과 병태생리</h2>
+        <p>결핵균은 느리게 증식하는 막대균으로 세포벽에 미콜산을 포함한 지질이 풍부하다. 산성 알코올로 잘 탈색되지 않아 <strong>항산균(acid-fast bacillus, AFB)</strong>이라 한다. AFB 도말 양성은 항산균 존재를 뜻할 뿐 결핵균과 비결핵항산균을 구별하지 못한다.</p>
+
+        <h3>발병 과정</h3>
+        <div class="flow">
+          <div>균을 포함한 에어로졸이 폐포에 도달한다.</div>
+          <div>폐포대식세포가 탐식하지만 일부 결핵균은 세포 내 살균을 회피한다.</div>
+          <div>항원이 림프절로 이동하고 IL-12–Th1–IFN-γ–TNF 축의 세포매개면역이 형성된다.</div>
+          <div>대식세포와 림프구가 균 주변에 육아종을 형성하고 균을 제한한다.</div>
+          <div>면역조절에 실패하면 건락괴사, 액화, 공동이 생기고 기관지로 균이 배출된다.</div>
+        </div>
+        <p>육아종은 완벽한 감옥이 아니다. 균을 억제하는 동시에 일부 균의 장기 생존 환경이 될 수 있고, 지나친 염증은 조직 파괴와 공동을 촉진한다.<sup><a href="#ref-14">[14]</a></sup></p>
+
+        <h3>임상 분류</h3>
+        <p>폐·후두·흉막·림프절·뇌수막·골관절·복부·비뇨생식기·심낭·속립성/파종성 결핵으로 나눈다. 전염성은 주로 폐·후두 결핵에서 문제된다.</p>
+      </section>
+
+      <section id="diagnosis">
+        <h2>진단 알고리즘</h2>
+        <div class="flow">
+          <div><strong>전염 가능성 판단:</strong> 의심 단계부터 환자 마스크, 의료진 호흡기 보호구, 필요 시 음압격리</div>
+          <div><strong>영상:</strong> 흉부 X선, 필요 시 CT. 영상만으로 확진하지 않음</div>
+          <div><strong>검체:</strong> 객담 최소 2회, 가능하면 3회 채취</div>
+          <div><strong>동시 검사:</strong> AFB 도말 + 신속분자검사 + 배양 + 약제감수성검사</div>
+          <div><strong>종합판단:</strong> 검사 음성이어도 임상 가능성이 높으면 추가 검체·기관지경·조직검사 또는 경험적 치료 고려</div>
+        </div>
+
+        <h3>영상검사</h3>
+        <p>상엽·폐첨부 침윤, 공동, 섬유결절, 림프절 비대, 흉수 또는 속립성 결절이 나타날 수 있다. 면역저하자는 하엽 병변, 림프절 비대 또는 정상에 가까운 X선 등 비전형적인 모습을 보인다.</p>
+
+        <div class="table-wrap">
+          <table>
+            <caption>핵심 미생물학 검사</caption>
+            <thead><tr><th>검사</th><th>의미</th><th>한계</th></tr></thead>
+            <tbody>
+              <tr><td>항산균 도말</td><td>빠른 균량·전염 가능성 추정</td><td>민감도가 낮고 NTM과 구별 불가</td></tr>
+              <tr><td>Xpert/신속분자검사</td><td>결핵균 DNA와 리팜핀 내성을 수 시간 내 확인</td><td>음성으로 결핵을 완전히 배제하지 못함</td></tr>
+              <tr><td>배양</td><td>살아 있는 균을 확인하는 핵심 확진검사</td><td>액체배양 약 2주, 고체배양 흔히 3～8주</td></tr>
+              <tr><td>약제감수성검사</td><td>유효 약제를 결정</td><td>분자형과 표현형 결과가 불일치할 수 있음</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>저균량 폐결핵, 소아, HIV 또는 폐외결핵에서는 신속분자검사가 음성이어도 결핵을 배제할 수 없다.<sup><a href="#ref-2">[2]</a></sup></p>
+
+        <h3>TST와 IGRA</h3>
+        <ul>
+          <li>TST는 48～72시간 뒤 발적이 아니라 <strong>경결</strong>을 측정한다.</li>
+          <li>IGRA는 결핵균 특이항원에 대한 혈액의 인터페론감마 반응을 본다.</li>
+          <li>둘 다 활동성 결핵과 잠복결핵을 구분하거나 치료반응을 판정할 수 없다.</li>
+          <li>면역저하자에서는 활동성 결핵인데도 음성일 수 있다.</li>
+          <li>BCG는 TST에 영향을 줄 수 있지만 IGRA에는 거의 영향을 주지 않는다.</li>
+        </ul>
+
+        <h3>조직검사</h3>
+        <p>건락성 육아종은 결핵을 지지하지만 비결핵항산균, 진균감염, 사르코이드증에서도 나타날 수 있다. 가능하면 조직의 배양·분자검사를 병행한다.</p>
+      </section>
+
+      <section id="treatment">
+        <h2>약제감수성 결핵 치료</h2>
+        <blockquote>국내 대표 표준: 집중치료기 2개월 HRZE + 유지치료기 4개월 HR</blockquote>
+        <figure class="figure">
+          <svg viewBox="0 0 900 330" role="img" aria-labelledby="timeline-title timeline-desc">
+            <title id="timeline-title">약제감수성 폐결핵의 6개월 표준치료 시간표</title>
+            <desc id="timeline-desc">첫 2개월은 이소니아지드 리팜핀 피라진아미드 에탐부톨 네 약을 사용하고, 다음 4개월은 이소니아지드와 리팜핀을 사용하는 치료 시간표</desc>
+            <rect x="34" y="35" width="832" height="238" rx="24" fill="#fff" stroke="#d8ded6"/>
+            <g font-family="inherit">
+              <text x="82" y="82" font-size="20" font-weight="800" fill="#173f35">치료 월</text>
+              <g text-anchor="middle" font-size="18" font-weight="700" fill="#173f35">
+                <text x="225" y="82">1</text><text x="333" y="82">2</text><text x="441" y="82">3</text>
+                <text x="549" y="82">4</text><text x="657" y="82">5</text><text x="765" y="82">6</text>
+              </g>
+              <g>
+                <rect x="171" y="105" width="216" height="76" rx="15" fill="#0d6b57"/>
+                <text x="279" y="137" text-anchor="middle" font-size="20" font-weight="800" fill="#fff">집중치료기</text>
+                <text x="279" y="166" text-anchor="middle" font-size="20" font-weight="800" fill="#fff">H + R + Z + E</text>
+                <rect x="387" y="105" width="432" height="76" rx="15" fill="#5676a7"/>
+                <text x="603" y="137" text-anchor="middle" font-size="20" font-weight="800" fill="#fff">유지치료기</text>
+                <text x="603" y="166" text-anchor="middle" font-size="20" font-weight="800" fill="#fff">H + R</text>
+              </g>
+              <path d="M171 205H819" stroke="#173f35" stroke-width="3"/>
+              <g fill="#173f35">
+                <circle cx="171" cy="205" r="6"/><circle cx="279" cy="205" r="6"/><circle cx="387" cy="205" r="6"/>
+                <circle cx="495" cy="205" r="6"/><circle cx="603" cy="205" r="6"/><circle cx="711" cy="205" r="6"/><circle cx="819" cy="205" r="6"/>
+              </g>
+              <text x="495" y="246" text-anchor="middle" font-size="17" fill="#53635e">매일 복용 · 감수성 결과, 병변 위치, 반응과 부작용에 따라 조정</text>
+            </g>
+          </svg>
+          <figcaption><strong>그림 3. 국내 약제감수성 폐결핵의 대표적 6개월 치료</strong>개념도이며 실제 기간과 약제 조합은 감수성, 폐외결핵 여부, 장기기능과 치료반응에 따라 달라집니다.</figcaption>
+        </figure>
+        <p>H는 isoniazid, R은 rifampin, Z는 pyrazinamide, E는 ethambutol이다. H·R 감수성이 확인되면 E를 중단할 수 있다. 감수성이 확인되지 않았거나 배양음성이면 국내 지침에 따라 E를 더 유지할 수 있다. 원칙적으로 매일 복용한다.<sup><a href="#ref-1">[1]</a></sup></p>
+
+        <h3>왜 여러 약을 쓰는가</h3>
+        <p>병변에는 빠르게 자라는 균, 세포 내 균, 산성·저산소 환경에 적응한 균, 거의 증식하지 않는 균이 섞여 있다. 서로 다른 약으로 이 집단들을 동시에 공격하고 자연발생 내성 돌연변이의 선택을 막는다.</p>
+
+        <div class="table-wrap">
+          <table>
+            <caption>성인 1일 용량 예시 — 교육용이며 개인 처방이 아님</caption>
+            <thead><tr><th>약</th><th>일반 용량</th><th>핵심 작용</th><th>주요 부작용</th></tr></thead>
+            <tbody>
+              <tr><td>H</td><td>5 mg/kg, 최대 300 mg</td><td>미콜산 합성 억제</td><td>간독성, 말초신경병증</td></tr>
+              <tr><td>R</td><td>10 mg/kg, 최대 600 mg</td><td>RNA 중합효소 억제</td><td>간독성, 상호작용, 혈소판감소</td></tr>
+              <tr><td>Z</td><td>20～30 mg/kg, 최대 2,000 mg</td><td>산성 환경의 균에 작용</td><td>간독성, 관절통, 고요산혈증</td></tr>
+              <tr><td>E</td><td>15～20 mg/kg, 최대 1,600 mg</td><td>세포벽 합성 억제</td><td>시신경염, 적록색각 이상</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>부작용 핵심</h3>
+        <ul>
+          <li><strong>H:</strong> 손발저림 위험군—임신, 당뇨, 신장질환, 영양결핍, 알코올 사용, 고령 등—에는 피리독신을 보충한다.</li>
+          <li><strong>R:</strong> 소변·땀·눈물이 주황색으로 변할 수 있다. 경구피임약, 와파린, 항진균제, 스테로이드, 일부 HIV 치료제와 중요한 상호작용이 있다.</li>
+          <li><strong>Z:</strong> 무증상 고요산혈증만으로 반드시 중단하지는 않는다.</li>
+          <li><strong>E:</strong> 시력·색각 변화는 긴급 평가가 필요하다.</li>
+        </ul>
+        <div class="warning">
+          <strong>간독성 중단 기준의 일반 원칙</strong>
+          <p>증상 없이 ALT가 정상 상한의 5배 이상이거나, 간염 증상과 함께 3배 이상이면 간독성 약제 중단을 검토한다. 환자가 임의로 일부 약만 골라 끊어서는 안 된다.</p>
+        </div>
+
+        <h3>치료 전·중 추적</h3>
+        <p>시작 전 CBC, 간·신장기능, 시력·색각, 체중, HIV, 임신 가능성, 상호작용과 동반질환을 확인한다. 치료 중에는 매월 증상, 체중, 복약, 부작용을 평가하며 처음 객담 양성이면 배양음전을 반복 확인한다. 분자검사는 죽은 균 DNA도 검출하므로 치료반응 판정용으로 부적절하다.</p>
+
+        <h3>4개월 단축치료</h3>
+        <p>2025 ATS/CDC/ERS/IDSA는 적격한 12세 이상 약제감수성 폐결핵에서 <strong>2HPZM/2HPM</strong>을 조건부 권고한다. Study 31/A5349가 6개월 표준요법과의 비열등성을 뒷받침한다.<sup><a href="#ref-6">[6]</a></sup><sup><a href="#ref-10">[10]</a></sup></p>
+        <p>임신·수유, 대부분의 폐외결핵, 저연령·저체중, QT 연장과 중요한 약물상호작용에서는 부적합할 수 있다. 국내 2024 지침은 당시 국내 도입·안전성 상황을 고려해 이를 표준으로 채택하지 않았다. 국제 권고가 곧 국내 표준·허가·급여를 의미하지 않는다.</p>
+      </section>
+
+      <section id="ltbi">
+        <h2>잠복결핵감염 치료</h2>
+        <p>목적은 현재 증상을 치료하는 것이 아니라 미래의 활동성 결핵을 예방하는 것이다. <strong>치료 전 활동성 결핵을 먼저 배제</strong>해야 한다. 활동성 결핵에 한두 약만 사용하면 내성이 선택될 수 있다.</p>
+        <div class="cards">
+          <div class="card"><h3>4R</h3><p>리팜핀 매일 4개월</p></div>
+          <div class="card"><h3>3HR</h3><p>이소니아지드 + 리팜핀 매일 3개월</p></div>
+          <div class="card"><h3>9H</h3><p>이소니아지드 매일 9개월. 리파마이신 상호작용 등이 있을 때 대안</p></div>
+          <div class="card"><h3>국제 단기요법</h3><p>3HP, 1HP 등이 있으나 대상·임신·상호작용·국내 접근성을 확인</p></div>
+        </div>
+        <p>4R은 9H와 예방효과가 비열등하면서 완료율이 높고 중증 이상반응과 간독성이 적었다.<sup><a href="#ref-12">[12]</a></sup> 치료 후 TST나 IGRA 음전 여부를 확인하지 않는다.</p>
+      </section>
+
+      <section id="extrapulmonary">
+        <h2>폐외결핵</h2>
+        <details open>
+          <summary>결핵성 흉막염</summary>
+          <div><p>발열, 흉통, 호흡곤란과 흉수로 나타난다. 림프구 우세 삼출액과 적절한 임상상에서 ADA &gt;40 U/L는 가능성을 높이지만 농흉·림프종 등에서도 상승하므로 단독 확진검사가 아니다. 약제감수성이면 일반적으로 6개월 치료한다.</p></div>
+        </details>
+        <details open>
+          <summary>결핵성 수막염</summary>
+          <div><p>두통, 발열, 구토, 목 경직, 의식 변화, 뇌신경 마비, 경련을 일으킬 수 있는 응급질환이다. 충분한 뇌척수액으로 도말·배양·분자검사를 하며 음성만으로 배제하지 않는다. 보통 2개월 HRZE 후 7～10개월 HR, 총 9～12개월 및 초기 스테로이드를 사용한다.</p></div>
+        </details>
+        <details open>
+          <summary>골·관절·척추결핵</summary>
+          <div><p>통증, 압통, 척추 변형, 농양, 신경학적 결손으로 나타날 수 있다. 보통 6～9개월 치료하며 척수압박, 불안정성 또는 진행성 신경학적 악화에서는 수술을 고려한다.</p></div>
+        </details>
+        <details open>
+          <summary>림프절결핵</summary>
+          <div><p>통증이 적은 경부 림프절 종대가 흔하다. 치료 중 일시적으로 커지는 역설적 반응이 있을 수 있으나 복약 불량, 내성, 다른 질환을 먼저 배제해야 한다.</p></div>
+        </details>
+      </section>
+
+      <section id="special">
+        <h2>특수 상황</h2>
+        <h3>소아</h3>
+        <p>균량이 적어 미생물학적 확진이 어렵다. 접촉력, 영상, TST/IGRA와 위세척액·유도객담·비인두흡인물 등을 종합한다. 영유아는 수막염·속립성 결핵 진행 위험이 높다. SHINE 연구는 비중증 약제감수성 소아결핵에서 4개월 치료의 비열등성을 보였다.<sup><a href="#ref-11">[11]</a></sup></p>
+
+        <h3>임신과 수유</h3>
+        <p>한국·WHO 지침에서는 일반적으로 약제감수성 결핵에 HRZE를 사용할 수 있다. H 사용 시 피리독신을 보충하고 스트렙토마이신 등 일부 아미노글리코사이드는 태아 이독성 때문에 피한다. 일차약 치료 중 대개 수유할 수 있으나 모유 속 약물만으로 영아 치료·예방을 대신하지 못한다.</p>
+
+        <h3>HIV</h3>
+        <p>결핵치료를 즉시 시작한다. 일반적으로 CD4 &lt;50/μL이면 2주 이내, CD4 ≥50/μL이면 8주 이내 ART를 시작한다. 수막염에서는 중추신경계 IRIS 위험 때문에 시기를 개별화한다. 리팜핀과 ART의 상호작용 검토가 필수다.</p>
+
+        <h3>신장·간 질환과 면역억제 치료</h3>
+        <p>신부전에서는 Z와 E의 용량·투여 간격을 조정한다. 중증 간질환은 간독성 약제 조합을 전문적으로 설계한다. 항-TNF제·JAK 억제제·장기이식 면역억제제 전에는 활동성·잠복결핵을 평가하며, 잠복결핵 치료를 가능하면 먼저 시작한다.</p>
+      </section>
+
+      <section id="expert">
+        <span class="level">임상 심화 · 전문 진료</span>
+        <h2>진료의 고급 쟁점</h2>
+        <h3>감염과 질병은 연속선이다</h3>
+        <blockquote>제거된 감염 → 면역학적 감작 → 통제된 감염 → incipient TB → subclinical TB → 증상성 임상 결핵</blockquote>
+        <p>TST·IGRA는 이 연속선에서 면역감작을 보여줄 뿐 살아 있는 균이나 미래 발병을 확증하지 않는다. 위험인자, 접촉 시점, 영상과 미생물학을 통합한다.</p>
+
+        <h3>검사 불일치 해석</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>상황</th><th>주요 해석</th></tr></thead>
+            <tbody>
+              <tr><td>전형적 CT + 객담 음성</td><td>저균량 결핵, 검체 질, 폐외결핵; 반복검체·기관지경 고려</td></tr>
+              <tr><td>AFB 도말 양성 + Xpert 음성</td><td>비결핵항산균 가능성</td></tr>
+              <tr><td>Xpert 양성 + 배양 음성</td><td>저균량, 이전 치료로 죽은 균 DNA, 검체 차이</td></tr>
+              <tr><td>치료 후 Xpert 양성</td><td>재발을 곧바로 의미하지 않음; 배양과 임상상 확인</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>수막염·속립성 결핵처럼 지연 위험이 큰 경우에는 적절한 검체 채취 직후 경험적 치료를 시작한다.</p>
+
+        <h3>내성의 분자기전</h3>
+        <ul>
+          <li>H: <code>katG</code>, <code>inhA</code></li>
+          <li>R: <code>rpoB</code></li>
+          <li>Z: <code>pncA</code></li>
+          <li>E: <code>embB</code></li>
+          <li>fluoroquinolone: <code>gyrA</code>, <code>gyrB</code></li>
+        </ul>
+        <p>분자검사는 알려진 돌연변이를 빠르게 찾지만 모든 내성을 검출하지 못한다. 표현형 감수성과 과거 치료력을 함께 해석한다. 실패 중인 요법에 한 약만 추가해서는 안 된다.</p>
+
+        <h3>약제내성 결핵 정의</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>분류</th><th>정의</th></tr></thead>
+            <tbody>
+              <tr><td>RR-TB</td><td>다른 약 내성 여부와 무관한 리팜핀 내성</td></tr>
+              <tr><td>MDR-TB</td><td>최소 H와 R 모두 내성</td></tr>
+              <tr><td>pre-XDR-TB</td><td>MDR/RR + 하나 이상의 fluoroquinolone 내성</td></tr>
+              <tr><td>XDR-TB</td><td>MDR/RR + fluoroquinolone + bedaquiline 또는 linezolid 중 적어도 하나에 추가 내성</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>최신 내성결핵 단기요법</h3>
+        <ul>
+          <li><strong>BPaLM:</strong> bedaquiline + pretomanid + linezolid + moxifloxacin</li>
+          <li><strong>BPaL:</strong> fluoroquinolone 내성·불내성 시 moxifloxacin 제외</li>
+          <li><strong>BDLLfxC:</strong> bedaquiline + delamanid + linezolid + levofloxacin + clofazimine</li>
+        </ul>
+        <p>BPaLM/BPaL은 적격한 MDR/RR-TB에서 약 6개월의 전면 경구치료를 가능하게 했다. TB-PRACTECAL과 ZeNix가 주요 근거다.<sup><a href="#ref-13">[13]</a></sup><sup><a href="#ref-14a">[14a]</a></sup> WHO는 2025년 BDLLfxC도 조건부 권고했다.<sup><a href="#ref-15">[15]</a></sup></p>
+        <div class="warning">
+          <strong>전문가 관리가 필수</strong>
+          <p>연령, 임신, CNS·골관절·파종성 질환, 선행 약물노출, QT 연장, 장기독성, 유전자·표현형 감수성에 따라 적격성이 다르다. 국제 권고를 임의 처방에 적용해서는 안 된다.</p>
+        </div>
+
+        <h3>치료 실패처럼 보이는 상황</h3>
+        <p>영상 악화 시 실제 내성·복약 불량·흡수장애뿐 아니라 역설적 반응, HIV 관련 IRIS, 동반 감염, 암, 죽은 조직의 늦은 회복을 감별한다. 배양 추세, 체중별 용량, 상호작용, 혈중농도 측정 필요성을 재검토한다.</p>
+      </section>
+
+      <section id="prevention">
+        <h2>예방과 접촉자 조사</h2>
+        <h3>BCG</h3>
+        <p>BCG는 감염이나 성인 폐결핵을 완전히 막지는 못하지만 영유아의 결핵성 수막염·속립성 결핵을 줄인다. 한국은 특별한 금기가 없다면 생후 4주 이내 접종한다.</p>
+
+        <h3>접촉자 평가</h3>
+        <div class="flow">
+          <div>증상 확인과 흉부 X선</div>
+          <div>필요하면 객담검사</div>
+          <div>TST 또는 IGRA</div>
+          <div>활동성 결핵 배제 후 잠복결핵 치료 결정</div>
+        </div>
+        <p>감염 직후에는 면역검사가 음성일 수 있으므로 마지막 접촉 후 약 8주 시점에 재검사한다. 5세 미만 또는 중증 면역저하자는 활동성 결핵을 배제한 후 window prophylaxis를 고려할 수 있다.</p>
+
+        <h3>전파 차단</h3>
+        <ul>
+          <li>환자는 수술용 마스크, 의료진은 N95급 호흡기 보호구</li>
+          <li>실내 환기, 기침 예절과 불필요한 장시간 밀접접촉 제한</li>
+          <li>효과적인 치료의 신속한 시작</li>
+          <li>법정 신고와 보건당국 접촉자 조사에 협조</li>
+        </ul>
+      </section>
+
+      <section id="aftercare">
+        <h2>치료가 끝난 뒤</h2>
+        <p>미생물학적 완치와 폐의 완전한 정상화는 같은 말이 아니다. 폐섬유화, 기관지확장증, 폐쇄성·제한성 환기장애, 만성기침, 객혈, 만성 폐아스페르길루스증 등이 남을 수 있다. 체계적 문헌고찰에서는 폐결핵 치료 후 비정상 폐기능이 흔하게 보고됐다.<sup><a href="#ref-16">[16]</a></sup></p>
+        <p>치료 후 증상이 지속되면 재발·재감염뿐 아니라 비결핵항산균, 기관지확장증, 아스페르길루스증, 폐암, 결핵 후 폐질환을 평가한다. 금연, 영양관리, 예방접종, 폐기능검사와 호흡재활이 도움이 될 수 있다.<sup><a href="#ref-17">[17]</a></sup></p>
+      </section>
+
+      <section id="myths">
+        <h2>자주 틀리는 상식</h2>
+        <details><summary>기침이 없으면 결핵이 아니다?</summary><div>아니다. 무증상·초기 폐결핵이나 폐외결핵이 가능하다.</div></details>
+        <details><summary>X선이 결핵처럼 보이면 확진이다?</summary><div>아니다. 폐암, 비결핵항산균, 진균감염 등이 비슷할 수 있다.</div></details>
+        <details><summary>IGRA 양성이면 활동성 결핵이다?</summary><div>아니다. 면역감작을 의미할 뿐 활동성 여부를 구분하지 못한다.</div></details>
+        <details><summary>도말 양성이면 반드시 결핵이다?</summary><div>아니다. 비결핵항산균일 수 있어 분자검사와 배양이 필요하다.</div></details>
+        <details><summary>약을 2주 먹으면 무조건 전염성이 없다?</summary><div>아니다. 치료 유효성, 내성, 증상과 객담검사를 종합해야 한다.</div></details>
+        <details><summary>증상이 좋아지면 약을 끊어도 된다?</summary><div>안 된다. 재발과 약제내성 위험을 높이는 매우 위험한 행동이다.</div></details>
+      </section>
+
+      <section id="urgent">
+        <h2>진료가 필요한 경우</h2>
+        <div class="notice">
+          <strong>가까운 시일 내 검사</strong>
+          <p>2～3주 이상 기침, 객혈, 야간 발한, 미열, 체중 감소, 전염성 결핵 밀접접촉, 면역저하 상태의 의심 증상, 과거 치료 후 유사 증상 재발이 있으면 흉부 X선과 객담검사를 포함한 진료를 받아야 한다.</p>
+        </div>
+        <div class="emergency">
+          <strong>응급실 또는 119</strong>
+          <p>대량 객혈, 심한 호흡곤란, 의식 변화, 경련, 심한 두통과 목 경직, 팔다리 마비는 응급상황이다. 결핵약 복용 중 황달, 반복 구토, 심한 복통, 시력·색각 변화, 심한 발진·점막병변, 비정상 출혈도 즉시 평가가 필요하다.</p>
+        </div>
+      </section>
+
+      <section id="references">
+        <h2>주요 근거문헌</h2>
+        <h3>핵심 지침과 공공기관 자료</h3>
+        <ol class="refs">
+          <li id="ref-1"><a href="https://sjcidc.or.kr/board/bbs_download2.php?code=tb_inf_dise&amp;dn=7&amp;fn=7&amp;idx=9&amp;sd=/bbsDown/inf_dise" target="_blank" rel="noopener">대한민국 결핵 진료지침 제5판. 2024.</a></li>
+          <li id="ref-2"><a href="https://www.who.int/publications/i/item/9789240107984" target="_blank" rel="noopener">WHO consolidated guidelines on tuberculosis: diagnosis. 2025.</a></li>
+          <li id="ref-3"><a href="https://www.who.int/publications/i/item/9789240107243" target="_blank" rel="noopener">WHO consolidated guidelines on tuberculosis: treatment and care. 2025.</a></li>
+          <li id="ref-4"><a href="https://www.who.int/news-room/fact-sheets/detail/tuberculosis" target="_blank" rel="noopener">WHO Tuberculosis Fact Sheet. 2026.</a></li>
+          <li id="ref-5"><a href="https://tbzero.kdca.go.kr/tbzero/content/getTbStats.do" target="_blank" rel="noopener">질병관리청 결핵ZERO 주요통계.</a></li>
+          <li id="ref-6"><a href="https://www.idsociety.org/practice-guideline/treatment-of-drug-susceptible-tb/treatment-of-drug-resistant-and-drug-susceptible-tb-2025-update/" target="_blank" rel="noopener">ATS/CDC/ERS/IDSA Clinical Practice Guideline Update. 2025.</a></li>
+          <li id="ref-7"><a href="https://www.idsociety.org/practice-guideline/diagnosis-of-tb-in-adults-and-children/" target="_blank" rel="noopener">ATS/CDC/IDSA Diagnosis of Tuberculosis in Adults and Children.</a></li>
+          <li id="ref-8"><a href="https://www.cdc.gov/tb/causes/index.html" target="_blank" rel="noopener">CDC: Tuberculosis—Causes and Spread.</a></li>
+          <li id="ref-9"><a href="https://www.cdc.gov/tb-healthcare-settings/hcp/infection-control/index.html" target="_blank" rel="noopener">CDC: Tuberculosis Infection Control.</a></li>
+        </ol>
+
+        <h3>주요 임상시험과 리뷰</h3>
+        <ol class="refs" start="10">
+          <li id="ref-10"><a href="https://stacks.cdc.gov/view/cdc/111315" target="_blank" rel="noopener">Dorman SE, et al. Study 31/A5349—Four-Month Rifapentine Regimens with or without Moxifloxacin for Tuberculosis. NEJM. 2021.</a></li>
+          <li id="ref-11"><a href="https://www.nejm.org/doi/full/10.1056/NEJMoa2104535" target="_blank" rel="noopener">Turkova A, et al. SHINE—Shorter Treatment for Nonsevere Tuberculosis in African and Indian Children. NEJM. 2022.</a></li>
+          <li id="ref-12"><a href="https://pubmed.ncbi.nlm.nih.gov/30067931/" target="_blank" rel="noopener">Menzies D, et al. Four Months of Rifampin or Nine Months of Isoniazid for Latent Tuberculosis. NEJM. 2018.</a></li>
+          <li id="ref-13"><a href="https://pubmed.ncbi.nlm.nih.gov/36546625/" target="_blank" rel="noopener">Nyang'wa BT, et al. TB-PRACTECAL—A 24-Week, All-Oral Regimen for Rifampin-Resistant Tuberculosis. NEJM. 2022.</a></li>
+          <li id="ref-14a"><a href="https://www.nejm.org/doi/full/10.1056/NEJMoa2119430" target="_blank" rel="noopener">Conradie F, et al. ZeNix—Bedaquiline–Pretomanid–Linezolid Regimens for Drug-Resistant Tuberculosis. NEJM. 2022.</a></li>
+          <li id="ref-15"><a href="https://www.who.int/news/item/15-04-2025-who-announces-landmark-changes-in-treatment-of-drug-resistant-tuberculosis" target="_blank" rel="noopener">WHO announces landmark changes in treatment of drug-resistant tuberculosis. 2025.</a></li>
+          <li id="ref-14"><a href="https://pubmed.ncbi.nlm.nih.gov/35130029/" target="_blank" rel="noopener">Tuberculosis granuloma immunopathology review. 2022.</a></li>
+          <li id="ref-16"><a href="https://pubmed.ncbi.nlm.nih.gov/37205923/" target="_blank" rel="noopener">Post-tuberculosis lung impairment: systematic review and meta-analysis. 2023.</a></li>
+          <li id="ref-17"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8504493/" target="_blank" rel="noopener">Clinical standards for the assessment, management and rehabilitation of post-TB lung disease. 2021.</a></li>
+        </ol>
+        <a class="back" href="#top" target="_self">맨 위로 ↑</a>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <div>교육용 의학정보 · 최종 업데이트 2026-09-01 · 근거지침 개정 시 내용이 달라질 수 있습니다.</div>
+  </footer>
+</body>
+</html>

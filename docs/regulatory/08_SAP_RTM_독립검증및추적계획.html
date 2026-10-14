@@ -1,0 +1,38 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SAP/RTM | TB 독립검증·추적 계획</title><link rel="stylesheet" href="document.css"></head><body>
+<header class="toolbar"><a class="toolbar-brand" href="index.html"><span class="toolbar-mark">TB</span>문서 실행 허브</a><div class="toolbar-actions"><a class="action" href="index.html">목록</a><button onclick="window.print()">인쇄 / PDF</button></div></header>
+<main class="page">
+<div class="doc-head"><div><div class="doc-kicker">VALIDATION &amp; TRACEABILITY</div><h1>독립 성능평가·추적 계획</h1><p class="doc-subtitle">독립시험을 개발·튜닝과 분리하고, 시장·규제·소프트웨어·위험 요구사항을 설계와 시험 증거까지 양방향 추적하기 위한 초안입니다.</p></div><div class="doc-code"><span>DOCUMENT CODE</span><strong>SAP/RTM-TB-001</strong></div></div>
+<div class="approval"><div><span>상태</span><strong><span class="status draft">통계 검토 필요</span></strong></div><div><span>버전 / 기준일</span><strong>0.9 / 2026.08.31</strong></div><div><span>작성</span><strong>SW / RA&amp;QA</strong></div><div><span>검토</span><strong>RA&amp;QA / 전문의 / 통계</strong></div><div><span>승인</span><strong>연구소장</strong></div></div>
+
+<section><h2>1. 목적과 원칙</h2><p class="lead">모델·임계값·통계계획·독립시험 데이터를 실행 전에 동결하고, 사전 승인된 분석만으로 성능을 판정합니다. 본 문서는 통계 골격이며 표본수·가설·신뢰구간·합격기준은 통계전문가와 규제상담 후 확정합니다.</p></section>
+
+<section><h2>2. 시험 독립성</h2><div class="table-wrap"><table><thead><tr><th>통제</th><th>요구</th><th>증빙</th></tr></thead><tbody><tr><td><strong>시험 데이터</strong></td><td>학습·튜닝에 사용되지 않은 환자단위 잠금 세트, 가능하면 기관·시점 외부성 확보</td><td>데이터 잠금기록·중복검사·분포표</td></tr><tr><td><strong>모델</strong></td><td>코드·가중치·임계값·전처리·Docker digest 고정</td><td>G3 동결 기록·해시</td></tr><tr><td><strong>분석계획</strong></td><td>대상군·참조표준·지표·CI·하위군·결측·일탈·합격기준 선승인</td><td>SAP 승인본</td></tr><tr><td><strong>접근권한</strong></td><td>개발팀은 시험 레이블·중간결과로 모델을 수정하지 않음</td><td>권한대장·감사로그</td></tr><tr><td><strong>일탈</strong></td><td>사후 제외·재분석은 사유·영향·승인을 기록하고 원분석도 보존</td><td>일탈·변경·분석 로그</td></tr></tbody></table></div></section>
+
+<section><h2>3. 통계분석 계획 골격</h2><div class="table-wrap"><table><thead><tr><th>항목</th><th>초안</th><th>확정 필요</th></tr></thead><tbody>
+<tr><td><strong>분석단위</strong></td><td>환자/검사 단위 1개 결과</td><td>반복 촬영·다중 영상 처리</td></tr>
+<tr><td><strong>주 분석대상</strong></td><td>결핵 의심 양성 대 비결핵 음성의 선별 성능</td><td>활동성·비활동성 포함 방식</td></tr>
+<tr><td><strong>주 지표</strong></td><td>민감도, 특이도와 95% 신뢰구간</td><td>정확한 CI 방법·합격판정</td></tr>
+<tr><td><strong>부 지표</strong></td><td>AUC, FP/FN, PPV/NPV, 클래스별 지표</td><td>유병률 보정·다중성</td></tr>
+<tr><td><strong>개발 목표</strong></td><td>Sens ≥90%, Spec ≥80% 참고</td><td>점추정치 또는 CI 하한 기준</td></tr>
+<tr><td><strong>표본수</strong></td><td>양성·음성 각각 목표 정밀도/검정력 기반 산출</td><td>가설, 유의수준, 탈락률</td></tr>
+<tr><td><strong>하위군</strong></td><td>연령·성별·기관·장비·촬영방식·클래스</td><td>확증/탐색 구분·최소수</td></tr>
+<tr><td><strong>결측·판독불가</strong></td><td>사전 정의된 사유코드와 주/민감도 분석</td><td>실패결과의 보수적 처리</td></tr>
+<tr><td><strong>참조표준</strong></td><td>전문의 판독과 가용 확진·임상근거 조합</td><td>판독자 수·중재·시간창</td></tr>
+</tbody></table></div><div class="note decision">표본수와 합격기준 없이 독립시험을 시작하지 않습니다. 5,000건은 전체 개발 데이터 목표이며 독립시험의 통계적 충분성을 자동으로 의미하지 않습니다.</div></section>
+
+<section><h2>4. 결과 보고 최소 항목</h2><ul><li>대상 흐름도: 후보·선정·제외·최종 분석 수와 사유</li><li>전체·클래스·하위군 분포와 데이터 출처·기간·장비 정보</li><li>혼동행렬, 민감도·특이도·AUC·FP/FN과 95% CI</li><li>임계값 선택 근거, 시험 전/후 변경 여부, 실패·판독불가 처리</li><li>오류사례·대표 FP/FN의 임상적 분석과 제한사항</li><li>계획 일탈, 추가·탐색 분석, 재분석과 원분석 보존</li></ul></section>
+
+<section><h2>5. 요구사항 추적 매트릭스 초안</h2><div class="table-wrap"><table><thead><tr><th>상위 요구</th><th>SRS</th><th>위험</th><th>설계 출력</th><th>검증/유효성</th><th>상태</th></tr></thead><tbody>
+<tr><td class="id">MRS-01 진단보조</td><td>SRS-F-10</td><td>R-03, R-12</td><td>IFU·경고·출력 정의</td><td>SST, UHA/UTF</td><td>초안</td></tr>
+<tr><td class="id">MRS-02 확률점수</td><td>SRS-F-04</td><td>R-01, R-02</td><td>출력 스키마·임계값</td><td>SUT, SST, SAP/SVAR</td><td class="req">정책 필요</td></tr>
+<tr><td class="id">MRS-03 Heatmap</td><td>SRS-F-05</td><td>R-03, R-04</td><td>좌표·해상도·표현 설계</td><td>SUT, SST, UHA</td><td class="req">UI 범위</td></tr>
+<tr><td class="id">MRS-04 3군 분류</td><td>SRS-F-03</td><td>R-01, R-05, R-07</td><td>클래스·모델 설계</td><td>SST, SAP/SVAR</td><td class="req">참조표준</td></tr>
+<tr><td class="id">MRS-05 성능목표</td><td>SRS-P-01~03</td><td>R-01, R-02, R-07</td><td>모델·임계값 동결</td><td>SAP, SVAP, PRR/SVAR</td><td class="req">통계 결정</td></tr>
+<tr><td class="id">MRS-06 SDK/API</td><td>SRS-F-01,07,08</td><td>R-04, R-09, R-10</td><td>Interface Table·API</td><td>SIT/SST·보안시험</td><td class="req">스키마 필요</td></tr>
+<tr><td class="id">MRS-07 재학습</td><td>SRS-F-09</td><td>R-08, R-11</td><td>Docker·학습코드·SCP</td><td>재현성·이관시험</td><td class="req">허용오차</td></tr>
+<tr><td class="id">RRS-06 변경관리</td><td>형상·배포 요구</td><td>R-08, R-11</td><td>SCP/SCR·변경계획</td><td>영향평가·회귀시험</td><td class="req">RA 상담</td></tr>
+</tbody></table></div></section>
+
+<section><h2>6. 승인·실행 체크리스트</h2><div class="table-wrap"><table><thead><tr><th>선행 항목</th><th>필수 증빙</th><th>현재</th></tr></thead><tbody><tr><td>제품 사용목적·주 분석대상</td><td>승인 MRS/RRS/SRS</td><td class="req">미확정</td></tr><tr><td>참조표준·레이블</td><td>LBL-SOP·파일럿 일치도</td><td class="req">미확정</td></tr><tr><td>표본수·합격기준</td><td>통계 검토·SAP 승인</td><td class="req">미확정</td></tr><tr><td>데이터·모델 잠금</td><td>G2/G3 기록·해시·권한</td><td>미착수</td></tr><tr><td>추적성</td><td>요구–위험–설계–시험 100% 연결</td><td>골격 작성</td></tr></tbody></table></div></section>
+<div class="signatures"><div class="signature"><span>작성</span><strong>SW / RA&amp;QA</strong></div><div class="signature"><span>검토</span><strong>RA&amp;QA / 전문의 / 통계</strong></div><div class="signature"><span>승인</span><strong>연구소장</strong></div></div><div class="foot">연결 문서: DMP/LBL, SRS, RMP, SVAP, PRR/SVAR, RTM · KHIDI/MFDS 상담 결과에 따라 품목·임상·통계 적용성 갱신</div>
+</main></body></html>

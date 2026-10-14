@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TB 프로젝트 추가 업무와 설계관리 문서 초안을 관리하는 HTML 문서 허브">
+  <title>TB 프로젝트 문서 실행 허브</title>
+  <link rel="stylesheet" href="document.css">
+</head>
+<body>
+  <header class="toolbar">
+    <a class="toolbar-brand" href="../TB_프로젝트_소개.html"><span class="toolbar-mark">TB</span>TB 프로젝트 문서 실행 허브</a>
+    <div class="toolbar-actions"><a class="action" href="../TB_프로젝트_소개.html">프로젝트 소개</a><button type="button" onclick="window.print()">인쇄 / PDF</button></div>
+  </header>
+
+  <main class="page">
+    <div class="hub-hero">
+      <div class="doc-kicker">DOCUMENT EXECUTION HUB · BASELINE 2026.08.31</div>
+      <h1>추가 업무와 문서작업 실행 현황</h1>
+      <p>사업계획서, 2026.06.19 연구계획서·계약서, 데이터 안전성 계획, 인허가 자료와 WBS를 대조해 선행 결정과 문서 작성 순서를 정리했습니다. 아래 초안은 내부 검토를 시작할 수 있는 수준으로 작성했으며, 미확정 사항은 임의 확정하지 않고 ‘결정 필요’로 표시했습니다.</p>
+      <div class="metric-row">
+        <div class="metric"><span>WBS 관리 작업</span><strong>71</strong></div>
+        <div class="metric"><span>회사 관리 문서</span><strong>45</strong></div>
+        <div class="metric"><span>즉시 검토 초안</span><strong>10</strong></div>
+        <div class="metric"><span>선행 결정</span><strong>4</strong></div>
+      </div>
+    </div>
+
+    <section id="done">
+      <h2>이번 작업에서 실제 진행한 항목</h2>
+      <div class="grid grid-3">
+        <div class="card"><span class="label">01 · GAP REVIEW</span><strong>기존 자료 간 불일치 분리</strong><p>연구기간·계약기간, 허가모델·연구모델, 개발 범위·운영시스템 제외사항을 문서에 반영했습니다.</p></div>
+        <div class="card"><span class="label">02 · PRIORITY</span><strong>문서 선후관계 설정</strong><p>착수 승인 → 시장·규제 요구 → 개발·데이터 계획 → 요구사항·위험 → 독립검증 순으로 기준선을 제안했습니다.</p></div>
+        <div class="card"><span class="label">03 · DRAFTING</span><strong>핵심 HTML 초안 10종 작성</strong><p>KHIDI 상담 신청서·제품소개 1페이지와 회사 결재선·외부기관 확인을 구분한 설계관리 문서 초안을 작성했습니다.</p></div>
+      </div>
+    </section>
+
+    <section id="decisions">
+      <h2>착수 전에 확정해야 하는 4개 선행 결정</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>ID</th><th>결정사항</th><th>현재 자료</th><th>필요 조치</th><th>권고 책임</th><th>영향 문서</th></tr></thead>
+          <tbody>
+            <tr><td class="id">DEC-01</td><td><strong>프로젝트 일정 기준선</strong></td><td>연구 2026.06–2029.06 / 계약 2028.12.31 종료</td><td class="req">계약 종료·연구 종료·인허가·무상지원 종료를 분리하고 연장 판단일 확정</td><td>PM / 대표이사 / 협회</td><td>DRF, SDP, 계약변경, 종료보고</td></tr>
+            <tr><td class="id">DEC-02</td><td><strong>사용목적·품목분류</strong></td><td>선별·진단보조, 예상 코드 B1ABXA1</td><td class="req">대상 사용자·환자군·사용환경·출력·임상적 역할을 RA 검토 및 사전상담으로 확정</td><td>RA&amp;QA / 연구소장</td><td>MRS, RRS, SRS, IFU, TD</td></tr>
+            <tr><td class="id">DEC-03</td><td><strong>레이블·참조표준</strong></td><td>전문의 최종 검수만 명시</td><td class="req">판독자 수, 확진근거, 영상-검사 시간창, 불일치 중재, 모호사례 제외기준 확정</td><td>전문의 / SW개발팀장</td><td>DMP/LBL, SRS, 성능평가</td></tr>
+            <tr><td class="id">DEC-04</td><td><strong>독립검증 통계 기준</strong></td><td>Sens ≥90%, Spec ≥80%, AUC 평가</td><td class="req">시험세트 표본수, 95% CI, 합격판정, 하위군·결측·다중판독 처리계획 동결</td><td>RA&amp;QA / 통계담당</td><td>SAP, SVAP, SVAR, PRR</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note decision">이 네 가지는 후속 문서의 입력값입니다. 확정 전에는 초안을 검토할 수 있지만 G1 설계입력 기준선 또는 독립시험 데이터 잠금으로 승인하면 안 됩니다.</div>
+    </section>
+
+    <section id="actions">
+      <h2>추가 업무 실행목록</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>우선순위</th><th>업무</th><th>주요 산출물</th><th>권고 작성 / 검토 / 승인</th><th>완료조건</th><th>상태</th></tr></thead>
+          <tbody>
+            <tr><td class="id">P0</td><td><strong>착수·범위 승인</strong></td><td>DRF, DMM, 의사결정대장</td><td>PM / Product Manager / 대표이사</td><td>범위·기간·역할·게이트 승인</td><td><span class="status draft">초안 작성</span></td></tr>
+            <tr><td class="id">P0</td><td><strong>제품 콘셉트·시장 요구 기준선</strong></td><td>MRS</td><td>영업·PM / 연구소장 / 대표이사</td><td>사용자·사용환경·차별성·사업 활용 확정</td><td><span class="status draft">초안 작성</span></td></tr>
+            <tr><td class="id">P0</td><td><strong>규제전략·적용성 확정</strong></td><td>RRS, 사전상담 질문서</td><td>RA&amp;QA / 연구소장 / 대표이사</td><td>품목·등급·심사경로·임상자료 범위 확인</td><td><span class="status draft">초안 작성</span></td></tr>
+            <tr><td class="id">P0</td><td><strong>개발 생명주기와 게이트 운영</strong></td><td>SDP, 회의·검토 캘린더</td><td>SW개발팀 / SW개발팀장 / 연구소장</td><td>G0–G7 입력·출력·승인기준 확정</td><td><span class="status draft">초안 작성</span></td></tr>
+            <tr><td class="id">P0</td><td><strong>데이터 선정·익명화·분할 계획</strong></td><td>DMP, 데이터 사전, 접근권한대장</td><td>SW개발팀·협회 / RA&amp;QA / 연구소장</td><td>5,000건 정의·환자단위 분할·보안·파기 승인</td><td><span class="status draft">초안 작성</span></td></tr>
+            <tr><td class="id">P0</td><td><strong>레이블링·참조표준 운영</strong></td><td>LBL-SOP, 판독지, 중재기록</td><td>SW개발팀·전문의 / SW팀장·전문의 / 연구소장</td><td>파일럿 일치도와 중재규칙 승인</td><td><span class="status draft">초안 작성</span></td></tr>
+            <tr><td class="id">P0</td><td><strong>설계입력 요구사항 기준선</strong></td><td>SRS, Interface Table</td><td>SW개발팀 / SW개발팀장 / 연구소장</td><td>기능·성능·환경·보안·추적성 승인</td><td><span class="status draft">초안 작성</span></td></tr>
+            <tr><td class="id">P0</td><td><strong>위험관리 착수</strong></td><td>RMP, 위험분석 초안</td><td>SW개발팀 / SW팀장·RA&amp;QA / 연구소장</td><td>위해상황·통제·검증 연결</td><td><span class="status draft">초안 작성</span></td></tr>
+            <tr><td class="id">P0</td><td><strong>독립시험 사전 동결</strong></td><td>SAP/SVAP, 시험세트 잠금기록</td><td>SW·RA&amp;QA / RA&amp;QA·전문의 / 연구소장</td><td>시험 전 통계계획·합격기준 승인</td><td><span class="status draft">초안 작성</span></td></tr>
+            <tr><td class="id">P1</td><td><strong>요구사항 추적성 구축</strong></td><td>RTM</td><td>SW개발팀 / SW팀장·RA&amp;QA / 연구소장</td><td>MRS/RRS/SRS–위험–설계–시험 양방향 연결</td><td><span class="status draft">골격 작성</span></td></tr>
+            <tr><td class="id">P1</td><td><strong>레이블링 도구 인수기준</strong></td><td>도구 URS, 설치·검수 기록</td><td>SW개발팀 / 협회·전문의 / 연구소장</td><td>권한·감사로그·내보내기·백업·오류처리 시험</td><td><span class="status blocked">요구수집 필요</span></td></tr>
+            <tr><td class="id">P1</td><td><strong>사이버보안·개인정보 위협분석</strong></td><td>보안계획, 위협모델, SBOM/SOTS</td><td>SW개발팀 / RA&amp;QA·보안담당 / 연구소장</td><td>자산·경계·취약점·업데이트·사고대응 승인</td><td><span class="status blocked">환경정보 필요</span></td></tr>
+            <tr><td class="id">P1</td><td><strong>형상·변경관리 기준선</strong></td><td>SCP, 변경요청·평가 양식, RLN</td><td>SW개발팀 / SW팀장·품질책임자 / 연구소장</td><td>코드·데이터·모델·환경·문서 버전 규칙 승인</td><td><span class="status blocked">저장소 결정 필요</span></td></tr>
+            <tr><td class="id">P1</td><td><strong>기술이전 검수 설계</strong></td><td>이관목록, 재현확인서, 교육계획</td><td>SW개발팀 / 협회 개발자·RA&amp;QA / 연구소장</td><td>소스·가중치·Docker·로그·API 재현 확인</td><td><span class="status blocked">협회 환경정보 필요</span></td></tr>
+            <tr><td class="id">P2</td><td><strong>사용적합성·임상근거 계획</strong></td><td>UPL, UHA, UTF/UTS, CEP/CER</td><td>SW·RA&amp;QA / 사용자·전문의 / 연구소장</td><td>사용자·과업·오사용·임상근거 범위 확정</td><td><span class="status blocked">규제전략 후 진행</span></td></tr>
+            <tr><td class="id">P2</td><td><strong>배포·유지보수·지원 운영</strong></td><td>IFU, ISP, TM, 유지보수 절차</td><td>SW개발팀 / RA&amp;QA / 연구소장</td><td>허가버전과 연구버전 분리, 오류지원 범위 반영</td><td><span class="status blocked">제품 기준선 후 진행</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="documents">
+      <h2>작성한 핵심 문서 초안</h2>
+      <div class="doc-list">
+        <a class="doc-link" href="00_KHIDI_컨설팅_상담신청서.html"><span class="num">00</span><span><strong>KHIDI · 컨설팅 데이 상담 신청서</strong><p>Google Form 입력값, 기업 상담 카드, 우선 질의 10개와 첨부자료 체크리스트</p></span><span class="arrow">→</span></a>
+        <a class="doc-link" href="00_KHIDI_컨설팅_제품소개_1페이지.html"><span class="num">00+</span><span><strong>KHIDI · 제품소개 1페이지</strong><p>제품 콘셉트, 사용 흐름, 개발범위와 이번 상담의 핵심 질문 요약</p></span><span class="arrow">→</span></a>
+        <a class="doc-link" href="01_DRF_개발의뢰서.html"><span class="num">01</span><span><strong>DRF · 개발 의뢰서</strong><p>개발목적, 범위, 역할, 일정 불일치와 착수 승인 조건</p></span><span class="arrow">→</span></a>
+        <a class="doc-link" href="02_MRS_시장요구사항명세서.html"><span class="num">02</span><span><strong>MRS · 시장 요구사항 명세서</strong><p>대상 사용자, 문제, 사용환경, 성능·사업 요구와 비범위</p></span><span class="arrow">→</span></a>
+        <a class="doc-link" href="03_SDP_소프트웨어개발계획서.html"><span class="num">03</span><span><strong>SDP · 소프트웨어 개발계획서</strong><p>생명주기, 게이트, 검토·승인, 형상·문제·변경관리</p></span><span class="arrow">→</span></a>
+        <a class="doc-link" href="04_RRS_규제요구사항명세서.html"><span class="num">04</span><span><strong>RRS · 규제 요구사항 명세서</strong><p>제품 콘셉트, 적용성, 제출자료 구조와 사전상담 질문</p></span><span class="arrow">→</span></a>
+        <a class="doc-link" href="05_DMP_LBL_데이터및레이블링계획서.html"><span class="num">05</span><span><strong>DMP/LBL · 데이터·레이블링 계획서</strong><p>5,000건 선정, 익명화, 환자단위 분할, 참조표준·중재·잠금</p></span><span class="arrow">→</span></a>
+        <a class="doc-link" href="06_RMP_위험관리계획서.html"><span class="num">06</span><span><strong>RMP · 위험관리 계획서</strong><p>임상·데이터·소프트웨어·보안·운영 위험과 통제 검증</p></span><span class="arrow">→</span></a>
+        <a class="doc-link" href="07_SRS_소프트웨어요구사항명세서.html"><span class="num">07</span><span><strong>SRS · 소프트웨어 요구사항 명세서</strong><p>기능·성능·인터페이스·환경·보안·로그·배포 요구사항</p></span><span class="arrow">→</span></a>
+        <a class="doc-link" href="08_SAP_RTM_독립검증및추적계획.html"><span class="num">08</span><span><strong>SAP/RTM · 독립검증·추적 계획</strong><p>통계분석 계획 골격, 데이터 잠금, 합격판정과 요구사항 추적</p></span><span class="arrow">→</span></a>
+      </div>
+    </section>
+
+    <section id="review">
+      <h2>권고 검토 순서</h2>
+      <ol>
+        <li><strong>PM·연구소장:</strong> DRF와 MRS에서 범위·기간·최종산출물·비범위를 먼저 확인합니다.</li>
+        <li><strong>RA&amp;QA:</strong> RRS에서 사용목적·품목분류·임상자료·변경관리계획 적용성을 검토합니다.</li>
+        <li><strong>협회·전문의:</strong> DMP/LBL의 확진근거, 판독자 수, 중재, 데이터 분할·잠금 규칙을 확정합니다.</li>
+        <li><strong>SW개발팀:</strong> 확정된 입력을 SDP·SRS·RMP·RTM에 반영하고 문서 버전을 1.0으로 기준선화합니다.</li>
+        <li><strong>대표이사:</strong> 일정·비용·규제·계약 영향이 반영된 G0/G1 패키지를 승인합니다.</li>
+      </ol>
+    </section>
+
+    <div class="foot">근거: 결핵진단 AI 사업계획서, 대한결핵협회 연구과제 계획서(2026.06.19 RA본), 공동연구개발계약서(2026.06.19 RA본), 연구 데이터 안전성 확보·파기 계획서, 인허가 정리자료, TB 프로젝트 WBS 및 문서승인매트릭스. 본 문서는 내부 검토용 초안이며 법률·의료·규제 판단을 대체하지 않습니다.</div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DRF | TB 프로젝트 개발 의뢰서</title><link rel="stylesheet" href="document.css"></head><body>
+<header class="toolbar"><a class="toolbar-brand" href="index.html"><span class="toolbar-mark">TB</span>문서 실행 허브</a><div class="toolbar-actions"><a class="action" href="index.html">목록</a><button onclick="window.print()">인쇄 / PDF</button></div></header>
+<main class="page">
+  <div class="doc-head"><div><div class="doc-kicker">DESIGN &amp; DEVELOPMENT PLANNING</div><h1>개발 의뢰서</h1><p class="doc-subtitle">흉부 X-ray 기반 결핵 진단보조 AI 모델 공동연구개발의 목적·범위·책임·착수조건을 승인하기 위한 문서입니다.</p></div><div class="doc-code"><span>DOCUMENT CODE</span><strong>DRF-TB-001</strong></div></div>
+  <div class="approval"><div><span>문서상태</span><strong><span class="status draft">검토용 초안</span></strong></div><div><span>버전 / 기준일</span><strong>0.9 / 2026.08.28</strong></div><div><span>작성</span><strong>PM / 프로젝트 담당</strong></div><div><span>검토</span><strong>Product Manager</strong></div><div><span>승인</span><strong>대표이사</strong></div></div>
+
+  <section><h2>1. 개발 의뢰 개요</h2><div class="grid grid-2"><div class="card soft"><span class="label">PROJECT</span><strong>결핵 진단 AI 모델 개발</strong><p>대한결핵협회 × ㈜마이허브 공동연구개발</p></div><div class="card soft"><span class="label">PLANNED PERIOD</span><strong>2026.06–2029.06</strong><p>계약 종료 2028.12.31과의 정합성 결정 필요</p></div><div class="card soft"><span class="label">PRODUCT CONCEPT</span><strong>독립형 디지털의료기기소프트웨어</strong><p>흉부 X-ray에서 결핵 의심 병변·가능성을 표시해 의료인의 선별·진단 의사결정을 보조</p></div><div class="card soft"><span class="label">DATA TARGET</span><strong>익명화 CXR 5,000건</strong><p>활동성 결핵·비활동성 결핵·정상 3개 군 중심</p></div></div></section>
+
+  <section><h2>2. 개발 목적과 필요성</h2><p class="lead">대한결핵협회가 보유한 결핵 검진 데이터를 기반으로 결핵 특화 AI 모델을 개발하고, 협회가 소스·가중치·학습환경을 인수해 독립적으로 재현·검증·재학습할 수 있는 기술 기반을 확보한다.</p><ul><li>대규모 검진환경에서 결핵 의심 사례의 일관된 선별을 지원한다.</li><li>외부 상용 솔루션 의존과 장기 유지보수 비용을 낮춘다.</li><li>데이터 품질·전문의 참조표준·독립 성능평가·규제자료를 함께 확보한다.</li><li>향후 국가 결핵관리, ODA 및 국제협력 활용을 위한 공공보건 기술 기반을 마련한다.</li></ul></section>
+
+  <section><h2>3. 개발 범위</h2><div class="table-wrap"><table><thead><tr><th>구분</th><th>포함 범위</th><th>주요 산출물</th><th>책임</th></tr></thead><tbody>
+    <tr><td class="id">데이터</td><td>5,000건 선별, 비가역적 익명화, 품질관리, 전문의 레이블·참조표준</td><td>DMP/LBL, 데이터 사전, 잠금기록</td><td>협회 주도 / 개발사 지원</td></tr>
+    <tr><td class="id">AI 개발</td><td>전처리, 병변 검출·시각화, 3군 분류, 확률점수, 학습·최적화</td><td>SRS/SDS/SAD, 코드, 가중치, 학습로그</td><td>개발사</td></tr>
+    <tr><td class="id">검증</td><td>단위·통합·시스템 시험, 독립시험세트 성능평가, 재현성 검수</td><td>SUT/SIT/SST, SVEP/SVAP, PRR/SVAR/SVER</td><td>개발사 작성 / 협회 독립확인</td></tr>
+    <tr><td class="id">규제</td><td>제품 콘셉트·품목분류 검토, 기술문서·안전성·유효성 자료 준비</td><td>RRS, TD/RSD, RMP/RMR, IFU, 사용적합성·보안 자료</td><td>개발사 비용·책임 / 협회 협조</td></tr>
+    <tr><td class="id">기술이전</td><td>소스·가중치·Docker·환경설정·API·매뉴얼 이전, 교육 1회 이상</td><td>이관목록, 설치·사용자 매뉴얼, 재현확인서</td><td>개발사 이전 / 협회 인수</td></tr>
+  </tbody></table></div></section>
+
+  <section><h2>4. 명시적 비범위</h2><ul><li>환자의 최종 진단 또는 치료 결정을 AI가 단독 수행하는 기능</li><li>협회 판독시스템 전체 UI, 운영관리 시스템 또는 병원정보시스템의 신규 구축</li><li>개발사가 기존부터 보유한 범용 프레임워크·공통 라이브러리·선행기술의 소유권 이전</li><li>식품의약품안전처 허가 획득 자체 또는 특정 성능 수치의 무조건적 보장</li><li>인허가 전 국내 의료현장에서 환자 진단·치료 목적으로 사용하는 행위</li></ul></section>
+
+  <section><h2>5. 핵심 성공 기준</h2><div class="table-wrap"><table><thead><tr><th>ID</th><th>성공 기준</th><th>판정 근거</th><th>현재 상태</th></tr></thead><tbody>
+    <tr><td class="id">SC-01</td><td>학습과 독립된 시험세트에서 사전 승인된 통계계획에 따라 평가</td><td>SAP/SVAP, 데이터 잠금기록</td><td class="req">표본수·CI 확정 필요</td></tr>
+    <tr><td class="id">SC-02</td><td>참고 개발목표 Sens ≥90%, Spec ≥80%, AUC 보고</td><td>PRR/SVAR</td><td>WHO TPP 참고 목표</td></tr>
+    <tr><td class="id">SC-03</td><td>Heatmap 및 Probability Score 산출</td><td>SRS, SST</td><td>계약 요구</td></tr>
+    <tr><td class="id">SC-04</td><td>협회 환경에서 추론·재학습 재현 및 산출물 인수</td><td>이관·재현 확인서</td><td class="req">환경·허용오차 확정 필요</td></tr>
+    <tr><td class="id">SC-05</td><td>설계·위험·시험·변경 이력 추적 가능</td><td>RTM, SCP/SCR, 변경대장</td><td>문서체계 구축 필요</td></tr>
+  </tbody></table></div></section>
+
+  <section><h2>6. 착수 승인 전 결정사항</h2><ol><li><strong>기간:</strong> 2028.12.31 계약 종료 후 2029.06 연구 종료까지 업무·비용·권리·데이터 이용권을 어떻게 유지할지 확정한다.</li><li><strong>사용목적:</strong> 대상 사용자, 대상 환자군, 사용환경, 입력·출력, 임상적 역할과 예상 품목분류를 확정한다.</li><li><strong>참조표준:</strong> 판독자 수, 확진근거, 검사 시간창, 불일치 중재와 모호사례 기준을 확정한다.</li><li><strong>독립검증:</strong> 시험세트 규모, 합격기준, 95% 신뢰구간과 하위군 분석을 시험 전에 승인한다.</li><li><strong>IP·기술이전:</strong> 배경IP·공통모듈 목록, 공동산출물 경계, ODA·제3자 제공범위와 이전 검수기준을 부속문서로 확정한다.</li></ol><div class="note decision">위 항목이 미결정인 상태에서는 ‘조건부 착수’까지만 승인하고, 데이터 잠금·설계입력 기준선·독립시험 착수는 보류합니다.</div></section>
+
+  <section><h2>7. 착수 승인 요청</h2><p>상기 목적·범위·비범위와 조건부 결정사항을 전제로 TB 프로젝트의 설계·개발 계획 수립과 요구사항 기준선 작업을 착수하고자 합니다.</p><div class="signatures"><div class="signature"><span>작성</span><strong>성명 / 일자 / 서명</strong></div><div class="signature"><span>검토</span><strong>Product Manager / 일자</strong></div><div class="signature"><span>승인</span><strong>대표이사 / 일자</strong></div></div></section>
+  <div class="foot">문서 분류: 내부 검토용 · 근거: 사업계획서, 연구계획서(2026.06.19), 공동연구개발계약서(2026.06.19 RA본) · 다음 문서: MRS, SDP, RRS, DMM</div>
+</main></body></html>

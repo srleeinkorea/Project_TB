@@ -1,0 +1,41 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RRS | TB 프로젝트 규제 요구사항 명세서</title><link rel="stylesheet" href="document.css"></head><body>
+<header class="toolbar"><a class="toolbar-brand" href="index.html"><span class="toolbar-mark">TB</span>문서 실행 허브</a><div class="toolbar-actions"><a class="action" href="index.html">목록</a><button onclick="window.print()">인쇄 / PDF</button></div></header>
+<main class="page">
+  <div class="doc-head"><div><div class="doc-kicker">REGULATORY REQUIREMENTS</div><h1>규제 요구사항 명세서</h1><p class="doc-subtitle">TB AI 시스템에 적용 가능한 법령·품목분류·품질·임상·소프트웨어·변경관리 요구를 설계입력으로 전환하기 위한 적용성 초안입니다.</p></div><div class="doc-code"><span>DOCUMENT CODE</span><strong>RRS-TB-001</strong></div></div>
+  <div class="approval"><div><span>문서상태</span><strong><span class="status draft">RA 적용성 검토 필요</span></strong></div><div><span>버전 / 기준일</span><strong>0.9 / 2026.08.28</strong></div><div><span>권고 작성</span><strong>RA&amp;QA팀</strong></div><div><span>권고 검토</span><strong>PM / SW개발팀장</strong></div><div><span>권고 승인</span><strong>연구소장</strong></div></div>
+
+  <section><h2>1. 잠정 제품 콘셉트</h2><div class="grid grid-2"><div class="card soft"><span class="label">INTENDED PURPOSE · DRAFT</span><strong>결핵 선별·진단 의사결정 보조</strong><p>흉부 X-ray를 분석해 결핵 의심 가능성 또는 의심 병변을 표시하여 의료인의 판단을 보조합니다. 확진을 단독 수행하지 않습니다.</p></div><div class="card soft"><span class="label">PRODUCT TYPE · DRAFT</span><strong>독립형 디지털의료기기소프트웨어</strong><p>예상 제품코드 B1ABXA1은 연구계획·계약의 검토안이며, 최종 코드·등급·허가/인증 경로는 공식 분류·사전상담으로 확인합니다.</p></div></div><div class="note decision">대상 환자군, 사용자, 사용환경, 입력·출력, 임계값 운용, 임상적 역할이 확정되기 전에는 제품코드·등급·제출자료 범위를 확정값으로 표시하지 않습니다.</div></section>
+
+  <section><h2>2. 현재 규제환경 적용성</h2><div class="table-wrap"><table><thead><tr><th>ID</th><th>공식 기준</th><th>프로젝트 적용</th><th>필요 증빙</th><th>상태</th></tr></thead><tbody>
+    <tr><td class="id">RRS-01</td><td>「디지털의료제품법」은 2026.01.24 시행</td><td>질병 진단 목적의 디지털기술 적용 의료기기에 해당하는지 사용목적으로 판단</td><td>사용목적·작용원리·제품구성</td><td class="req">RA 확인</td></tr>
+    <tr><td class="id">RRS-02</td><td>디지털의료기기 제조업허가 및 제품 허가·인증·신고 체계</td><td>개발사의 제조업·품질책임·신청주체 적격성 확인</td><td>행정자료, 제조·품질체계</td><td class="req">주체 확인</td></tr>
+    <tr><td class="id">RRS-03</td><td>디지털의료제품 분류·등급 지정 규정</td><td>독립형 SW 지정, 코드·등급·전문가용 여부 적용성 검토</td><td>품목분류 검토서·질의회신</td><td class="req">사전상담</td></tr>
+    <tr><td class="id">RRS-04</td><td>디지털의료기기소프트웨어 품질관리기준 적합판정</td><td>결함·오류·오작동 예방을 위한 QMS와 제품·시설·장비 정보 준비</td><td>QMS, 적합판정 자료</td><td class="req">적용 범위 확인</td></tr>
+    <tr><td class="id">RRS-05</td><td>임상시험계획 승인·임상자료 요구</td><td>독립 성능평가가 허가용 임상자료로 인정될 범위와 추가 임상시험 필요성 확인</td><td>임상평가 전략, 프로토콜, V&amp;V·보안 자료</td><td class="req">사전상담</td></tr>
+    <tr><td class="id">RRS-06</td><td>AI 적용 제품의 변경관리계획 활용 가능</td><td>재학습·데이터·임계값·모델 구조 변경의 허용범위·통제·평가계획 수립</td><td>변경관리계획서, 기록·보고 절차</td><td class="req">적용성 결정</td></tr>
+    <tr><td class="id">RRS-07</td><td>디지털의료기기소프트웨어 표시·첨부정보</td><td>제품명·모델명·버전·허가번호·제조업자·전문가용 표시와 전자표시 설계</td><td>IFU, 표시기재, 전자표시 화면</td><td>후속 설계</td></tr>
+  </tbody></table></div></section>
+
+  <section><h2>3. 기술문서 및 설계관리 요구</h2><div class="table-wrap"><table><thead><tr><th>영역</th><th>요구 문서·기록</th><th>설계 입력</th><th>책임</th></tr></thead><tbody>
+    <tr><td><strong>제품 정의</strong></td><td>제품 개요, 사용목적, 대상 사용자·환자군·환경, 작용원리, 국내외 현황</td><td>MRS/RRS/SRS에 동일한 문구 사용</td><td>RA&amp;QA / PM</td></tr>
+    <tr><td><strong>소프트웨어</strong></td><td>SDP, SRS, SAD/SDS, SCP/SCR, SBOM/SOTS, 배포·유지보수</td><td>요구–위험–설계–시험 추적</td><td>SW개발팀</td></tr>
+    <tr><td><strong>AI·데이터</strong></td><td>모델 구조·추론, 데이터 선정·제외·분할, 익명화, 레이블·참조표준, 학습·평가 기록</td><td>데이터 누수·편향·재현성 통제</td><td>SW / 협회 / 전문의</td></tr>
+    <tr><td><strong>성능·임상</strong></td><td>SAP/SVAP, 성능결과, 전문의 비교, 하위군, 임상적 유효성 근거</td><td>시험 전 계획·합격기준 동결</td><td>RA&amp;QA / 통계 / 전문의</td></tr>
+    <tr><td><strong>안전·보안</strong></td><td>RMP/RMR, 사용적합성, 사이버보안, 개인정보·데이터 보안</td><td>위양성·위음성·오해석·오류·공격 통제</td><td>SW / RA&amp;QA</td></tr>
+    <tr><td><strong>사용·표시</strong></td><td>IFU, 설치·서비스, 교육자료, 주의사항·한계·버전 표시</td><td>허가 전 사용 제한과 사용자의 최종판단 명시</td><td>SW / RA&amp;QA</td></tr>
+  </tbody></table></div></section>
+
+  <section><h2>4. 적용 가능 표준 체크리스트</h2><p>다음 표준은 제품·등급·심사경로에 따라 적용성 및 최신판을 RA&amp;QA가 별도 승인합니다.</p><div class="table-wrap"><table><thead><tr><th>분야</th><th>후보 표준/기준</th><th>프로젝트 적용 목적</th><th>결정</th></tr></thead><tbody>
+    <tr><td>품질</td><td>ISO 13485 또는 국내 디지털의료기기 품질관리기준</td><td>설계·문서·변경·공급자·시정조치 체계</td><td class="req">적용판 확정</td></tr>
+    <tr><td>위험</td><td>ISO 14971</td><td>위험분석·통제·잔여위험·생산 후 정보</td><td class="req">적용판 확정</td></tr>
+    <tr><td>SW 수명주기</td><td>IEC 62304</td><td>계획·요구·설계·구현·시험·유지보수·문제해결</td><td class="req">안전등급 포함</td></tr>
+    <tr><td>사용적합성</td><td>IEC 62366-1</td><td>사용 관련 위험, 형성·총괄평가</td><td class="req">사용자·UI 범위 후</td></tr>
+    <tr><td>보안</td><td>식약처 전자적 침해 보호 자료 및 최신 가이드</td><td>위협모델·취약점·업데이트·사고대응</td><td class="req">연계환경 후</td></tr>
+  </tbody></table></div></section>
+
+  <section><h2>5. MFDS 사전상담 질문 초안</h2><ol><li>제안 사용목적과 출력(3군 분류, 확률점수, Heatmap)에 적절한 품목코드·등급·허가/인증 경로는 무엇인가?</li><li>후향적 독립시험 자료로 임상적 성능을 입증할 수 있는 범위와 별도 임상시험계획 승인 필요 여부는 무엇인가?</li><li>활동성·비활동성·정상 3군 출력이 허가 사용목적과 성능평가 설계에 미치는 영향은 무엇인가?</li><li>WHO TPP 기반 Sens/Spec 목표를 허가 성능규격으로 전환할 때 필요한 표본수·하위군·신뢰구간 기준은 무엇인가?</li><li>재학습·파인튜닝을 고려할 때 변경관리계획서 제출이 가능한 범위와 고정해야 할 모델·데이터·성능 경계는 무엇인가?</li><li>협회 내부 판독시스템과 API 연계 시 제출해야 할 상호운용·사이버보안·사용적합성 자료 범위는 무엇인가?</li><li>전문가용 표시 적용 여부와 전자표시·IFU에 필요한 경고·한계·버전 정보는 무엇인가?</li></ol></section>
+
+  <section><h2>6. 공식 확인 자료</h2><ul><li><a href="https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&amp;lsJoLnkSeq=1031809295">국가법령정보센터 · 디지털의료제품법 제2조</a></li><li><a href="https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&amp;lsJoLnkSeq=1026878087">국가법령정보센터 · 디지털의료제품법 제8조</a></li><li><a href="https://law.go.kr/lsLinkCommonInfo.do?chrClsCd=010202&amp;lsJoLnkSeq=1026878101">국가법령정보센터 · 디지털의료기기소프트웨어 품질관리기준 적합판정</a></li><li><a href="https://www.law.go.kr/admRulLsInfoP.do?admRulId=92541&amp;efYd=0">디지털의료제품 분류 및 등급 지정 등에 관한 규정</a></li><li><a href="https://www.mfds.go.kr/brd/m_1060/view.do?seq=15874">식품의약품안전처 · 디지털의료기기 변경관리 계획서 허가 심사 가이드라인(2026.06.26)</a></li></ul><div class="note">본 문서는 규제 적용성 초안입니다. 최종 판단은 제품의 확정 사용목적과 최신 법령·고시·가이드라인, 식약처 또는 인증·심사기관의 회신에 따라 RA&amp;QA가 승인해야 합니다.</div></section>
+  <div class="signatures"><div class="signature"><span>권고 작성</span><strong>RA&amp;QA팀</strong></div><div class="signature"><span>권고 검토</span><strong>PM / SW개발팀장</strong></div><div class="signature"><span>권고 승인</span><strong>연구소장</strong></div></div>
+  <div class="foot">상위 문서: DRF, MRS · 하위 문서: SRS, RMP, UPL/UHA, TD/RSD, IFU, 변경관리계획 · 규제 기준일: 2026.08.28</div>
+</main></body></html>

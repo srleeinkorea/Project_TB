@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="결핵 진단 AI 공동연구의 업무, 일정, 산출물 및 진척 현황">
+  <meta name="robots" content="noindex,nofollow">
+  <title>결핵 진단 AI · 프로젝트 WBS</title>
+  <style>
+    :root{
+      --navy:#17324d;--blue:#2b6bdc;--blue-soft:#eaf2ff;--ink:#1f2a37;
+      --muted:#667386;--line:#dbe2ea;--line-dark:#bac5d2;--paper:#fff;
+      --canvas:#f3f5f7;--green:#23866c;--green-soft:#e3f4ef;
+      --orange:#d9772a;--orange-soft:#fff0df;--slate:#8995a5;
+      --slate-soft:#edf0f3;--red:#d84e4e;--shadow:0 12px 36px rgba(34,50,67,.07)
+    }
+    *{box-sizing:border-box}
+    html{background:var(--canvas);scroll-behavior:smooth}
+    body{margin:0;color:var(--ink);font-family:"Pretendard Variable",Pretendard,"Noto Sans KR","Malgun Gothic",Arial,sans-serif;background:linear-gradient(rgba(23,50,77,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(23,50,77,.028) 1px,transparent 1px),var(--canvas);background-size:24px 24px}
+    button{font:inherit}
+    .topbar{background:rgba(255,255,255,.96);border-bottom:1px solid var(--line)}
+    .topbar-inner{max-width:1540px;margin:auto;min-height:72px;padding:0 32px;display:flex;align-items:center;gap:12px}
+    .brand-mark{width:38px;height:38px;border-radius:9px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:900;letter-spacing:.04em}
+    .brand-title,.brand-sub{margin:0}.brand-title{font-weight:800;font-size:14px}.brand-sub{color:var(--muted);font-size:11px;margin-top:1px}
+    .asof{margin-left:auto;color:var(--muted);font-size:12px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:5px 10px;background:#fff}
+    .page-shell{max-width:1540px;margin:auto;padding:38px 32px 72px}
+    .intro{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;margin-bottom:24px}
+    .eyebrow,.section-kicker{color:var(--blue);font-size:11px;font-weight:900;letter-spacing:.13em;margin:0 0 7px}
+    h1{margin:0;font-size:clamp(28px,3.2vw,44px);letter-spacing:-.045em;color:var(--navy);line-height:1.1}
+    .intro-copy{margin:11px 0 0;color:var(--muted);font-size:14px}
+    .intro-actions{display:flex;align-items:center;gap:10px}
+    .print-button{height:40px;padding:0 13px;border:1px solid var(--line-dark);border-radius:8px;background:#fff;color:var(--navy);font-size:12px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:7px;cursor:pointer}
+    .print-button:hover{background:var(--slate-soft)}
+    .year-switch{display:flex;border:1px solid var(--line-dark);padding:4px;border-radius:10px;background:#fff;box-shadow:0 5px 18px rgba(32,50,68,.05)}
+    .year-button{height:32px;border:0;color:var(--muted);background:transparent;min-width:66px;padding:8px 13px;border-radius:7px;cursor:pointer;font-size:13px;font-weight:800}
+    .year-button:hover{background:var(--slate-soft);color:var(--navy)}.year-button.is-active{background:var(--navy);color:#fff}
+    .summary-grid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:12px;margin-bottom:12px}
+    .summary-card{min-height:98px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .summary-card span{display:block;color:var(--muted);font-size:11px;font-weight:800;margin-bottom:3px}.summary-card strong{color:var(--navy);font-size:26px;letter-spacing:-.03em;line-height:1}.summary-card small{color:var(--muted);margin-left:4px;font-weight:700}
+    .summary-icon{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;color:#fff;background:var(--navy);font-size:17px;font-weight:900}
+    .summary-icon.is-green{background:var(--green-soft);color:var(--green)}.summary-icon.is-orange{background:var(--orange-soft);color:var(--orange)}.summary-icon.is-blue{background:var(--blue-soft);color:var(--blue)}
+    .accent-card{background:var(--navy);border-color:var(--navy)}.accent-card strong,.accent-card span{color:#fff}.accent-card span{opacity:.72}.accent-card .summary-icon{background:rgba(255,255,255,.12)}
+    .summary-progress{grid-column:1/-1;height:4px;background:rgba(255,255,255,.16);border-radius:99px;overflow:hidden}.summary-progress i{display:block;height:100%;background:#6fa1ff;border-radius:inherit}
+    .now-panel,.year-note{min-height:72px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin-bottom:22px;box-shadow:var(--shadow)}
+    .now-panel{border-left:4px solid var(--orange);display:flex;gap:18px;align-items:center}.now-label{color:var(--orange);font-size:11px;font-weight:900;letter-spacing:.06em;white-space:nowrap;display:flex;align-items:center;gap:7px}.pulse-dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px var(--orange-soft)}
+    .now-copy{display:flex;flex-direction:column;gap:2px}.now-copy strong{font-size:14px;color:var(--navy)}.now-copy span{font-size:12px;color:var(--muted)}
+    .year-note{border-left:4px solid var(--blue);display:flex;flex-direction:column;justify-content:center;gap:3px}.year-note span{color:var(--blue);font-size:10px;font-weight:900;letter-spacing:.08em}.year-note strong{color:var(--navy);font-size:13px}
+    .dataset-panel{margin:-10px 0 22px;overflow:hidden;background:#fff;border:1px solid var(--line-dark);border-radius:12px;box-shadow:var(--shadow)}.dataset-head{padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:22px;background:linear-gradient(135deg,#102a43,#183f66)}.dataset-head span{color:#9fc5ff;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.dataset-head h2{margin:4px 0 0;color:#fff;font-size:18px;letter-spacing:-.02em}.dataset-total{min-width:180px;padding-left:20px;border-left:1px solid rgba(255,255,255,.2);text-align:right}.dataset-total strong,.dataset-total small{display:block}.dataset-total strong{color:#fff;font-size:20px}.dataset-total small{margin-top:3px;color:#c8d8e8;font-size:10px;font-weight:700}.dataset-grid{display:grid;grid-template-columns:1.05fr 1fr 1fr}.dataset-grid article{min-height:190px;padding:18px 20px;border-right:1px solid var(--line)}.dataset-grid article:last-child{border-right:0}.dataset-grid h3{margin:0 0 10px;color:var(--navy);font-size:12px}.dataset-grid ul{margin:0;padding-left:17px;color:var(--ink);font-size:11px;line-height:1.65}.dataset-grid li::marker{color:var(--blue)}.dataset-grid p{margin:10px 0 0;color:var(--muted);font-size:10.5px;line-height:1.55}.dataset-chips{display:flex;flex-wrap:wrap;gap:6px}.dataset-chips span{padding:5px 8px;border-radius:999px;background:var(--blue-soft);color:var(--blue);font-size:10px;font-weight:800}.dataset-rule{padding:13px 20px;display:flex;gap:12px;align-items:flex-start;border-top:1px solid var(--line);background:#f8fafc}.dataset-rule strong{flex:none;color:var(--blue);font-size:10.5px}.dataset-rule span{color:var(--muted);font-size:10.5px;line-height:1.55}
+    .wbs-section{background:var(--paper);border:1px solid var(--line-dark);box-shadow:var(--shadow)}
+    .section-head{padding:22px 24px 18px;display:flex;justify-content:space-between;align-items:flex-end;gap:22px;border-bottom:1px solid var(--line-dark)}
+    .section-head h2{margin:0;color:var(--navy);font-size:21px;letter-spacing:-.025em}.section-tools{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+    .status-filters{display:flex;align-items:center;gap:3px;padding:3px;background:var(--slate-soft);border-radius:8px}.filter-icon{color:var(--muted);font-size:12px;margin:0 5px 0 4px}
+    .filter-button{height:26px;padding:0 9px;border:0;border-radius:6px;background:transparent;color:var(--muted);font-size:10px;font-weight:800;cursor:pointer}.filter-button:hover{background:rgba(255,255,255,.65)}.filter-button.is-active{background:#fff;color:var(--navy);box-shadow:0 1px 4px rgba(31,42,55,.1)}
+    .legend{display:flex;gap:16px;color:var(--muted);font-size:11px;font-weight:700}.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:18px;height:8px;border-radius:2px}.legend-done{background:var(--green)}.legend-progress{background:repeating-linear-gradient(135deg,var(--orange),var(--orange) 3px,#ffc792 3px,#ffc792 6px)}.legend-plan{background:var(--slate)}
+    .wbs-table-wrap{width:100%;overflow-x:auto}.wbs-table{min-width:1390px}
+    .wbs-row{display:grid;grid-template-columns:minmax(270px,1.35fr) minmax(520px,2.6fr) minmax(350px,1.75fr) 170px;min-height:88px;border-bottom:1px solid var(--line)}.wbs-row:last-child{border-bottom:0}.wbs-row>div{border-right:1px solid var(--line)}.wbs-row>div:last-child{border-right:0}
+    .wbs-head{min-height:auto;background:#f7f9fb;color:var(--navy);font-size:11px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}.wbs-head>div:not(.schedule-head){display:flex;align-items:center;padding:12px 16px}
+    .schedule-head>span{display:block;text-align:center;padding:5px;border-bottom:1px solid var(--line)}.schedule-head .month-grid{position:relative}.schedule-head.is-current .month-grid:after{content:"TODAY";position:absolute;z-index:3;left:66.666%;top:0;bottom:0;width:1px;background:var(--red);color:#b43a3a;font-size:7px;line-height:9px;letter-spacing:0;text-indent:3px}
+    .month-grid{display:grid;grid-template-columns:repeat(12,1fr)}.month-grid span{min-height:29px;display:grid;place-items:center;border-right:1px solid var(--line)}.month-grid span:last-child{border-right:0}
+    .task-cell{padding:13px 15px;display:flex;align-items:flex-start;gap:11px}.task-id{flex:none;margin-top:1px;color:var(--blue);font-size:10px;font-weight:900;min-width:28px}.task-cell strong{display:block;color:var(--navy);font-size:13px;line-height:1.45}.task-cell small{display:block;color:var(--muted);font-size:10.5px;margin-top:5px}.phase-chip{display:inline-block;margin-right:6px;padding:1px 5px;border-radius:3px;background:var(--blue-soft);color:var(--blue);font-size:9px;font-weight:900}
+    .timeline-cell{position:relative;min-width:0;overflow:hidden}.timeline-cell.is-current:after{content:"";position:absolute;z-index:4;left:66.666%;top:0;bottom:0;width:1px;background:rgba(216,78,78,.78);pointer-events:none}.month-cells{position:absolute;inset:0}.month-cells span{min-height:100%;background:linear-gradient(180deg,rgba(245,247,249,.4),rgba(255,255,255,.1))}
+    .timeline-bar{position:absolute;z-index:2;top:50%;height:26px;transform:translateY(-50%);display:flex;align-items:center;padding:0 8px;color:#fff;font-size:10px;font-weight:900;white-space:nowrap;overflow:hidden;border-radius:3px;box-shadow:inset 0 -1px rgba(0,0,0,.08)}.bar-done{background:var(--green)}.bar-progress{background:repeating-linear-gradient(135deg,var(--orange),var(--orange) 5px,#e8924d 5px,#e8924d 10px)}.bar-plan{background:var(--slate)}
+    .output-cell{padding:13px 14px;display:flex;align-items:flex-start;gap:9px;color:var(--ink);line-height:1.45}.doc-icon{flex:none;margin-top:1px;color:var(--blue);font-size:15px}.output-cell strong{display:block;color:var(--navy);font-size:12px}.output-cell small{display:block;margin-top:5px;color:var(--muted);font-size:10.5px;font-weight:600;line-height:1.5}.output-cell small b{display:inline-block;margin-right:5px;padding:1px 5px;border-radius:3px;background:var(--blue-soft);color:var(--blue);font-size:9px}
+    .progress-cell{padding:12px 14px;display:flex;flex-direction:column;justify-content:center;gap:8px}.progress-top{display:flex;justify-content:space-between;align-items:center}.progress-cell b{font-size:11px;color:var(--muted)}.status-badge{font-size:10px;font-weight:900;border-radius:999px;padding:3px 8px}.status-done{background:var(--green-soft);color:var(--green)}.status-progress{background:var(--orange-soft);color:var(--orange)}.status-plan{background:var(--slate-soft);color:#667386}.row-progress{height:4px;border-radius:99px;background:var(--slate-soft);overflow:hidden}.row-progress i{display:block;height:100%;border-radius:inherit;background:var(--blue)}
+    .empty-row{padding:36px 20px;color:var(--muted);text-align:center;font-size:13px}.table-footer{border-top:1px solid var(--line-dark);background:#f8fafb;padding:12px 16px;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:10.5px;line-height:1.5}.table-footer strong{white-space:nowrap;color:var(--navy)}
+    .noscript{margin:20px;padding:14px;border:1px solid #f0c48d;background:#fff4e8;color:#854e14}
+    button:focus-visible{outline:3px solid rgba(43,107,220,.25);outline-offset:2px}
+    @media(max-width:900px){.page-shell{padding:26px 18px 52px}.intro{align-items:flex-start;flex-direction:column}.intro-actions{width:100%}.year-switch{width:100%;overflow-x:auto}.year-button{flex:1}.summary-grid{grid-template-columns:repeat(2,1fr)}.section-head{align-items:flex-start;flex-direction:column}.section-tools{width:100%;align-items:flex-start}.dataset-grid{grid-template-columns:1fr}.dataset-grid article{min-height:auto;border-right:0;border-bottom:1px solid var(--line)}.dataset-grid article:last-child{border-bottom:0}}
+    @media(max-width:560px){.topbar-inner{padding:0 18px}.asof{display:none}.summary-grid{grid-template-columns:1fr}.intro-actions{align-items:stretch;flex-direction:column}.print-button{width:100%}.now-panel{align-items:flex-start}.now-label{white-space:normal}.dataset-head{align-items:flex-start;flex-direction:column}.dataset-total{min-width:0;padding-left:0;border-left:0;text-align:left}.dataset-rule{flex-direction:column;gap:5px}.table-footer{flex-direction:column}}
+    @media print{body{background:#fff}.topbar,.year-switch,.print-button,.status-filters,.now-panel,.year-note{display:none}.page-shell{max-width:none;padding:0}.summary-card,.dataset-panel,.wbs-section{box-shadow:none;break-inside:avoid}.wbs-table-wrap{overflow:visible}.wbs-table{min-width:0}.wbs-row{grid-template-columns:260px 1fr 220px 130px}.section-head{padding:12px}.table-footer{font-size:8px}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand-mark">TB</div>
+      <div><p class="brand-title">결핵 진단 AI 공동연구</p><p class="brand-sub">대한결핵협회 × ㈜마이허브</p></div>
+      <span class="asof">2026.09.02 기준</span>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="intro">
+      <div>
+        <p class="eyebrow">PROJECT WORK BREAKDOWN STRUCTURE</p>
+        <h1>업무·일정·산출물을 한눈에</h1>
+        <p class="intro-copy">월간 일정표 구조에 상태와 진척률을 더한 프로젝트 실행 현황입니다.</p>
+      </div>
+      <div class="intro-actions">
+        <button class="print-button" type="button" onclick="window.print()" aria-label="WBS 인쇄">▣ 인쇄</button>
+        <nav class="year-switch" id="yearSwitch" aria-label="연도 선택"></nav>
+      </div>
+    </section>
+
+    <section class="summary-grid" id="summaryGrid" aria-label="프로젝트 요약"></section>
+    <section id="focusPanel"></section>
+
+    <section class="wbs-section">
+      <div class="section-head">
+        <div><p class="section-kicker" id="sectionKicker"></p><h2 id="sectionTitle"></h2></div>
+        <div class="section-tools">
+          <div class="status-filters" id="statusFilters" aria-label="상태 필터"></div>
+          <div class="legend" aria-label="상태 범례"><span><i class="legend-done"></i>완료</span><span><i class="legend-progress"></i>진행 중</span><span><i class="legend-plan"></i>예정</span></div>
+        </div>
+      </div>
+      <div class="wbs-table-wrap"><div class="wbs-table" id="wbsTable" role="table"></div></div>
+      <footer class="table-footer"><span>※ 기준선 변경: 2026.08.25 착수 기준으로 후속 일정을 순연했으며, 일부 업무는 2027–2028년으로 이월했습니다. 세부 일정은 실무 협의에 따른 추정안입니다.</span><strong id="rowCount"></strong></footer>
+    </section>
+  </main>
+
+  <noscript><div class="noscript">연도 전환과 상태 필터를 사용하려면 JavaScript를 허용해 주세요.</div></noscript>
+
+  <script>
+    (function(){
+      'use strict';
+      var YEARS={
+        2026:{title:'데이터 구축 및 레이블링',progress:7,note:'8월 25일 착수 → 범위 정의 → 데이터 선별·익명화 → 전문의 정밀 레이블링'},
+        2027:{title:'AI 모델 개발 및 성능 검증',progress:0,note:'2026년 이월 업무 완료 → 모델 설계·학습 → 단위·통합·시스템 시험'},
+        2028:{title:'식약처 인허가 신청 및 심사 대응',progress:0,note:'모델 검증 확정 → 기술문서·임상평가 작성 → 인증 신청 → 보완자료 대응'},
+        2029:{title:'인허가 완료 및 기술이전',progress:0,note:'최종 심사 대응 → 승인 → 산출물 이관·운영 교육'}
+      };
+      var DATA={
+        2026:[
+          ['1.1','과제 착수 및 개발 범위 정의','8월 25일–9월 11일',8,9,'개발 의뢰서 (DRF)','개발사','진행 중',20,'계획'],
+          ['1.2','적용 규제·법규 및 요구사항 정의','9월 7–25일',9,9,'RRS · SRS (#12)','개발사','예정',0,'입력'],
+          ['1.3','IRB·DRB 심의위원회 승인','7–9월',7,9,'IRB·DRB 심의위원회 승인 결과','협회','진행 중',67,'입력'],
+          ['1.4','프리킥오프: 데이터 확보 범위·규모 확정','9월 4일',9,9,'데이터 확보 범위·규모 확정 협의록','공동','예정',0,'입력'],
+          ['1.5','임상정보·정답라벨 기준 협의','10월 2주',10,10,'프리킥오프 협의록 ②','공동','예정',0,'입력'],
+          ['1.6','데이터 선정·제외 기준 확정','10월 3주',10,10,'데이터 수집·선정 기준서 (#18)','협회','예정',0,'입력'],
+          ['1.7','데이터 위험 식별 및 관리 계획','10월 3–4주',10,10,'Risk Management Plan','개발사','예정',0,'입력'],
+          ['1.8','CXR 데이터 선별 및 품질 점검','10월 4주–11월 2주',10,11,'데이터 선별·QC 수행 결과','협회','예정',0,'입력'],
+          ['1.9','레이블링 Tool 개발·기본 시험','9–11월',9,11,'레이블링 Tool 배포본','개발사','예정',0,'출력'],
+          ['1.10','데이터 비식별화','11월 2–3주',11,11,'익명화 절차서 (#19)','협회','예정',0,'입력'],
+          ['1.11','제주 현장 Tool 설치·교육','11월 2–3주',11,11,'현장 방문·I/O 시험 결과','공동','예정',0,'입력'],
+          ['1.12','레이블링 검수·반출 절차 확정','11월 4주',11,11,'Workflow 확정본','공동','예정',0,'입력'],
+          ['1.13','학습용 영상 정밀 레이블링','12월–2027년 2월',12,12,'레이블링 기준서·검수 기록 (#20)','공동','예정',0,'입력']
+        ],
+        2027:[
+          ['1.14','불일치 Case 재판독·중간 검수','3월 1–2주',3,3,'중간 검수·재판독 결과','공동','예정',0,'검토'],
+          ['1.15','참조표준·정답 라벨 최종 확정','3월 3–4주',3,3,'GT 확정 기준서 (#21)','공동','예정',0,'검토'],
+          ['2.1','최종 학습용 데이터셋 인계','3월 4주–4월 1주',3,4,'최종 학습용 데이터셋','공동','예정',0,'입력'],
+          ['2.2','AI 모델 상세 설계','4월',4,4,'SDS · SAD (#7·8)','개발사','예정',0,'출력'],
+          ['2.3','학습환경·오픈소스 구성 관리','5월',5,5,'SBOM (#9·10)','개발사','예정',0,'입력'],
+          ['2.4','1차 모델 학습','6월',6,6,'1차 모델 학습 결과','개발사','예정',0,'출력'],
+          ['2.5','교차검증·1차 튜닝','7월',7,7,'교차검증·튜닝 결과','개발사','예정',0,'출력'],
+          ['2.6','2차 모델 학습','8월',8,8,'2차 모델 학습 결과','개발사','예정',0,'출력'],
+          ['2.7','모델 학습 완료·내부 성능 점검','9월',9,9,'내부 성능 점검 결과','개발사','예정',0,'검토'],
+          ['2.8','소프트웨어 단위·통합 시험','10월',10,10,'SUT · SIT 시험결과','개발사','예정',0,'검증'],
+          ['2.9','시스템 성능시험','11월',11,11,'SST · V&V 보고서 (#15)','개발사','예정',0,'검증'],
+          ['2.10','위험관리 결과 확정','12월',12,12,'Risk Management Report (#17)','개발사','예정',0,'출력']
+        ],
+        2028:[
+          ['2.11','성능평가·통계분석 계획 수립','1월',1,1,'성능평가·통계분석 계획서 (#22)','공동','예정',0,'검증'],
+          ['2.12','모델 검증 결과 확정','2월',2,2,'모델 검증 최종 결과','공동','예정',0,'유효성'],
+          ['3.1','허가·품질관리 행정자료 준비','3월',3,3,'제조업 허가·GMP 자료 (#1·2·3)','개발사','예정',0,'이관'],
+          ['3.2','제품 개요·품목 등급 검토','4월',4,4,'제품 개요서·등급 검토자료 (#4·5)','개발사','예정',0,'이관'],
+          ['3.3','사용목적·대상·환경 정의','5월',5,5,'사용목적·사용환경 자료 (#6)','개발사','예정',0,'이관'],
+          ['3.4','임상 안전성·유효성 평가','6월',6,6,'Clinical Evaluation Report (#24)','개발사','예정',0,'유효성'],
+          ['3.5','사용적합성·보안 검토','7월',7,7,'사용적합성·사이버보안 자료 (#25)','개발사','예정',0,'이관'],
+          ['3.6','배포·유지보수·문제해결 절차 정의','8월',8,8,'운영·유지보수 절차서 (#16)','개발사','예정',0,'출력'],
+          ['3.7','설계개발 종합 완료','9월',9,9,'설계개발 완료 보고서 (DDR)','개발사','예정',0,'유효성'],
+          ['3.8','인허가 기술문서 구성·신청','9월',9,9,'제품표준서·기술문서 (PS/TD)','개발사','예정',0,'이관'],
+          ['3.9','식약처 심사 및 보완 대응','10–12월',10,12,'심사 보완자료·답변서','개발사','예정',0,'이관'],
+          ['3.10','계약기간 만료 검토','12월',12,12,'계약 연장 여부 서면합의','공동','예정',0,'마일스톤']
+        ],
+        2029:[
+          ['4.1','식약처 심사 대응 지속','1–3월',1,3,'월별 심사 대응 기록','개발사','예정',0,'이관'],
+          ['4.2','최종 보완자료 제출','4월',4,4,'최종 보완자료','개발사','예정',0,'이관'],
+          ['4.3','인허가 승인','5월 예상',5,5,'디지털의료기기 인증서','개발사','예정',0,'마일스톤'],
+          ['4.4','사용자 매뉴얼·표시기재 확정','6월 1–2주',6,6,'사용자 매뉴얼·주의사항 (#26)','공동','예정',0,'이관'],
+          ['4.5','설계 완료 및 이관 승인','6월 1–2주',6,6,'설계완료 보고서 (DCR)','개발사','예정',0,'이관'],
+          ['4.6','운영·재학습 교육자료 완성','6월 1–2주',6,6,'사용설명서·교육자료 (IFU/TM)','개발사','예정',0,'출력'],
+          ['4.7','버전·형상관리 체계 이관','6월 3–4주',6,6,'소프트웨어 버전관리 대장 (RLN)','개발사','예정',0,'변경'],
+          ['4.8','협회 기술이전 교육','6월',6,6,'기술이전 교육 결과','공동','예정',0,'이관']
+        ]
+      };
+      var OUTPUT_DETAILS={
+        '1.1':'과업 목적, 개발 범위, 역할, 검수 기준 및 일정이 포함된 착수 승인 문서',
+        '1.2':'적용 법규 목록, 사용자·시스템 요구사항 및 요구사항 추적 기준',
+        '1.3':'IRB 승인서, DRB 데이터 이용·반출 승인서, 심의 조건 및 보완요청 기록',
+        '1.4':'프리킥오프에서 최대 20,000건, 구성군, 제공 가능 시점 및 방식을 확정한 기록',
+        '1.5':'필수 임상변수와 정상·의심·확진 등 정답라벨 정의 및 판정 규칙',
+        '1.6':'협회 보유·판정 가능·AI 활용 품질·비식별 완료 자료의 선정 및 재식별 위험·저품질·불명확·중복 자료의 제외 기준',
+        '1.7':'데이터 편향·누락·유출 위험목록, 통제조치, 책임자 및 점검주기',
+        '1.8':'비식별·영상 품질·중복 제거·라벨 검수 후 확정한 최종 목록, 제외 사유 및 QC 통계',
+        '1.9':'설치 패키지, 사용자 계정·권한, 기능시험 기록 및 배포 안내',
+        '1.10':'DICOM 개인정보 제거 항목, 처리 절차, 샘플 검증 및 처리 로그',
+        '1.11':'설치확인서, 입·출력 연계 시험 기록, 교육 참석자 및 결과',
+        '1.12':'레이블 생성→검수→잠금→반출 흐름, 담당 역할 및 승인 기준',
+        '1.13':'판독 가이드, 레이블 데이터, 검수 이력 및 오류·수정 로그',
+        '1.14':'불일치 사례 목록, 전문의 재판독 결과 및 합의·수정 이력',
+        '1.15':'최종 Ground Truth 정의, 판독자 합의 규칙 및 라벨 잠금 승인',
+        '2.1':'비식별 CXR·임상정보·GT 라벨 묶음, 데이터 명세 및 인수인계서',
+        '2.2':'모델 구조, 입력·출력, 전처리, 학습·추론 흐름 및 인터페이스 설계',
+        '2.3':'사용 라이브러리·버전·라이선스·취약점 목록과 환경 재현 정보',
+        '2.4':'모델 파일, 학습 설정, 학습곡선 및 1차 성능지표',
+        '2.5':'Fold별 성능, 오차분석, 하이퍼파라미터 변경 및 선정 근거',
+        '2.6':'개선 모델 파일, 학습 재현정보 및 1·2차 성능 비교',
+        '2.7':'민감도·특이도·AUC 등 내부 성능, 오류사례 및 출시 후보 결정',
+        '2.8':'단위·통합 시험 항목, 입력·출력 예상값, 실행 결과 및 결함 조치',
+        '2.9':'시스템 요구사항별 검증 결과, 성능·안정성 및 추적성 근거',
+        '2.10':'위험별 통제 적용·잔여위험 평가, 검증 근거 및 승인 기록',
+        '2.11':'평가 대상, 평가지표, 표본수, 통계방법 및 합격 기준',
+        '2.12':'외부·독립 검증 성능표, 신뢰구간, 오류분석 및 최종 결론',
+        '3.1':'제조업 허가증, 품질매뉴얼 및 GMP 적합성 제출·증빙자료',
+        '3.2':'제품명·모델·버전·구성·작동원리와 품목분류·등급 판단 근거',
+        '3.3':'의도된 용도, 대상 환자·사용자, 사용 장소 및 금기·제한사항',
+        '3.4':'문헌·임상데이터 기반 안전성·유효성 평가와 이익·위험 결론',
+        '3.5':'사용성 평가 계획·결과, 위협모델, 보안위험 및 통제 검증',
+        '3.6':'배포·업데이트·장애·민원·CAPA·재학습 처리 절차와 책임',
+        '3.7':'설계 산출물 완결성, 미해결 이슈 및 검증·승인 상태 종합 보고',
+        '3.8':'제품표준서, 기술문서 목차·본문·첨부자료, 신청서 및 제출본',
+        '3.9':'보완요청 목록, 항목별 답변, 수정 기술문서 및 제출·협의 기록',
+        '3.10':'종료·연장 판단, 잔여업무·비용·기간 및 양측 서명 합의서',
+        '4.1':'월별 질의·답변, 제출자료 버전 및 협의·후속조치 추적대장',
+        '4.2':'미해결 보완사항 최종 답변, 수정본 및 제출 확인증',
+        '4.3':'허가 품목명·모델·사용목적·조건이 명시된 최종 인증서',
+        '4.4':'설치·사용·주의·금기·오류대응 및 표시기재 최종본',
+        '4.5':'설계 산출물 검토·승인, 잔여 이슈 종료 및 이관 승인 서명',
+        '4.6':'운영자용 사용설명서, 설치·점검·재학습 절차 및 교육 교안',
+        '4.7':'소프트웨어 버전, 변경내역, 빌드·배포 정보 및 형상항목 인계 목록',
+        '4.8':'교육자료, 참석자·실습 기록, 평가 결과 및 기술이전 완료 확인서'
+      };
+      var selectedYear=2026,selectedFilter='전체';
+      var filters=['전체','완료','진행 중','예정'];
+      function esc(value){return String(value).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+      function stateKey(status){return status==='완료'?'done':status==='진행 중'?'progress':'plan'}
+      function renderNav(){document.getElementById('yearSwitch').innerHTML=Object.keys(DATA).map(function(y){return '<button type="button" class="year-button '+(Number(y)===selectedYear?'is-active':'')+'" aria-pressed="'+(Number(y)===selectedYear)+'" data-year="'+y+'">'+y+'</button>'}).join('')}
+      function renderSummary(){var tasks=DATA[selectedYear],done=tasks.filter(function(t){return t[7]==='완료'}).length,active=tasks.filter(function(t){return t[7]==='진행 중'}).length,p=YEARS[selectedYear].progress;document.getElementById('summaryGrid').innerHTML='<article class="summary-card accent-card"><div class="summary-icon">◆</div><div><span>'+selectedYear+' 전체 진척률</span><strong>'+p+'%</strong></div><div class="summary-progress"><i style="width:'+p+'%"></i></div></article><article class="summary-card"><div class="summary-icon is-green">✓</div><div><span>완료 업무</span><strong>'+done+'</strong><small>/ '+tasks.length+'</small></div></article><article class="summary-card"><div class="summary-icon is-orange">◷</div><div><span>진행 중</span><strong>'+active+'</strong><small>건</small></div></article><article class="summary-card"><div class="summary-icon is-blue">▤</div><div><span>핵심 산출물</span><strong>'+tasks.length+'</strong><small>종</small></div></article>'}
+      function renderFocus(){var dataset='<section class="dataset-panel" aria-labelledby="dataset-scope-title"><div class="dataset-head"><div><span>9월 4일 프리킥오프 확인용 초안</span><h2 id="dataset-scope-title">데이터셋 구성 및 선정·제외 기준</h2></div><div class="dataset-total"><strong>20,000건 이내</strong><small>비식별 흉부 X-ray 영상</small></div></div><div class="dataset-grid"><article><h3>구성군</h3><div class="dataset-chips"><span>활동성 결핵</span><span>비활동성 결핵</span><span>정상군</span><span>기타 폐질환군 · 필요 시</span></div><p>기존 판독 또는 진단 정보를 기준으로 구성하고 가능한 범위에서 군별 균형을 고려합니다.</p></article><article><h3>선정기준</h3><ul><li>대한결핵협회가 보유한 흉부 X-ray</li><li>활동성·비활동성 결핵 또는 정상 판정 가능</li><li>AI 학습·검증에 활용 가능한 영상 품질</li><li>연구자 제공 전 비식별 조치 완료</li></ul></article><article><h3>제외기준</h3><ul><li>비식별 후에도 개인 식별 가능성이 있는 자료</li><li>판독·학습에 부적합한 저품질 영상</li><li>진단 또는 판독 결과가 불명확한 자료</li><li>중복자료 또는 연구목적에 부적합한 자료</li></ul></article></div><div class="dataset-rule"><strong>분할·확정 원칙</strong><span>학습용·검증용·시험용으로 분할하며 동일 대상자·동일 영상의 데이터셋 간 중복을 방지합니다. 최종 건수는 비식별, 품질검토, 중복 제거, 라벨 검수 및 연구목적 적합성 검토 후 확정합니다.</span></div></section>';document.getElementById('focusPanel').innerHTML=selectedYear===2026?'<section class="now-panel"><div class="now-label"><span class="pulse-dot"></span>NOW · 8월 25일 착수</div><div class="now-copy"><strong>과제 착수 및 개발 범위 정의 진행 중</strong><span>9월 4일 프리킥오프에서 데이터 범위·규모와 제공 조건을 확인합니다.</span></div></section>'+dataset:'<section class="year-note"><span>'+selectedYear+' 실행 흐름</span><strong>'+esc(YEARS[selectedYear].note)+'</strong></section>'}
+      function renderFilters(){document.getElementById('statusFilters').innerHTML='<span class="filter-icon">▼</span>'+filters.map(function(f){return '<button type="button" class="filter-button '+(f===selectedFilter?'is-active':'')+'" aria-pressed="'+(f===selectedFilter)+'" data-filter="'+esc(f)+'">'+esc(f)+'</button>'}).join('')}
+      function renderTable(){
+        var rows=DATA[selectedYear].filter(function(t){return selectedFilter==='전체'||t[7]===selectedFilter});
+        var head='<div class="wbs-row wbs-head" role="row"><div role="columnheader">TASK</div><div role="columnheader" class="schedule-head '+(selectedYear===2026?'is-current':'')+'"><span>추진 일정</span><div class="month-grid">'+Array.from({length:12},function(_,i){return '<span>'+(i+1)+'</span>'}).join('')+'</div></div><div role="columnheader">산출물 / 확인 내용</div><div role="columnheader">상태 / 진척률</div></div>';
+        var body=rows.map(function(t){var key=stateKey(t[7]),left=((t[3]-1)/12)*100,width=((t[4]-t[3]+1)/12)*100;return '<div class="wbs-row" role="row"><div class="task-cell" role="cell"><span class="task-id">'+esc(t[0])+'</span><div><strong>'+esc(t[1])+'</strong><small><span class="phase-chip">'+esc(t[9])+'</span>'+esc(t[6])+' · '+esc(t[2])+'</small></div></div><div class="timeline-cell '+(selectedYear===2026?'is-current':'')+'" role="cell"><div class="month-grid month-cells">'+Array.from({length:12},function(){return '<span></span>'}).join('')+'</div><div class="timeline-bar bar-'+key+'" style="left:'+left+'%;width:'+width+'%" title="'+esc(t[1]+': '+t[2])+'">'+esc(t[2])+'</div></div><div class="output-cell" role="cell"><span class="doc-icon">▤</span><div><strong>'+esc(t[5])+'</strong><small><b>확인 내용</b>'+esc(OUTPUT_DETAILS[t[0]]||'')+'</small></div></div><div class="progress-cell" role="cell"><div class="progress-top"><span class="status-badge status-'+key+'">'+esc(t[7])+'</span><b>'+t[8]+'%</b></div><span class="row-progress"><i style="width:'+t[8]+'%"></i></span></div></div>'}).join('');
+        document.getElementById('wbsTable').innerHTML=head+(body||'<div class="empty-row">선택한 상태에 해당하는 업무가 없습니다.</div>');
+        document.getElementById('rowCount').textContent=rows.length+'개 업무 표시';
+      }
+      function render(){document.getElementById('sectionKicker').textContent=selectedYear+' WBS';document.getElementById('sectionTitle').textContent=YEARS[selectedYear].title;renderNav();renderSummary();renderFocus();renderFilters();renderTable()}
+      document.addEventListener('click',function(e){var y=e.target.closest('[data-year]'),f=e.target.closest('[data-filter]');if(y){selectedYear=Number(y.getAttribute('data-year'));selectedFilter='전체';render()}if(f){selectedFilter=f.getAttribute('data-filter');renderFilters();renderTable()}});
+      render();
+    })();
+  </script>
+</body>
+</html>
