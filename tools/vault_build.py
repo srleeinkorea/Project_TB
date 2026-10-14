@@ -64,8 +64,8 @@ def read_manifest():
 
 def main():
     password = os.environ.get("VAULT_PASSWORD") or getpass.getpass("보관함 비밀번호: ")
-    if len(password) < 8:
-        sys.exit("비밀번호는 8자 이상이어야 한다.")
+    if len(password) < 4:
+        sys.exit("비밀번호는 4자 이상이어야 한다.")
     if not os.environ.get("VAULT_PASSWORD"):
         if getpass.getpass("비밀번호 확인: ") != password:
             sys.exit("비밀번호 확인이 일치하지 않는다.")
