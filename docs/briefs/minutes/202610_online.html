@@ -170,7 +170,16 @@
     saveBtn.style.display = on ? '' : 'none';
     if(on){ try{ wrap.focus(); }catch(e){} }
   }
-  editBtn.onclick = function(){ setEdit(!document.body.classList.contains('editing')); };
+  var PW_HASH = '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4';
+  async function sha256(t){ var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t)); return Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join(''); }
+  editBtn.onclick = async function(){
+    if(document.body.classList.contains('editing')){ setEdit(false); return; }
+    var pw = prompt('수정 비밀번호를 입력하세요.');
+    if(pw === null) return;
+    var ok = false; try{ ok = (await sha256(pw)) === PW_HASH; }catch(e){ alert('이 환경에서는 비밀번호 확인을 할 수 없습니다.'); return; }
+    if(!ok){ toast('비밀번호가 올바르지 않습니다.'); return; }
+    setEdit(true); toast('수정 모드입니다. 본문을 직접 고친 뒤 저장을 누르세요.');
+  };
   saveBtn.onclick = function(){
     setEdit(false);
     var html = '<!doctype html>\n' + document.documentElement.outerHTML;
