@@ -36,13 +36,29 @@
   .panel{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:20px 22px;margin-top:12px}
   .panel h4{margin:0 0 8px;font-size:15px}
   .foot{padding:28px 0 60px;font-size:12.5px;color:var(--mute);line-height:1.8}
-  .print{position:fixed;right:20px;top:20px;font:inherit;font-size:12.5px;border:1px solid var(--line);background:#fff;border-radius:4px;padding:6px 12px;cursor:pointer;color:var(--mute)}
-  @media print{.print{display:none}section{break-inside:avoid}}
+  .tools{position:fixed;right:20px;top:20px;display:flex;gap:6px}
+  .tools button{font:inherit;font-size:12.5px;border:1px solid var(--line);background:#fff;border-radius:4px;padding:6px 12px;cursor:pointer;color:var(--mute)}
+  .tools button.on{background:var(--blue);border-color:var(--blue);color:#fff}
+  body.editing .wrap{outline:2px dashed var(--blue);outline-offset:12px}
+  body.editing [contenteditable]:focus{outline:1px solid var(--blue)}
+  .editbar{display:none;position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:10px 28px;font-size:13px;color:var(--mute);z-index:5}
+  body.editing .editbar{display:block}
+  .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;font-size:13.5px;padding:10px 18px;border-radius:6px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:9}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  @media print{.tools,.editbar,.toast{display:none!important}body.editing .wrap{outline:0}}
+  @media print{section{break-inside:avoid}}
   @media(max-width:860px){.cover{grid-template-columns:1fr}.meta{border-left:0;padding-left:0}section{grid-template-columns:1fr;padding:36px 0}.no{margin-bottom:8px;font-size:34px}.grid2{grid-template-columns:1fr}h1{font-size:32px}.wrap{padding:0 18px}}
 </style>
 </head>
 <body>
-<button class="print" type="button" onclick="window.print()">인쇄 / PDF</button>
+<div class="tools">
+  <button type="button" id="editBtn">수정</button>
+  <button type="button" id="saveBtn">저장 (HTML 내려받기)</button>
+  <button type="button" id="ghBtn">GitHub에서 편집</button>
+  <button type="button" onclick="window.print()">인쇄 / PDF</button>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<div class="editbar">수정 모드: 본문을 직접 고친 뒤 <b>저장</b>을 누르면 수정된 HTML 파일이 내려받아집니다. 그 파일을 docs/briefs/minutes/ 에 덮어쓰고 커밋하면 사이트에 반영됩니다. GitHub 계정이 있으면 <b>GitHub에서 편집</b>으로 바로 고칠 수 있습니다.</div>
 <div class="wrap">
 
 <div class="cover">
@@ -138,5 +154,37 @@
 </div>
 
 </div>
+<script>
+(function(){
+  var path = location.pathname.replace(/^.*\/(docs\/briefs\/minutes\/[^/]+)$/,'$1');
+  if(!/^docs\//.test(path)) path = 'docs/briefs/minutes/' + location.pathname.split('/').pop();
+  var ghEdit = 'https://github.com/srleeinkorea/Project_TB/edit/main/' + path;
+  var editBtn = document.getElementById('editBtn'), saveBtn = document.getElementById('saveBtn'), ghBtn = document.getElementById('ghBtn');
+  var wrap = document.querySelector('.wrap'), toastEl = document.getElementById('toast'), toastT;
+  function toast(msg){ toastEl.textContent = msg; toastEl.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(function(){ toastEl.classList.remove('show'); }, 2600); }
+  function setEdit(on){
+    document.body.classList.toggle('editing', on);
+    wrap.contentEditable = on ? 'true' : 'false';
+    editBtn.classList.toggle('on', on);
+    editBtn.textContent = on ? '수정 종료' : '수정';
+    saveBtn.style.display = on ? '' : 'none';
+    if(on){ try{ wrap.focus(); }catch(e){} }
+  }
+  editBtn.onclick = function(){ setEdit(!document.body.classList.contains('editing')); };
+  saveBtn.onclick = function(){
+    setEdit(false);
+    var html = '<!doctype html>\n' + document.documentElement.outerHTML;
+    var blob = new Blob([html], {type:'text/html;charset=utf-8'});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = location.pathname.split('/').pop() || 'minutes.html';
+    document.body.appendChild(a); a.click(); a.remove();
+    toast('수정되었습니다. 수정본 HTML을 내려받았습니다.');
+  };
+  ghBtn.onclick = function(){ window.open(ghEdit, '_blank', 'noopener'); };
+  saveBtn.style.display = 'none';
+  window.addEventListener('beforeunload', function(e){ if(document.body.classList.contains('editing')){ e.preventDefault(); e.returnValue=''; } });
+})();
+</script>
 </body>
 </html>
