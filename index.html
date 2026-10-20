@@ -34,6 +34,7 @@ iframe{flex:1;border:0;width:100%;min-height:0;background:#fff}
 <nav aria-label="문서 탭">
  <div class="brand"><span class="logo">TB</span><div><b>TB 공동연구</b><small>대한결핵협회 × 마이허브</small></div></div>
  <span class="sec">소개</span>
+ <a href="#summary" data-src="docs/briefs/261020_TB_진행상황_원페이지_v1.html">진행상황 원페이지</a>
  <a href="#intro" data-src="docs/briefs/TB_프로젝트_소개.html">📄 프로젝트 소개</a>
  <a href="#guide" data-src="docs/briefs/결핵_의학_가이드.html">📘 결핵 의학 가이드</a>
  <a href="#wbs" data-src="docs/briefs/결핵진단_AI_프로젝트_WBS_GoogleSites용.html">🗂️ WBS 개요</a>
@@ -64,7 +65,7 @@ iframe{flex:1;border:0;width:100%;min-height:0;background:#fff}
 <script>
 const links=[...document.querySelectorAll('nav a[data-src]')];
 function go(){
-  const h=location.hash||'#intro';
+  const h=location.hash||'#summary';
   const a=links.find(x=>x.getAttribute('href')===h)||links[0];
   links.forEach(x=>x.removeAttribute('aria-current'));
   a.setAttribute('aria-current','page');
