@@ -4,291 +4,305 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>결핵 진단 AI모델 개발 · 진행 현황</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
-:root{--bg:#f5f7fb;--surface:#fff;--surface-2:#f0f3f9;--border:#dfe5ef;--border-2:#cbd5e3;--text-1:#1c2940;--text-2:#53627a;--text-3:#6c7890;--accent:#365ee8;--accent-bg:#edf2ff;
---s1:0 1px 3px rgba(15,23,42,.06),0 1px 2px rgba(15,23,42,.04);--s2:0 4px 16px rgba(15,23,42,.07),0 2px 6px rgba(15,23,42,.04);
---green:#047857;--green-bg:#ecfdf5;--green-bd:#a7f3d0;--cyan:#0891b2;--cyan-bg:#ecfeff;--cyan-bd:#a5f3fc;
---amber:#b45309;--amber-bg:#fffbeb;--amber-bd:#fde68a;--grey-bg:#f0f3f9}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{background:var(--bg);color:var(--text-1);font-family:'Pretendard Variable',Pretendard,"Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif;font-size:13px;line-height:1.6;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-x:hidden}
+:root{--ink:#0f1222;--sub:#4a5068;--mute:#7a8094;--line:#e3e6ef;--bg:#fbfbfd;--panel:#fff;
+--blue:#5170FF;--red:#e0453f;--amber:#c7861c;--green:#1f9d5a;
+--blue2:#eef1ff;--red2:#fdeeed;--green2:#eaf8f0;--amber2:#fff6e6}
+*{box-sizing:border-box}
 html{zoom:1.12}
-.page{max-width:1280px;margin:0 auto;padding:26px 24px 36px;display:flex;flex-direction:column;gap:18px}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--s1);padding:20px 22px}
-.eyebrow{font:800 11px/1.4 'Pretendard Variable',sans-serif;letter-spacing:.05em;color:var(--accent)}
-h2{font-size:16px;font-weight:800;letter-spacing:-.02em;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-h2 small{font-size:11px;font-weight:500;color:var(--text-3);margin-left:auto}
-
-/* 머리말 */
-.head{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap}
-.head h1{font-size:24px;font-weight:800;letter-spacing:-.035em;line-height:1.4;margin:6px 0 6px}
-.head p{font-size:13.5px;color:var(--text-2);max-width:760px}
-.badges{display:flex;gap:6px;flex-wrap:wrap}
-.badge{font-size:11px;font-weight:700;color:var(--text-2);background:var(--surface-2);border:1px solid var(--border);border-radius:999px;padding:4px 11px;white-space:nowrap}
-.badge.live{color:var(--cyan);background:var(--cyan-bg);border-color:var(--cyan-bd)}
-
-/* 핵심 수치 */
-.kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
-.kpi{background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:var(--s1);padding:15px 16px;position:relative;overflow:hidden}
-.kpi::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--c,var(--accent))}
-.kpi span{display:block;font-size:11.5px;font-weight:700;color:var(--text-2)}
-.kpi b{display:block;font-size:26px;font-weight:800;letter-spacing:-.03em;line-height:1.25;margin-top:4px}
-.kpi b small{font-size:13px;font-weight:600;color:var(--text-3);margin-left:3px}
-.kpi p{font-size:11.5px;color:var(--text-3);margin-top:3px}
-.meter{height:6px;background:var(--surface-2);border-radius:99px;margin-top:8px;overflow:hidden}
-.meter i{display:block;height:100%;background:var(--c,var(--accent));border-radius:99px}
-
-/* 단계 */
-.stages{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
-.stage{border:1px solid var(--border);border-radius:12px;padding:13px 13px 12px;background:#fff;position:relative}
-.stage .no{font-size:10.5px;font-weight:800;color:var(--text-3)}
-.stage b{display:block;font-size:14px;margin:3px 0 4px}
-.stage p{font-size:11.5px;color:var(--text-2);line-height:1.65}
-.stage.done{background:var(--green-bg);border-color:var(--green-bd)}
-.stage.now{background:var(--cyan-bg);border-color:var(--cyan);box-shadow:0 0 0 3px var(--cyan-bg)}
-.st{display:inline-block;font-size:10.5px;font-weight:800;border-radius:999px;padding:1px 9px;margin-top:9px;white-space:nowrap}
-.st.done{background:var(--green);color:#fff}.st.now{background:var(--cyan);color:#fff}.st.next{background:var(--grey-bg);color:var(--text-2)}
-.st.check{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-bd)}
-.sub-steps{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
-.sub-steps em{font-style:normal;font-size:10.5px;padding:0 7px;border-radius:5px;background:#fff;border:1px solid var(--border);color:var(--text-2)}
-.sub-steps em.ok{color:var(--green);border-color:var(--green-bd)}
-.sub-steps em.ing{color:var(--cyan);border-color:var(--cyan-bd);font-weight:700}
-
-.stage .dc{display:block;font-size:10.5px;font-weight:700;color:#4338ca;margin-top:2px}
-.fw td.std{white-space:nowrap;font-weight:700}
-.fw td.std small{display:block;font-weight:500;color:var(--text-3);font-size:11px}
-.fw-intro{font-size:12.5px;color:var(--text-2);margin:-4px 0 12px}
-.fw-src{font-size:11px;color:var(--text-3);margin-top:10px;line-height:1.7}
-.dset table td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
-.dset tr.sum td{background:var(--surface-2);font-weight:800}
-.ratio{position:relative;height:10px;background:var(--surface-2);border-radius:99px;margin:12px 0 4px;overflow:visible}
-.ratio i{position:absolute;left:0;top:0;bottom:0;min-width:4px;background:#b91c1c;border-radius:99px}
-.ratio span{position:absolute;left:0;top:14px;font-size:11.5px;color:var(--text-3)}
-.note-s{font-size:12px;color:var(--text-3);margin-top:26px}
-.sub-h{font-size:13.5px;font-weight:800;margin:16px 0 8px}
-.codes{display:flex;flex-wrap:wrap;gap:6px}
-.codes em{font-style:normal;font-size:12px;font-weight:600;color:#4338ca;background:#eef2ff;border:1px solid #c7d2fe;border-radius:8px;padding:3px 9px}
-ul.chk{list-style:none;display:grid;gap:6px}
-ul.chk li{font-size:12.5px;color:var(--text-2);padding:8px 12px 8px 30px;border-radius:9px;background:var(--amber-bg);border:1px solid var(--amber-bd);position:relative}
-ul.chk li::before{content:"!";position:absolute;left:11px;top:8px;font-weight:900;color:var(--amber)}
-/* 일정표 */
-.gantt{position:relative;margin-top:4px}
-.g-axis{position:relative;height:20px;border-bottom:1px solid var(--border);margin-left:120px}
-.g-axis span{position:absolute;top:0;transform:translateX(-50%);font-size:10.5px;color:var(--text-3);font-weight:700}
-.g-row{display:flex;align-items:center;height:34px;border-bottom:1px dashed var(--border)}
-.g-row>b{flex:0 0 120px;font-size:12px;font-weight:700;color:var(--text-2)}
-.g-track{position:relative;flex:1;height:100%}
-.g-bar{position:absolute;top:10px;height:14px;border-radius:7px}
-.g-bar.done{background:var(--green)}.g-bar.now{background:var(--cyan)}
-.g-bar.plan{background:repeating-linear-gradient(135deg,#e2e8f0,#e2e8f0 5px,#f1f5f9 5px,#f1f5f9 10px);border:1px dashed var(--border-2)}
-.g-dot{position:absolute;top:11px;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid var(--green);transform:translateX(-50%)}
-.g-today{position:absolute;top:-22px;bottom:0;width:0;border-left:2px solid var(--accent);z-index:2}
-.g-today span{position:absolute;top:0;right:4px;font-size:10.5px;font-weight:800;color:var(--accent);white-space:nowrap}
-.g-end{position:absolute;top:-22px;bottom:0;border-left:2px dashed #b91c1c;z-index:2}
-.g-end span{position:absolute;top:0;right:4px;font-size:10.5px;font-weight:800;color:#b91c1c;white-space:nowrap}
-.g-cend{position:absolute;top:-22px;bottom:0;border-left:2px dashed #b45309;z-index:2}
-.g-cend span{position:absolute;top:0;right:4px;font-size:10.5px;font-weight:800;color:#b45309;white-space:nowrap}
-.g-legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:11px;color:var(--text-2)}
-.g-legend i{display:inline-block;width:14px;height:8px;border-radius:4px;margin-right:5px;vertical-align:middle}
-
-/* 지금 · 다음 · 확인 */
-.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.note{border-radius:14px;padding:15px 16px;border:1px solid}
-.note b{display:block;font-size:13px;margin-bottom:6px}
-.note ul{list-style:none}.note li{font-size:12.5px;color:var(--text-2);line-height:1.75;padding-left:12px;position:relative}
-.note li::before{content:"";position:absolute;left:0;top:.75em;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.5}
-.note.now{background:var(--cyan-bg);border-color:var(--cyan-bd)}.note.now b{color:var(--cyan)}
-.note.next{background:var(--accent-bg);border-color:#c7d2fe}.note.next b{color:var(--accent)}
-.note.check{background:var(--amber-bg);border-color:var(--amber-bd)}.note.check b{color:var(--amber)}
-
-/* 표 · 체크리스트 */
-.two{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:18px}
-table{width:100%;border-collapse:collapse;font-size:12.5px}
-th{background:var(--surface-2);color:var(--text-2);font-size:11px;text-align:left;padding:8px 10px;font-weight:700}
-td{padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.65}
-td.who{white-space:nowrap;font-weight:700}
-.done-list{list-style:none;display:grid;gap:6px}
-.done-list li{display:flex;gap:10px;align-items:baseline;font-size:12.5px;padding:7px 10px;border-radius:9px;background:var(--surface-2)}
-.done-list li::before{content:"✓";font-weight:900;color:var(--green)}
-.done-list .dt{margin-left:auto;font-size:11px;color:var(--text-3);font-weight:700;white-space:nowrap}
-.docs{display:flex;flex-wrap:wrap;gap:8px}
-.docs a{text-decoration:none;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-bg);border:1px solid #c7d2fe;border-radius:10px;padding:8px 12px}
-.foot{font-size:11px;color:var(--text-3)}
-
-@media(max-width:1000px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.stages{grid-template-columns:repeat(3,minmax(0,1fr))}.two,.three{grid-template-columns:minmax(0,1fr)}}
-@media(max-width:640px){.page{padding:16px 14px 26px;gap:14px}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.stages{grid-template-columns:minmax(0,1fr)}
- .card{padding:16px}.g-row>b,.g-axis{flex-basis:70px}.g-axis{margin-left:70px}.g-row>b{font-size:11px}table{display:block;overflow-x:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.7 "DM Sans","Noto Sans KR",sans-serif;word-break:keep-all}
+.wrap{max-width:1120px;margin:0 auto;padding:48px 24px 72px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:700}
+h1{font-family:"DM Serif Display","Noto Sans KR",serif;font-weight:400;font-size:42px;line-height:1.2;margin:10px 0 14px}
+.lead{font-size:16.5px;color:var(--sub);max-width:840px;margin:0}
+.meta{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--ink);margin-top:26px}
+.meta div{padding:12px 14px 12px 0;font-size:13px;color:var(--sub)}
+.meta b{display:block;color:var(--ink);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.strip{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);background:var(--panel);margin:32px 0 8px}
+.kpi{padding:20px 22px;border-right:1px solid var(--line)}.kpi:last-child{border-right:0}
+.kpi .n{font-family:"DM Serif Display",serif;font-size:38px;line-height:1.1}
+.kpi .n small{font-family:"DM Sans","Noto Sans KR",sans-serif;font-size:14px;color:var(--mute);margin-left:4px}
+.kpi .l{font-size:13px;color:var(--sub);margin-top:6px}
+.kpi.red .n{color:var(--red)}.kpi.green .n{color:var(--green)}.kpi.blue .n{color:var(--blue)}.kpi.amber .n{color:var(--amber)}
+section{position:relative;border-top:1px solid var(--line);padding:42px 0 30px 144px}
+section .num{position:absolute;left:0;top:34px;font-family:"DM Serif Display",serif;font-size:64px;color:#d9dce6;line-height:1}
+h2{font-family:"DM Serif Display","Noto Sans KR",serif;font-weight:400;font-size:28px;margin:0 0 12px}
+h3{font-size:15px;margin:22px 0 8px}
+p{margin:0 0 12px}
+.big{font-family:"DM Serif Display","Noto Sans KR",serif;font-size:23px;line-height:1.45;margin:18px 0}
+.big em{font-style:normal;background:linear-gradient(transparent 62%,var(--blue2) 62%)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.panel{background:var(--panel);border:1px solid var(--line);padding:16px 18px}
+.panel.blue{background:var(--blue2);border-color:#d6ddff}.panel.amber{background:var(--amber2);border-color:#f3e0bb}.panel.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+.panel h4{margin:0 0 6px;font-size:14px}
+.panel ul{margin:4px 0 0;padding-left:18px;font-size:14px}.panel li{margin:3px 0}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;padding:1px 8px;border-radius:3px;white-space:nowrap}
+.tag.red{background:var(--red2);color:var(--red)}.tag.green{background:var(--green2);color:var(--green)}
+.tag.amber{background:var(--amber2);color:var(--amber)}.tag.blue{background:var(--blue2);color:var(--blue)}.tag.grey{background:#eef0f4;color:var(--sub)}
+table{width:100%;border-collapse:collapse;border-top:2px solid var(--ink);font-size:13.5px;background:var(--panel);margin:8px 0 6px}
+th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--sub);text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);font-weight:700}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+td.k{font-weight:700;white-space:nowrap}
+td.n{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+td small{display:block;color:var(--mute);font-size:12px}
+tr.sum td{background:#f4f5f9;font-weight:700}
+.fig{background:var(--panel);border:1px solid var(--line);padding:16px 18px 12px;margin:18px 0}
+.fig .t{font-size:12.5px;font-weight:700;color:var(--sub);margin-bottom:8px}
+.fig svg{width:100%;height:auto;display:block}
+.cap{font-size:13px;color:var(--sub);margin-top:8px}.cap b{color:var(--ink)}
+.codes{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 4px}
+.codes span{font-size:12.5px;padding:2px 9px;border:1px solid #d6ddff;background:var(--blue2);color:#3550c9;border-radius:3px}
+.note{font-size:12.5px;color:var(--mute)}
+.two{display:grid;grid-template-columns:1.3fr 1fr;gap:18px}
+.links{display:flex;flex-wrap:wrap;gap:8px}
+.links a{font-size:13px;font-weight:700;color:var(--blue);text-decoration:none;border:1px solid #d6ddff;background:var(--blue2);padding:6px 12px;border-radius:3px}
+.foot{border-top:1px solid var(--line);padding-top:22px;margin-top:20px;font-size:12.5px;color:var(--sub)}
+.foot ol{padding-left:18px}
+@media(max-width:860px){
+ section{padding-left:0}section .num{position:static;font-size:40px;margin-bottom:6px}
+ .strip,.meta{grid-template-columns:repeat(2,1fr)}.grid3,.two{grid-template-columns:1fr}
+ h1{font-size:30px}.wrap{padding:30px 16px 56px}table{display:block;overflow-x:auto}
+}
+@media print{.fig,.panel{break-inside:avoid}}
 </style>
 </head>
 <body>
-<main class="page">
+<div class="wrap">
 
-<section class="card head">
+<div class="eyebrow">Project status · 대한결핵협회 × 마이허브 공동연구</div>
+<h1>결핵 진단 AI모델 개발<br>진행 현황</h1>
+<p class="lead">대한결핵협회가 보유한 비식별 흉부 X선 영상으로 활동성 결핵, 비활동성 결핵, 정상군을 판별하는 결핵 진단보조 AI 모델을 개발하고, 식약처 의료기기 인허가에 활용할 성능평가 자료를 확보하는 공동연구임.</p>
+<div class="meta">
+ <div><b>기준일</b>2026.11.13</div>
+ <div><b>현재 단계</b>1단계 계획 · 승인 (데이터 계획)</div>
+ <div><b>계약기간</b>2026.08 ~ 2028.12.31</div>
+ <div><b>연구기간 (IRB)</b>~ 2029.06.30</div>
+</div>
+
+<div class="strip">
+ <div class="kpi blue"><div class="n">1<small>/ 7단계</small></div><div class="l">현재 단계 · 계획 · 승인</div></div>
+ <div class="kpi"><div class="n">12<small>%</small></div><div class="l">계약 기간 경과 (29개월 중 약 3.5개월)</div></div>
+ <div class="kpi green"><div class="n">9<small>건</small></div><div class="l">완료한 주요 절차 (계약 · IRB · 킥오프 등)</div></div>
+ <div class="kpi amber"><div class="n">7<small>건</small></div><div class="l">진행 · 확인 중 과제 (협회 3 · 마이허브 3 · 공동 1)</div></div>
+</div>
+
+<!-- 01 -->
+<section>
+<div class="num">01</div>
+<h2>요약</h2>
+<p>계약 · IRB · 레이블링 도구 등 착수 절차는 완료함. 현재는 협회 데이터의 구성과 추가 데이터(해외 · 국내)의 규모 · 일정을 확인하는 단계이며, 이 결과가 확정되어야 데이터 구축과 개발 · 인허가 일정이 확정됨. 2026.11.04 식약처에 임상시험 평가자료 면제 · 대체 여부를 질의해 회신을 기다리고 있음.</p>
+<div class="grid3">
+ <div class="panel blue"><h4>지금 하고 있는 일</h4><ul><li>협회 데이터 건수 단위 · 비결핵 대조군 구성 확인</li><li>추가 데이터의 규모 · 제공 시점 확인</li><li>레이블링 기준 · 인력 분담 협의</li></ul></div>
+ <div class="panel"><h4>다음 단계</h4><ul><li>데이터 요구 사양 · 판정 기준 확정</li><li>개발 · 평가 계획, 임상 · 인허가 로드맵 수립</li><li>후속 킥오프 개최</li></ul></div>
+ <div class="panel amber"><h4>확인이 필요한 사항</h4><ul><li>몽골 영상과 확진 결과의 연결 가능 건수</li><li>해외 데이터 국외 이전 절차</li><li>계약 종료(2028.12.31)와 연구 종료(2029.06.30) 사이 6개월의 처리</li></ul></div>
+</div>
+<div class="big">다음 일정을 정하는 조건은 <em>데이터 확정</em>과 <em>식약처 회신</em> 두 가지임.</div>
+</section>
+
+<!-- 02 -->
+<section>
+<div class="num">02</div>
+<h2>단계별 진행 상태</h2>
+<p>7단계 실행 흐름을 의료기기 설계관리(ISO 13485 7.3) 단계와 연결해 관리함.</p>
+<div class="fig">
+ <div class="t">Fig 1 · 7단계 실행 흐름과 현재 위치</div>
+ <svg viewBox="0 0 760 150" font-family="DM Sans, Noto Sans KR, sans-serif">
+  <g font-size="11" fill="#7a8094"><text x="59" y="16" text-anchor="middle">2026.06~2027.02</text><text x="165" y="16" text-anchor="middle">2027.01~12</text><text x="271" y="16" text-anchor="middle">2027.01~12</text><text x="377" y="16" text-anchor="middle">2027.04~2028.03</text><text x="483" y="16" text-anchor="middle">2027.10~2028.03</text><text x="589" y="16" text-anchor="middle">2028.01~12</text><text x="695" y="16" text-anchor="middle">2029.01~06</text></g>
+  <rect x="10" y="24" width="98" height="92" fill="#eef1ff" stroke="#5170FF" stroke-width="2"/>
+  <g fill="#f4f5f9" stroke="#e3e6ef"><rect x="116" y="24" width="98" height="92"/><rect x="222" y="24" width="98" height="92"/><rect x="328" y="24" width="98" height="92"/><rect x="434" y="24" width="98" height="92"/><rect x="540" y="24" width="98" height="92"/><rect x="646" y="24" width="98" height="92"/></g>
+  <g font-size="11" font-weight="700" fill="#7a8094" text-anchor="middle"><text x="59" y="42" fill="#5170FF">STEP 1</text><text x="165" y="42">STEP 2</text><text x="271" y="42">STEP 3</text><text x="377" y="42">STEP 4</text><text x="483" y="42">STEP 5</text><text x="589" y="42">STEP 6</text><text x="695" y="42">STEP 7</text></g>
+  <g font-size="13" font-weight="700" fill="#0f1222" text-anchor="middle"><text x="59" y="64">계획 · 승인</text><text x="165" y="64">데이터 구축</text><text x="271" y="64">전문의 레이블</text><text x="377" y="64">모델 개발</text><text x="483" y="64">설계 검증</text><text x="589" y="64">유효성 · 인허가</text><text x="695" y="64">기술이전 · 적용</text></g>
+  <g font-size="10.5" fill="#4a5068" text-anchor="middle"><text x="59" y="84">설계 계획 · 입력</text><text x="165" y="84">GMLP 데이터</text><text x="271" y="84">GMLP 참조표준</text><text x="377" y="84">설계 출력</text><text x="483" y="84">설계 검증</text><text x="589" y="84">설계 유효성 확인</text><text x="695" y="84">설계 이전</text></g>
+  <rect x="29" y="94" width="60" height="16" fill="#5170FF"/><text x="59" y="106" font-size="10.5" font-weight="700" fill="#fff" text-anchor="middle">진행 중</text>
+  <g font-size="10.5" font-weight="700" fill="#7a8094" text-anchor="middle"><text x="165" y="106">예정</text><text x="271" y="106">예정</text><text x="377" y="106">예정</text><text x="483" y="106">예정</text><text x="589" y="106">예정</text><text x="695" y="106">예정</text></g>
+  <g stroke="#c9cdd9" stroke-width="1.5"><line x1="108" y1="70" x2="116" y2="70"/><line x1="214" y1="70" x2="222" y2="70"/><line x1="320" y1="70" x2="328" y2="70"/><line x1="426" y1="70" x2="434" y2="70"/><line x1="532" y1="70" x2="540" y2="70"/><line x1="638" y1="70" x2="646" y2="70"/></g>
+  <text x="10" y="140" font-size="11" fill="#7a8094">셋째 줄: 대응하는 설계관리 단계(ISO 13485 7.3) · 위 숫자: 2026.11 계획안 기간</text>
+ </svg>
+ <div class="cap"><b>해석:</b> 7단계 중 1단계에 있음. 데이터 구축과 전문의 레이블(2 · 3단계)은 같은 기간에 병행하며, 4 · 5단계도 일부 겹침. 1단계 안에서는 연구계획 · 계약 · IRB · 레이블링 도구가 완료되었고 데이터 계획만 남음.</div>
+</div>
+<table>
+ <thead><tr><th>단계</th><th>설계관리 단계</th><th>계획 기간</th><th>세부 진행</th><th>상태</th></tr></thead>
+ <tbody>
+  <tr><td class="k">1 계획 · 승인</td><td>설계 계획 · 설계 입력</td><td>2026.06 ~ 2027.02</td><td>연구계획 · 계약 · IRB · 레이블링 도구 완료, 데이터 계획 진행</td><td><span class="tag blue">진행 중</span></td></tr>
+  <tr><td class="k">2 데이터 구축</td><td>GMLP · 데이터 관리</td><td>2027.01 ~ 2027.12</td><td>DICOM 샘플 수령 · 기술 검토 완료(11.13)</td><td><span class="tag grey">데이터 확정 후</span></td></tr>
+  <tr><td class="k">3 전문의 레이블</td><td>GMLP · 참조표준</td><td>2027.01 ~ 2027.12</td><td>레이블 기준 · 복수 판독 · 품질 관리</td><td><span class="tag grey">예정</span></td></tr>
+  <tr><td class="k">4 모델 개발</td><td>설계 출력</td><td>2027.04 ~ 2028.03</td><td>설계 · 학습 · 모델 동결</td><td><span class="tag grey">예정</span></td></tr>
+  <tr><td class="k">5 설계 검증</td><td>설계 검증</td><td>2027.10 ~ 2028.03</td><td>단위 · 통합 · 시스템 검증</td><td><span class="tag grey">예정</span></td></tr>
+  <tr><td class="k">6 유효성 · 인허가</td><td>설계 유효성 확인</td><td>2028.01 ~ 2028.12</td><td>KHIDI 사전 컨설팅 완료, 식약처 질의 회신 대기</td><td><span class="tag grey">예정</span></td></tr>
+  <tr><td class="k">7 기술이전 · 적용</td><td>설계 이전</td><td>2029.01 ~ 2029.06</td><td>협회 이전, 검진 현장 적용</td><td><span class="tag grey">예정</span></td></tr>
+ </tbody>
+</table>
+</section>
+
+<!-- 03 -->
+<section>
+<div class="num">03</div>
+<h2>전체 일정</h2>
+<div class="fig">
+ <div class="t">Fig 2 · 단계별 일정 (2026.11 계획안)</div>
+ <svg viewBox="0 0 760 320" font-family="DM Sans, Noto Sans KR, sans-serif">
+  <g stroke="#e3e6ef"><line x1="163.7" y1="34" x2="163.7" y2="280"/><line x1="328.4" y1="34" x2="328.4" y2="280"/><line x1="493" y1="34" x2="493" y2="280"/><line x1="657.7" y1="34" x2="657.7" y2="280"/></g>
+  <g font-size="12" fill="#7a8094" text-anchor="middle"><text x="163.7" y="298">2026</text><text x="328.4" y="298">2027</text><text x="493" y="298">2028</text><text x="657.7" y="298">2029</text></g>
+  <g font-size="12.5" fill="#0f1222" text-anchor="end"><text x="140" y="58">착수 · 행정 절차</text><text x="140" y="92">데이터 확보 계획</text><text x="140" y="126">데이터 구축 · 레이블</text><text x="140" y="160">모델 개발</text><text x="140" y="194">설계 검증</text><text x="140" y="228">유효성 · 인허가</text><text x="140" y="262">기술이전 · 적용</text></g>
+  <rect x="154.1" y="45" width="119.4" height="18" fill="#1f9d5a"/>
+  <rect x="273.5" y="79" width="82.3" height="18" fill="#5170FF"/>
+  <g fill="#eef0f4" stroke="#c9cdd9" stroke-dasharray="4 3"><rect x="328.4" y="113" width="164.6" height="18"/><rect x="369.5" y="147" width="164.7" height="18"/><rect x="451.9" y="181" width="82.3" height="18"/><rect x="493" y="215" width="164.7" height="18"/><rect x="657.7" y="249" width="82.3" height="18"/></g>
+  <g fill="#fff" stroke="#0f1222" stroke-width="2"><circle cx="154.1" cy="54" r="5"/><circle cx="259.8" cy="54" r="5"/><circle cx="294.1" cy="88" r="5"/><circle cx="302.3" cy="88" r="5"/></g>
+  <g font-size="11" fill="#4a5068"><text x="160" y="40">추진 협의 12.11</text><text x="236" y="40" text-anchor="end">계약 08</text></g>
+  <text x="300" y="112" font-size="11" fill="#4a5068" text-anchor="end">10.15 합의 · 11.04 식약처 질의</text>
+  <line x1="306.4" y1="22" x2="306.4" y2="280" stroke="#0f1222" stroke-dasharray="2 3"/><text x="310" y="20" font-size="11.5" font-weight="700" fill="#0f1222">오늘</text>
+  <line x1="657.7" y1="22" x2="657.7" y2="280" stroke="#e0453f" stroke-dasharray="5 4"/><text x="652" y="20" font-size="11.5" font-weight="700" fill="#e0453f" text-anchor="end">계약 종료 2028.12.31</text>
+  <line x1="740" y1="22" x2="740" y2="280" stroke="#c7861c" stroke-dasharray="5 4"/><text x="746" y="300" font-size="11.5" font-weight="700" fill="#c7861c" text-anchor="end">연구 종료 2029.06.30</text>
+  <g font-size="11" fill="#7a8094"><rect x="150" y="306" width="12" height="9" fill="#1f9d5a"/><text x="166" y="315">완료</text><rect x="204" y="306" width="12" height="9" fill="#5170FF"/><text x="220" y="315">진행 중</text><rect x="272" y="306" width="12" height="9" fill="#eef0f4" stroke="#c9cdd9" stroke-dasharray="3 2"/><text x="288" y="315">예정 (계획안)</text></g>
+ </svg>
+ <div class="cap"><b>해석:</b> 유효성 · 인허가가 계약 종료 시점(2028.12.31)에 끝나도록 계획되어 기술이전 · 적용 단계 전체가 계약 기간 밖, 연구기간 안에 놓임. 계약 연장 또는 잔여 업무 처리 방식을 미리 정해야 함. 예정 막대는 데이터 확정 전 계획안이며 식약처 회신에 따라 인허가 기간이 달라질 수 있음.</div>
+</div>
+</section>
+
+<!-- 04 -->
+<section>
+<div class="num">04</div>
+<h2>협회 데이터 현황</h2>
+<p>2026.11 협회 회신. 흉부 X-ray 판독코드 기준 집계 결과임.</p>
+<table>
+ <thead><tr><th>구분</th><th style="text-align:right">건수</th><th style="text-align:right">비율</th></tr></thead>
+ <tbody>
+  <tr><td class="k">결핵 관련 14개 판독코드 해당</td><td class="n">4,835</td><td class="n">약 0.06%</td></tr>
+  <tr><td>14개 판독코드 외</td><td class="n">7,872,235</td><td class="n">약 99.94%</td></tr>
+  <tr class="sum"><td>합계</td><td class="n">7,877,070</td><td class="n">100%</td></tr>
+ </tbody>
+</table>
+<p class="note">비율은 작성자 산출값임.</p>
+<div class="fig">
+ <div class="t">Fig 3 · 결핵 관련 데이터 규모 비교 (같은 축)</div>
+ <svg viewBox="0 0 760 150" font-family="DM Sans, Noto Sans KR, sans-serif">
+  <g font-size="12.5" fill="#0f1222" text-anchor="end"><text x="140" y="34">1차 제공 협의 CXR</text><text x="140" y="74">결핵 판독코드 14종</text><text x="140" y="114">배양 양성 확진</text></g>
+  <rect x="150" y="20" width="590" height="22" fill="#7a8094"/><text x="735" y="36" font-size="12.5" font-weight="700" fill="#fff" text-anchor="end">20,000건+</text>
+  <rect x="150" y="60" width="142.6" height="22" fill="#5170FF"/><text x="300" y="76" font-size="12.5" font-weight="700" fill="#5170FF">4,835건</text>
+  <rect x="150" y="100" width="11.8" height="22" fill="#e0453f"/><text x="170" y="116" font-size="12.5" font-weight="700" fill="#e0453f">약 400건</text>
+  <line x1="150" y1="12" x2="150" y2="130" stroke="#0f1222"/>
+  <text x="150" y="145" font-size="11" fill="#7a8094">0</text><text x="740" y="145" font-size="11" fill="#7a8094" text-anchor="end">20,000</text>
+ </svg>
+ <div class="cap"><b>해석:</b> 결핵 관련 판독코드 데이터는 1차 제공 협의 규모의 약 1/4이며, 미생물학적 확진은 그보다 훨씬 적음. 판독코드는 영상 판독 소견 기준이고 확진은 배양 기준이라 라벨 성격이 다름. 세 수치의 건수 단위(영상 · 환자 · 검사)가 같은지 확인되지 않아 비교는 규모 참고용임.</div>
+</div>
+<h3>14개 판독코드</h3>
+<div class="codes"><span>결핵성 폐렴</span><span>삼출성 흉막염(결핵성)</span><span>폐결핵 경증</span><span>폐결핵 중등증</span><span>폐결핵 중등증(공동)</span><span>폐결핵 중등증(공동의심)</span><span>폐결핵 중증</span><span>폐결핵 중증(공동)</span><span>폐결핵 중증(공동의심)</span><span>결핵종의심</span><span>결핵의심</span><span>폐결핵 활동성미정(경증)</span><span>폐결핵 활동성미정(중등증)</span><span>폐결핵 활동성미정(중증)</span></div>
+<h3>확인 필요 사항</h3>
+<table>
+ <tbody>
+  <tr><td><span class="tag amber">미확인</span></td><td>건수 단위(영상 수 / 환자 수 / 검사 수)가 회신에 기재되지 않음</td></tr>
+  <tr><td><span class="tag amber">추정</span></td><td>&lsquo;14개 코드 외&rsquo;에 정상 외 다른 질환 소견이 포함될 가능성이 있음 → 비결핵 대조군 구성은 별도 확인 필요</td></tr>
+ </tbody>
+</table>
+</section>
+
+<!-- 05 -->
+<section>
+<div class="num">05</div>
+<h2>추가 데이터 확인 현황</h2>
+<table>
+ <thead><tr><th>대상</th><th>현재 확인할 사항</th><th>상태</th></tr></thead>
+ <tbody>
+  <tr><td class="k">몽골</td><td>누적 영상 4만 장 이상은 구두 추정치임. 정부 확진 결과와 매칭 가능한 건수와 활용 협조를 확인함.</td><td><span class="tag amber">확인 중</span></td></tr>
+  <tr><td class="k">라오스 등</td><td>국가별 확보 가능성 · 목표 수량 · 제공 일정을 확인함. 확보량은 미확정임.</td><td><span class="tag amber">확인 중</span></td></tr>
+  <tr><td class="k">국내 추가 자료</td><td>외국인 · 취약계층 검진 영상의 익명화 제공 범위와 검사 결과 연결 여부를 확인함.</td><td><span class="tag amber">확인 중</span></td></tr>
+  <tr><td class="k">확진 기준</td><td>국내 배양검사와 해외 도말 · Xpert 등 확진 기준의 차이를 검토해야 함.</td><td><span class="tag grey">검토 예정</span></td></tr>
+ </tbody>
+</table>
+<p class="note">영상 수와 확진 연결 건수는 구분해 관리함.</p>
+</section>
+
+<!-- 06 -->
+<section>
+<div class="num">06</div>
+<h2>식약처 민원 질의</h2>
+<p>2026.11.04 접수 · 회신 대기. 「디지털의료제품 허가 · 인증 · 신고 · 심사 및 평가 등에 관한 규정」 제25조와 [별표 3]에 따라 임상시험 등 평가자료의 제출 면제 · 대체 적용 가능 여부를 질의함.</p>
+<table>
+ <thead><tr><th>구분</th><th>질의 내용</th><th>상태</th></tr></thead>
+ <tbody>
+  <tr><td class="k">Q1</td><td>질환명이나 확정적 판단 없이 이상소견의 존재 가능성과 위치만 표시하는 기능이 [별표 3]의 면제 · 대체 대상 기능에 해당하는지, 해당 시 별도 허가용 임상시험 없이 성능검증 결과와 기술문서로 대체할 수 있는지</td><td><span class="tag amber">회신 대기</span></td></tr>
+  <tr><td class="k">Q2</td><td>출력 정보에 &lsquo;결핵&rsquo;, &lsquo;결핵 의심 점수&rsquo; 등 특정 질환 관련 표현이 포함될 경우 면제 · 대체 적용이 달라지는지 (기허가 유사 제품 사례 참고)</td><td><span class="tag amber">회신 대기</span></td></tr>
+  <tr><td class="k">Q3</td><td>면제 · 대체 대상 제품의 최소 성능 기준 유무, AUROC · 민감도 · 특이도 기반 성능검증 결과를 분석적 성능 검증 자료로 인정받을 수 있는지</td><td><span class="tag amber">회신 대기</span></td></tr>
+ </tbody>
+</table>
+<div class="big">회신 결과에 따라 <em>허가용 임상시험의 필요 여부</em>와 6단계 일정이 달라짐.</div>
+</section>
+
+<!-- 07 -->
+<section>
+<div class="num">07</div>
+<h2>프레임워크 기준 진행도</h2>
+<p>설계관리(ISO 13485)를 뼈대로, 영역별 국제 기준에 맞춰 문서 · 활동을 점검함. 문서 상태는 인허가 문서 세트 기준임.</p>
+<table>
+ <thead><tr><th>관리 영역</th><th>기준</th><th>해당 활동 · 문서</th><th>상태</th></tr></thead>
+ <tbody>
+  <tr><td class="k">설계관리 전반</td><td>ISO 13485 7.3 설계 · 개발<small>계획 → 입력 → 출력 → 검토 → 검증 → 유효성 확인 → 이전</small></td><td>DRF 개발의뢰서, MRS 시장요구사항명세서, 단계 게이트(G0~G6)</td><td><span class="tag blue">설계 입력 중</span></td></tr>
+  <tr><td class="k">소프트웨어 수명주기</td><td>IEC 62304</td><td>SDP 소프트웨어개발계획서, SRS 소프트웨어요구사항명세서</td><td><span class="tag amber">초안</span></td></tr>
+  <tr><td class="k">위험관리</td><td>ISO 14971</td><td>RMP 위험관리계획서 (위음성 · 위양성 위해 분석)</td><td><span class="tag amber">초안</span></td></tr>
+  <tr><td class="k">규제 요구사항</td><td>식약처 디지털의료제품 분류 · 등급 규정, AI 의료기기 허가 · 심사 가이드라인</td><td>RRS, 제품코드 · 등급 검토(예상 3등급), KHIDI 사전 컨설팅, 식약처 질의(11.04)</td><td><span class="tag amber">검토 진행</span></td></tr>
+  <tr><td class="k">AI 개발 원칙</td><td>GMLP 10대 원칙<small>FDA · 캐나다 보건부 · 영국 MHRA 공동</small></td><td>대상 집단을 대표하는 데이터, 학습 · 시험 데이터 독립, 참조표준 정의, 다기관 검증</td><td><span class="tag amber">데이터 계획 단계</span></td></tr>
+  <tr><td class="k">데이터 · 레이블</td><td>GMLP, 식약처 AI 가이드라인 데이터 요건</td><td>DMP · 레이블링 계획서, DICOM 샘플 기술 검토(11.13)</td><td><span class="tag amber">데이터 확정 대기</span></td></tr>
+  <tr><td class="k">임상 성능 평가</td><td>STARD 2015<small>WHO 선별검사 TPP: 민감도 90% · 특이도 70%</small></td><td>SAP · RTM 독립검증 및 추적계획, 표본수 · 신뢰구간 사전 확정</td><td><span class="tag amber">초안</span></td></tr>
+  <tr><td class="k">사용적합성</td><td>IEC 62366-1</td><td>판독 화면 · 사용 시나리오 평가</td><td><span class="tag grey">예정</span></td></tr>
+  <tr><td class="k">연구 결과 보고</td><td>TRIPOD+AI, CLAIM</td><td>개발 · 검증 결과 보고서 · 논문 작성 시 점검표</td><td><span class="tag grey">예정</span></td></tr>
+ </tbody>
+</table>
+</section>
+
+<!-- 08 -->
+<section>
+<div class="num">08</div>
+<h2>다음 할 일과 완료 절차</h2>
+<div class="two">
  <div>
-  <span class="eyebrow">대한결핵협회 × 마이허브 공동연구 · 진행 현황 · 기준일 2026-11-13</span>
-  <h1>결핵 진단 AI모델 개발</h1>
-  <p>대한결핵협회가 보유한 비식별 흉부 X선 영상으로 활동성 결핵, 비활동성 결핵, 정상군을 판별하는 결핵 진단보조 AI 모델을 개발하고, 식약처 의료기기 인허가에 활용할 성능평가 자료를 확보하는 공동연구임. 계약기간은 2028년 12월 31일, 연구기간은 2029년 6월 30일까지이며, 현재 1단계 <b>계획·승인</b>에서 추가 데이터 확보 계획을 확인하고 있음.</p>
- </div>
- <div class="badges"><span class="badge live">● 진행 중 · 1단계</span><span class="badge">계약 2026.08 ~ 2028.12</span><span class="badge">연구기간 ~ 2029.06</span><span class="badge">IRB 승인</span></div>
-</section>
-
-<section class="kpis" aria-label="핵심 수치">
- <div class="kpi" style="--c:var(--cyan)"><span>현재 단계</span><b>1<small>/ 7단계</small></b><p>계획·승인 (데이터 계획)</p></div>
- <div class="kpi" style="--c:var(--accent)"><span>계약 기간 경과</span><b>12<small>%</small></b><div class="meter"><i style="width:12%"></i></div><p>계약 29개월 중 약 3.5개월 (~2028.12)</p></div>
- <div class="kpi" style="--c:var(--green)"><span>완료한 주요 절차</span><b>9<small>건</small></b><p>계약 · IRB · 킥오프 · 데이터 현황 회신 등</p></div>
- <div class="kpi" style="--c:var(--amber)"><span>진행 · 확인 중 과제</span><b>7<small>건</small></b><p>협회 3건 · 마이허브 3건 · 공동 1건</p></div>
- <div class="kpi" style="--c:#4338ca"><span>제공 가능 CXR</span><b>20,000<small>장+</small></b><p>검수 전 규모 · 배양 확진 약 400건 포함</p></div>
-</section>
-
-<section class="card">
- <h2>단계별 진행 상태<small>7단계 실행 흐름 · 보라색은 ISO 13485 설계관리 단계</small></h2>
- <div class="stages">
-  <div class="stage now"><span class="no">STEP 1 · 2026.06 ~ 2027.02</span><span class="dc">설계 계획 · 설계 입력</span><b>계획 · 승인</b><p>연구계획, 계약, 연구윤리, 데이터 확보 계획</p>
-   <div class="sub-steps"><em class="ok">연구계획</em><em class="ok">계약</em><em class="ok">IRB</em><em class="ok">레이블링 도구</em><em class="ing">데이터 계획</em></div>
-   <span class="st now">진행 중</span></div>
-  <div class="stage"><span class="no">STEP 2 · 2027.01 ~ 2027.12</span><span class="dc">GMLP · 데이터 관리</span><b>데이터 구축</b><p>선정 · 비식별화 · 정제</p><div class="sub-steps"><em class="ok">DICOM 샘플 수령</em></div><span class="st next">데이터 확정 후</span></div>
-  <div class="stage"><span class="no">STEP 3 · 2027.01 ~ 2027.12</span><span class="dc">GMLP · 참조표준</span><b>전문의 레이블</b><p>레이블 기준 · 복수 판독 · 품질 관리</p><span class="st next">예정</span></div>
-  <div class="stage"><span class="no">STEP 4 · 2027.04 ~ 2028.03</span><span class="dc">설계 출력</span><b>모델 개발</b><p>설계 · 학습 · 모델 동결</p><span class="st next">예정</span></div>
-  <div class="stage"><span class="no">STEP 5 · 2027.10 ~ 2028.03</span><span class="dc">설계 검증</span><b>설계 검증</b><p>단위 · 통합 · 시스템 검증</p><span class="st next">예정</span></div>
-  <div class="stage"><span class="no">STEP 6 · 2028.01 ~ 2028.12</span><span class="dc">설계 유효성 확인</span><b>유효성 · 인허가</b><p>독립 시험, 식약처 허가</p><div class="sub-steps"><em class="ok">KHIDI 사전 컨설팅</em></div><span class="st next">예정</span></div>
-  <div class="stage"><span class="no">STEP 7 · 2029.01 ~ 2029.06</span><span class="dc">설계 이전</span><b>기술이전 · 적용</b><p>협회 이전, 검진 현장 적용</p><span class="st next">예정</span></div>
- </div>
-</section>
-
-<section class="card">
- <h2>프레임워크 기준 진행도<small>의료기기 설계관리 · AI 개발 원칙 기준</small></h2>
- <p class="fw-intro">과제 전체를 의료기기 설계관리(ISO 13485)를 뼈대로 관리하고, 영역별 국제 기준에 맞춰 문서 · 활동을 점검함. 문서 상태는 인허가 문서 세트 기준임.</p>
- <table class="fw">
-  <thead><tr><th>관리 영역</th><th>기준 프레임워크</th><th>이 과제의 해당 활동 · 문서</th><th>상태</th></tr></thead>
-  <tbody>
-   <tr><td class="std">설계관리 전반</td><td>ISO 13485 7.3 설계 · 개발<br><small>계획 → 입력 → 출력 → 검토 → 검증 → 유효성 확인 → 이전</small></td><td>DRF 개발의뢰서, MRS 시장요구사항명세서, 단계 게이트(G0~G6)</td><td><span class="st now" style="margin:0">설계 입력 중</span></td></tr>
-   <tr><td class="std">소프트웨어 수명주기</td><td>IEC 62304</td><td>SDP 소프트웨어개발계획서, SRS 소프트웨어요구사항명세서</td><td><span class="st check" style="margin:0">초안</span></td></tr>
-   <tr><td class="std">위험관리</td><td>ISO 14971</td><td>RMP 위험관리계획서 (위음성 · 위양성 위해 분석)</td><td><span class="st check" style="margin:0">초안</span></td></tr>
-   <tr><td class="std">규제 요구사항</td><td>식약처 디지털의료제품 분류 · 등급 규정, AI 의료기기 허가 · 심사 가이드라인</td><td>RRS 규제요구사항명세서, 제품코드 · 등급 검토(예상 3등급), KHIDI 사전 컨설팅, 식약처 민원 질의(11.04)</td><td><span class="st check" style="margin:0">검토 진행</span></td></tr>
-   <tr><td class="std">AI 개발 원칙</td><td>GMLP 10대 원칙<br><small>FDA · 캐나다 보건부 · 영국 MHRA 공동</small></td><td>대상 집단을 대표하는 데이터, 학습 · 시험 데이터 독립, 참조표준 정의, 다기관 검증</td><td><span class="st check" style="margin:0">데이터 계획 단계</span></td></tr>
-   <tr><td class="std">데이터 · 레이블</td><td>GMLP, 식약처 AI 가이드라인의 데이터 요건</td><td>DMP · 레이블링 계획서, DICOM 샘플 기술 검토(11.13)</td><td><span class="st check" style="margin:0">데이터 확정 대기</span></td></tr>
-   <tr><td class="std">임상 성능 평가</td><td>STARD 2015 (진단정확도 연구)<br><small>WHO 선별검사 TPP: 민감도 90% · 특이도 70%</small></td><td>SAP · RTM 독립검증 및 추적계획, 표본수 · 신뢰구간 사전 확정</td><td><span class="st check" style="margin:0">초안</span></td></tr>
-   <tr><td class="std">사용적합성</td><td>IEC 62366-1</td><td>판독 화면 · 사용 시나리오 평가</td><td><span class="st next" style="margin:0">예정</span></td></tr>
-   <tr><td class="std">연구 결과 보고</td><td>TRIPOD+AI, CLAIM</td><td>모델 개발 · 검증 결과 보고서 · 논문 작성 시 점검표로 사용</td><td><span class="st next" style="margin:0">예정</span></td></tr>
-  </tbody>
- </table>
- <p class="fw-src">GMLP: Good Machine Learning Practice for Medical Device Development (2021). STARD: Standards for Reporting Diagnostic Accuracy Studies. TRIPOD+AI: 예측모형 보고 지침 AI 확장판(2024). CLAIM: 의료영상 AI 보고 점검표. 기준별 세부 적용 범위는 인허가 문서 세트에서 관리함.</p>
-</section>
-
-<section class="card">
- <h2>전체 일정<small>2026.11 계획안 · 데이터 확정 후 확정</small></h2>
- <div class="gantt">
-  <div class="g-axis"><span style="left:2.4%">2026</span><span style="left:31%">2027</span><span style="left:59.5%">2028</span><span style="left:88.1%">2029</span></div>
-  <div class="g-row"><b>착수 · 행정 절차</b><div class="g-track"><div class="g-bar done" style="left:0.7%;width:20.7%"></div>
-   <i class="g-dot" style="left:0.7%" title="2025.12.11 추진 협의"></i><i class="g-dot" style="left:19%" title="2026.08 계약"></i><i class="g-dot" style="left:21.4%" title="2026.09 킥오프"></i>
-   <div class="g-today" style="left:27.1%"><span>오늘</span></div><div class="g-cend" style="left:88.1%"><span>계약 종료</span></div><div class="g-end" style="left:100%"><span>연구 종료</span></div></div></div>
-  <div class="g-row"><b>데이터 확보 계획</b><div class="g-track"><div class="g-bar now" style="left:21.4%;width:14.3%"></div><i class="g-dot" style="left:25%;border-color:var(--cyan)" title="2026.10.15 계속 추진 합의"></i><i class="g-dot" style="left:26.2%;border-color:var(--cyan)" title="2026.11.04 식약처 질의 접수"></i><div class="g-today" style="left:27.1%"></div><div class="g-cend" style="left:88.1%"></div><div class="g-end" style="left:100%"></div></div></div>
-  <div class="g-row"><b>데이터 구축 · 레이블</b><div class="g-track"><div class="g-bar plan" style="left:31%;width:28.6%"></div><div class="g-today" style="left:27.1%"></div><div class="g-cend" style="left:88.1%"></div><div class="g-end" style="left:100%"></div></div></div>
-  <div class="g-row"><b>모델 개발 · 설계 검증</b><div class="g-track"><div class="g-bar plan" style="left:38.1%;width:28.6%"></div><div class="g-today" style="left:27.1%"></div><div class="g-cend" style="left:88.1%"></div><div class="g-end" style="left:100%"></div></div></div>
-  <div class="g-row"><b>유효성 · 인허가</b><div class="g-track"><div class="g-bar plan" style="left:59.5%;width:28.6%"></div><div class="g-today" style="left:27.1%"></div><div class="g-cend" style="left:88.1%"></div><div class="g-end" style="left:100%"></div></div></div>
-  <div class="g-row" style="border-bottom:0"><b>기술이전 · 적용</b><div class="g-track"><div class="g-bar plan" style="left:88.1%;width:11.9%"></div><div class="g-today" style="left:27.1%"></div><div class="g-cend" style="left:88.1%"></div><div class="g-end" style="left:100%"></div></div></div>
- </div>
- <div class="g-legend"><span><i style="background:var(--green)"></i>완료</span><span><i style="background:var(--cyan)"></i>진행 중</span><span><i style="background:repeating-linear-gradient(135deg,#e2e8f0,#e2e8f0 3px,#f1f5f9 3px,#f1f5f9 6px);border:1px dashed var(--border-2)"></i>예정 (2026.11 계획안)</span><span>● 주요 마일스톤</span><span style="color:#b45309;font-weight:700">┆ 계약 종료 2028.12.31</span><span style="color:#b91c1c;font-weight:700">┆ 연구 종료 2029.06.30</span></div>
-</section>
-
-<section class="three">
- <div class="note now"><b>지금 하고 있는 일</b><ul><li>협회 데이터 건수 단위 · 비결핵 대조군 구성 확인</li><li>추가 데이터의 규모 · 제공 시점 확인</li><li>협회 데이터 구성과 판독 기준 검토</li><li>레이블링 기준 · 인력 분담 협의</li></ul></div>
- <div class="note next"><b>다음 단계</b><ul><li>데이터 요구 사양 · 판정 기준 확정</li><li>개발 · 평가 계획과 임상 · 인허가 로드맵 수립</li><li>후속 킥오프 개최</li></ul></div>
- <div class="note check"><b>확인이 필요한 사항</b><ul><li>몽골 검진 영상과 확진 결과의 연결 가능 건수</li><li>해외 데이터 익명화 · 국외 이전 절차</li><li>국가별 추가 데이터 제공 일정</li><li>계약 종료(2028.12.31)와 연구 종료(2029.06.30) 사이 6개월의 업무 · 권리 처리</li></ul></div>
-</section>
-
-<section class="card">
- <h2>식약처 민원 질의<small>2026.11.04 접수 · 회신 대기</small></h2>
- <p class="fw-intro">「디지털의료제품 허가 · 인증 · 신고 · 심사 및 평가 등에 관한 규정」 제25조와 [별표 3]에 따라, 임상시험 등 평가자료의 제출 면제 · 대체 적용 가능 여부를 질의함. 회신 결과에 따라 인허가 단계의 임상시험 범위와 일정이 달라짐.</p>
- <table>
-  <thead><tr><th style="width:70px">구분</th><th>질의 내용</th><th style="width:110px">상태</th></tr></thead>
-  <tbody>
-   <tr><td class="who">Q1</td><td>질환명이나 확정적 판단 없이 이상소견의 존재 가능성과 위치만 표시하는 기능이 [별표 3]의 면제 · 대체 대상 기능에 해당하는지, 해당 시 별도 허가용 임상시험 없이 성능검증 결과와 기술문서로 대체할 수 있는지</td><td><span class="st check" style="margin:0">회신 대기</span></td></tr>
-   <tr><td class="who">Q2</td><td>출력 정보에 &lsquo;결핵&rsquo;, &lsquo;결핵 의심 점수&rsquo; 등 특정 질환 관련 표현이 포함될 경우 면제 · 대체 적용이 달라지는지 (기허가 유사 제품 사례 참고)</td><td><span class="st check" style="margin:0">회신 대기</span></td></tr>
-   <tr><td class="who">Q3</td><td>면제 · 대체 대상 제품의 최소 성능 기준 유무, AUROC · 민감도 · 특이도 기반 성능검증 결과를 분석적 성능 검증 자료로 인정받을 수 있는지</td><td><span class="st check" style="margin:0">회신 대기</span></td></tr>
-  </tbody>
- </table>
-</section>
-
-<section class="card">
- <h2>협회 데이터 현황<small>2026.11 협회 회신 · 흉부 X-ray 판독코드 기준 집계</small></h2>
- <div class="dset">
-  <table>
-   <thead><tr><th>구분</th><th style="text-align:right">건수</th><th style="text-align:right">비율</th></tr></thead>
-   <tbody>
-    <tr><td><b>결핵 관련 14개 판독코드 해당</b></td><td class="num">4,835</td><td class="num">약 0.06%</td></tr>
-    <tr><td>14개 판독코드 외</td><td class="num">7,872,235</td><td class="num">약 99.94%</td></tr>
-    <tr class="sum"><td>합계</td><td class="num">7,877,070</td><td class="num">100%</td></tr>
-   </tbody>
-  </table>
-  <div class="ratio" aria-label="비율 막대"><i style="width:0.06%"></i><span>14개 코드 해당 4,835건은 전체의 약 0.06%</span></div>
- </div>
- <p class="note-s">판독코드 기준 집계 결과이며, 비율은 작성자 산출값임. 상단의 &lsquo;제공 가능 CXR 2만 장+&rsquo;는 1차 제공 협의 규모로, 이 표의 전체 보유 집계와는 다른 수치임.</p>
- <h3 class="sub-h">14개 판독코드</h3>
- <div class="codes"><em>결핵성 폐렴</em><em>삼출성 흉막염(결핵성)</em><em>폐결핵 경증</em><em>폐결핵 중등증</em><em>폐결핵 중등증(공동)</em><em>폐결핵 중등증(공동의심)</em><em>폐결핵 중증</em><em>폐결핵 중증(공동)</em><em>폐결핵 중증(공동의심)</em><em>결핵종의심</em><em>결핵의심</em><em>폐결핵 활동성미정(경증)</em><em>폐결핵 활동성미정(중등증)</em><em>폐결핵 활동성미정(중증)</em></div>
- <h3 class="sub-h">확인 필요 사항</h3>
- <ul class="chk">
-  <li>건수 단위(영상 수 / 환자 수 / 검사 수)가 회신에 기재되지 않음</li>
-  <li>&lsquo;14개 코드 외&rsquo;에 정상 외 다른 질환 소견이 포함될 가능성이 있음(추정) → 비결핵 대조군 구성은 별도 확인 필요</li>
- </ul>
-</section>
-
-<section class="card">
- <h2>추가 데이터 확인 현황<small>영상 수와 확진 연결 건수는 구분해 관리함</small></h2>
- <table>
-  <thead><tr><th style="width:140px">대상</th><th>현재 확인할 사항</th><th style="width:110px">상태</th></tr></thead>
-  <tbody>
-   <tr><td class="who">몽골</td><td>누적 영상 4만 장 이상은 구두 추정치임. 정부 확진 결과와 매칭 가능한 건수와 활용 협조를 확인함.</td><td><span class="st check" style="margin:0">확인 중</span></td></tr>
-   <tr><td class="who">라오스 등</td><td>국가별 확보 가능성 · 목표 수량 · 제공 일정을 확인함. 확보량은 미확정임.</td><td><span class="st check" style="margin:0">확인 중</span></td></tr>
-   <tr><td class="who">국내 추가 자료</td><td>외국인 · 취약계층 검진 영상의 익명화 제공 범위와 검사 결과 연결 여부를 확인함.</td><td><span class="st check" style="margin:0">확인 중</span></td></tr>
-   <tr><td class="who">확진 기준</td><td>국내 배양검사와 해외 도말 · Xpert 등 확진 기준의 차이를 검토해야 함.</td><td><span class="st next" style="margin:0">검토 예정</span></td></tr>
-  </tbody>
- </table>
-</section>
-
-<section class="two">
- <div class="card">
-  <h2>다음 할 일<small>10.15 협의 후속 과제</small></h2>
+  <h3 style="margin-top:0">다음 할 일</h3>
   <table>
    <thead><tr><th>과제</th><th>담당</th><th>상태</th></tr></thead>
    <tbody>
-    <tr><td>몽골 영상 · 확진 결과 매칭 건수 확인, 정식 공문 협조</td><td class="who">결핵협회</td><td><span class="st check" style="margin:0">확인 중</span></td></tr>
-    <tr><td>해외 데이터 익명화 · 국외 이전 절차 검토</td><td class="who">결핵협회</td><td><span class="st check" style="margin:0">확인 중</span></td></tr>
-    <tr><td>국가별 확보 계획, 국내 추가 자료 범위, 레이블링 인력 분담</td><td class="who">결핵협회</td><td><span class="st check" style="margin:0">확인 중</span></td></tr>
-    <tr><td>데이터 요구 사양 · 판정 기준, 개발 · 평가 계획</td><td class="who">마이허브</td><td><span class="st next" style="margin:0">데이터 확인 후</span></td></tr>
-    <tr><td>임상 · 인허가 로드맵 설계</td><td class="who">마이허브</td><td><span class="st next" style="margin:0">데이터 확인 후</span></td></tr>
-    <tr><td>식약처 민원 질의 회신 확인 및 인허가 경로 반영</td><td class="who">마이허브</td><td><span class="st check" style="margin:0">회신 대기</span></td></tr>
-    <tr><td>후속 킥오프 개최 · 실무 일정 조율</td><td class="who">양측</td><td><span class="st check" style="margin:0">일정 조율</span></td></tr>
+    <tr><td>몽골 영상 · 확진 결과 매칭 건수 확인, 정식 공문 협조</td><td class="k">결핵협회</td><td><span class="tag amber">확인 중</span></td></tr>
+    <tr><td>해외 데이터 익명화 · 국외 이전 절차 검토</td><td class="k">결핵협회</td><td><span class="tag amber">확인 중</span></td></tr>
+    <tr><td>국가별 확보 계획, 국내 추가 자료 범위, 레이블링 인력 분담</td><td class="k">결핵협회</td><td><span class="tag amber">확인 중</span></td></tr>
+    <tr><td>데이터 요구 사양 · 판정 기준, 개발 · 평가 계획</td><td class="k">마이허브</td><td><span class="tag grey">데이터 확인 후</span></td></tr>
+    <tr><td>임상 · 인허가 로드맵 설계</td><td class="k">마이허브</td><td><span class="tag grey">데이터 확인 후</span></td></tr>
+    <tr><td>식약처 민원 질의 회신 확인 및 인허가 경로 반영</td><td class="k">마이허브</td><td><span class="tag amber">회신 대기</span></td></tr>
+    <tr><td>후속 킥오프 개최 · 실무 일정 조율</td><td class="k">양측</td><td><span class="tag amber">일정 조율</span></td></tr>
    </tbody>
   </table>
  </div>
- <div class="card">
-  <h2>완료한 주요 절차<small>9건</small></h2>
-  <ul class="done-list">
-   <li>공동연구 추진 협의<span class="dt">2025.12.11</span></li>
-   <li>질병관리청 소관 아님 확인<span class="dt">2026.05.20</span></li>
-   <li>연구계획 수립 · 역할 정리<span class="dt">2026.06</span></li>
-   <li>공동연구개발계약 체결<span class="dt">2026.08</span></li>
-   <li>IRB 승인 (후향적 연구)<span class="dt">2026.08.11</span></li>
-   <li>레이블링 도구 개발<span class="dt">2026.06~08</span></li>
-   <li>실무 킥오프 · DRB 불필요 회신<span class="dt">2026.09.04 · 09.08</span></li>
-   <li>KHIDI 인허가 사전 컨설팅<span class="dt">2026.09.15</span></li>
-   <li>협회 데이터 현황 회신 · DICOM 샘플 수령<span class="dt">2026.11</span></li>
-  </ul>
+ <div>
+  <h3 style="margin-top:0">완료한 주요 절차</h3>
+  <table>
+   <thead><tr><th>일자</th><th>내용</th></tr></thead>
+   <tbody>
+    <tr><td class="k">2025.12.11</td><td>공동연구 추진 협의</td></tr>
+    <tr><td class="k">2026.05.20</td><td>질병관리청 소관 아님 확인</td></tr>
+    <tr><td class="k">2026.06</td><td>연구계획 수립 · 역할 정리</td></tr>
+    <tr><td class="k">2026.06~08</td><td>레이블링 도구 개발</td></tr>
+    <tr><td class="k">2026.08</td><td>공동연구개발계약 체결</td></tr>
+    <tr><td class="k">2026.08.11</td><td>IRB 승인 (후향적 연구)</td></tr>
+    <tr><td class="k">2026.09.04 · 09.08</td><td>실무 킥오프 · DRB 불필요 회신</td></tr>
+    <tr><td class="k">2026.09.15</td><td>KHIDI 인허가 사전 컨설팅</td></tr>
+    <tr><td class="k">2026.11</td><td>협회 데이터 현황 회신 · DICOM 샘플 수령</td></tr>
+   </tbody>
+  </table>
  </div>
+</div>
+<h3>관련 문서</h3>
+<div class="links"><a href="../index.html#intro" target="_top">프로젝트 상세 현황</a><a href="../index.html#wbs" target="_top">WBS 개요</a><a href="../index.html#m20261015" target="_top">최근 회의록 (10.15)</a><a href="../index.html#guide" target="_top">결핵 의학 가이드</a></div>
 </section>
 
-<section class="card">
- <h2>관련 문서</h2>
- <div class="docs">
-  <a href="../index.html#m20261015" target="_top">최근 회의록 (10.15)</a>
-  <a href="../index.html#intro" target="_top">프로젝트 상세 현황</a>
-  <a href="../index.html#wbs" target="_top">WBS 개요</a>
-  <a href="../index.html#guide" target="_top">결핵 의학 가이드</a>
- </div>
-</section>
+<div class="foot">
+<b>근거 및 가정</b>
+<ol>
+<li>계약기간: 공동연구개발계약서 제2조(체결일 ~ 2028.12.31). 연구기간: IRB 연구계획서(~ 2029.06.30). 과제명: IRB 연구계획서 연구제목.</li>
+<li>일정은 2026.11 계획안이며, 데이터 확정과 식약처 회신 후 확정함. 2026.08 기준선은 프로젝트 상세 현황에 있음.</li>
+<li>협회 데이터 수치는 2026.11 협회 회신(판독코드 기준), 1차 제공 규모 · 확진 건수는 2026.10 협의 기록 기준이며 검수 전 규모임.</li>
+<li>공개용 요약임. 담당자 정보, 계약 세부 조건, 내부 검토 의견은 싣지 않음.</li>
+</ol>
+</div>
 
-<p class="foot">공개용 요약임. 담당자 정보, 계약 세부 조건, 내부 검토 의견은 싣지 않음. 상태는 2026-11-13 기준 기록이며 실시간 업무 상태가 아님. 영상 수는 검수 전 제공 가능 규모임.</p>
-</main>
+</div>
 </body>
 </html>
