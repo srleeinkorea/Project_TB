@@ -5,61 +5,88 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>TB 공동연구 문서함</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%235170FF%27/%3E%3Ctext x=%2716%27 y=%2721%27 font-family=%27Arial%27 font-size=%2712%27 font-weight=%27700%27 fill=%27white%27 text-anchor=%27middle%27%3ETB%3C/text%3E%3C/svg%3E">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%234338ca%27/%3E%3Ctext x=%2716%27 y=%2721%27 font-family=%27Arial%27 font-size=%2712%27 font-weight=%27700%27 fill=%27white%27 text-anchor=%27middle%27%3ETB%3C/text%3E%3C/svg%3E">
 <style>
-:root{--ink:#0f1222;--sub:#4a5068;--mute:#7a8094;--line:#e3e6ef;--bg:#fbfbfd;--blue:#5170FF;--blue2:#eef1ff;--amber:#c7861c}
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+:root{--bg:#f1f5f9;--side:#0f172a;--side-2:#1e293b;--text:#e2e8f0;--muted:#94a3b8;--accent:#6366f1}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;font-family:"DM Sans","Noto Sans KR",sans-serif;background:var(--bg);color:var(--ink)}
+html,body{height:100%;font-family:'Pretendard Variable',Pretendard,"Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif;background:var(--bg)}
 body{display:flex;height:100dvh;overflow:hidden}
-nav{flex:0 0 248px;background:#fff;border-right:1px solid var(--line);display:flex;flex-direction:column;padding:20px 12px;overflow-y:auto}
-.brand{padding:2px 10px 18px;border-bottom:1px solid var(--line);margin-bottom:8px}
-.brand b{font-family:"DM Serif Display","Noto Sans KR",serif;font-weight:400;font-size:20px;display:block;line-height:1.25}
-.brand small{font-size:11.5px;color:var(--mute)}
-.sec{font-size:10.5px;font-weight:700;letter-spacing:.1em;color:var(--mute);padding:14px 10px 4px;text-transform:uppercase}
-nav a{display:flex;align-items:center;justify-content:space-between;gap:8px;color:var(--ink);text-decoration:none;padding:7px 10px;border-radius:4px;font-size:13.5px;line-height:1.35}
-nav a:hover{background:#f3f4f8}
-nav a[aria-current=page]{background:var(--blue2);color:var(--blue);font-weight:700}
-nav a.home{font-weight:700;border:1px solid var(--line);margin-bottom:4px}
-.lock{font-size:10.5px;font-weight:700;color:var(--amber);border:1px solid #f3e0bb;background:#fff6e6;border-radius:3px;padding:0 5px;white-space:nowrap}
-.foot{margin-top:auto;padding:16px 10px 4px;font-size:11px;color:var(--mute);line-height:1.6;border-top:1px solid var(--line)}
-main{flex:1;min-width:0;display:flex}
-iframe{flex:1;border:0;width:100%;background:#fff}
+nav{flex:0 0 272px;background:var(--side);color:var(--text);display:flex;flex-direction:column;padding:20px 12px 10px;overflow:hidden}
+.brand{display:flex;align-items:center;gap:10px;padding:0 10px 18px}
+.logo{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#4338ca,#0891b2);display:grid;place-items:center;font-weight:800;font-size:12px;color:#fff;flex:none}
+.brand b{font-size:16px}.brand small{display:block;font-size:11px;color:var(--muted);margin-top:4px}
+.nav-search{display:block;margin:0 4px 14px}
+.nav-search input{width:100%;padding:10px 12px;border:1px solid #334155;border-radius:9px;background:#1e293b;color:#f8fafc;font:inherit;font-size:12px}
+.nav-search input::placeholder{color:#94a3b8}
+.nav-list{flex:1;min-height:0;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#475569 transparent;padding:0 2px 12px}
+.nav-group{margin-bottom:8px}
+.nav-group summary{display:flex;align-items:center;gap:8px;padding:11px 8px;color:#cbd5e1;cursor:pointer;font-size:12px;font-weight:700;list-style:none;border-radius:7px}
+.nav-group summary::-webkit-details-marker{display:none}
+.nav-group summary::before{content:'›';font-size:18px;line-height:12px;transition:transform .15s}
+.nav-group[open]>summary::before{transform:rotate(90deg)}
+.nav-group summary:hover{background:#1e293b}
+.group-count{margin-left:auto;color:#94a3b8;font-size:10px;font-weight:400}
+.group-links{border-left:1px solid #334155;margin-left:14px;padding-left:7px}
+nav a{display:flex;align-items:center;gap:9px;color:var(--text);text-decoration:none;font-size:12px;line-height:1.6;padding:9px 10px;margin:2px 0;border-radius:8px;overflow-wrap:anywhere}
+nav a:hover{background:var(--side-2)}
+nav a[aria-current=page]{background:#312e81;box-shadow:inset 3px 0 #a5b4fc;color:#eef2ff;font-weight:700}
+nav a.locked{color:#fbbf24}
+nav :focus-visible{outline:2px solid #a5b4fc;outline-offset:2px}
+.nav-list [hidden]{display:none!important}
+#nav-empty{padding:16px 10px;font-size:12px;color:#94a3b8;line-height:1.7}
+.tools{flex:none;margin-top:8px;padding:12px 8px 4px;border-top:1px solid #334155;font-size:10px;color:var(--muted);line-height:1.6}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+main{flex:1;min-width:0;display:flex;flex-direction:column}
+.location-bar{display:flex;align-items:center;gap:9px;min-height:43px;padding:10px 20px;background:#fff;border-bottom:1px solid #e2e8f0;font-size:12px;color:#64748b}
+#current-document{font-weight:700;color:#334155}
+iframe{flex:1;border:0;width:100%;min-height:0;background:#fff}
 @media(max-width:760px){
  body{flex-direction:column}
- nav{flex:none;flex-direction:row;align-items:center;padding:8px;gap:4px;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line)}
- .brand,.sec,.foot{display:none}
- nav a{white-space:nowrap}
+ nav{flex:none;display:block;padding:10px 12px;max-height:40dvh;overflow-y:auto}
+ .brand{padding:0 4px 10px}.brand small{display:none}.logo{width:28px;height:28px}
+ .nav-search{margin:0 0 8px}.nav-search input{padding:8px 10px}
+ .nav-list{display:flex;align-items:flex-start;gap:8px;overflow-x:auto;padding:0 0 5px}
+ .nav-group{flex:0 0 220px;margin:0}.nav-group summary{padding:9px 6px}
+ .tools{display:none}
+ .location-bar{padding:8px 12px;font-size:11px;flex-wrap:wrap;gap:5px}
+ main{min-height:0}
 }
 </style>
 </head>
 <body>
-<nav aria-label="문서 메뉴">
- <div class="brand"><b>흉부 X-ray AI<br>공동연구 문서함</b><small>대한결핵협회 × 마이허브</small></div>
- <a class="home" href="#home" data-src="01_프로젝트_개요/프로젝트_현황.html">프로젝트 현황</a>
-
- <span class="sec">개요</span>
- <a href="#intro" data-src="01_프로젝트_개요/TB_프로젝트_소개.html">프로젝트 소개</a>
- <a href="#summary" data-src="01_프로젝트_개요/261020_TB_진행상황_원페이지_v1.html">진행상황 원페이지 (10.20)</a>
- <a href="#wbs" data-src="01_프로젝트_개요/결핵진단_AI_프로젝트_WBS_개요.html">WBS 개요</a>
- <a href="#guide" data-src="01_프로젝트_개요/결핵_의학_가이드.html">결핵 의학 가이드</a>
-
- <span class="sec">회의록</span>
- <a href="#m20261015" data-src="02_회의록/261015_추진방향협의_대면_회의록.html">2026.10.15 추진 방향 협의</a>
- <a href="#m202610on" data-src="02_회의록/2610_온라인협의_회의록.html">2026.10 온라인 협의</a>
- <a href="#m20261001" data-src="02_회의록/261001_데이터범위협의_회의록.html">2026.10.01 데이터 범위 협의</a>
- <a href="#m20251211" data-src="02_회의록/251211_추진협의_회의록.html">2025.12.11 추진 협의</a>
-
- <span class="sec">인허가</span>
- <a href="#reg" data-src="05_잠금문서/03_인허가_문서세트/index.html">인허가 문서 세트 <span class="lock">비밀번호</span></a>
-
- <span class="sec">내부 검토</span>
- <a href="#review" data-src="05_잠금문서/01_추진방향검토/index.html">추진 방향 검토 <span class="lock">비밀번호</span></a>
- <a href="https://srleeinkorea.github.io/tb-confidential-63279adc25a7/" target="_blank" rel="noopener">기밀 문서함 ↗ <span class="lock">비밀번호</span></a>
-
- <div class="foot">공개 페이지에는 요약·회의록만 둠. 인허가 문서, 계약·IRB, 내부 검토 자료는 비밀번호로 보호됨.</div>
+<nav aria-label="문서 탐색">
+ <div class="brand"><span class="logo">TB</span><div><b>TB 공동연구</b><small>대한결핵협회 × 마이허브 문서함</small></div></div>
+ <label class="nav-search"><span class="sr-only">문서 찾기</span><input id="nav-search" type="search" placeholder="문서 찾기" autocomplete="off"></label>
+ <div class="nav-list" id="nav-list">
+<details class="nav-group" open><summary>프로젝트 둘러보기<span class="group-count">3</span></summary><div class="group-links">
+<a href="#home" data-src="01_프로젝트_개요/프로젝트_현황.html">🧭 프로젝트 전체 흐름도</a>
+<a href="#summary" data-src="01_프로젝트_개요/261020_TB_진행상황_원페이지_v1.html">📄 진행상황 원페이지</a>
+<a href="#intro" data-src="01_프로젝트_개요/TB_프로젝트_소개.html">📄 프로젝트 소개</a>
+</div></details>
+<details class="nav-group" open><summary>일정 · 가이드<span class="group-count">2</span></summary><div class="group-links">
+<a href="#wbs" data-src="01_프로젝트_개요/결핵진단_AI_프로젝트_WBS_개요.html">🗂️ WBS 개요</a>
+<a href="#guide" data-src="01_프로젝트_개요/결핵_의학_가이드.html">📘 결핵 의학 가이드</a>
+</div></details>
+<details class="nav-group" open><summary>회의록<span class="group-count">4</span></summary><div class="group-links">
+<a href="#m20261015" data-src="02_회의록/261015_추진방향협의_대면_회의록.html">📝 2026.10.15 추진 방향 협의 (대면)</a>
+<a href="#m202610on" data-src="02_회의록/2610_온라인협의_회의록.html">📝 2026.10 온라인 협의</a>
+<a href="#m20261001" data-src="02_회의록/261001_데이터범위협의_회의록.html">📝 2026.10.01 데이터 범위 협의</a>
+<a href="#m20251211" data-src="02_회의록/251211_추진협의_회의록.html">📝 2025.12.11 추진 협의</a>
+</div></details>
+<details class="nav-group" open><summary>비밀번호 문서<span class="group-count">3</span></summary><div class="group-links">
+<a class="locked" href="#reg" data-src="05_잠금문서/03_인허가_문서세트/index.html">🔒 인허가 문서 세트</a>
+<a class="locked" href="#review" data-src="05_잠금문서/01_추진방향검토/index.html">🔒 추진 방향 검토</a>
+<a class="locked" href="https://srleeinkorea.github.io/tb-confidential-63279adc25a7/" target="_blank" rel="noopener">🔒 기밀 문서함 ↗</a>
+</div></details>
+<p id="nav-empty" hidden role="status">일치하는 문서가 없습니다.</p>
+ </div>
+ <div class="tools">공개 문서만 바로 열립니다. 인허가 · 계약 · 내부 검토 자료는 비밀번호가 필요합니다.</div>
 </nav>
-<main><iframe id="view" title="문서 보기"></iframe></main>
+<main>
+ <div class="location-bar" aria-label="현재 문서"><span id="current-group"></span><span aria-hidden="true">/</span><span id="current-document"></span></div>
+ <iframe id="view" title="문서 보기"></iframe>
+</main>
 <script>
 const links=[...document.querySelectorAll('nav a[data-src]')];
 // 예전 공유 링크(#drf 등) → 잠금 문서 세트 안의 해당 문서
@@ -68,6 +95,7 @@ const alias={khidi:'00_KHIDI_컨설팅_상담신청서.html','khidi-1p':'00_KHID
  drf:'01_DRF_개발의뢰서.html',mrs:'02_MRS_시장요구사항명세서.html',sdp:'03_SDP_소프트웨어개발계획서.html',
  rrs:'04_RRS_규제요구사항명세서.html',dmp:'05_DMP_LBL_데이터및레이블링계획서.html',rmp:'06_RMP_위험관리계획서.html',
  srs:'07_SRS_소프트웨어요구사항명세서.html',sap:'08_SAP_RTM_독립검증및추적계획.html',pcode:'261029_TB_제품코드_등급_적용검토_v2.html'};
+const label=a=>a.textContent.trim().replace(/^\S+\s/,'');
 function go(){
   const h=(location.hash||'#home').slice(1);
   let a=links.find(x=>x.getAttribute('href')==='#'+h), src;
@@ -76,11 +104,23 @@ function go(){
   else {a=links[0];src=a.dataset.src;}
   links.forEach(x=>x.removeAttribute('aria-current'));
   a.setAttribute('aria-current','page');
+  const g=a.closest('details');g.open=true;
+  document.getElementById('current-group').textContent=g.querySelector('summary').firstChild.textContent;
+  document.getElementById('current-document').textContent=label(a);
   const v=document.getElementById('view');
   if(v.getAttribute('src')!==src)v.src=src;
-  document.title=a.firstChild.textContent.trim()+' · TB 공동연구';
+  document.title=label(a)+' · TB 공동연구';
 }
 addEventListener('hashchange',go);go();
+// 문서 찾기
+document.getElementById('nav-search').addEventListener('input',e=>{
+  const q=e.target.value.trim().toLowerCase();let any=false;
+  document.querySelectorAll('.nav-group').forEach(g=>{
+    let n=0;g.querySelectorAll('a').forEach(a=>{const ok=!q||a.textContent.toLowerCase().includes(q);a.hidden=!ok;if(ok)n++;});
+    g.hidden=!n;if(n){any=true;if(q)g.open=true;}
+  });
+  document.getElementById('nav-empty').hidden=any;
+});
 </script>
 </body>
 </html>
