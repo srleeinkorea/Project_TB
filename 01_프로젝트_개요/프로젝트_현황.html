@@ -165,16 +165,16 @@ tr.sum td{background:#f4f5f9;font-weight:700}
 <section>
 <div class="num">04</div>
 <h2>협회 데이터 현황</h2>
-<p>2026.11 협회 회신. 흉부 X-ray 판독코드 기준 집계 결과임.</p>
+<p>2026.11 협회 회신. 협회 보유 약 7백만 건을 흉부 X-ray 판독코드 기준으로 집계한 결과임.</p>
 <table>
  <thead><tr><th>구분</th><th style="text-align:right">건수</th><th style="text-align:right">비율</th></tr></thead>
  <tbody>
-  <tr><td class="k">결핵 관련 14개 판독코드 해당</td><td class="n">4,835</td><td class="n">약 0.06%</td></tr>
-  <tr><td>14개 판독코드 외</td><td class="n">7,872,235</td><td class="n">약 99.94%</td></tr>
+  <tr><td class="k">결핵 관련 (14개 판독코드 해당)</td><td class="n">4,835</td><td class="n">약 0.06%</td></tr>
+  <tr><td>그 외 (14개 판독코드 미해당)</td><td class="n">7,872,235</td><td class="n">약 99.94%</td></tr>
   <tr class="sum"><td>합계</td><td class="n">7,877,070</td><td class="n">100%</td></tr>
  </tbody>
 </table>
-<p class="note">비율은 작성자 산출값임.</p>
+<p class="note">비율은 작성자 산출값임. 결핵 관련: 결핵성 폐렴, 삼출성 흉막염(결핵성), 폐결핵(경증 · 중등증 · 중증, 공동 · 공동의심 포함), 결핵종의심, 결핵의심, 폐결핵 활동성미정(경증 · 중등증 · 중증). 그 외: 정상 및 다른 소견 포함 여부는 협회 확인 필요.</p>
 <div class="fig">
  <div class="t">Fig 3 · 결핵 관련 데이터 규모 비교 (같은 축)</div>
  <svg viewBox="0 0 760 150" font-family="DM Sans, Noto Sans KR, sans-serif">
@@ -187,6 +187,18 @@ tr.sum td{background:#f4f5f9;font-weight:700}
  </svg>
  <div class="cap"><b>해석:</b> 결핵 관련 판독코드 데이터는 1차 제공 협의 규모의 약 1/4이며, 미생물학적 확진은 그보다 훨씬 적음. 판독코드는 영상 판독 소견 기준이고 확진은 배양 기준이라 라벨 성격이 다름. 세 수치의 건수 단위(영상 · 환자 · 검사)가 같은지 확인되지 않아 비교는 규모 참고용임.</div>
 </div>
+<h3>DICOM 샘플 3건 검토 (11.13)</h3>
+<p>환자 · 장비 등 식별 가능 정보는 삭제 또는 공란 처리된 익명화 파일이며 연령 관련 정보도 삭제됨. 영상 해석에 필요한 메타데이터(Rows, Columns, Bits Stored, Photometric Interpretation, Window Center / Width, Modality 등)는 일부 남아 있음.</p>
+<table>
+ <thead><tr><th>항목</th><th>평가</th><th>근거</th></tr></thead>
+ <tbody>
+  <tr><td class="k">활용성</td><td><span class="tag green">양호 (조건부)</span></td><td>영상 해석 메타데이터 확인. 12 · 16비트, MONOCHROME1 · 2 혼재 → 전처리 표준화 필요</td></tr>
+  <tr><td class="k">추적성</td><td><span class="tag red">미흡</span></td><td>기관 정보 없음, 촬영일 · Accession No. 공란, Study · Series · SOP Instance UID 신규 생성(파일 안에 원본 매핑 키 없음). 협회 매핑 테이블 보유 여부 확인 필요</td></tr>
+  <tr><td class="k">메타데이터</td><td><span class="tag red">미흡</span></td><td>연령 · 성별 · 장비 · 촬영조건 · Pixel Spacing 없음</td></tr>
+  <tr><td class="k">라벨</td><td><span class="tag amber">미포함</span></td><td>판독코드가 DICOM에 없음 → 영상과 판독코드의 연계 방식 확인 필요</td></tr>
+ </tbody>
+</table>
+<p class="note">샘플 3건은 파일 형식 확인용이며, 대상 집단 대표성과 학습 · 시험 데이터 독립성(환자 단위 중복)은 이 자료로 확인할 수 없음.</p>
 <h3>14개 판독코드</h3>
 <div class="codes"><span>결핵성 폐렴</span><span>삼출성 흉막염(결핵성)</span><span>폐결핵 경증</span><span>폐결핵 중등증</span><span>폐결핵 중등증(공동)</span><span>폐결핵 중등증(공동의심)</span><span>폐결핵 중증</span><span>폐결핵 중증(공동)</span><span>폐결핵 중증(공동의심)</span><span>결핵종의심</span><span>결핵의심</span><span>폐결핵 활동성미정(경증)</span><span>폐결핵 활동성미정(중등증)</span><span>폐결핵 활동성미정(중증)</span></div>
 <h3>확인 필요 사항</h3>
@@ -211,7 +223,7 @@ tr.sum td{background:#f4f5f9;font-weight:700}
   <tr><td class="k">확진 기준</td><td>국내 배양검사와 해외 도말 · Xpert 등 확진 기준의 차이를 검토해야 함.</td><td><span class="tag grey">검토 예정</span></td></tr>
  </tbody>
 </table>
-<p class="note">영상 수와 확진 연결 건수는 구분해 관리함.</p>
+<p class="note">영상 수와 확진 연결 건수는 구분해 관리함. 다국가 흉부 X-ray 확보 규모 · 시점은 협회 담당 부서 협의 후 별도 안내 예정임(2026.11 회신).</p>
 </section>
 
 <!-- 06 -->
