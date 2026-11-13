@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>결핵 모델 개발 가능성 검토 · TB 공동연구</title>
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+:root{--bg:#f5f7fb;--surface:#fff;--surface-2:#f0f3f9;--border:#dfe5ef;--text-1:#1c2940;--text-2:#53627a;--text-3:#6c7890;--accent:#365ee8;--accent-bg:#edf2ff;
+--green:#047857;--green-bg:#ecfdf5;--green-bd:#a7f3d0;--amber:#b45309;--amber-bg:#fffbeb;--amber-bd:#fde68a;--red:#b91c1c;--red-bg:#fef2f2;--red-bd:#fecaca}
+*{box-sizing:border-box;margin:0;padding:0}
+html{zoom:1.12}
+html,body{background:var(--bg);color:var(--text-1);font-family:'Pretendard Variable',Pretendard,"Malgun Gothic",sans-serif;font-size:13.5px;line-height:1.7;word-break:keep-all;-webkit-font-smoothing:antialiased}
+.page{max-width:1180px;margin:0 auto;padding:26px 24px 36px;display:flex;flex-direction:column;gap:18px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px 22px;box-shadow:0 1px 3px rgba(15,23,42,.05)}
+.eyebrow{font-size:11px;font-weight:800;letter-spacing:.05em;color:var(--accent)}
+h1{font-size:24px;font-weight:800;letter-spacing:-.035em;line-height:1.4;margin:6px 0 6px}
+h2{font-size:16px;font-weight:800;letter-spacing:-.02em;margin-bottom:12px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+h2 .no{color:var(--accent);font-size:13px}
+h2 small{margin-left:auto;font-size:11px;font-weight:500;color:var(--text-3)}
+h3{font-size:13.5px;font-weight:800;margin:14px 0 6px}
+p{color:var(--text-2)}
+.lead{font-size:13.5px;max-width:920px}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.badge{font-size:11px;font-weight:700;color:var(--text-2);background:var(--surface-2);border:1px solid var(--border);border-radius:999px;padding:3px 10px}
+.concl{margin-top:14px;background:#1c2940;color:#fff;border-radius:12px;padding:14px 18px}
+.concl b.h{display:block;font-size:12px;color:#a5b4fc;margin-bottom:4px}
+.concl li{margin-left:18px;line-height:1.85}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:15px 16px;position:relative;overflow:hidden}
+.kpi::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--c)}
+.kpi span{font-size:11.5px;font-weight:700;color:var(--text-2)}
+.kpi b{display:block;font-size:24px;font-weight:800;letter-spacing:-.03em;line-height:1.3;margin-top:3px}
+.kpi p{font-size:11.5px;color:var(--text-3)}
+.verdicts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.v{border:1px solid;border-radius:14px;padding:14px 16px}
+.v h3{margin:6px 0 4px;font-size:14px}.v p{font-size:12.5px}
+.v.ok{background:var(--green-bg);border-color:var(--green-bd)}.v.warn{background:var(--amber-bg);border-color:var(--amber-bd)}.v.no{background:var(--red-bg);border-color:var(--red-bd)}
+.st{display:inline-block;font-size:10.5px;font-weight:800;border-radius:999px;padding:1px 9px;white-space:nowrap}
+.st.ok{background:var(--green);color:#fff}.st.warn{background:var(--amber);color:#fff}.st.no{background:var(--red);color:#fff}.st.grey{background:var(--surface-2);color:var(--text-2)}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{background:var(--surface-2);color:var(--text-2);font-size:11px;text-align:left;padding:8px 10px;font-weight:700}
+td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.65}
+td.k{font-weight:700}
+td.k small{display:block;font-weight:500;color:var(--text-3);font-size:11px}
+td.n{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
+tr.me td{background:var(--accent-bg)}
+tr.me2 td{background:var(--red-bg)}
+.fig{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:14px 16px 10px;margin-top:12px}
+.fig .t{font-size:12px;font-weight:800;color:var(--text-2);margin-bottom:6px}
+.fig svg{width:100%;height:auto;display:block}
+.cap{font-size:12px;color:var(--text-2);margin-top:6px}.cap b{color:var(--text-1)}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.panel{border:1px solid var(--border);border-radius:14px;padding:14px 16px;background:var(--surface)}
+.panel h3{margin:0 0 4px}.panel p{font-size:12.5px}
+.panel .n{font-size:20px;font-weight:800;letter-spacing:-.02em;color:var(--accent)}
+.panel.me{background:var(--accent-bg);border-color:#c7d2fe}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+ol.steps{margin-left:18px}ol.steps li{margin:5px 0;color:var(--text-2)}ol.steps b{color:var(--text-1)}
+.score{display:flex;gap:4px}.score i{width:10px;height:10px;border-radius:2px;background:#dfe5ef;display:inline-block}.score i.on{background:var(--c)}
+.foot{font-size:11.5px;color:var(--text-3);line-height:1.8}.foot li{margin-left:18px}.foot a{color:var(--accent)}
+@media(max-width:900px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.verdicts,.two,.three{grid-template-columns:minmax(0,1fr)}table{display:block;overflow-x:auto}}
+</style>
+<style id="tb-theme">
+/* TB 공동연구 문서 테마 v4 (Pretendard) · 2026-11-13 · 09_도구/sync_theme.py 가 관리함 (직접 수정하지 말 것) */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+:root{
+ --tb-font:'Pretendard Variable',Pretendard,'Malgun Gothic','Apple SD Gothic Neo',system-ui,sans-serif;
+ --ink:#1c2940!important;--ink-1:#1c2940!important;--text:#1c2940!important;--navy:#1c2940!important;--brand-dark:#1c2940!important;
+ --muted:#53627a!important;--mute:#53627a!important;--sub:#53627a!important;--slate:#6c7890!important;
+ --line:#dfe5ef!important;--line-dark:#cbd5e3!important;
+ --bg:#f5f7fb!important;--canvas:#f5f7fb!important;--paper:#fff!important;--surface:#fff!important;--panel:#fff!important;
+ --blue:#365ee8!important;--brand:#365ee8!important;--accent:#365ee8!important;
+ --blue2:#edf2ff!important;--blue-soft:#edf2ff!important;--brand-soft:#edf2ff!important;--tint:#edf2ff!important;
+ --green:#177749!important;--green2:#edf8f1!important;--green-soft:#edf8f1!important;
+ --amber:#b45309!important;--amber2:#fffbeb!important;--orange:#b45309!important;--orange-soft:#fffbeb!important;--warn:#b45309!important;--warn-soft:#fffbeb!important;
+ --red:#b91c1c!important;--red2:#fef2f2!important;--danger:#b91c1c!important;--danger-soft:#fef2f2!important;
+ --grey2:#f0f3f9!important;--slate-soft:#f0f3f9!important
+}
+html,body{background:#f5f7fb!important}
+html{zoom:1.12}  /* 글씨 크기 확대 (2026-11-13) */
+body{font-family:var(--tb-font)!important;color:#1c2940!important;-webkit-font-smoothing:antialiased}
+body *:not(code,pre,kbd,samp,.mono,svg *){font-family:var(--tb-font)!important}
+body h1{font-weight:800!important;letter-spacing:-.035em!important;line-height:1.35!important;color:#1c2940!important}
+body h2{font-weight:750!important;letter-spacing:-.03em!important;line-height:1.45!important}
+body h3{font-weight:700!important}
+body :is(.big){font-weight:700!important;letter-spacing:-.03em!important;line-height:1.55!important}
+body :is(.kpi .n,.no,.num){font-weight:800!important;letter-spacing:-.03em!important}
+body .no{color:#cbd5e3!important}
+a{color:#365ee8}
+table th{background:#f0f3f9;color:#53627a}
+:focus-visible{outline:3px solid #93adff;outline-offset:3px}
+</style>
+</head>
+<body>
+<main class="page">
+
+<section class="card">
+ <span class="eyebrow">RESEARCH · 데이터 적합성 검토 · 2026-11-13</span>
+ <h1>협회 데이터로 결핵 AI 모델을 실제로 개발할 수 있는가</h1>
+ <p class="lead">협회 보유 약 7백만 건의 흉부 X-ray 판독코드 집계(결핵 관련 14개 코드 4,835건)를 국내외 결핵 AI 연구 · 제품의 학습 데이터 규모와 비교하고, 모델 유형별 개발 가능성과 착수 조건을 정리함.</p>
+ <div class="badges"><span class="badge">결핵 관련 판독 4,835건</span><span class="badge">그 외 7,872,235건</span><span class="badge">배양 확진 약 400건</span><span class="badge">단일 출처 · 건수 단위 미확인</span></div>
+ <div class="concl"><b class="h">검토 결론</b><ol>
+  <li><b>결핵 의심 영상 소견 검출 모델은 개발 가능함.</b> 결핵 양성 4,835건은 외부 검증에 성공한 국내 대표 연구(6,768장)의 71%, 외부에서 성능이 떨어진 연구(3,824장)보다 많은 규모이며, 음성 데이터는 충분함.</li>
+  <li><b>다만 데이터 규모보다 다양성 · 라벨 품질이 성패를 가름.</b> 비교 연구들에서 외부 성능을 지킨 쪽은 다기관 · 다국가 데이터와 외부 검증을 갖춘 경우였음. 협회 데이터는 단일 출처라 별도 기관의 외부 검증 데이터가 반드시 필요함.</li>
+  <li><b>확진 기준 활동성 결핵 선별(WHO 기준)은 현재 데이터로 어려움.</b> 확진 400건은 미생물 확진 기준 연구들의 시험셋 규모(수백~1천 명대)와 비슷해, 학습까지 감당하지 못함.</li>
+ </ol></div>
+</section>
+
+<section class="kpis">
+ <div class="kpi" style="--c:var(--accent)"><span>결핵 양성 규모 (판독 기준)</span><b>4,835건</b><p>국내 대표 연구 6,768장의 71% · 공개 데이터 TBX11K의 4배</p></div>
+ <div class="kpi" style="--c:var(--green)"><span>음성 후보</span><b>787만 건</b><p>정상 판독 비율 확인 시 음성 데이터는 사실상 무제한</p></div>
+ <div class="kpi" style="--c:var(--amber)"><span>출처 다양성</span><b>1개 기관</b><p>비교 연구는 6개 기관 ~ 10개국에서 외부 검증</p></div>
+ <div class="kpi" style="--c:var(--red)"><span>미생물 확진 양성</span><b>약 400건</b><p>구글 연구 시험셋(약 210명) 수준, 학습용으로는 부족</p></div>
+</section>
+
+<section class="card">
+ <h2><span class="no">01</span>학습 데이터 n수 비교<small>공개 논문 · 제품 자료 기준</small></h2>
+ <table>
+  <thead><tr><th>연구 · 제품</th><th style="text-align:right">결핵 양성</th><th style="text-align:right">전체 학습 규모</th><th>라벨 · 참조표준</th><th>검증 결과</th></tr></thead>
+  <tbody>
+   <tr><td class="k">Montgomery · Shenzhen 공개 데이터<small>미국 · 중국 공개셋</small></td><td class="n">58 · 336</td><td class="n">138 · 662</td><td>임상 진단</td><td>연구용 벤치마크로 주로 사용</td></tr>
+   <tr><td class="k">Lakhani &amp; Sundaram 2017<small>Radiology · 4개 데이터셋</small></td><td class="n">—</td><td class="n">1,007</td><td>데이터셋 라벨</td><td>시험 150장 AUC 0.99. 결핵 유사 질환 감별은 학습하지 않음</td></tr>
+   <tr><td class="k">TBX11K 2020<small>CVPR 공개 데이터</small></td><td class="n">1,200</td><td class="n">11,200</td><td>임상 진단 + 병변 박스</td><td>결핵 검출 · 위치 표시 벤치마크</td></tr>
+   <tr><td class="k">Choi 2023<small>국내 5개 병원</small></td><td class="n">3,824</td><td class="n">6,101</td><td>활동성 · 비활동성</td><td>내부 AUC 0.980 → <b>외부 0.815 · 0.887</b></td></tr>
+   <tr class="me"><td class="k">협회 판독코드 (본 과제)<small>검진 판독 · 단일 출처</small></td><td class="n">4,835</td><td class="n">7,877,070</td><td>판독 소견 코드</td><td>미검증 · 건수 단위 미확인</td></tr>
+   <tr><td class="k">Lee 2021<small>Radiology · 다기관</small></td><td class="n">6,654 (3,327명)</td><td class="n">9,836</td><td>치료 전 = 활동성, 치료 후 = 치유</td><td>활동성 판별 외부시험 AUC 0.83 ~ 0.84</td></tr>
+   <tr><td class="k">Hwang 2019<small>Clin Infect Dis · 서울대병원(루닛)</small></td><td class="n">6,768</td><td class="n">60,989</td><td>판독의 13명 주석</td><td><b>외부 6개 데이터셋 AUC 0.977 ~ 1.000</b></td></tr>
+   <tr><td class="k">JMIR 2024<small>아주대 · 세브란스</small></td><td class="n">36,142 (4,492명)</td><td class="n">—</td><td>전염성(도말 · 배양)</td><td>전염성 예측 내부 0.79 → 외부 0.77</td></tr>
+   <tr><td class="k">Kazemzadeh 2023<small>Radiology · 구글 · 10개국</small></td><td class="n">—</td><td class="n">165,754 (22,284명)</td><td>미생물 확진 · NAAT</td><td><b>4개국 시험 1,236명(17% 활동성)에서 민감도 88% · 특이도 79%, 영상의학과 의사와 비열등</b></td></tr>
+   <tr><td class="k">VUNO Med-Chest X-ray<small>국내 2등급 · 5개 소견</small></td><td class="n">—</td><td class="n">120,000</td><td>전문의 판독</td><td>소견 조합으로 폐결핵 선별 보조(혁신의료기기)</td></tr>
+   <tr><td class="k">Lunit INSIGHT CXR<small>국내 2등급 · 10개 소견</small></td><td class="n">—</td><td class="n">220,000</td><td>전문의 합의 · CT</td><td>결핵 기능은 해외 CE · WHO 평가 경로</td></tr>
+   <tr><td class="k">qXR (Qure.ai)<small>해외 · WHO 평가 제품</small></td><td class="n">—</td><td class="n">1,200,000 (2020)</td><td>판독문 라벨</td><td>미생물 확진 기준 AUC 0.81 (양성 317)</td></tr>
+   <tr class="me2"><td class="k">협회 배양 확진 (본 과제)<small>복십자의원 연결분</small></td><td class="n">약 400</td><td class="n">—</td><td>배양 확진</td><td>학습 · 시험 동시 사용 불가</td></tr>
+  </tbody>
+ </table>
+
+ <div class="fig">
+  <div class="t">Fig 1 · 결핵 양성 데이터 수 (로그 축)</div>
+  <svg viewBox="0 0 760 360" font-family="Pretendard Variable, Pretendard, Malgun Gothic, sans-serif">
+   <g stroke="#dfe5ef"><line x1="306" y1="14" x2="306" y2="320"/><line x1="412" y1="14" x2="412" y2="320"/><line x1="518" y1="14" x2="518" y2="320"/><line x1="624" y1="14" x2="624" y2="320"/></g>
+   <g font-size="12" fill="#1c2940" text-anchor="end"><text x="190" y="30">JMIR 2024 (결핵 환자 영상)</text><text x="190" y="62">Hwang 2019</text><text x="190" y="94">Lee 2021</text><text x="190" y="126" font-weight="800" fill="#365ee8">협회 판독코드</text><text x="190" y="158">Choi 2023</text><text x="190" y="190">TBX11K</text><text x="190" y="222" font-weight="800" fill="#b91c1c">협회 배양 확진</text><text x="190" y="254">Shenzhen</text><text x="190" y="286">Montgomery</text></g>
+   <g fill="#6c7890"><rect x="200" y="17" width="377.1" height="18" rx="3"/><rect x="200" y="49" width="300" height="18" rx="3"/><rect x="200" y="81" width="299.2" height="18" rx="3"/><rect x="200" y="145" width="273.7" height="18" rx="3"/><rect x="200" y="177" width="220.4" height="18" rx="3"/><rect x="200" y="241" width="161.8" height="18" rx="3"/><rect x="200" y="273" width="80.9" height="18" rx="3"/></g>
+   <rect x="200" y="113" width="284.5" height="18" rx="3" fill="#365ee8"/><rect x="200" y="209" width="169.8" height="18" rx="3" fill="#b91c1c"/>
+   <g font-size="11.5" font-weight="800"><text x="584" y="30" fill="#1c2940">36,142</text><text x="507" y="62" fill="#1c2940">6,768</text><text x="506" y="94" fill="#1c2940">6,654</text><text x="491" y="126" fill="#365ee8">4,835</text><text x="480" y="158" fill="#1c2940">3,824</text><text x="427" y="190" fill="#1c2940">1,200</text><text x="377" y="222" fill="#b91c1c">약 400</text><text x="368" y="254" fill="#1c2940">336</text><text x="288" y="286" fill="#1c2940">58</text></g>
+   <line x1="200" y1="10" x2="200" y2="320" stroke="#1c2940"/>
+   <g font-size="11" fill="#6c7890" text-anchor="middle"><text x="200" y="338">10</text><text x="306" y="338">100</text><text x="412" y="338">1천</text><text x="518" y="338">1만</text><text x="624" y="338">10만</text></g>
+  </svg>
+  <div class="cap"><b>해석:</b> 판독 기준 4,835건은 국내 결핵 특화 연구들(3,824 ~ 6,768)과 같은 구간에 있어, 검출 모델의 학습 양 자체는 부족하지 않음. 반면 확진 400건은 공개 소규모 데이터(Shenzhen 336) 수준임. 연구마다 단위(영상 · 환자)와 라벨 기준이 달라 규모 참고용으로 비교함.</div>
+ </div>
+
+ <div class="fig">
+  <div class="t">Fig 2 · 전체 학습 데이터 규모 (정상 · 기타 소견 포함, 로그 축)</div>
+  <svg viewBox="0 0 760 290" font-family="Pretendard Variable, Pretendard, Malgun Gothic, sans-serif">
+   <g stroke="#dfe5ef"><line x1="332.5" y1="14" x2="332.5" y2="254"/><line x1="465" y1="14" x2="465" y2="254"/><line x1="597.5" y1="14" x2="597.5" y2="254"/></g>
+   <g font-size="12" fill="#1c2940" text-anchor="end"><text x="190" y="30" font-weight="800" fill="#365ee8">협회 전체 보유 (판독코드)</text><text x="190" y="62">qXR (2020)</text><text x="190" y="94">Lunit INSIGHT CXR</text><text x="190" y="126">Kazemzadeh 2023 (구글)</text><text x="190" y="158">VUNO Med-Chest X-ray</text><text x="190" y="190">Hwang 2019</text><text x="190" y="222" font-weight="800" fill="#365ee8">협회 1차 제공 협의</text></g>
+   <rect x="200" y="17" width="516.3" height="18" rx="3" fill="#365ee8" opacity=".35"/>
+   <g fill="#6c7890"><rect x="200" y="49" width="408" height="18" rx="3"/><rect x="200" y="81" width="310.4" height="18" rx="3"/><rect x="200" y="113" width="294.1" height="18" rx="3"/><rect x="200" y="145" width="275.5" height="18" rx="3"/><rect x="200" y="177" width="236.5" height="18" rx="3"/></g>
+   <rect x="200" y="209" width="172.4" height="18" rx="3" fill="#365ee8"/>
+   <g font-size="11.5" font-weight="800"><text x="710" y="30" fill="#1c2940" text-anchor="end">7,877,070</text><text x="615" y="62" fill="#1c2940">120만</text><text x="517" y="94" fill="#1c2940">22만</text><text x="501" y="126" fill="#1c2940">16.6만</text><text x="482" y="158" fill="#1c2940">12만</text><text x="443" y="190" fill="#1c2940">6.1만</text><text x="379" y="222" fill="#365ee8">2만+</text></g>
+   <line x1="200" y1="10" x2="200" y2="254" stroke="#1c2940"/>
+   <g font-size="11" fill="#6c7890" text-anchor="middle"><text x="200" y="272">1천</text><text x="332.5" y="272">1만</text><text x="465" y="272">10만</text><text x="597.5" y="272">100만</text><text x="730" y="272">1,000만</text></g>
+  </svg>
+  <div class="cap"><b>해석:</b> 협회 보유량은 상용 제품의 학습 규모를 크게 넘지만, 실제 1차 제공 협의 규모(2만 장+)는 Lunit의 1/10, 국내 결핵 연구(6.1만)의 1/3 수준임. 결핵 양성은 충분해도 정상 · 기타 소견을 더 받아야 위양성을 줄이는 학습이 가능하므로, 제공 규모를 판독코드 기반으로 넓히는 협의가 필요함.</div>
+ </div>
+</section>
+
+<section class="card">
+ <h2><span class="no">02</span>규모보다 다양성이 외부 성능을 결정함<small>비교 연구에서 확인되는 경향</small></h2>
+ <div class="three">
+  <div class="panel"><h3>단일 · 소수 기관, 내부 평가</h3><div class="n">1천 장 내외</div><p>Lakhani 2017은 시험 150장에서 AUC 0.99였으나 결핵 유사 질환 감별과 외부 기관 검증은 하지 않음. 내부 성능만으로는 실제 성능을 알 수 없음.</p></div>
+  <div class="panel"><h3>중규모, 외부 검증 결과는 엇갈림</h3><div class="n">3,800 ~ 6,800건</div><p>Choi 2023(3,824)은 외부에서 AUC 0.98 → 0.82 ~ 0.89로 낮아졌고, Hwang 2019(6,768, 판독의 13명 주석)는 외부 6개 데이터셋에서 0.977 이상을 유지함. 차이는 라벨 품질과 정상 대조군 규모(5.4만)였음.</p></div>
+  <div class="panel"><h3>대규모 다국가, 확진 기준</h3><div class="n">2.2만 명 · 10개국</div><p>Kazemzadeh 2023은 미생물 확진 기준 4개국 시험에서 영상의학과 의사와 비열등(민감도 88% · 특이도 79%). 확진 기준 성능 주장에는 다국가 규모가 쓰임.</p></div>
+ </div>
+ <div class="panel me" style="margin-top:12px"><h3>협회 데이터의 위치</h3><p>결핵 양성 4,835건은 &lsquo;중규모&rsquo; 구간에 해당함. 이 구간에서 외부 성능을 지킨 조건은 <b>① 다수 판독의의 정제된 라벨, ② 충분한 정상 대조군, ③ 별도 기관의 외부 검증</b>이었음. 협회 데이터는 ②는 확보 가능하고, ①은 판독코드 재판독으로 보완해야 하며, ③은 협회 외 데이터(협력 병원 또는 몽골 등)가 있어야 충족됨.</p></div>
+</section>
+
+<section class="card">
+ <h2><span class="no">03</span>모델 유형별 개발 가능성</h2>
+ <div class="verdicts">
+  <div class="v ok"><span class="st ok">개발 가능 (조건부)</span><h3>A. 결핵 의심 영상 소견 검출</h3><p>판독코드(결핵 관련 14종)를 양성, 정상 판독을 음성으로 학습함. 양성 규모는 국내 결핵 특화 연구와 같은 구간이고 음성은 충분함. 참조표준은 &lsquo;전문가 판정&rsquo; 유형이 되므로 시험셋은 복수 전문의 재판독으로 정답을 다시 만들어야 함. 임상시험 교육에서 정한 &lsquo;이상소견 검출 우선&rsquo; 방향과 일치함.</p></div>
+  <div class="v warn"><span class="st warn">코드별 건수 확인 후 판단</span><h3>B. 범위 · 공동 등 세부 분류</h3><p>14개 코드에 경증 · 중등증 · 중증, 공동 · 공동의심, 활동성미정이 있어 세부 분류 학습 재료가 있음. 공동처럼 드문 코드가 소견당 시험 양성 약 200건을 채우는지 코드별 건수로 확인해야 함.</p></div>
+  <div class="v warn"><span class="st warn">비활동성 코드 확인 후 판단</span><h3>C. 활동성 · 비활동성 판별</h3><p>연구계획서 목표 1에 해당함. 14개 코드에 비활동성(진구성) 결핵 코드가 없어 &lsquo;그 외&rsquo;에서 따로 집계해야 함. 비교 연구(Lee 2021, 6,654장)에서도 활동성 판별 외부 AUC는 0.83 ~ 0.84로 검출보다 낮았음.</p></div>
+  <div class="v no"><span class="st no">현재 데이터로 어려움</span><h3>D. 확진 기준 활동성 결핵 선별 (WHO 기준)</h3><p>확진 기준 연구는 학습에 수천 ~ 수만 명, 시험에 수백 ~ 1천 명대의 확진자를 썼음. 협회 확진 400건은 시험셋 하나 정도의 규모라 학습까지 감당하지 못함. 해외 확진 데이터 확보 후 다음 단계 과제로 둠.</p></div>
+ </div>
+</section>
+
+<section class="card">
+ <h2><span class="no">04</span>개발 요건별 충족도 (결핵 의심 소견 검출 모델 기준)</h2>
+ <table>
+  <thead><tr><th style="width:170px">요건</th><th style="width:90px">충족도</th><th>협회 데이터 현황</th><th style="width:220px">보완 방법</th></tr></thead>
+  <tbody>
+   <tr><td class="k">결핵 양성 규모</td><td><div class="score" style="--c:#047857"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></td><td>4,835건 (국내 연구 구간). 단위 미확인으로 중복 제거 후 감소 가능</td><td>건수 단위 · 고유 환자 수 확인</td></tr>
+   <tr><td class="k">음성 · 대조군 규모</td><td><div class="score" style="--c:#047857"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></td><td>그 외 787만 건. 정상 판독 비율 미확인</td><td>정상 · 기타 소견 구성 집계</td></tr>
+   <tr><td class="k">라벨 품질</td><td><div class="score" style="--c:#b45309"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></td><td>검진 판독코드. 판독문 기반 라벨은 영상 재판독과 일치도가 낮다는 보고가 있음(κ 0.34)</td><td>파일럿 재판독으로 일치도 확인</td></tr>
+   <tr><td class="k">참조표준</td><td><div class="score" style="--c:#b45309"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></td><td>판독 소견 기준. 확진 연결은 약 400건</td><td>시험셋 복수 전문의 재판독(전문가 판정)</td></tr>
+   <tr><td class="k">출처 · 장비 다양성</td><td><div class="score" style="--c:#b91c1c"><i class="on"></i><i></i><i></i><i></i><i></i></div></td><td>협회 단일 출처, 장비 정보 없음. DICOM 샘플은 2 ~ 3종 형식 혼재</td><td>협력 병원 · 몽골 등 외부 검증 데이터</td></tr>
+   <tr><td class="k">메타데이터</td><td><div class="score" style="--c:#b91c1c"><i class="on"></i><i></i><i></i><i></i><i></i></div></td><td>연령 · 성별 · 장비 · 촬영일 없음 (DICOM 샘플)</td><td>익명화 기준 재협의(연령대 · 성별 · 장비 유지)</td></tr>
+   <tr><td class="k">영상–라벨 연결</td><td><div class="score" style="--c:#b45309"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></td><td>판독코드가 DICOM에 없음, 원본 매핑 키 없음</td><td>연구용 ID 기준 연결표 제공 요청</td></tr>
+  </tbody>
+ </table>
+ <p style="margin-top:8px;font-size:12px">충족도는 비교 연구 대비 상대 평가(설명용)임. 규모 요건은 충족하고, 품질 · 다양성 · 메타데이터 요건이 보완 대상임.</p>
+</section>
+
+<section class="card two" style="display:grid">
+ <div>
+  <h2><span class="no">05</span>시험셋 표본수 검토</h2>
+  <p style="margin-bottom:8px">관측 민감도 90%를 가정한 Wilson 95% 신뢰구간 하한. 4,835건이 영상 단위라면 환자 단위 중복 제거 후 줄어들 수 있어 세 경우로 계산함.</p>
+  <table>
+   <thead><tr><th>고유 양성</th><th>시험</th><th style="text-align:right">시험 양성</th><th style="text-align:right">하한</th><th style="text-align:right">학습 양성</th></tr></thead>
+   <tbody>
+    <tr><td class="k">4,835 (100%)</td><td>15%</td><td class="n">725</td><td class="n">87.6%</td><td class="n">4,110</td></tr>
+    <tr><td class="k">4,835 (100%)</td><td>20%</td><td class="n">967</td><td class="n">87.9%</td><td class="n">3,868</td></tr>
+    <tr><td class="k">2,418 (50%)</td><td>15%</td><td class="n">363</td><td class="n">86.5%</td><td class="n">2,055</td></tr>
+    <tr><td class="k">1,450 (30%)</td><td>15%</td><td class="n">218</td><td class="n">85.3%</td><td class="n">1,232</td></tr>
+   </tbody>
+  </table>
+  <p style="margin-top:8px;font-size:12px">하한 85%에는 시험 양성 196건이 필요함. 판독 기준 검출 모델은 어느 경우에도 충족함. 다만 고유 양성이 1,500건 아래로 내려가면 학습 양성이 Choi 2023 규모보다 작아져 외부 성능 위험이 커짐.</p>
+ </div>
+ <div>
+  <h2><span class="no">06</span>검진 현장에서의 의미</h2>
+  <p style="margin-bottom:8px">협회 데이터에서 결핵 관련 판독 비율은 0.06%임. 검진 집단은 결핵이 드물어, 성능이 좋아도 양성 판정 대부분은 결핵이 아님.</p>
+  <table>
+   <thead><tr><th>결핵 비율</th><th>민감도 · 특이도</th><th style="text-align:right">양성 중 실제 결핵</th></tr></thead>
+   <tbody>
+    <tr><td class="k">0.06% (협회 판독)</td><td>90% · 90%</td><td class="n">0.5%</td></tr>
+    <tr><td class="k">0.06%</td><td>90% · 70%</td><td class="n">0.2%</td></tr>
+    <tr><td class="k">0.5%</td><td>90% · 90%</td><td class="n">4.3%</td></tr>
+    <tr><td class="k">2.0% (몽골 양성률 수준)</td><td>90% · 90%</td><td class="n">15.5%</td></tr>
+   </tbody>
+  </table>
+  <p style="margin-top:8px;font-size:12px">검진용 결핵 선별은 단독 판정이 아니라 판독 우선순위 · 추가검사 대상 선별 보조로 설계하고, 사용 환경에 맞춘 임계값 설정이 필요함.</p>
+ </div>
+</section>
+
+<section class="card">
+ <h2><span class="no">07</span>개발 착수 판단 기준 (제안)</h2>
+ <table>
+  <thead><tr><th style="width:40px">#</th><th>조건</th><th style="width:240px">충족 시</th><th style="width:240px">미충족 시</th></tr></thead>
+  <tbody>
+   <tr><td class="k">1</td><td>결핵 관련 고유 환자 수 1,500명 이상 (중복 제거 후)</td><td>검출 모델 학습 · 시험 착수</td><td>판독코드 범위 확대 또는 기간 확대 협의</td></tr>
+   <tr><td class="k">2</td><td>파일럿 재판독 일치도 κ 0.6 이상</td><td>판독코드를 학습 라벨로 사용</td><td>학습 라벨도 재판독 기준으로 전환(비용 증가)</td></tr>
+   <tr><td class="k">3</td><td>영상–판독코드 연결표 제공</td><td>데이터 반입 착수</td><td>착수 보류</td></tr>
+   <tr><td class="k">4</td><td>외부 검증용 별도 출처 데이터 1곳 이상 확보</td><td>허가용 성능 검증 설계 가능</td><td>내부 연구 · 교육용 모델로 범위 제한</td></tr>
+   <tr><td class="k">5</td><td>연령대 · 성별 · 장비 메타데이터 제공</td><td>대표성 · 하위군 분석 가능</td><td>허가 자료의 대표성 입증 어려움</td></tr>
+  </tbody>
+ </table>
+ <p style="margin-top:8px;font-size:12px">수치 기준(1,500명, κ 0.6)은 비교 연구 규모와 통상적인 일치도 해석 구간을 참고한 내부 제안값이며 법정 기준이 아님.</p>
+</section>
+
+<section class="card">
+ <h2><span class="no">08</span>제안하는 진행 순서</h2>
+ <ol class="steps">
+  <li><b>협회에 확인 요청</b> · 건수 단위, 코드별 건수, 비활동성 결핵 코드, 정상 판독 비율, 영상–코드 연결 방식, 메타데이터 제공 범위.</li>
+  <li><b>파일럿 표본 수령 · 재판독</b> · 결핵 관련 수백 건과 정상 일부를 복수 전문의가 재판독해 판독코드 일치도를 확인함.</li>
+  <li><b>모델 범위 확정</b> · 결핵 의심 소견(공동 · 경화 · 결절 등) 검출을 1차 범위로 두고, 식약처 질의 회신에 맞춰 사용목적을 확정함.</li>
+  <li><b>외부 검증 데이터 확보</b> · 협력 병원 또는 몽골 등 별도 출처 데이터를 확보하고, 학습에 섞지 않음.</li>
+  <li><b>확진 데이터 보존</b> · 확진 400건은 학습에 쓰지 않고 별도 평가용으로 남겨, 활동성 결핵 선별은 해외 확진 데이터 확보 후 다음 단계로 진행함.</li>
+ </ol>
+</section>
+
+<section class="card">
+ <ul class="foot">
+  <li>협회 데이터: 2026.11 협회 회신(판독코드 기준 집계, 비율은 작성자 산출), 2026.10 협의 기록(배양 확진 약 400건, 1차 제공 2만 장+), 2026.11.13 DICOM 샘플 검토.</li>
+  <li><a href="https://research.google/pubs/deep-learning-detection-of-active-pulmonary-tuberculosis-at-chest-radiography-matched-the-clinical-performance-of-radiologists" target="_blank" rel="noopener">Kazemzadeh S. et al., Radiology 2023;306(1):124-137</a> (165,754장 · 22,284명 · 10개국, 4개국 시험 1,236명).</li>
+  <li><a href="https://www.rsna.org/news/2018/November-December/AI-May-Help-Diagnose-Tuberculosis" target="_blank" rel="noopener">Lakhani P., Sundaram B., Radiology 2017</a> (1,007장, 시험 150장).</li>
+  <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6980594/" target="_blank" rel="noopener">Qure.ai 분류기 평가, PLOS ONE 2020</a> (학습 120만 장, 22개 장비 모델). Nash M. et al., Sci Rep 2020 (미생물 확진 기준 AUC 0.81, 양성 317).</li>
+  <li>판독문 라벨과 영상 재판독 라벨의 일치도(κ 0.34): Clinical Imaging 2022, NIH ChestX-ray14 결핵 의심 라벨 비교 연구.</li>
+  <li>Hwang S. et al., Clin Infect Dis 2019;69(5):739-747. Lee S. et al., Radiology 2021. Choi YR et al., Tuberc Respir Dis 2023;86:226-233. J Med Internet Res 2024 (PMC11582483). TBX11K: Liu et al., CVPR 2020. Lunit · VUNO 학습 규모: 대한영상의학회지 2024;85(4):693-704 Table 1.</li>
+  <li>통계: Wilson score 95% 신뢰구간, 관측 민감도 90% 가정. 중복 제거 비율(50% · 30%), 착수 판단 기준값은 설명용 가정임.</li>
+ </ul>
+</section>
+
+</main>
+</body>
+</html>
