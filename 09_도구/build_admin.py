@@ -90,8 +90,8 @@ def main():
                          ensure_ascii=False).encode("utf-8")
 
     pw = os.environ.get("VAULT_PASSWORD") or getpass.getpass("관리자 비밀번호: ")
-    if len(pw) < 6:
-        sys.exit("비밀번호는 6자 이상이어야 한다.")
+    if len(pw) < 4:
+        sys.exit("비밀번호는 4자 이상이어야 함.")
     if not os.environ.get("VAULT_PASSWORD") and getpass.getpass("비밀번호 확인: ") != pw:
         sys.exit("비밀번호 확인이 일치하지 않는다.")
 
