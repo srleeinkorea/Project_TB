@@ -31,16 +31,38 @@ nav{flex:0 0 272px;background:var(--side);color:var(--text);display:flex;flex-di
 nav a{display:flex;align-items:center;gap:9px;color:var(--text);text-decoration:none;font-size:12px;line-height:1.6;padding:9px 10px;margin:2px 0;border-radius:8px;overflow-wrap:anywhere}
 nav a:hover{background:var(--side-2)}
 nav a[aria-current=page]{background:#312e81;box-shadow:inset 3px 0 #a5b4fc;color:#eef2ff;font-weight:700}
-nav a.locked{color:#fbbf24}
 nav :focus-visible{outline:2px solid #a5b4fc;outline-offset:2px}
 .nav-list [hidden]{display:none!important}
+.admin-heading{border-top:1px solid #334155;margin-top:16px;padding:18px 8px 8px;color:#fbbf24;font-size:11px;font-weight:700}
+body:not(.admin) .admin-only{display:none!important}
 #nav-empty{padding:16px 10px;font-size:12px;color:#94a3b8;line-height:1.7}
-.tools{flex:none;margin-top:8px;padding:12px 8px 4px;border-top:1px solid #334155;font-size:10px;color:var(--muted);line-height:1.6}
+.tools{flex:none;margin-top:8px;padding-top:12px;border-top:1px solid #334155;display:flex;flex-direction:column;gap:6px}
+.tools button{font:inherit;font-size:12px;font-weight:700;border:1px solid #334155;background:var(--side-2);color:var(--text);border-radius:8px;padding:8px 10px;cursor:pointer;text-align:left}
+.tools button:hover{border-color:var(--muted)}
+.tools button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.tools button[hidden]{display:none}
+.tools .who{font-size:10px;color:var(--muted);padding:0 4px;line-height:1.6}
+.tools .who:empty{display:none}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 main{flex:1;min-width:0;display:flex;flex-direction:column}
 .location-bar{display:flex;align-items:center;gap:9px;min-height:43px;padding:10px 20px;background:#fff;border-bottom:1px solid #e2e8f0;font-size:12px;color:#64748b}
 #current-document{font-weight:700;color:#334155}
+.location-bar .lockmark{margin-left:auto;font-size:11px;font-weight:700;color:#b45309;background:#fffbeb;border:1px solid #fde68a;border-radius:999px;padding:1px 9px}
+.editbar{display:none;background:#fef3c7;color:#78350f;border-bottom:1px solid #fcd34d;padding:8px 14px;font-size:12px;line-height:1.5}
+body.editing .editbar{display:block}
 iframe{flex:1;border:0;width:100%;min-height:0;background:#fff}
+dialog{margin:auto;border:0;border-radius:14px;padding:22px;width:min(440px,calc(100% - 32px));box-shadow:0 20px 50px rgba(15,23,42,.3);color:#0f172a;font-family:inherit}
+dialog::backdrop{background:rgba(15,23,42,.5)}
+dialog h2{font-size:16px;margin-bottom:6px}
+dialog p{font-size:12px;color:#475569;line-height:1.7;margin-bottom:12px}
+dialog input{width:100%;font:13px Consolas,monospace;padding:10px;border:1px solid #cbd5e1;border-radius:8px}
+dialog .row{display:flex;gap:8px;justify-content:flex-end;margin-top:14px}
+dialog button{font:inherit;font-size:12px;font-weight:700;border:1px solid #cbd5e1;background:#fff;border-radius:8px;padding:8px 14px;cursor:pointer}
+dialog button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+dialog button:disabled{opacity:.6}
+dialog .err{color:#b91c1c;font-size:12px;margin-top:8px;min-height:1em}
+.toast{position:fixed;right:16px;bottom:16px;max-width:360px;background:#0f172a;color:#fff;font-size:12px;line-height:1.6;padding:12px 14px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);opacity:0;transform:translateY(8px);transition:.2s;pointer-events:none;z-index:10}
+.toast.show{opacity:1;transform:none}
 @media(max-width:760px){
  body{flex-direction:column}
  nav{flex:none;display:block;padding:10px 12px;max-height:40dvh;overflow-y:auto}
@@ -48,7 +70,9 @@ iframe{flex:1;border:0;width:100%;min-height:0;background:#fff}
  .nav-search{margin:0 0 8px}.nav-search input{padding:8px 10px}
  .nav-list{display:flex;align-items:flex-start;gap:8px;overflow-x:auto;padding:0 0 5px}
  .nav-group{flex:0 0 220px;margin:0}.nav-group summary{padding:9px 6px}
- .tools{display:none}
+ .admin-heading{flex:0 0 110px;border:0;margin:0;padding:10px}
+ .tools{margin:4px 0 0;flex-direction:row;flex-wrap:wrap;padding:8px 0 0}
+ .tools button{font-size:11px}.tools .who{display:none}
  .location-bar{padding:8px 12px;font-size:11px;flex-wrap:wrap;gap:5px}
  main{min-height:0}
 }
@@ -74,53 +98,288 @@ iframe{flex:1;border:0;width:100%;min-height:0;background:#fff}
 <a href="#m20261001" data-src="02_회의록/261001_데이터범위협의_회의록.html">📝 2026.10.01 데이터 범위 협의</a>
 <a href="#m20251211" data-src="02_회의록/251211_추진협의_회의록.html">📝 2025.12.11 추진 협의</a>
 </div></details>
-<details class="nav-group" open><summary>비밀번호 문서<span class="group-count">3</span></summary><div class="group-links">
-<a class="locked" href="#reg" data-src="05_잠금문서/03_인허가_문서세트/index.html">🔒 인허가 문서 세트</a>
-<a class="locked" href="#review" data-src="05_잠금문서/01_추진방향검토/index.html">🔒 추진 방향 검토</a>
-<a class="locked" href="https://srleeinkorea.github.io/tb-confidential-63279adc25a7/" target="_blank" rel="noopener">🔒 기밀 문서함 ↗</a>
+<div class="admin-heading admin-only">관리자 작업 공간</div>
+<div id="admin-groups"></div>
+<details class="nav-group admin-only"><summary>원본 보관함<span class="group-count">1</span></summary><div class="group-links">
+<a class="admin-only" href="https://srleeinkorea.github.io/tb-confidential-63279adc25a7/" target="_blank" rel="noopener">🔒 기밀 문서함 (계약 · IRB · 원본) ↗</a>
 </div></details>
-<p id="nav-empty" hidden role="status">일치하는 문서가 없습니다.</p>
+<p id="nav-empty" hidden role="status">일치하는 문서가 없음.</p>
  </div>
- <div class="tools">공개 문서만 바로 열립니다. 인허가 · 계약 · 내부 검토 자료는 비밀번호가 필요합니다.</div>
+ <div class="tools">
+  <span class="who" id="who"></span>
+  <button id="btn-edit">✏️ 편집 (관리자)</button>
+  <button id="btn-save" class="primary" hidden>💾 저장</button>
+  <button id="btn-cancel" hidden>취소</button>
+  <button id="btn-logout" hidden>관리자 로그아웃</button>
+ </div>
 </nav>
 <main>
- <div class="location-bar" aria-label="현재 문서"><span id="current-group"></span><span aria-hidden="true">/</span><span id="current-document"></span></div>
+ <div class="location-bar" aria-label="현재 문서"><span id="current-group"></span><span aria-hidden="true">/</span><span id="current-document"></span><span class="lockmark" id="lockmark" hidden>관리자 전용 · 브라우저 안에서만 복호화됨</span></div>
+ <div class="editbar">편집 모드 · 고칠 글자를 클릭해 바로 수정함. 문구만 바뀌며, 저장하면 GitHub에 커밋되고 1~2분 뒤 사이트에 반영됨.</div>
  <iframe id="view" title="문서 보기"></iframe>
 </main>
+
+<dialog id="login">
+ <div id="mode-pw">
+  <h2>관리자 비밀번호</h2>
+  <p>관리자 비밀번호를 입력하면 관리자 작업 공간(내부 검토 · 인허가 문서)과 편집 모드가 열림. 문서는 이 브라우저 안에서만 복호화됨.</p>
+  <input id="pw" type="password" autocomplete="current-password" placeholder="비밀번호" aria-label="관리자 비밀번호">
+ </div>
+ <div id="mode-setup" hidden>
+  <h2>편집용 GitHub 토큰 설정</h2>
+  <p>문서 문구를 사이트에서 바로 고치려면 처음 한 번 토큰 등록이 필요함. 토큰은 관리자 비밀번호로 암호화되어 저장소에 보관되고, 이후에는 비밀번호만 입력하면 됨.<br>
+  토큰 만들기: GitHub → Settings → Developer settings → Fine-grained tokens → 이 저장소만 선택, <b>Contents: Read and write</b></p>
+  <input id="token" type="password" autocomplete="off" placeholder="github_pat_..." aria-label="GitHub 토큰">
+  <input id="pw1" type="password" autocomplete="current-password" placeholder="관리자 비밀번호" aria-label="관리자 비밀번호" style="margin-top:8px">
+ </div>
+ <div class="err" id="login-err" role="alert"></div>
+ <div class="row"><button id="login-mode" style="margin-right:auto">편집 토큰 설정</button><button id="login-cancel">취소</button><button id="login-ok" class="primary">확인</button></div>
+</dialog>
+<div class="toast" id="toast" role="status"></div>
+
 <script>
-const links=[...document.querySelectorAll('nav a[data-src]')];
-// 예전 공유 링크(#drf 등) → 잠금 문서 세트 안의 해당 문서
-const REG='05_잠금문서/03_인허가_문서세트/index.html';
-const alias={khidi:'00_KHIDI_컨설팅_상담신청서.html','khidi-1p':'00_KHIDI_컨설팅_제품소개_1페이지.html',
+const REPO='srleeinkorea/Project_TB',BRANCH='main',API='https://api.github.com/repos/'+REPO;
+const ADMIN_DIR='05_잠금문서/관리자/';
+const $=id=>document.getElementById(id);
+const view=$('view');
+let links=[...document.querySelectorAll('nav a[href^="#"]')];
+let current=null,editing=false,originals=null,token=null,admin=null,adminPw=null;
+const isAdmin=()=>document.body.classList.contains('admin');
+const label=a=>a.textContent.trim().replace(/^\S+\s+/,'');
+
+/* 예전 공유 링크 → 관리자 문서 (파일 이름으로 찾음) */
+const alias={reg:'index.html',khidi:'00_KHIDI_컨설팅_상담신청서.html','khidi-1p':'00_KHIDI_컨설팅_제품소개_1페이지.html',
  drf:'01_DRF_개발의뢰서.html',mrs:'02_MRS_시장요구사항명세서.html',sdp:'03_SDP_소프트웨어개발계획서.html',
  rrs:'04_RRS_규제요구사항명세서.html',dmp:'05_DMP_LBL_데이터및레이블링계획서.html',rmp:'06_RMP_위험관리계획서.html',
- srs:'07_SRS_소프트웨어요구사항명세서.html',sap:'08_SAP_RTM_독립검증및추적계획.html',pcode:'261029_TB_제품코드_등급_적용검토_v2.html'};
-const label=a=>a.textContent.trim().replace(/^\S+\s/,'');
-function go(){
-  const h=(location.hash||'#home').slice(1);
-  let a=links.find(x=>x.getAttribute('href')==='#'+h), src;
-  if(a) src=a.dataset.src;
-  else if(alias[h]){a=links.find(x=>x.getAttribute('href')==='#reg');src=REG+'#'+alias[h];}
-  else {a=links[0];src=a.dataset.src;}
-  links.forEach(x=>x.removeAttribute('aria-current'));
-  a.setAttribute('aria-current','page');
-  const g=a.closest('details');g.open=true;
-  document.getElementById('current-group').textContent=g.querySelector('summary').firstChild.textContent;
-  document.getElementById('current-document').textContent=label(a);
-  const v=document.getElementById('view');
-  if(v.getAttribute('src')!==src)v.src=src;
-  document.title=label(a)+' · TB 공동연구';
+ srs:'07_SRS_소프트웨어요구사항명세서.html',sap:'08_SAP_RTM_독립검증및추적계획.html',pcode:'261029_TB_제품코드_등급_적용검토_v2.html',
+ review:'261015_TB_협회미팅_설득자료_v8.html'};
+
+function toast(msg,ms=4000){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),ms);}
+function srcdocMsg(title,body,btn){
+  return `<!doctype html><meta charset="utf-8"><style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#f5f7fb;font:14px/1.8 'Malgun Gothic',sans-serif;color:#1c2940}
+  .b{background:#fff;border:1px solid #dfe5ef;border-radius:16px;padding:28px 32px;max-width:440px;text-align:center}h1{font-size:18px;margin:0 0 8px}p{color:#53627a;margin:0 0 16px;font-size:13px}
+  button{font:inherit;font-weight:700;font-size:13px;background:#6366f1;color:#fff;border:0;border-radius:8px;padding:9px 18px;cursor:pointer}</style>
+  <div class="b"><h1>${title}</h1><p>${body}</p>${btn?`<button onclick="parent.${btn.fn}()">${btn.text}</button>`:''}</div>`;
 }
-addEventListener('hashchange',go);go();
-// 문서 찾기
-document.getElementById('nav-search').addEventListener('input',e=>{
+
+/* ── 문서 열기 ── */
+function go(){
+  if(editing&&!confirm('저장하지 않은 수정이 있음. 이동할까요?')){history.replaceState(null,'',current.getAttribute('href'));return;}
+  stopEdit();
+  const h=(location.hash||'#home').slice(1);
+  let l=links.find(a=>a.getAttribute('href')==='#'+h&&(!a.classList.contains('admin-only')||isAdmin()));
+  if(!l&&alias[h]){
+    if(admin){const it=findByName(alias[h]);if(it){location.replace('#a-'+it.id);return;}}
+    else{showLocked();return;}
+  }
+  if(!l&&h.startsWith('a-')&&!admin){showLocked();return;}
+  l=l||links[0];current=l;
+  links.forEach(a=>a===l?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));
+  const g=l.closest('.nav-group');g.open=true;
+  $('current-group').textContent=g.querySelector('summary').firstChild.textContent;
+  $('current-document').textContent=label(l);
+  $('lockmark').hidden=!l.dataset.aid;
+  document.title=label(l)+' · TB 공동연구';
+  if(l.dataset.aid){openAdminDoc(l.dataset.aid);return;}
+  view.removeAttribute('srcdoc');
+  if((view.getAttribute('src')||'').split('?')[0]!==l.dataset.src)view.src=l.dataset.src;
+}
+function showLocked(){
+  current=null;links.forEach(a=>a.removeAttribute('aria-current'));
+  $('current-group').textContent='관리자 작업 공간';$('current-document').textContent='비공개 문서';$('lockmark').hidden=true;
+  view.removeAttribute('src');
+  view.srcdoc=srcdocMsg('관리자 전용 문서임','인허가 문서와 내부 검토 자료는 관리자 비밀번호를 입력해야 열림.',{fn:'openLogin',text:'관리자 로그인'});
+}
+addEventListener('hashchange',go);
+
+/* ── 관리자 문서: 브라우저 안에서만 복호화 ── */
+const ITER=600000,enc=new TextEncoder(),dec=new TextDecoder();
+const u8=b=>Uint8Array.from(atob(b),c=>c.charCodeAt(0)),b64=a=>btoa(String.fromCharCode(...new Uint8Array(a)));
+async function keyFrom(pw,salt,iter){
+  const base=await crypto.subtle.importKey('raw',enc.encode(pw),'PBKDF2',false,['deriveKey']);
+  return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:iter,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);
+}
+async function unlock(pw){
+  const pr=await fetch(ADMIN_DIR+'params.json?t='+Date.now(),{cache:'no-store'});
+  if(!pr.ok)throw new Error('관리자 문서 묶음이 아직 만들어지지 않음. PC에서 build_admin.py를 먼저 실행해야 함.');
+  const p=await pr.json();
+  const buf=new Uint8Array(await (await fetch(ADMIN_DIR+'bundle.bin?t='+Date.now(),{cache:'no-store'})).arrayBuffer());
+  let plain;
+  try{plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:buf.slice(0,12),additionalData:enc.encode('admin')},await keyFrom(pw,u8(p.salt),p.iter),buf.slice(12));}
+  catch{throw new Error('비밀번호가 올바르지 않음.');}
+  admin=JSON.parse(dec.decode(plain));adminPw=pw;
+  buildAdminMenu();
+  document.body.classList.add('admin');
+  $('who').textContent='관리자 로그인됨 · 문서 기준 '+admin.built;$('btn-logout').hidden=false;
+}
+function findByName(name){for(const g of admin.groups)for(const it of g.items)if(it.name===name)return it;return null;}
+function buildAdminMenu(){
+  const box=$('admin-groups');box.innerHTML='';
+  for(const g of admin.groups){
+    const d=document.createElement('details');d.className='nav-group admin-only';d.open=true;
+    d.innerHTML=`<summary>${g.name}<span class="group-count">${g.items.length}</span></summary><div class="group-links"></div>`;
+    for(const it of g.items){
+      const a=document.createElement('a');a.className='admin-only';a.href='#a-'+it.id;a.dataset.aid=it.id;a.textContent=it.title;
+      d.querySelector('.group-links').appendChild(a);
+    }
+    box.appendChild(d);
+  }
+  links=[...document.querySelectorAll('nav a[href^="#"]')];
+}
+let blobUrl=null;
+function openAdminDoc(id){
+  const f=admin.files[id],it=admin.groups.flatMap(g=>g.items).find(x=>x.id===id);
+  if(blobUrl)URL.revokeObjectURL(blobUrl);
+  view.removeAttribute('srcdoc');
+  if(f.type==='html'){
+    blobUrl=URL.createObjectURL(new Blob([f.data],{type:'text/html'}));view.src=blobUrl;
+  }else{
+    view.removeAttribute('src');
+    view.srcdoc=srcdocMsg(it.title.replace(/^\S+\s+/,''),f.name+'<br>브라우저에서 바로 볼 수 없는 형식이라 내려받아 열어야 함.',{fn:'downloadAdmin',text:'내려받기'});
+  }
+}
+window.openLogin=()=>openLoginDialog(false);
+window.downloadAdmin=()=>{
+  const f=admin.files[current.dataset.aid],bin=u8(f.data);
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([bin]));a.download=f.name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+};
+/* 관리자 문서 안의 문서 간 링크를 메뉴 이동으로 바꿈 */
+view.addEventListener('load',()=>{
+  if(editing)stopEdit();
+  if(!current||!current.dataset.aid||!admin)return;
+  try{view.contentDocument.addEventListener('click',e=>{
+    const a=e.target.closest('a[href]');if(!a)return;const href=a.getAttribute('href');
+    if(href.startsWith('#'))return;
+    const name=decodeURIComponent(href.split('#')[0].split('?')[0].split('/').pop());
+    const it=findByName(name);
+    if(it){e.preventDefault();location.hash='#a-'+it.id;}
+    else if(/^https?:/.test(href)){e.preventDefault();open(href,'_blank','noopener');}
+  });}catch{}
+});
+
+/* ── 편집 (공개 문서) : GitHub에 바로 커밋 ── */
+function gh(path,opt={}){return fetch(API+path,{...opt,headers:{Authorization:'Bearer '+token,Accept:'application/vnd.github+json',...(opt.headers||{})}});}
+const ghPath=p=>p.split('/').map(encodeURIComponent).join('/');
+async function verifyToken(){
+  const r=await gh('');if(!r.ok)throw new Error(r.status===401?'토큰이 올바르지 않음.':'저장소에 접근할 수 없음 ('+r.status+').');
+  const j=await r.json();if(!j.permissions||!j.permissions.push)throw new Error('이 토큰은 저장소 쓰기 권한이 없음.');
+}
+async function loadToken(pw){
+  const r=await fetch(ADMIN_DIR+'token.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)return false;
+  const v=await r.json();
+  try{token=dec.decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:u8(v.iv)},await keyFrom(pw,u8(v.salt),v.iter),u8(v.data)));}catch{return false;}
+  try{await verifyToken();return true;}catch{token=null;return false;}
+}
+function textNodes(doc){
+  const out=[],w=doc.createTreeWalker(doc.body,NodeFilter.SHOW_TEXT,{acceptNode:n=>n.parentElement.closest('script,style,noscript,textarea')||!n.data.trim()?NodeFilter.FILTER_REJECT:NodeFilter.FILTER_ACCEPT});
+  while(w.nextNode())out.push(w.currentNode);return out;
+}
+function startEdit(){
+  if(!current||current.dataset.aid){toast('관리자 문서는 PC의 원본을 고친 뒤 build_admin.py로 다시 묶어야 반영됨.',6000);return;}
+  if(!token){openLoginDialog(true);return;}
+  const doc=view.contentDocument;if(!doc||!doc.body){toast('문서를 아직 불러오는 중임.');return;}
+  originals=new Map(textNodes(doc).map(n=>[n,n.data]));
+  doc.body.contentEditable='true';doc.body.spellcheck=false;doc.addEventListener('click',blockLinks,true);
+  editing=true;document.body.classList.add('editing');
+  $('btn-edit').hidden=true;$('btn-save').hidden=false;$('btn-cancel').hidden=false;
+}
+function blockLinks(e){if(e.target.closest('a'))e.preventDefault();}
+function stopEdit(reload){
+  const doc=view.contentDocument;
+  if(doc&&doc.body){doc.body.removeAttribute('contenteditable');doc.removeEventListener('click',blockLinks,true);}
+  editing=false;originals=null;document.body.classList.remove('editing');
+  $('btn-edit').hidden=false;$('btn-save').hidden=true;$('btn-cancel').hidden=true;
+  if(reload)view.contentWindow.location.reload();
+}
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function nthIndex(src,needle,n){let i=-1;for(let k=0;k<=n;k++){i=src.indexOf(needle,i+1);if(i<0)return -1;}return i;}
+function b64decode(b){return dec.decode(Uint8Array.from(atob(b.replace(/\n/g,'')),c=>c.charCodeAt(0)));}
+function b64encode(s){const bytes=enc.encode(s);let bin='';for(let i=0;i<bytes.length;i+=0x8000)bin+=String.fromCharCode.apply(null,bytes.subarray(i,i+0x8000));return btoa(bin);}
+async function save(){
+  const path=current.dataset.src,seen=new Map(),changes=[];
+  for(const [node,old] of originals){const idx=seen.get(old)||0;seen.set(old,idx+1);if(node.isConnected&&node.data!==old)changes.push({old,now:node.data,idx});}
+  if(!changes.length){toast('바뀐 내용이 없음.');stopEdit();return;}
+  $('btn-save').disabled=true;$('btn-save').textContent='저장 중…';
+  try{
+    const meta=await gh('/contents/'+ghPath(path)+'?ref='+BRANCH);if(!meta.ok)throw new Error('원본 파일을 읽지 못함 ('+meta.status+').');
+    const m=await meta.json();
+    let src=m.content?b64decode(m.content):b64decode((await (await gh('/git/blobs/'+m.sha)).json()).content);
+    let applied=0;const failed=[];
+    for(const c of changes.reverse()){
+      let i=nthIndex(src,c.old,c.idx),needle=c.old;
+      if(i<0){needle=esc(c.old);i=nthIndex(src,needle,c.idx);}
+      if(i<0){failed.push(c.old.trim().slice(0,30));continue;}
+      src=src.slice(0,i)+esc(c.now)+src.slice(i+needle.length);applied++;
+    }
+    if(!applied)throw new Error('수정한 문구를 원본에서 찾지 못함. 화면에서 자동 생성되는 글자는 여기서 고칠 수 없음.');
+    const put=await gh('/contents/'+ghPath(path),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:'문구 수정: '+path+' ('+applied+'건)',content:b64encode(src),sha:m.sha,branch:BRANCH})});
+    if(!put.ok){const e=await put.json().catch(()=>({}));throw new Error(put.status===409?'그 사이 다른 수정이 있었음. 새로고침 후 다시 시도해야 함.':'저장 실패: '+(e.message||put.status));}
+    stopEdit();
+    toast('저장함 ('+applied+'건). 1~2분 뒤 사이트에 반영됨.'+(failed.length?' 원본에서 찾지 못해 제외: '+failed.join(', '):''),8000);
+  }catch(e){toast(e.message,8000);}
+  finally{$('btn-save').disabled=false;$('btn-save').textContent='💾 저장';}
+}
+
+/* ── 로그인 대화상자 ── */
+let setup=false;
+function setMode(s){setup=s;$('mode-pw').hidden=s;$('mode-setup').hidden=!s;$('login-mode').textContent=s?'비밀번호로 로그인':'편집 토큰 설정';$('login-err').textContent='';setTimeout(()=>$(s?'token':'pw').focus());}
+function openLoginDialog(s){for(const id of ['pw','token','pw1'])$(id).value='';setMode(s);$('login').showModal();}
+$('login-mode').onclick=()=>setMode(!setup);
+$('login-cancel').onclick=()=>$('login').close();
+async function setupToken(){
+  const t=$('token').value.trim(),pw=$('pw1').value;
+  if(!t||!pw)throw new Error('토큰과 관리자 비밀번호를 모두 입력해야 함.');
+  if(!admin)await unlock(pw);
+  else if(pw!==adminPw)throw new Error('관리자 비밀번호가 일치하지 않음.');
+  token=t;await verifyToken();
+  const salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12));
+  const data=await crypto.subtle.encrypt({name:'AES-GCM',iv},await keyFrom(pw,salt,ITER),enc.encode(t));
+  const body={v:1,iter:ITER,salt:b64(salt),iv:b64(iv),data:b64(data)};
+  const p=ghPath(ADMIN_DIR+'token.json'),cur=await gh('/contents/'+p+'?ref='+BRANCH),sha=cur.ok?(await cur.json()).sha:undefined;
+  const put=await gh('/contents/'+p,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:'편집 토큰 설정',content:btoa(JSON.stringify(body,null,1)),sha,branch:BRANCH})});
+  if(!put.ok){const e=await put.json().catch(()=>({}));throw new Error('토큰 저장 실패 ('+put.status+(e.message?': '+e.message:'')+'). 토큰의 Contents 권한이 Read and write인지 확인해야 함.');}
+}
+$('login-ok').onclick=async()=>{
+  $('login-ok').disabled=true;$('login-err').textContent=setup?'설정 중…':'확인 중…';
+  try{
+    if(setup){await setupToken();toast('편집 토큰을 설정함. 다음부터는 비밀번호만 입력하면 됨.',6000);}
+    else{await unlock($('pw').value);if(!token)await loadToken(adminPw);}
+    try{sessionStorage.setItem('tb-admin',adminPw);}catch{}
+    $('who').textContent='관리자 로그인됨 · 문서 기준 '+admin.built+(token?' · 편집 가능':'');
+    $('login').close();toast(token?'관리자 작업 공간과 편집 모드가 열림.':'관리자 작업 공간이 열림. 문구 편집은 「편집 토큰 설정」 후 가능함.',6000);
+    go();
+  }catch(e){$('login-err').textContent=e.message;}
+  finally{$('login-ok').disabled=false;}
+};
+for(const id of ['pw','token','pw1'])$(id).addEventListener('keydown',e=>{if(e.key==='Enter')$('login-ok').click();});
+$('btn-edit').onclick=()=>{if(!admin){openLoginDialog(false);return;}startEdit();};
+$('btn-save').onclick=save;
+$('btn-cancel').onclick=()=>stopEdit(true);
+$('btn-logout').onclick=()=>{
+  stopEdit(editing);admin=null;adminPw=null;token=null;try{sessionStorage.removeItem('tb-admin');}catch{}
+  $('admin-groups').innerHTML='';links=[...document.querySelectorAll('nav a[href^="#"]')];
+  $('who').textContent='';$('btn-logout').hidden=true;document.body.classList.remove('admin');
+  location.hash='#home';go();toast('로그아웃함.');
+};
+addEventListener('beforeunload',e=>{if(editing){e.preventDefault();e.returnValue='';}});
+
+/* ── 문서 찾기 ── */
+$('nav-search').addEventListener('input',e=>{
   const q=e.target.value.trim().toLowerCase();let any=false;
   document.querySelectorAll('.nav-group').forEach(g=>{
-    let n=0;g.querySelectorAll('a').forEach(a=>{const ok=!q||a.textContent.toLowerCase().includes(q);a.hidden=!ok;if(ok)n++;});
-    g.hidden=!n;if(n){any=true;if(q)g.open=true;}
+    const allowed=!g.classList.contains('admin-only')||isAdmin();let n=0;
+    g.querySelectorAll('a').forEach(a=>{const ok=!q||a.textContent.toLowerCase().includes(q);a.hidden=!ok;if(ok)n++;});
+    g.hidden=!!q&&!n;if(q&&n&&allowed)g.open=true;if(allowed&&n)any=true;
   });
-  document.getElementById('nav-empty').hidden=any;
+  $('nav-empty').hidden=any;
 });
+
+/* 같은 탭에서 이미 로그인했으면 바로 복원 */
+(async()=>{
+  let pw=null;try{pw=sessionStorage.getItem('tb-admin');}catch{}
+  if(pw){try{await unlock(pw);await loadToken(pw);$('who').textContent='관리자 로그인됨 · 문서 기준 '+admin.built+(token?' · 편집 가능':'');}catch{try{sessionStorage.removeItem('tb-admin');}catch{}}}
+  go();
+})();
 </script>
 </body>
 </html>
