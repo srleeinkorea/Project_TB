@@ -83,10 +83,9 @@ dialog .err{color:#b91c1c;font-size:12px;margin-top:8px;min-height:1em}
  <div class="brand"><span class="logo">TB</span><div><b>TB 공동연구</b><small>대한결핵협회 × 마이허브 문서함</small></div></div>
  <label class="nav-search"><span class="sr-only">문서 찾기</span><input id="nav-search" type="search" placeholder="문서 찾기" autocomplete="off"></label>
  <div class="nav-list" id="nav-list">
-<details class="nav-group" open><summary>프로젝트 둘러보기<span class="group-count">3</span></summary><div class="group-links">
+<details class="nav-group" open><summary>프로젝트 둘러보기<span class="group-count">2</span></summary><div class="group-links">
 <a href="#home" data-src="01_프로젝트_개요/프로젝트_현황.html">📊 프로젝트 진행 현황</a>
-<a href="#summary" data-src="01_프로젝트_개요/261020_TB_진행상황_원페이지_v1.html">📄 진행상황 원페이지</a>
-<a href="#intro" data-src="01_프로젝트_개요/TB_프로젝트_소개.html">📄 프로젝트 소개</a>
+<a href="#intro" data-src="01_프로젝트_개요/프로젝트_상세현황.html">📋 프로젝트 상세 현황</a>
 </div></details>
 <details class="nav-group" open><summary>일정 · 가이드<span class="group-count">2</span></summary><div class="group-links">
 <a href="#wbs" data-src="01_프로젝트_개요/결핵진단_AI_프로젝트_WBS_개요.html">🗂️ WBS 개요</a>
@@ -148,7 +147,7 @@ const isAdmin=()=>document.body.classList.contains('admin');
 const label=a=>a.textContent.trim().replace(/^\S+\s+/,'');
 
 /* 예전 공유 링크 → 관리자 문서 (파일 이름으로 찾음) */
-const alias={reg:'index.html',khidi:'00_KHIDI_컨설팅_상담신청서.html','khidi-1p':'00_KHIDI_컨설팅_제품소개_1페이지.html',
+const alias={reg:'01_DRF_개발의뢰서.html',khidi:'00_KHIDI_컨설팅_상담신청서.html','khidi-1p':'00_KHIDI_컨설팅_제품소개_1페이지.html',
  drf:'01_DRF_개발의뢰서.html',mrs:'02_MRS_시장요구사항명세서.html',sdp:'03_SDP_소프트웨어개발계획서.html',
  rrs:'04_RRS_규제요구사항명세서.html',dmp:'05_DMP_LBL_데이터및레이블링계획서.html',rmp:'06_RMP_위험관리계획서.html',
  srs:'07_SRS_소프트웨어요구사항명세서.html',sap:'08_SAP_RTM_독립검증및추적계획.html',pcode:'261029_TB_제품코드_등급_적용검토_v2.html',
@@ -167,6 +166,7 @@ function go(){
   if(editing&&!confirm('저장하지 않은 수정이 있음. 이동할까요?')){history.replaceState(null,'',current.getAttribute('href'));return;}
   stopEdit();
   const h=(location.hash||'#home').slice(1);
+  if(h==='summary'){location.replace('#home');return;}
   let l=links.find(a=>a.getAttribute('href')==='#'+h&&(!a.classList.contains('admin-only')||isAdmin()));
   if(!l&&alias[h]){
     if(admin){const it=findByName(alias[h]);if(it){location.replace('#a-'+it.id);return;}}

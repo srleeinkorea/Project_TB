@@ -38,7 +38,7 @@ h2 small{font-size:11px;font-weight:500;color:var(--text-3);margin-left:auto}
 .meter i{display:block;height:100%;background:var(--c,var(--accent));border-radius:99px}
 
 /* 단계 */
-.stages{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.stages{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
 .stage{border:1px solid var(--border);border-radius:12px;padding:13px 13px 12px;background:#fff;position:relative}
 .stage .no{font-size:10.5px;font-weight:800;color:var(--text-3)}
 .stage b{display:block;font-size:14px;margin:3px 0 4px}
@@ -95,7 +95,7 @@ td.who{white-space:nowrap;font-weight:700}
 .docs a{text-decoration:none;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-bg);border:1px solid #c7d2fe;border-radius:10px;padding:8px 12px}
 .foot{font-size:11px;color:var(--text-3)}
 
-@media(max-width:1000px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.stages{grid-template-columns:repeat(2,minmax(0,1fr))}.two,.three{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:1000px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.stages{grid-template-columns:repeat(3,minmax(0,1fr))}.two,.three{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:640px){.page{padding:16px 14px 26px;gap:14px}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.stages{grid-template-columns:minmax(0,1fr)}
  .card{padding:16px}.g-row>b,.g-axis{flex-basis:70px}.g-axis{margin-left:70px}.g-row>b{font-size:11px}table{display:block;overflow-x:auto}}
 </style>
@@ -107,13 +107,13 @@ td.who{white-space:nowrap;font-weight:700}
  <div>
   <span class="eyebrow">대한결핵협회 × 마이허브 공동연구 · 진행 현황 · 기준일 2026-11-13</span>
   <h1>결핵 진단 AI모델 개발</h1>
-  <p>대한결핵협회가 보유한 비식별 흉부 X선 영상으로 활동성 결핵, 비활동성 결핵, 정상군을 판별하는 결핵 진단보조 AI 모델을 개발하고, 식약처 의료기기 인허가에 활용할 성능평가 자료를 확보하는 공동연구임. 연구기간은 2029년 6월 30일까지이며, 현재 1단계 <b>기획·준비</b>에서 추가 데이터 확보 계획을 확인하고 있음.</p>
+  <p>대한결핵협회가 보유한 비식별 흉부 X선 영상으로 활동성 결핵, 비활동성 결핵, 정상군을 판별하는 결핵 진단보조 AI 모델을 개발하고, 식약처 의료기기 인허가에 활용할 성능평가 자료를 확보하는 공동연구임. 연구기간은 2029년 6월 30일까지이며, 현재 1단계 <b>계획·승인</b>에서 추가 데이터 확보 계획을 확인하고 있음.</p>
  </div>
  <div class="badges"><span class="badge live">● 진행 중 · 1단계</span><span class="badge">계약 2026.08 ~ 2029.06</span><span class="badge">IRB 승인</span></div>
 </section>
 
 <section class="kpis" aria-label="핵심 수치">
- <div class="kpi" style="--c:var(--cyan)"><span>현재 단계</span><b>1<small>/ 5단계</small></b><p>기획·준비 (데이터 계획)</p></div>
+ <div class="kpi" style="--c:var(--cyan)"><span>현재 단계</span><b>1<small>/ 7단계</small></b><p>계획·승인 (데이터 계획)</p></div>
  <div class="kpi" style="--c:var(--accent)"><span>공동연구 기간 경과</span><b>10<small>%</small></b><div class="meter"><i style="width:10%"></i></div><p>34개월 중 약 3.5개월</p></div>
  <div class="kpi" style="--c:var(--green)"><span>완료한 주요 절차</span><b>8<small>건</small></b><p>계약 · IRB · DRB 회신 · 킥오프 등</p></div>
  <div class="kpi" style="--c:var(--amber)"><span>진행 · 확인 중 과제</span><b>6<small>건</small></b><p>협회 4건 · 마이허브 2건</p></div>
@@ -121,15 +121,17 @@ td.who{white-space:nowrap;font-weight:700}
 </section>
 
 <section class="card">
- <h2>단계별 진행 상태<small>2026-11-13 기준</small></h2>
+ <h2>단계별 진행 상태<small>단계 구분은 상세 현황의 7단계 실행 흐름과 같음</small></h2>
  <div class="stages">
-  <div class="stage now"><span class="no">STEP 1</span><b>기획 · 준비</b><p>연구계획, 계약, 연구윤리, 데이터 확보 계획</p>
+  <div class="stage now"><span class="no">STEP 1</span><b>계획 · 승인</b><p>연구계획, 계약, 연구윤리, 데이터 확보 계획</p>
    <div class="sub-steps"><em class="ok">연구계획</em><em class="ok">계약</em><em class="ok">IRB</em><em class="ok">레이블링 도구</em><em class="ing">데이터 계획</em></div>
    <span class="st now">진행 중</span></div>
-  <div class="stage"><span class="no">STEP 2</span><b>데이터 구축</b><p>데이터 반입 · 익명화 · 정제, 전문의 레이블링</p><span class="st next">데이터 확정 후</span></div>
-  <div class="stage"><span class="no">STEP 3</span><b>AI 개발</b><p>모델 학습, 내부 검증, 소프트웨어 검증</p><span class="st next">예정</span></div>
-  <div class="stage"><span class="no">STEP 4</span><b>검증 · 인허가</b><p>독립 외부 검증, 임상시험, 식약처 허가</p><div class="sub-steps"><em class="ok">KHIDI 사전 컨설팅</em></div><span class="st next">예정</span></div>
-  <div class="stage"><span class="no">STEP 5</span><b>현장 적용</b><p>협회 검진 현장 도입, 사용 중 성능 관리</p><span class="st next">예정</span></div>
+  <div class="stage"><span class="no">STEP 2</span><b>데이터 구축</b><p>선정 · 비식별화 · 정제</p><div class="sub-steps"><em class="ok">DICOM 샘플 수령</em></div><span class="st next">데이터 확정 후</span></div>
+  <div class="stage"><span class="no">STEP 3</span><b>전문의 레이블</b><p>레이블 기준 · 복수 판독 · 품질 관리</p><span class="st next">예정</span></div>
+  <div class="stage"><span class="no">STEP 4</span><b>모델 개발</b><p>설계 · 학습 · 모델 동결</p><span class="st next">예정</span></div>
+  <div class="stage"><span class="no">STEP 5</span><b>설계 검증</b><p>단위 · 통합 · 시스템 검증</p><span class="st next">예정</span></div>
+  <div class="stage"><span class="no">STEP 6</span><b>유효성 · 인허가</b><p>독립 시험, 식약처 허가</p><div class="sub-steps"><em class="ok">KHIDI 사전 컨설팅</em></div><span class="st next">예정</span></div>
+  <div class="stage"><span class="no">STEP 7</span><b>기술이전 · 적용</b><p>협회 이전, 검진 현장 적용</p><span class="st next">예정</span></div>
  </div>
 </section>
 
@@ -142,10 +144,10 @@ td.who{white-space:nowrap;font-weight:700}
    <div class="g-today" style="left:27.1%"><span>오늘</span></div><div class="g-end" style="left:100%"><span>공동연구 종료</span></div></div></div>
   <div class="g-row"><b>데이터 확보 계획</b><div class="g-track"><div class="g-bar now" style="left:21.7%;width:8.5%"></div><i class="g-dot" style="left:25%;border-color:var(--cyan)" title="2026.10.15 계속 추진 합의"></i>
    <div class="g-today" style="left:27.1%"></div><div class="g-end" style="left:100%"></div></div></div>
-  <div class="g-row"><b>데이터 구축</b><div class="g-track"><div class="g-bar plan" style="left:30%;width:24%"></div><div class="g-today" style="left:27.1%"></div><div class="g-end" style="left:100%"></div></div></div>
-  <div class="g-row"><b>AI 개발</b><div class="g-track"><div class="g-bar plan" style="left:40%;width:28%"></div><div class="g-today" style="left:27.1%"></div><div class="g-end" style="left:100%"></div></div></div>
-  <div class="g-row"><b>검증 · 인허가</b><div class="g-track"><div class="g-bar plan" style="left:62%;width:30%"></div><div class="g-today" style="left:27.1%"></div><div class="g-end" style="left:100%"></div></div></div>
-  <div class="g-row" style="border-bottom:0"><b>현장 적용</b><div class="g-track"><div class="g-bar plan" style="left:88%;width:12%"></div><div class="g-today" style="left:27.1%"></div><div class="g-end" style="left:100%"></div></div></div>
+  <div class="g-row"><b>데이터 구축 · 레이블</b><div class="g-track"><div class="g-bar plan" style="left:30%;width:24%"></div><div class="g-today" style="left:27.1%"></div><div class="g-end" style="left:100%"></div></div></div>
+  <div class="g-row"><b>모델 개발 · 설계 검증</b><div class="g-track"><div class="g-bar plan" style="left:40%;width:28%"></div><div class="g-today" style="left:27.1%"></div><div class="g-end" style="left:100%"></div></div></div>
+  <div class="g-row"><b>유효성 · 인허가</b><div class="g-track"><div class="g-bar plan" style="left:62%;width:30%"></div><div class="g-today" style="left:27.1%"></div><div class="g-end" style="left:100%"></div></div></div>
+  <div class="g-row" style="border-bottom:0"><b>기술이전 · 적용</b><div class="g-track"><div class="g-bar plan" style="left:88%;width:12%"></div><div class="g-today" style="left:27.1%"></div><div class="g-end" style="left:100%"></div></div></div>
  </div>
  <div class="g-legend"><span><i style="background:var(--green)"></i>완료</span><span><i style="background:var(--cyan)"></i>진행 중</span><span><i style="background:repeating-linear-gradient(135deg,#e2e8f0,#e2e8f0 3px,#f1f5f9 3px,#f1f5f9 6px);border:1px dashed var(--border-2)"></i>예정 (기간 미확정, 위치는 순서만 표시)</span><span>● 주요 마일스톤</span></div>
 </section>
@@ -154,6 +156,19 @@ td.who{white-space:nowrap;font-weight:700}
  <div class="note now"><b>지금 하고 있는 일</b><ul><li>추가 데이터의 규모 · 제공 시점 확인</li><li>협회 데이터 구성과 판독 기준 검토</li><li>레이블링 기준 · 인력 분담 협의</li></ul></div>
  <div class="note next"><b>다음 단계</b><ul><li>데이터 요구 사양 · 판정 기준 확정</li><li>개발 · 평가 계획과 임상 · 인허가 로드맵 수립</li><li>후속 킥오프 개최</li></ul></div>
  <div class="note check"><b>확인이 필요한 사항</b><ul><li>몽골 검진 영상과 확진 결과의 연결 가능 건수</li><li>해외 데이터 익명화 · 국외 이전 절차</li><li>국가별 추가 데이터 제공 일정</li></ul></div>
+</section>
+
+<section class="card">
+ <h2>추가 데이터 확인 현황<small>영상 수와 확진 연결 건수는 구분해 관리함</small></h2>
+ <table>
+  <thead><tr><th style="width:140px">대상</th><th>현재 확인할 사항</th><th style="width:110px">상태</th></tr></thead>
+  <tbody>
+   <tr><td class="who">몽골</td><td>누적 영상 4만 장 이상은 구두 추정치임. 정부 확진 결과와 매칭 가능한 건수와 활용 협조를 확인함.</td><td><span class="st check" style="margin:0">확인 중</span></td></tr>
+   <tr><td class="who">라오스 등</td><td>국가별 확보 가능성 · 목표 수량 · 제공 일정을 확인함. 확보량은 미확정임.</td><td><span class="st check" style="margin:0">확인 중</span></td></tr>
+   <tr><td class="who">국내 추가 자료</td><td>외국인 · 취약계층 검진 영상의 익명화 제공 범위와 검사 결과 연결 여부를 확인함.</td><td><span class="st check" style="margin:0">확인 중</span></td></tr>
+   <tr><td class="who">확진 기준</td><td>국내 배양검사와 해외 도말 · Xpert 등 확진 기준의 차이를 검토해야 함.</td><td><span class="st next" style="margin:0">검토 예정</span></td></tr>
+  </tbody>
+ </table>
 </section>
 
 <section class="two">
@@ -190,8 +205,7 @@ td.who{white-space:nowrap;font-weight:700}
  <h2>관련 문서</h2>
  <div class="docs">
   <a href="../index.html#m20261015" target="_top">최근 회의록 (10.15)</a>
-  <a href="../index.html#summary" target="_top">진행상황 원페이지</a>
-  <a href="../index.html#intro" target="_top">프로젝트 소개</a>
+  <a href="../index.html#intro" target="_top">프로젝트 상세 현황</a>
   <a href="../index.html#wbs" target="_top">WBS 개요</a>
   <a href="../index.html#guide" target="_top">결핵 의학 가이드</a>
  </div>
