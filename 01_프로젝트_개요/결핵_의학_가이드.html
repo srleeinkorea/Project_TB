@@ -214,6 +214,14 @@
     blockquote, .lead { border-left-color:var(--brand); background:var(--brand-soft); border-radius:0; }
     table th { font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); background:transparent; border-top:2px solid var(--ink); font-weight:600; }
     strong, b { font-weight:600; }
+
+    .part-label{margin:3.2rem 0 1rem;padding:14px 18px;border-radius:12px;background:#1c2940;color:#fff}
+    .part-label span{display:block;font-size:11px;font-weight:800;letter-spacing:.08em;color:#a5b4fc}
+    .part-label b{display:block;font-size:19px;letter-spacing:-.02em;margin:2px 0;color:#fff}
+    .part-label p{margin:0;font-size:13px;color:#cbd5e1}
+    .toc li.toc-part{margin:14px 0 4px;padding:0 0 0 2px;font-size:11px;font-weight:800;letter-spacing:.04em;color:#365ee8;list-style:none}
+    .toc li.toc-part:first-child{margin-top:4px}
+    .toc li.toc-part em{font-style:normal;font-size:10px;background:#edf2ff;border-radius:999px;padding:0 7px;margin-left:4px}
   </style>
 <style id="tb-theme">
 /* TB 공동연구 문서 테마 v1 · 2026-11-13 · 09_도구/sync_theme.py 가 관리함 (직접 수정하지 말 것) */
@@ -253,9 +261,9 @@ table th{background:#f0f3f9;color:#53627a}
       <div class="brand-mark" aria-hidden="true">TB</div>
       <div>
         <p class="brand-title">결핵 의학 가이드</p>
-        <p class="brand-sub">근거 기반 교육자료 · 국내외 최신 지침 반영</p>
+        <p class="brand-sub">결핵 진단 AI모델 개발 · 과제 이해를 위한 의학 기초 자료</p>
       </div>
-      <span class="asof">2026.09.01 기준</span>
+      <span class="asof">2026.11.13 개편 · 내용 기준 2026.09.01</span>
     </div>
   </header>
 
@@ -264,20 +272,29 @@ table th{background:#f0f3f9;color:#53627a}
       <div class="toc">
         <strong>문서 목차</strong>
         <ol>
+          <li class="toc-part">PART 1 · 한눈에 보기</li>
           <li><a href="#summary" target="_self">핵심 10줄</a></li>
-          <li><a href="#elementary" target="_self">기초 · 핵심 개념</a></li>
-          <li><a href="#general" target="_self">기본 · 감염과 증상</a></li>
-          <li><a href="#medical" target="_self">의학 원리 · 병태생리</a></li>
+          <li class="toc-part">PART 2 · 진단과 영상 <em>과제 핵심</em></li>
           <li><a href="#diagnosis" target="_self">진단 알고리즘</a></li>
-          <li><a href="#treatment" target="_self">약제감수성 치료</a></li>
-          <li><a href="#ltbi" target="_self">잠복결핵 치료</a></li>
+          <li><a href="#cxr" target="_self">흉부 X선 소견과 판독 분류</a></li>
+          <li><a href="#ai-reading" target="_self">참조표준과 AI 판독</a></li>
+          <li class="toc-part">PART 3 · 결핵의 이해</li>
+          <li><a href="#elementary" target="_self">결핵균과 면역</a></li>
+          <li><a href="#general" target="_self">감염 · 발병 · 전파</a></li>
+          <li><a href="#medical" target="_self">병태생리 · 임상 분류</a></li>
+          <li class="toc-part">PART 4 · 치료</li>
+          <li><a href="#treatment" target="_self">약제감수성 결핵</a></li>
+          <li><a href="#ltbi" target="_self">잠복결핵</a></li>
+          <li><a href="#expert" target="_self">내성결핵 · 심화 쟁점</a></li>
+          <li class="toc-part">PART 5 · 특수 상황과 관리</li>
           <li><a href="#extrapulmonary" target="_self">폐외결핵</a></li>
           <li><a href="#special" target="_self">특수 상황</a></li>
-          <li><a href="#expert" target="_self">임상 심화 · 전문 진료</a></li>
-          <li><a href="#prevention" target="_self">예방과 접촉자 조사</a></li>
+          <li><a href="#prevention" target="_self">예방 · 접촉자 조사</a></li>
           <li><a href="#aftercare" target="_self">치료 후 관리</a></li>
-          <li><a href="#myths" target="_self">오해 바로잡기</a></li>
+          <li class="toc-part">PART 6 · 참고</li>
+          <li><a href="#myths" target="_self">자주 틀리는 상식</a></li>
           <li><a href="#urgent" target="_self">진료가 필요한 경우</a></li>
+          <li><a href="#gaps" target="_self">보완 필요 사항</a></li>
           <li><a href="#references" target="_self">근거문헌</a></li>
         </ol>
       </div>
@@ -286,13 +303,13 @@ table th{background:#f0f3f9;color:#53627a}
     <main id="main">
       <section class="document-intro" aria-labelledby="page-title">
         <div>
-          <p class="eyebrow">EVIDENCE-BASED TUBERCULOSIS GUIDE</p>
-          <h1 id="page-title">결핵, 기초부터 전문 진료까지</h1>
-          <p class="subtitle">기본 개념부터 진단 알고리즘, 약제감수성·내성결핵 치료와 특수상황까지 단계적으로 설명함. 국내 결핵 진료지침 제5판(2024)을 중심으로 WHO·ATS/CDC/ERS/IDSA 2025 지침을 구분해 반영했음.</p>
+          <p class="eyebrow">결핵 의학 가이드 · 6개 파트</p>
+          <h1 id="page-title">결핵, 영상 판독부터 진료까지</h1>
+          <p class="subtitle">과제와 직접 관련된 진단 · 흉부 X선 · AI 판독 기준을 앞에 두고, 결핵의 이해 · 치료 · 관리 순으로 구성함. 국내 결핵 진료지침 제5판(2024)을 중심으로 WHO · ATS/CDC/ERS/IDSA 지침을 구분해 반영함. 보완할 내용은 PART 6에 정리함.</p>
         </div>
         <div class="intro-actions" aria-label="빠른 이동">
-          <a class="button primary" href="#summary" target="_self">핵심부터 읽기</a>
-          <a class="button" href="#references" target="_self">근거문헌 보기</a>
+          <a class="button primary" href="#cxr" target="_self">흉부 X선 소견 보기</a>
+          <a class="button" href="#gaps" target="_self">보완 필요 사항</a>
         </div>
       </section>
       <section aria-label="문서 안내">
@@ -301,6 +318,7 @@ table th{background:#f0f3f9;color:#53627a}
           <p>이 문서는 교육자료이며 개인 진단이나 처방을 대신하지 않음. 실제 치료는 체중, 임신, HIV, 간·신장 기능, 약제감수성, 복용 약물과 국내 허가·급여 기준에 따라 달라짐.</p>
         </div>
       </section>
+      <div class="part-label" id="part-1"><span>PART 1</span><b>한눈에 보기</b><p>결핵의 핵심을 10줄로 요약함</p></div>
 
       <section id="summary">
         <span class="level">먼저 읽기 · 3분</span>
@@ -319,10 +337,93 @@ table th{background:#f0f3f9;color:#53627a}
         </ol>
         <p>WHO에 따르면 2024년 세계에서 약 1,070만 명이 결핵에 걸렸고 123만 명이 사망했음. 한국에서도 2025년 신규 환자 13,713명이 신고됐음.<sup><a href="#ref-4">[4]</a></sup><sup><a href="#ref-5">[5]</a></sup></p>
       </section>
+      <div class="part-label" id="part-2"><span>PART 2</span><b>진단과 영상</b><p>과제와 직접 관련된 영역. 진단 절차, 흉부 X선 소견, 참조표준과 AI 판독</p></div>
+
+      <section id="diagnosis">
+        <h2>진단 알고리즘</h2>
+        <div class="flow">
+          <div><strong>전염 가능성 판단:</strong> 의심 단계부터 환자 마스크, 의료진 호흡기 보호구, 필요 시 음압격리</div>
+          <div><strong>영상:</strong> 흉부 X선, 필요 시 CT. 영상만으로 확진하지 않음</div>
+          <div><strong>검체:</strong> 객담 최소 2회, 가능하면 3회 채취</div>
+          <div><strong>동시 검사:</strong> AFB 도말 + 신속분자검사 + 배양 + 약제감수성검사</div>
+          <div><strong>종합판단:</strong> 검사 음성이어도 임상 가능성이 높으면 추가 검체·기관지경·조직검사 또는 경험적 치료 고려</div>
+        </div>
+
+        <h3>영상검사</h3>
+        <p>상엽·폐첨부 침윤, 공동, 섬유결절, 림프절 비대, 흉수 또는 속립성 결절이 나타날 수 있음. 면역저하자는 하엽 병변, 림프절 비대 또는 정상에 가까운 X선 등 비전형적인 모습을 보임.</p>
+
+        <div class="table-wrap">
+          <table>
+            <caption>핵심 미생물학 검사</caption>
+            <thead><tr><th>검사</th><th>의미</th><th>한계</th></tr></thead>
+            <tbody>
+              <tr><td>항산균 도말</td><td>빠른 균량·전염 가능성 추정</td><td>민감도가 낮고 NTM과 구별 불가</td></tr>
+              <tr><td>Xpert/신속분자검사</td><td>결핵균 DNA와 리팜핀 내성을 수 시간 내 확인</td><td>음성으로 결핵을 완전히 배제하지 못함</td></tr>
+              <tr><td>배양</td><td>살아 있는 균을 확인하는 핵심 확진검사</td><td>액체배양 약 2주, 고체배양 흔히 3～8주</td></tr>
+              <tr><td>약제감수성검사</td><td>유효 약제를 결정</td><td>분자형과 표현형 결과가 불일치할 수 있음</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>저균량 폐결핵, 소아, HIV 또는 폐외결핵에서는 신속분자검사가 음성이어도 결핵을 배제할 수 없음.<sup><a href="#ref-2">[2]</a></sup></p>
+
+        <h3>TST와 IGRA</h3>
+        <ul>
+          <li>TST는 48～72시간 뒤 발적이 아니라 <strong>경결</strong>을 측정함.</li>
+          <li>IGRA는 결핵균 특이항원에 대한 혈액의 인터페론감마 반응을 봄.</li>
+          <li>둘 다 활동성 결핵과 잠복결핵을 구분하거나 치료반응을 판정할 수 없음.</li>
+          <li>면역저하자에서는 활동성 결핵인데도 음성일 수 있음.</li>
+          <li>BCG는 TST에 영향을 줄 수 있지만 IGRA에는 거의 영향을 주지 않음.</li>
+        </ul>
+
+        <h3>조직검사</h3>
+        <p>건락성 육아종은 결핵을 지지하지만 비결핵항산균, 진균감염, 사르코이드증에서도 나타날 수 있음. 가능하면 조직의 배양·분자검사를 병행함.</p>
+      </section>
+      <section id="cxr">
+        <h2>흉부 X선 소견과 판독 분류</h2>
+        <p>본 과제의 AI 모델이 직접 다루는 영역임. 흉부 X선은 결핵을 의심하고 선별하는 핵심 검사이지만, 영상만으로 결핵을 확진하거나 활동성을 확정하지 않음.<sup><a href="#ref-1">[1]</a></sup></p>
+        <div class="table-wrap">
+          <table>
+            <caption>결핵의 대표 흉부 X선 소견</caption>
+            <thead><tr><th>구분</th><th>주요 소견</th><th>판독 시 의미</th></tr></thead>
+            <tbody>
+              <tr><td>1차 결핵</td><td>폐문 · 종격동 림프절 비대, 엽 경화, 흉막삼출</td><td>소아 · 면역저하자에서 상대적으로 흔함</td></tr>
+              <tr><td>재활성화(2차) 결핵</td><td>상엽 첨후구역 · 하엽 상구역의 경화 · 결절, 공동, 기관지 전파에 의한 소결절</td><td>성인 활동성 폐결핵의 전형적 양상. 공동은 균량이 많고 전염성이 높음을 시사함</td></tr>
+              <tr><td>속립성 결핵</td><td>양측 폐야 전반의 1~3 mm 미세결절</td><td>혈행성 전파. 중증으로 신속한 평가가 필요함</td></tr>
+              <tr><td>비활동성(진구성) 변화</td><td>섬유화 · 용적 감소, 석회화 결절 · 육아종, 섬유결절성 반흔, 견인성 기관지확장, 흉막 비후 · 석회화</td><td>과거 결핵의 흔적일 가능성이 높음. 단, 활동성 병변과 함께 있을 수 있음</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>활동성 판정의 한계</h3>
+        <ul>
+          <li>단일 영상만으로 활동성 · 비활동성을 확정할 수 없음. 이전 영상과 비교해 변화가 없으면 안정된 병변으로 봄.</li>
+          <li>최종 판정은 객담 도말 · 신속분자검사 · 배양 등 미생물학적 검사와 임상 경과로 함.</li>
+          <li>국내 검진 판독에서는 병변 범위에 따라 경증 · 중등증 · 중증으로 나누고, 공동 여부와 활동성 미정을 함께 표기하는 분류가 쓰임. 세부 기준은 PART 6 보완 필요 사항에 따라 지침 원문과 대조할 예정임.</li>
+        </ul>
+        <h3>감별이 필요한 질환</h3>
+        <p>폐암, 비결핵항산균 폐질환, 진균 감염, 세균성 폐렴 · 폐농양, 사르코이드증은 결핵과 비슷한 영상 소견을 보일 수 있음. 따라서 영상 소견은 결핵 &lsquo;의심&rsquo; 단계의 정보로 다룸.</p>
+      </section>
+      <section id="ai-reading">
+        <h2>참조표준과 AI 판독</h2>
+        <div class="flow">
+          <div><strong>참조표준:</strong> 결핵 확진의 기준은 배양 또는 신속분자검사(Xpert 등) 양성인 미생물학적 확진임. 영상 판독 소견은 참조표준이 아님</div>
+          <div><strong>라벨 구분:</strong> AI 학습 · 평가에서는 &lsquo;배양 확진 라벨&rsquo;과 &lsquo;영상 판독 소견 라벨&rsquo;을 구분해 관리함. 두 라벨은 성격과 오류 양상이 다름</div>
+          <div><strong>WHO 권고:</strong> 15세 이상 선별 대상에서 디지털 흉부 X선 판독에 컴퓨터 보조 판독(CAD)을 사람 판독 대신 사용할 수 있음(조건부 권고)<sup><a href="#ref-18">[18]</a></sup></div>
+          <div><strong>성능 목표:</strong> WHO 선별검사 목표제품특성(TPP)의 최소 요건은 민감도 90%, 특이도 70%이며, 본 과제의 내부 개발 목표 설정 시 참고함<sup><a href="#ref-20">[20]</a></sup></div>
+        </div>
+        <h3>AI 개발 시 영상 측면 주의점</h3>
+        <ul>
+          <li>장비 · 촬영 조건 차이에 따라 성능이 달라질 수 있어 다기관 · 다장비 자료로 검증해야 함.</li>
+          <li>영상에 남은 글자 · 표식 · 눈금자를 AI가 판독 단서로 잘못 학습하지 않도록 처리 기준이 필요함.</li>
+          <li>비활동성 반흔을 활동성 결핵으로 판정하는 위양성, 면역저하자의 비전형 소견에서의 위음성을 하위군으로 따로 평가함.</li>
+          <li>소아 영상은 성인과 소견 양상이 달라 사용 대상 범위를 별도로 정해야 함.</li>
+        </ul>
+        <p>2025년 6월 WHO는 흉부 X선 결핵 컴퓨터 보조 판독 소프트웨어 6종을 승인 목록에 올렸음.<sup><a href="#ref-19">[19]</a></sup></p>
+      </section>
+      <div class="part-label" id="part-3"><span>PART 3</span><b>결핵의 이해</b><p>감염 · 발병 · 전파와 병태생리</p></div>
 
       <section id="elementary">
         <span class="level">기초 · 핵심 개념</span>
-        <h2>결핵균과 면역의 ‘성벽’ 개념</h2>
+        <h2>결핵균과 면역 · 개념으로 이해하기</h2>
         <p>결핵균은 아주 작고 천천히 자라는 세균임. 전염성이 있는 결핵 환자가 기침하거나 말하면 균을 담은 작은 입자가 공기 중에 나오고, 가까운 공간에서 오랫동안 함께 지낸 사람이 그 공기를 들이마시면 균이 폐로 들어갈 수 있음.</p>
         <figure class="figure">
           <svg viewBox="0 0 900 390" role="img" aria-labelledby="airborne-title airborne-desc">
@@ -483,46 +584,7 @@ table th{background:#f0f3f9;color:#53627a}
         <h3>임상 분류</h3>
         <p>폐·후두·흉막·림프절·뇌수막·골관절·복부·비뇨생식기·심낭·속립성/파종성 결핵으로 나눔. 전염성은 주로 폐·후두 결핵에서 문제됨.</p>
       </section>
-
-      <section id="diagnosis">
-        <h2>진단 알고리즘</h2>
-        <div class="flow">
-          <div><strong>전염 가능성 판단:</strong> 의심 단계부터 환자 마스크, 의료진 호흡기 보호구, 필요 시 음압격리</div>
-          <div><strong>영상:</strong> 흉부 X선, 필요 시 CT. 영상만으로 확진하지 않음</div>
-          <div><strong>검체:</strong> 객담 최소 2회, 가능하면 3회 채취</div>
-          <div><strong>동시 검사:</strong> AFB 도말 + 신속분자검사 + 배양 + 약제감수성검사</div>
-          <div><strong>종합판단:</strong> 검사 음성이어도 임상 가능성이 높으면 추가 검체·기관지경·조직검사 또는 경험적 치료 고려</div>
-        </div>
-
-        <h3>영상검사</h3>
-        <p>상엽·폐첨부 침윤, 공동, 섬유결절, 림프절 비대, 흉수 또는 속립성 결절이 나타날 수 있음. 면역저하자는 하엽 병변, 림프절 비대 또는 정상에 가까운 X선 등 비전형적인 모습을 보임.</p>
-
-        <div class="table-wrap">
-          <table>
-            <caption>핵심 미생물학 검사</caption>
-            <thead><tr><th>검사</th><th>의미</th><th>한계</th></tr></thead>
-            <tbody>
-              <tr><td>항산균 도말</td><td>빠른 균량·전염 가능성 추정</td><td>민감도가 낮고 NTM과 구별 불가</td></tr>
-              <tr><td>Xpert/신속분자검사</td><td>결핵균 DNA와 리팜핀 내성을 수 시간 내 확인</td><td>음성으로 결핵을 완전히 배제하지 못함</td></tr>
-              <tr><td>배양</td><td>살아 있는 균을 확인하는 핵심 확진검사</td><td>액체배양 약 2주, 고체배양 흔히 3～8주</td></tr>
-              <tr><td>약제감수성검사</td><td>유효 약제를 결정</td><td>분자형과 표현형 결과가 불일치할 수 있음</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p>저균량 폐결핵, 소아, HIV 또는 폐외결핵에서는 신속분자검사가 음성이어도 결핵을 배제할 수 없음.<sup><a href="#ref-2">[2]</a></sup></p>
-
-        <h3>TST와 IGRA</h3>
-        <ul>
-          <li>TST는 48～72시간 뒤 발적이 아니라 <strong>경결</strong>을 측정함.</li>
-          <li>IGRA는 결핵균 특이항원에 대한 혈액의 인터페론감마 반응을 봄.</li>
-          <li>둘 다 활동성 결핵과 잠복결핵을 구분하거나 치료반응을 판정할 수 없음.</li>
-          <li>면역저하자에서는 활동성 결핵인데도 음성일 수 있음.</li>
-          <li>BCG는 TST에 영향을 줄 수 있지만 IGRA에는 거의 영향을 주지 않음.</li>
-        </ul>
-
-        <h3>조직검사</h3>
-        <p>건락성 육아종은 결핵을 지지하지만 비결핵항산균, 진균감염, 사르코이드증에서도 나타날 수 있음. 가능하면 조직의 배양·분자검사를 병행함.</p>
-      </section>
+      <div class="part-label" id="part-4"><span>PART 4</span><b>치료</b><p>약제감수성 결핵, 잠복결핵, 내성결핵</p></div>
 
       <section id="treatment">
         <h2>약제감수성 결핵 치료</h2>
@@ -606,44 +668,9 @@ table th{background:#f0f3f9;color:#53627a}
         <p>4R은 9H와 예방효과가 비열등하면서 완료율이 높고 중증 이상반응과 간독성이 적었음.<sup><a href="#ref-12">[12]</a></sup> 치료 후 TST나 IGRA 음전 여부를 확인하지 않음.</p>
       </section>
 
-      <section id="extrapulmonary">
-        <h2>폐외결핵</h2>
-        <details open>
-          <summary>결핵성 흉막염</summary>
-          <div><p>발열, 흉통, 호흡곤란과 흉수로 나타남. 림프구 우세 삼출액과 적절한 임상상에서 ADA &gt;40 U/L는 가능성을 높이지만 농흉·림프종 등에서도 상승하므로 단독 확진검사가 아님. 약제감수성이면 일반적으로 6개월 치료함.</p></div>
-        </details>
-        <details open>
-          <summary>결핵성 수막염</summary>
-          <div><p>두통, 발열, 구토, 목 경직, 의식 변화, 뇌신경 마비, 경련을 일으킬 수 있는 응급질환임. 충분한 뇌척수액으로 도말·배양·분자검사를 하며 음성만으로 배제하지 않음. 보통 2개월 HRZE 후 7～10개월 HR, 총 9～12개월 및 초기 스테로이드를 사용함.</p></div>
-        </details>
-        <details open>
-          <summary>골·관절·척추결핵</summary>
-          <div><p>통증, 압통, 척추 변형, 농양, 신경학적 결손으로 나타날 수 있음. 보통 6～9개월 치료하며 척수압박, 불안정성 또는 진행성 신경학적 악화에서는 수술을 고려함.</p></div>
-        </details>
-        <details open>
-          <summary>림프절결핵</summary>
-          <div><p>통증이 적은 경부 림프절 종대가 흔함. 치료 중 일시적으로 커지는 역설적 반응이 있을 수 있으나 복약 불량, 내성, 다른 질환을 먼저 배제해야 함.</p></div>
-        </details>
-      </section>
-
-      <section id="special">
-        <h2>특수 상황</h2>
-        <h3>소아</h3>
-        <p>균량이 적어 미생물학적 확진이 어려움. 접촉력, 영상, TST/IGRA와 위세척액·유도객담·비인두흡인물 등을 종합함. 영유아는 수막염·속립성 결핵 진행 위험이 높음. SHINE 연구는 비중증 약제감수성 소아결핵에서 4개월 치료의 비열등성을 보였음.<sup><a href="#ref-11">[11]</a></sup></p>
-
-        <h3>임신과 수유</h3>
-        <p>한국·WHO 지침에서는 일반적으로 약제감수성 결핵에 HRZE를 사용할 수 있음. H 사용 시 피리독신을 보충하고 스트렙토마이신 등 일부 아미노글리코사이드는 태아 이독성 때문에 피함. 일차약 치료 중 대개 수유할 수 있으나 모유 속 약물만으로 영아 치료·예방을 대신하지 못함.</p>
-
-        <h3>HIV</h3>
-        <p>결핵치료를 즉시 시작함. 일반적으로 CD4 &lt;50/μL이면 2주 이내, CD4 ≥50/μL이면 8주 이내 ART를 시작함. 수막염에서는 중추신경계 IRIS 위험 때문에 시기를 개별화함. 리팜핀과 ART의 상호작용 검토가 필수임.</p>
-
-        <h3>신장·간 질환과 면역억제 치료</h3>
-        <p>신부전에서는 Z와 E의 용량·투여 간격을 조정함. 중증 간질환은 간독성 약제 조합을 전문적으로 설계함. 항-TNF제·JAK 억제제·장기이식 면역억제제 전에는 활동성·잠복결핵을 평가하며, 잠복결핵 치료를 가능하면 먼저 시작함.</p>
-      </section>
-
       <section id="expert">
         <span class="level">임상 심화 · 전문 진료</span>
-        <h2>진료의 고급 쟁점</h2>
+        <h2>내성결핵과 진료 심화 쟁점</h2>
         <h3>감염과 질병은 연속선임</h3>
         <blockquote>제거된 감염 → 면역학적 감작 → 통제된 감염 → incipient TB → subclinical TB → 증상성 임상 결핵</blockquote>
         <p>TST·IGRA는 이 연속선에서 면역감작을 보여줄 뿐 살아 있는 균이나 미래 발병을 확증하지 않음. 위험인자, 접촉 시점, 영상과 미생물학을 통합함.</p>
@@ -700,6 +727,42 @@ table th{background:#f0f3f9;color:#53627a}
         <h3>치료 실패처럼 보이는 상황</h3>
         <p>영상 악화 시 실제 내성·복약 불량·흡수장애뿐 아니라 역설적 반응, HIV 관련 IRIS, 동반 감염, 암, 죽은 조직의 늦은 회복을 감별함. 배양 추세, 체중별 용량, 상호작용, 혈중농도 측정 필요성을 재검토함.</p>
       </section>
+      <div class="part-label" id="part-5"><span>PART 5</span><b>특수 상황과 관리</b><p>폐외결핵, 특수 상황, 예방, 치료 후 관리</p></div>
+
+      <section id="extrapulmonary">
+        <h2>폐외결핵</h2>
+        <details open>
+          <summary>결핵성 흉막염</summary>
+          <div><p>발열, 흉통, 호흡곤란과 흉수로 나타남. 림프구 우세 삼출액과 적절한 임상상에서 ADA &gt;40 U/L는 가능성을 높이지만 농흉·림프종 등에서도 상승하므로 단독 확진검사가 아님. 약제감수성이면 일반적으로 6개월 치료함.</p></div>
+        </details>
+        <details open>
+          <summary>결핵성 수막염</summary>
+          <div><p>두통, 발열, 구토, 목 경직, 의식 변화, 뇌신경 마비, 경련을 일으킬 수 있는 응급질환임. 충분한 뇌척수액으로 도말·배양·분자검사를 하며 음성만으로 배제하지 않음. 보통 2개월 HRZE 후 7～10개월 HR, 총 9～12개월 및 초기 스테로이드를 사용함.</p></div>
+        </details>
+        <details open>
+          <summary>골·관절·척추결핵</summary>
+          <div><p>통증, 압통, 척추 변형, 농양, 신경학적 결손으로 나타날 수 있음. 보통 6～9개월 치료하며 척수압박, 불안정성 또는 진행성 신경학적 악화에서는 수술을 고려함.</p></div>
+        </details>
+        <details open>
+          <summary>림프절결핵</summary>
+          <div><p>통증이 적은 경부 림프절 종대가 흔함. 치료 중 일시적으로 커지는 역설적 반응이 있을 수 있으나 복약 불량, 내성, 다른 질환을 먼저 배제해야 함.</p></div>
+        </details>
+      </section>
+
+      <section id="special">
+        <h2>특수 상황</h2>
+        <h3>소아</h3>
+        <p>균량이 적어 미생물학적 확진이 어려움. 접촉력, 영상, TST/IGRA와 위세척액·유도객담·비인두흡인물 등을 종합함. 영유아는 수막염·속립성 결핵 진행 위험이 높음. SHINE 연구는 비중증 약제감수성 소아결핵에서 4개월 치료의 비열등성을 보였음.<sup><a href="#ref-11">[11]</a></sup></p>
+
+        <h3>임신과 수유</h3>
+        <p>한국·WHO 지침에서는 일반적으로 약제감수성 결핵에 HRZE를 사용할 수 있음. H 사용 시 피리독신을 보충하고 스트렙토마이신 등 일부 아미노글리코사이드는 태아 이독성 때문에 피함. 일차약 치료 중 대개 수유할 수 있으나 모유 속 약물만으로 영아 치료·예방을 대신하지 못함.</p>
+
+        <h3>HIV</h3>
+        <p>결핵치료를 즉시 시작함. 일반적으로 CD4 &lt;50/μL이면 2주 이내, CD4 ≥50/μL이면 8주 이내 ART를 시작함. 수막염에서는 중추신경계 IRIS 위험 때문에 시기를 개별화함. 리팜핀과 ART의 상호작용 검토가 필수임.</p>
+
+        <h3>신장·간 질환과 면역억제 치료</h3>
+        <p>신부전에서는 Z와 E의 용량·투여 간격을 조정함. 중증 간질환은 간독성 약제 조합을 전문적으로 설계함. 항-TNF제·JAK 억제제·장기이식 면역억제제 전에는 활동성·잠복결핵을 평가하며, 잠복결핵 치료를 가능하면 먼저 시작함.</p>
+      </section>
 
       <section id="prevention">
         <h2>예방과 접촉자 조사</h2>
@@ -729,6 +792,7 @@ table th{background:#f0f3f9;color:#53627a}
         <p>미생물학적 완치와 폐의 완전한 정상화는 같은 말이 아님. 폐섬유화, 기관지확장증, 폐쇄성·제한성 환기장애, 만성기침, 객혈, 만성 폐아스페르길루스증 등이 남을 수 있음. 체계적 문헌고찰에서는 폐결핵 치료 후 비정상 폐기능이 흔하게 보고됐음.<sup><a href="#ref-16">[16]</a></sup></p>
         <p>치료 후 증상이 지속되면 재발·재감염뿐 아니라 비결핵항산균, 기관지확장증, 아스페르길루스증, 폐암, 결핵 후 폐질환을 평가함. 금연, 영양관리, 예방접종, 폐기능검사와 호흡재활이 도움이 될 수 있음.<sup><a href="#ref-17">[17]</a></sup></p>
       </section>
+      <div class="part-label" id="part-6"><span>PART 6</span><b>참고</b><p>자주 틀리는 상식, 진료가 필요한 경우, 보완 필요 사항, 근거문헌</p></div>
 
       <section id="myths">
         <h2>자주 틀리는 상식</h2>
@@ -751,6 +815,25 @@ table th{background:#f0f3f9;color:#53627a}
           <p>대량 객혈, 심한 호흡곤란, 의식 변화, 경련, 심한 두통과 목 경직, 팔다리 마비는 응급상황임. 결핵약 복용 중 황달, 반복 구토, 심한 복통, 시력·색각 변화, 심한 발진·점막병변, 비정상 출혈도 즉시 평가가 필요함.</p>
         </div>
       </section>
+      <section id="gaps">
+        <h2>보완 필요 사항</h2>
+        <p>현재 가이드는 일반 결핵 진료 지식 중심으로 작성되어, 과제(결핵 진단 AI모델 개발)에 필요한 영상 · 라벨 관련 내용을 아래 순서로 보완할 예정임.</p>
+        <div class="table-wrap">
+          <table>
+            <caption>보완 계획</caption>
+            <thead><tr><th>우선순위</th><th>보완 내용</th><th>근거 · 연계 자료</th></tr></thead>
+            <tbody>
+              <tr><td><strong>높음</strong></td><td>흉부 X선 활동성 판정 기준과 경증 · 중등증 · 중증 범위 분류의 세부 기준을 국내 지침 원문과 대조해 수록</td><td>국내 결핵 진료지침 제5판, 검진 판독 기준</td></tr>
+              <tr><td><strong>높음</strong></td><td>협회 판독코드 체계와 본 가이드 분류의 대응표 작성, 레이블링 기준과 연결</td><td>협회 판독코드, 데이터 · 레이블링 계획서(DMP)</td></tr>
+              <tr><td><strong>높음</strong></td><td>참조표준(배양 · 분자검사)과 판독 소견 라벨의 정의를 인허가 문서와 같은 용어로 통일</td><td>DMP · SAP 문서</td></tr>
+              <tr><td>중간</td><td>소견별 대표 영상 예시(익명 영상) 추가</td><td>협회 데이터 수령 후</td></tr>
+              <tr><td>중간</td><td>WHO 컴퓨터 보조 판독 권고 · 목표제품특성 최신판 반영 여부 확인</td><td>WHO 선별 지침, TPP</td></tr>
+              <tr><td>중간</td><td>독자 수준 정리: 일반인용 비유 설명과 전문 진료 내용의 구분 · 축소 검토</td><td>문서 목적(과제 내부 교육) 확정 후</td></tr>
+              <tr><td>낮음</td><td>치료 요법 · 용량은 지침 개정 시 갱신하고, 근거문헌 링크 유효성 점검</td><td>정기 점검(분기 1회)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
 
       <section id="references">
         <h2>주요 근거문헌</h2>
@@ -765,6 +848,9 @@ table th{background:#f0f3f9;color:#53627a}
           <li id="ref-7"><a href="https://www.idsociety.org/practice-guideline/diagnosis-of-tb-in-adults-and-children/" target="_blank" rel="noopener">ATS/CDC/IDSA Diagnosis of Tuberculosis in Adults and Children.</a></li>
           <li id="ref-8"><a href="https://www.cdc.gov/tb/causes/index.html" target="_blank" rel="noopener">CDC: Tuberculosis—Causes and Spread.</a></li>
           <li id="ref-9"><a href="https://www.cdc.gov/tb-healthcare-settings/hcp/infection-control/index.html" target="_blank" rel="noopener">CDC: Tuberculosis Infection Control.</a></li>
+                  <li id="ref-18"><a href="https://www.who.int/publications/i/item/9789240022676" target="_blank" rel="noopener">WHO consolidated guidelines on tuberculosis. Module 2: screening – systematic screening for tuberculosis disease. 2021.</a></li>
+          <li id="ref-19"><a href="https://www.who.int/news/item/11-06-2025-who-approves-six-software-products-for-computer-aided-detection-of-tb-on-chest-x-ray" target="_blank" rel="noopener">WHO approves six software products for computer-aided detection of TB on chest X-ray. 2025.</a></li>
+          <li id="ref-20">WHO. Target product profiles for tuberculosis screening tests. 2025. (과제 참고문헌 보관본)</li>
         </ol>
 
         <h3>주요 임상시험과 리뷰</h3>
