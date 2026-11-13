@@ -43,6 +43,8 @@ th{background:var(--surface-2);color:var(--text-2);font-size:11px;text-align:lef
 td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.65}
 td.k{font-weight:700}
 td.k small{display:block;font-weight:500;color:var(--text-3);font-size:11px}
+tr.grp td{background:#f0f3f9;font-size:11px;font-weight:800;color:#365ee8;letter-spacing:.03em;padding:6px 10px}
+td.rk{color:#6c7890;font-weight:700;text-align:center}
 td.n{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
 tr.me td{background:var(--accent-bg)}
 tr.me2 td{background:var(--red-bg)}
@@ -99,7 +101,7 @@ table th{background:#f0f3f9;color:#53627a}
  <span class="eyebrow">RESEARCH · 데이터 적합성 검토 · 2026-11-13</span>
  <h1>협회 데이터로 결핵 AI 모델을 실제로 개발할 수 있는가</h1>
  <p class="lead">협회 보유 약 7백만 건의 흉부 X-ray 판독코드 집계(결핵 관련 14개 코드 4,835건)를 국내외 결핵 AI 연구 · 제품의 학습 데이터 규모와 비교하고, 모델 유형별 개발 가능성과 착수 조건을 정리함.</p>
- <div class="badges"><span class="badge">결핵 관련 판독 4,835건</span><span class="badge">그 외 7,872,235건</span><span class="badge">배양 확진 약 400건</span><span class="badge">단일 출처 · 건수 단위 미확인</span></div>
+ <div class="badges"><span class="badge">결핵 관련 판독 4,835건</span><span class="badge">그 외 7,872,235건</span><span class="badge">배양 확진 약 400건</span><span class="badge">단일 출처</span><span class="badge" style="color:#b91c1c;border-color:#fecaca;background:#fef2f2">판독코드 중복 여부 미확인</span></div>
  <div class="concl"><b class="h">검토 결론</b><ol>
   <li><b>결핵 의심 영상 소견 검출 모델은 개발 가능함.</b> 결핵 양성 4,835건은 외부 검증에 성공한 국내 대표 연구(6,768장)의 71%, 외부에서 성능이 떨어진 연구(3,824장)보다 많은 규모이며, 음성 데이터는 충분함.</li>
   <li><b>다만 데이터 규모보다 다양성 · 라벨 품질이 성패를 가름.</b> 비교 연구들에서 외부 성능을 지킨 쪽은 다기관 · 다국가 데이터와 외부 검증을 갖춘 경우였음. 협회 데이터는 단일 출처라 별도 기관의 외부 검증 데이터가 반드시 필요함.</li>
@@ -115,51 +117,61 @@ table th{background:#f0f3f9;color:#53627a}
 </section>
 
 <section class="card">
- <h2><span class="no">01</span>학습 데이터 n수 비교<small>공개 논문 · 제품 자료 기준</small></h2>
+ <h2><span class="no">01</span>학습 데이터 n수 비교<small>결핵 양성 수 오름차순 · 공개 논문 · 제품 자료 기준</small></h2>
  <table>
-  <thead><tr><th>연구 · 제품</th><th style="text-align:right">결핵 양성</th><th style="text-align:right">전체 학습 규모</th><th>라벨 · 참조표준</th><th>검증 결과</th></tr></thead>
+  <thead><tr><th style="width:34px">순</th><th>연구 · 제품</th><th style="text-align:right">결핵 양성 ▲</th><th style="text-align:right">전체 학습 규모</th><th>라벨 · 참조표준</th><th>검증 결과</th></tr></thead>
   <tbody>
-   <tr><td class="k">Montgomery · Shenzhen 공개 데이터<small>미국 · 중국 공개셋</small></td><td class="n">58 · 336</td><td class="n">138 · 662</td><td>임상 진단</td><td>연구용 벤치마크로 주로 사용</td></tr>
-   <tr><td class="k">Lakhani &amp; Sundaram 2017<small>Radiology · 4개 데이터셋</small></td><td class="n">—</td><td class="n">1,007</td><td>데이터셋 라벨</td><td>시험 150장 AUC 0.99. 결핵 유사 질환 감별은 학습하지 않음</td></tr>
-   <tr><td class="k">TBX11K 2020<small>CVPR 공개 데이터</small></td><td class="n">1,200</td><td class="n">11,200</td><td>임상 진단 + 병변 박스</td><td>결핵 검출 · 위치 표시 벤치마크</td></tr>
-   <tr><td class="k">Choi 2023<small>국내 5개 병원</small></td><td class="n">3,824</td><td class="n">6,101</td><td>활동성 · 비활동성</td><td>내부 AUC 0.980 → <b>외부 0.815 · 0.887</b></td></tr>
-   <tr class="me"><td class="k">협회 판독코드 (본 과제)<small>검진 판독 · 단일 출처</small></td><td class="n">4,835</td><td class="n">7,877,070</td><td>판독 소견 코드</td><td>미검증 · 건수 단위 미확인</td></tr>
-   <tr><td class="k">Lee 2021<small>Radiology · 다기관</small></td><td class="n">6,654 (3,327명)</td><td class="n">9,836</td><td>치료 전 = 활동성, 치료 후 = 치유</td><td>활동성 판별 외부시험 AUC 0.83 ~ 0.84</td></tr>
-   <tr><td class="k">Hwang 2019<small>Clin Infect Dis · 서울대병원(루닛)</small></td><td class="n">6,768</td><td class="n">60,989</td><td>판독의 13명 주석</td><td><b>외부 6개 데이터셋 AUC 0.977 ~ 1.000</b></td></tr>
-   <tr><td class="k">JMIR 2024<small>아주대 · 세브란스</small></td><td class="n">36,142 (4,492명)</td><td class="n">—</td><td>전염성(도말 · 배양)</td><td>전염성 예측 내부 0.79 → 외부 0.77</td></tr>
-   <tr><td class="k">Kazemzadeh 2023<small>Radiology · 구글 · 10개국</small></td><td class="n">—</td><td class="n">165,754 (22,284명)</td><td>미생물 확진 · NAAT</td><td><b>4개국 시험 1,236명(17% 활동성)에서 민감도 88% · 특이도 79%, 영상의학과 의사와 비열등</b></td></tr>
-   <tr><td class="k">VUNO Med-Chest X-ray<small>국내 2등급 · 5개 소견</small></td><td class="n">—</td><td class="n">120,000</td><td>전문의 판독</td><td>소견 조합으로 폐결핵 선별 보조(혁신의료기기)</td></tr>
-   <tr><td class="k">Lunit INSIGHT CXR<small>국내 2등급 · 10개 소견</small></td><td class="n">—</td><td class="n">220,000</td><td>전문의 합의 · CT</td><td>결핵 기능은 해외 CE · WHO 평가 경로</td></tr>
-   <tr><td class="k">qXR (Qure.ai)<small>해외 · WHO 평가 제품</small></td><td class="n">—</td><td class="n">1,200,000 (2020)</td><td>판독문 라벨</td><td>미생물 확진 기준 AUC 0.81 (양성 317)</td></tr>
-   <tr class="me2"><td class="k">협회 배양 확진 (본 과제)<small>복십자의원 연결분</small></td><td class="n">약 400</td><td class="n">—</td><td>배양 확진</td><td>학습 · 시험 동시 사용 불가</td></tr>
+   <tr class="grp"><td colspan="6">결핵 양성 수 공개 · 양성 수 오름차순</td></tr>
+   <tr><td class="rk">1</td><td class="k">Montgomery 공개 데이터<small>미국 공개셋</small></td><td class="n">58</td><td class="n">138</td><td>임상 진단</td><td>연구용 벤치마크</td></tr>
+   <tr><td class="rk">2</td><td class="k">Shenzhen 공개 데이터<small>중국 공개셋</small></td><td class="n">336</td><td class="n">662</td><td>임상 진단</td><td>연구용 벤치마크</td></tr>
+   <tr class="me2"><td class="rk">3</td><td class="k">협회 배양 확진 (본 과제)<small>복십자의원 연결분</small></td><td class="n">약 400</td><td class="n">—</td><td>배양 확진</td><td>학습 · 시험 동시 사용 불가</td></tr>
+   <tr><td class="rk">4</td><td class="k">TBX11K 2020<small>CVPR 공개 데이터</small></td><td class="n">1,200</td><td class="n">11,200</td><td>임상 진단 + 병변 박스</td><td>결핵 검출 · 위치 표시 벤치마크</td></tr>
+   <tr><td class="rk">5</td><td class="k">Choi 2023<small>국내 5개 병원</small></td><td class="n">3,824</td><td class="n">6,101</td><td>활동성 · 비활동성</td><td>내부 AUC 0.980 → <b>외부 0.815 · 0.887</b></td></tr>
+   <tr class="me"><td class="rk">6</td><td class="k">협회 판독코드 (본 과제)<small>검진 판독 · 단일 출처 · 중복 여부 미확인</small></td><td class="n">4,835</td><td class="n">7,877,070</td><td>판독 소견 코드</td><td>미검증 · 건수 단위 · 중복 여부 미확인</td></tr>
+   <tr><td class="rk">7</td><td class="k">Lee 2021<small>Radiology · 다기관</small></td><td class="n">6,654 (3,327명)</td><td class="n">9,836</td><td>치료 전 = 활동성, 치료 후 = 치유</td><td>활동성 판별 외부시험 AUC 0.83 ~ 0.84</td></tr>
+   <tr><td class="rk">8</td><td class="k">Hwang 2019<small>Clin Infect Dis · 서울대병원(루닛)</small></td><td class="n">6,768</td><td class="n">60,989</td><td>판독의 13명 주석</td><td><b>외부 6개 데이터셋 AUC 0.977 ~ 1.000</b></td></tr>
+   <tr><td class="rk">9</td><td class="k">JMIR 2024<small>아주대 · 세브란스</small></td><td class="n">36,142 (4,492명)</td><td class="n">—</td><td>전염성(도말 · 배양)</td><td>전염성 예측 내부 0.79 → 외부 0.77</td></tr>
+   <tr class="grp"><td colspan="6">결핵 양성 수 미공개 · 전체 학습 규모 오름차순</td></tr>
+   <tr><td class="rk">1</td><td class="k">Lakhani &amp; Sundaram 2017<small>Radiology · 4개 데이터셋</small></td><td class="n">—</td><td class="n">1,007</td><td>데이터셋 라벨</td><td>시험 150장 AUC 0.99. 결핵 유사 질환 감별은 학습하지 않음</td></tr>
+   <tr><td class="rk">2</td><td class="k">VUNO Med-Chest X-ray<small>국내 2등급 · 5개 소견</small></td><td class="n">—</td><td class="n">120,000</td><td>전문의 판독</td><td>소견 조합으로 폐결핵 선별 보조(혁신의료기기)</td></tr>
+   <tr><td class="rk">3</td><td class="k">Kazemzadeh 2023<small>Radiology · 구글 · 10개국</small></td><td class="n">—</td><td class="n">165,754 (22,284명)</td><td>미생물 확진 · NAAT</td><td><b>4개국 시험 1,236명(17% 활동성)에서 민감도 88% · 특이도 79%, 영상의학과 의사와 비열등</b></td></tr>
+   <tr><td class="rk">4</td><td class="k">Lunit INSIGHT CXR<small>국내 2등급 · 10개 소견</small></td><td class="n">—</td><td class="n">220,000</td><td>전문의 합의 · CT</td><td>결핵 기능은 해외 CE · WHO 평가 경로</td></tr>
+   <tr><td class="rk">5</td><td class="k">qXR (Qure.ai)<small>해외 · WHO 평가 제품</small></td><td class="n">—</td><td class="n">1,200,000 (2020)</td><td>판독문 라벨</td><td>미생물 확진 기준 AUC 0.81 (양성 317)</td></tr>
   </tbody>
  </table>
 
  <div class="fig">
-  <div class="t">Fig 1 · 결핵 양성 데이터 수 (로그 축)</div>
-  <svg viewBox="0 0 760 360" font-family="Pretendard Variable, Pretendard, Malgun Gothic, sans-serif">
-   <g stroke="#dfe5ef"><line x1="306" y1="14" x2="306" y2="320"/><line x1="412" y1="14" x2="412" y2="320"/><line x1="518" y1="14" x2="518" y2="320"/><line x1="624" y1="14" x2="624" y2="320"/></g>
-   <g font-size="12" fill="#1c2940" text-anchor="end"><text x="190" y="30">JMIR 2024 (결핵 환자 영상)</text><text x="190" y="62">Hwang 2019</text><text x="190" y="94">Lee 2021</text><text x="190" y="126" font-weight="800" fill="#365ee8">협회 판독코드</text><text x="190" y="158">Choi 2023</text><text x="190" y="190">TBX11K</text><text x="190" y="222" font-weight="800" fill="#b91c1c">협회 배양 확진</text><text x="190" y="254">Shenzhen</text><text x="190" y="286">Montgomery</text></g>
-   <g fill="#6c7890"><rect x="200" y="17" width="377.1" height="18" rx="3"/><rect x="200" y="49" width="300" height="18" rx="3"/><rect x="200" y="81" width="299.2" height="18" rx="3"/><rect x="200" y="145" width="273.7" height="18" rx="3"/><rect x="200" y="177" width="220.4" height="18" rx="3"/><rect x="200" y="241" width="161.8" height="18" rx="3"/><rect x="200" y="273" width="80.9" height="18" rx="3"/></g>
-   <rect x="200" y="113" width="284.5" height="18" rx="3" fill="#365ee8"/><rect x="200" y="209" width="169.8" height="18" rx="3" fill="#b91c1c"/>
-   <g font-size="11.5" font-weight="800"><text x="584" y="30" fill="#1c2940">36,142</text><text x="507" y="62" fill="#1c2940">6,768</text><text x="506" y="94" fill="#1c2940">6,654</text><text x="491" y="126" fill="#365ee8">4,835</text><text x="480" y="158" fill="#1c2940">3,824</text><text x="427" y="190" fill="#1c2940">1,200</text><text x="377" y="222" fill="#b91c1c">약 400</text><text x="368" y="254" fill="#1c2940">336</text><text x="288" y="286" fill="#1c2940">58</text></g>
-   <line x1="200" y1="10" x2="200" y2="320" stroke="#1c2940"/>
-   <g font-size="11" fill="#6c7890" text-anchor="middle"><text x="200" y="338">10</text><text x="306" y="338">100</text><text x="412" y="338">1천</text><text x="518" y="338">1만</text><text x="624" y="338">10만</text></g>
+  <div class="t">Fig 1 · 결핵 양성 데이터 수 (오름차순, 로그 축)</div>
+  <svg viewBox="0 0 760 330" font-family="Pretendard Variable, Pretendard, Malgun Gothic, sans-serif">
+   <g stroke="#dfe5ef"><line x1="306" y1="10" x2="306" y2="300"/><line x1="412" y1="10" x2="412" y2="300"/><line x1="518" y1="10" x2="518" y2="300"/><line x1="624" y1="10" x2="624" y2="300"/></g>
+   <text x="190" y="27" font-size="12" fill="#1c2940" text-anchor="end">1. Montgomery</text><rect x="200" y="14" width="80.9" height="18" rx="3" fill="#6c7890"/><text x="287.9" y="27" font-size="11.5" font-weight="800" fill="#1c2940">58</text>
+   <text x="190" y="59" font-size="12" fill="#1c2940" text-anchor="end">2. Shenzhen</text><rect x="200" y="46" width="161.8" height="18" rx="3" fill="#6c7890"/><text x="368.8" y="59" font-size="11.5" font-weight="800" fill="#1c2940">336</text>
+   <text x="190" y="91" font-size="12" fill="#b91c1c" text-anchor="end" font-weight="800">3. 협회 배양 확진</text><rect x="200" y="78" width="169.8" height="18" rx="3" fill="#b91c1c"/><text x="376.8" y="91" font-size="11.5" font-weight="800" fill="#b91c1c">약 400</text>
+   <text x="190" y="123" font-size="12" fill="#1c2940" text-anchor="end">4. TBX11K</text><rect x="200" y="110" width="220.4" height="18" rx="3" fill="#6c7890"/><text x="427.4" y="123" font-size="11.5" font-weight="800" fill="#1c2940">1,200</text>
+   <text x="190" y="155" font-size="12" fill="#1c2940" text-anchor="end">5. Choi 2023</text><rect x="200" y="142" width="273.7" height="18" rx="3" fill="#6c7890"/><text x="480.7" y="155" font-size="11.5" font-weight="800" fill="#1c2940">3,824</text>
+   <text x="190" y="187" font-size="12" fill="#365ee8" text-anchor="end" font-weight="800">6. 협회 판독코드</text><rect x="200" y="174" width="284.5" height="18" rx="3" fill="#365ee8"/><text x="491.5" y="187" font-size="11.5" font-weight="800" fill="#365ee8">4,835</text>
+   <text x="190" y="219" font-size="12" fill="#1c2940" text-anchor="end">7. Lee 2021</text><rect x="200" y="206" width="299.2" height="18" rx="3" fill="#6c7890"/><text x="506.2" y="219" font-size="11.5" font-weight="800" fill="#1c2940">6,654</text>
+   <text x="190" y="251" font-size="12" fill="#1c2940" text-anchor="end">8. Hwang 2019</text><rect x="200" y="238" width="300.0" height="18" rx="3" fill="#6c7890"/><text x="507.0" y="251" font-size="11.5" font-weight="800" fill="#1c2940">6,768</text>
+   <text x="190" y="283" font-size="12" fill="#1c2940" text-anchor="end">9. JMIR 2024 (결핵 환자 영상)</text><rect x="200" y="270" width="377.1" height="18" rx="3" fill="#6c7890"/><text x="584.1" y="283" font-size="11.5" font-weight="800" fill="#1c2940">36,142</text>
+   <line x1="200" y1="8" x2="200" y2="300" stroke="#1c2940"/>
+   <g font-size="11" fill="#6c7890" text-anchor="middle"><text x="200" y="318">10</text><text x="306" y="318">100</text><text x="412" y="318">1천</text><text x="518" y="318">1만</text><text x="624" y="318">10만</text></g>
   </svg>
   <div class="cap"><b>해석:</b> 판독 기준 4,835건은 국내 결핵 특화 연구들(3,824 ~ 6,768)과 같은 구간에 있어, 검출 모델의 학습 양 자체는 부족하지 않음. 반면 확진 400건은 공개 소규모 데이터(Shenzhen 336) 수준임. 연구마다 단위(영상 · 환자)와 라벨 기준이 달라 규모 참고용으로 비교함.</div>
  </div>
 
  <div class="fig">
-  <div class="t">Fig 2 · 전체 학습 데이터 규모 (정상 · 기타 소견 포함, 로그 축)</div>
-  <svg viewBox="0 0 760 290" font-family="Pretendard Variable, Pretendard, Malgun Gothic, sans-serif">
-   <g stroke="#dfe5ef"><line x1="332.5" y1="14" x2="332.5" y2="254"/><line x1="465" y1="14" x2="465" y2="254"/><line x1="597.5" y1="14" x2="597.5" y2="254"/></g>
-   <g font-size="12" fill="#1c2940" text-anchor="end"><text x="190" y="30" font-weight="800" fill="#365ee8">협회 전체 보유 (판독코드)</text><text x="190" y="62">qXR (2020)</text><text x="190" y="94">Lunit INSIGHT CXR</text><text x="190" y="126">Kazemzadeh 2023 (구글)</text><text x="190" y="158">VUNO Med-Chest X-ray</text><text x="190" y="190">Hwang 2019</text><text x="190" y="222" font-weight="800" fill="#365ee8">협회 1차 제공 협의</text></g>
-   <rect x="200" y="17" width="516.3" height="18" rx="3" fill="#365ee8" opacity=".35"/>
-   <g fill="#6c7890"><rect x="200" y="49" width="408" height="18" rx="3"/><rect x="200" y="81" width="310.4" height="18" rx="3"/><rect x="200" y="113" width="294.1" height="18" rx="3"/><rect x="200" y="145" width="275.5" height="18" rx="3"/><rect x="200" y="177" width="236.5" height="18" rx="3"/></g>
-   <rect x="200" y="209" width="172.4" height="18" rx="3" fill="#365ee8"/>
-   <g font-size="11.5" font-weight="800"><text x="710" y="30" fill="#1c2940" text-anchor="end">7,877,070</text><text x="615" y="62" fill="#1c2940">120만</text><text x="517" y="94" fill="#1c2940">22만</text><text x="501" y="126" fill="#1c2940">16.6만</text><text x="482" y="158" fill="#1c2940">12만</text><text x="443" y="190" fill="#1c2940">6.1만</text><text x="379" y="222" fill="#365ee8">2만+</text></g>
-   <line x1="200" y1="10" x2="200" y2="254" stroke="#1c2940"/>
-   <g font-size="11" fill="#6c7890" text-anchor="middle"><text x="200" y="272">1천</text><text x="332.5" y="272">1만</text><text x="465" y="272">10만</text><text x="597.5" y="272">100만</text><text x="730" y="272">1,000만</text></g>
+  <div class="t">Fig 2 · 전체 학습 데이터 규모 (오름차순, 정상 · 기타 소견 포함, 로그 축)</div>
+  <svg viewBox="0 0 760 270" font-family="Pretendard Variable, Pretendard, Malgun Gothic, sans-serif">
+   <g stroke="#dfe5ef"><line x1="332.5" y1="10" x2="332.5" y2="236"/><line x1="465" y1="10" x2="465" y2="236"/><line x1="597.5" y1="10" x2="597.5" y2="236"/></g>
+   <text x="190" y="27" font-size="12" fill="#365ee8" text-anchor="end" font-weight="800">1. 협회 1차 제공 협의</text><rect x="200" y="14" width="172.4" height="18" rx="3" fill="#365ee8"/><text x="379.4" y="27" font-size="11.5" font-weight="800" fill="#365ee8">2만+</text>
+   <text x="190" y="59" font-size="12" fill="#1c2940" text-anchor="end">2. Hwang 2019</text><rect x="200" y="46" width="236.5" height="18" rx="3" fill="#6c7890"/><text x="443.5" y="59" font-size="11.5" font-weight="800" fill="#1c2940">6.1만</text>
+   <text x="190" y="91" font-size="12" fill="#1c2940" text-anchor="end">3. VUNO Med-Chest X-ray</text><rect x="200" y="78" width="275.5" height="18" rx="3" fill="#6c7890"/><text x="482.5" y="91" font-size="11.5" font-weight="800" fill="#1c2940">12만</text>
+   <text x="190" y="123" font-size="12" fill="#1c2940" text-anchor="end">4. Kazemzadeh 2023 (구글)</text><rect x="200" y="110" width="294.1" height="18" rx="3" fill="#6c7890"/><text x="501.1" y="123" font-size="11.5" font-weight="800" fill="#1c2940">16.6만</text>
+   <text x="190" y="155" font-size="12" fill="#1c2940" text-anchor="end">5. Lunit INSIGHT CXR</text><rect x="200" y="142" width="310.4" height="18" rx="3" fill="#6c7890"/><text x="517.4" y="155" font-size="11.5" font-weight="800" fill="#1c2940">22만</text>
+   <text x="190" y="187" font-size="12" fill="#1c2940" text-anchor="end">6. qXR (2020)</text><rect x="200" y="174" width="408.0" height="18" rx="3" fill="#6c7890"/><text x="615.0" y="187" font-size="11.5" font-weight="800" fill="#1c2940">120만</text>
+   <text x="190" y="219" font-size="12" fill="#365ee8" text-anchor="end" font-weight="800">7. 협회 전체 보유 (판독코드)</text><rect x="200" y="206" width="516.3" height="18" rx="3" fill="#365ee8" opacity=".35"/><text x="710.3" y="219" font-size="11.5" font-weight="800" fill="#1c2940" text-anchor="end">7,877,070</text>
+   <line x1="200" y1="8" x2="200" y2="236" stroke="#1c2940"/>
+   <g font-size="11" fill="#6c7890" text-anchor="middle"><text x="200" y="254">1천</text><text x="332.5" y="254">1만</text><text x="465" y="254">10만</text><text x="597.5" y="254">100만</text><text x="730" y="254">1,000만</text></g>
   </svg>
   <div class="cap"><b>해석:</b> 협회 보유량은 상용 제품의 학습 규모를 크게 넘지만, 실제 1차 제공 협의 규모(2만 장+)는 Lunit의 1/10, 국내 결핵 연구(6.1만)의 1/3 수준임. 결핵 양성은 충분해도 정상 · 기타 소견을 더 받아야 위양성을 줄이는 학습이 가능하므로, 제공 규모를 판독코드 기반으로 넓히는 협의가 필요함.</div>
  </div>
@@ -190,7 +202,7 @@ table th{background:#f0f3f9;color:#53627a}
  <table>
   <thead><tr><th style="width:170px">요건</th><th style="width:90px">충족도</th><th>협회 데이터 현황</th><th style="width:220px">보완 방법</th></tr></thead>
   <tbody>
-   <tr><td class="k">결핵 양성 규모</td><td><div class="score" style="--c:#047857"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></td><td>4,835건 (국내 연구 구간). 단위 미확인으로 중복 제거 후 감소 가능</td><td>건수 단위 · 고유 환자 수 확인</td></tr>
+   <tr><td class="k">결핵 양성 규모</td><td><div class="score" style="--c:#047857"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></td><td>4,835건 (국내 연구 구간). 중복 여부 미확인: 한 영상에 여러 코드가 붙었는지, 같은 사람이 여러 해 검진받아 반복 집계됐는지 알 수 없음</td><td>코드 단위 · 영상 단위 · 환자 단위 건수를 각각 받음</td></tr>
    <tr><td class="k">음성 · 대조군 규모</td><td><div class="score" style="--c:#047857"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></td><td>그 외 787만 건. 정상 판독 비율 미확인</td><td>정상 · 기타 소견 구성 집계</td></tr>
    <tr><td class="k">라벨 품질</td><td><div class="score" style="--c:#b45309"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></td><td>검진 판독코드. 판독문 기반 라벨은 영상 재판독과 일치도가 낮다는 보고가 있음(κ 0.34)</td><td>파일럿 재판독으로 일치도 확인</td></tr>
    <tr><td class="k">참조표준</td><td><div class="score" style="--c:#b45309"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></td><td>판독 소견 기준. 확진 연결은 약 400건</td><td>시험셋 복수 전문의 재판독(전문가 판정)</td></tr>
@@ -251,7 +263,7 @@ table th{background:#f0f3f9;color:#53627a}
 <section class="card">
  <h2><span class="no">08</span>제안하는 진행 순서</h2>
  <ol class="steps">
-  <li><b>협회에 확인 요청</b> · 건수 단위, 코드별 건수, 비활동성 결핵 코드, 정상 판독 비율, 영상–코드 연결 방식, 메타데이터 제공 범위.</li>
+  <li><b>협회에 확인 요청</b> · <b>판독코드 중복 여부(코드 · 영상 · 환자 단위 건수)</b>, 코드별 건수, 비활동성 결핵 코드, 정상 판독 비율, 영상–코드 연결 방식, 메타데이터 제공 범위.</li>
   <li><b>파일럿 표본 수령 · 재판독</b> · 결핵 관련 수백 건과 정상 일부를 복수 전문의가 재판독해 판독코드 일치도를 확인함.</li>
   <li><b>모델 범위 확정</b> · 결핵 의심 소견(공동 · 경화 · 결절 등) 검출을 1차 범위로 두고, 식약처 질의 회신에 맞춰 사용목적을 확정함.</li>
   <li><b>외부 검증 데이터 확보</b> · 협력 병원 또는 몽골 등 별도 출처 데이터를 확보하고, 학습에 섞지 않음.</li>
