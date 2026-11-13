@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>회의록 26.10 온라인 협의 · TB 공동연구</title>
+<title>회의록 26.10.00 온라인 협의 · TB 공동연구</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -50,35 +50,34 @@
   @media(max-width:860px){.cover{grid-template-columns:1fr}.meta{border-left:0;padding-left:0}section{grid-template-columns:1fr;padding:36px 0}.no{margin-bottom:8px;font-size:34px}.grid2{grid-template-columns:1fr}h1{font-size:32px}.wrap{padding:0 18px}}
 </style>
 <style id="tb-theme">
-/* TB 공동연구 문서 테마 v3 (에디토리얼) · 2026-11-13 · 09_도구/sync_theme.py 가 관리함 (직접 수정하지 말 것)
-   기준: 비공개_내부검토/261113_TB_흉부질환AI_로드맵_WBS_v1.html 디자인 구조 */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&family=Noto+Sans+KR:wght@400;500;700&display=swap');
+/* TB 공동연구 문서 테마 v4 (Pretendard) · 2026-11-13 · 09_도구/sync_theme.py 가 관리함 (직접 수정하지 말 것) */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
 :root{
- --tb-sans:'DM Sans','Noto Sans KR',sans-serif;--tb-serif:'DM Serif Display','Noto Sans KR',serif;
- --ink:#0f1222!important;--ink-1:#0f1222!important;--text:#0f1222!important;--navy:#0f1222!important;--brand-dark:#0f1222!important;
- --muted:#4a5068!important;--mute:#7a8094!important;--sub:#4a5068!important;--slate:#7a8094!important;
- --line:#e3e6ef!important;--line-dark:#c9cdd9!important;
- --bg:#fbfbfd!important;--canvas:#fbfbfd!important;--paper:#fff!important;--surface:#fff!important;--panel:#fff!important;
- --blue:#5170FF!important;--brand:#5170FF!important;--accent:#5170FF!important;
- --blue2:#eef1ff!important;--blue-soft:#eef1ff!important;--brand-soft:#eef1ff!important;--tint:#eef1ff!important;
- --green:#1f9d5a!important;--green2:#eaf8f0!important;--green-soft:#eaf8f0!important;
- --amber:#c7861c!important;--amber2:#fff6e6!important;--orange:#c7861c!important;--orange-soft:#fff6e6!important;--warn:#c7861c!important;--warn-soft:#fff6e6!important;
- --red:#e0453f!important;--red2:#fdeeed!important;--danger:#e0453f!important;--danger-soft:#fdeeed!important;
- --grey2:#f0f1f5!important;--slate-soft:#f0f1f5!important
+ --tb-font:'Pretendard Variable',Pretendard,'Malgun Gothic','Apple SD Gothic Neo',system-ui,sans-serif;
+ --ink:#1c2940!important;--ink-1:#1c2940!important;--text:#1c2940!important;--navy:#1c2940!important;--brand-dark:#1c2940!important;
+ --muted:#53627a!important;--mute:#53627a!important;--sub:#53627a!important;--slate:#6c7890!important;
+ --line:#dfe5ef!important;--line-dark:#cbd5e3!important;
+ --bg:#f5f7fb!important;--canvas:#f5f7fb!important;--paper:#fff!important;--surface:#fff!important;--panel:#fff!important;
+ --blue:#365ee8!important;--brand:#365ee8!important;--accent:#365ee8!important;
+ --blue2:#edf2ff!important;--blue-soft:#edf2ff!important;--brand-soft:#edf2ff!important;--tint:#edf2ff!important;
+ --green:#177749!important;--green2:#edf8f1!important;--green-soft:#edf8f1!important;
+ --amber:#b45309!important;--amber2:#fffbeb!important;--orange:#b45309!important;--orange-soft:#fffbeb!important;--warn:#b45309!important;--warn-soft:#fffbeb!important;
+ --red:#b91c1c!important;--red2:#fef2f2!important;--danger:#b91c1c!important;--danger-soft:#fef2f2!important;
+ --grey2:#f0f3f9!important;--slate-soft:#f0f3f9!important
 }
-html,body{background:#fbfbfd!important}
+html,body{background:#f5f7fb!important}
 html{zoom:1.12}  /* 글씨 크기 확대 (2026-11-13) */
-body{font-family:var(--tb-sans)!important;color:#0f1222!important;word-break:keep-all}
-body *:not(code,pre,kbd,samp,.mono,svg *){font-family:var(--tb-sans)!important}
-body :is(h1,h2,.serif,.big,.no,.num,.kpi .n,.lesson-number){font-family:var(--tb-serif)!important;font-weight:400!important;letter-spacing:-.005em!important}
-body h1{line-height:1.25!important;color:#0f1222!important}
-body h2{line-height:1.35!important}
+body{font-family:var(--tb-font)!important;color:#1c2940!important;-webkit-font-smoothing:antialiased}
+body *:not(code,pre,kbd,samp,.mono,svg *){font-family:var(--tb-font)!important}
+body h1{font-weight:800!important;letter-spacing:-.035em!important;line-height:1.35!important;color:#1c2940!important}
+body h2{font-weight:750!important;letter-spacing:-.03em!important;line-height:1.45!important}
 body h3{font-weight:700!important}
-body .no{color:#d9dce6!important}
-a{color:#5170FF}
-table{border-top:2px solid #0f1222}
-table th{background:transparent;color:#4a5068;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:700}
-:focus-visible{outline:3px solid #a9b8ff;outline-offset:3px}
+body :is(.big){font-weight:700!important;letter-spacing:-.03em!important;line-height:1.55!important}
+body :is(.kpi .n,.no,.num){font-weight:800!important;letter-spacing:-.03em!important}
+body .no{color:#cbd5e3!important}
+a{color:#365ee8}
+table th{background:#f0f3f9;color:#53627a}
+:focus-visible{outline:3px solid #93adff;outline-offset:3px}
 </style>
 </head>
 <body>
@@ -95,11 +94,11 @@ table th{background:transparent;color:#4a5068;font-size:11.5px;letter-spacing:.0
 <div class="cover">
   <div>
     <div class="kicker">Meeting Minutes · 대한결핵협회 × 마이허브</div>
-    <h1 class="serif">회의록<br><em>2026.10 온라인 협의</em></h1>
+    <h1 class="serif">회의록<br><em>2026.10.00 온라인 협의</em></h1>
     <p class="sub">데이터 제공 범위 확인(2026.10.01) 이후, 학습·검증 데이터의 기준과 추진 방식에 대해 양 기관이 온라인으로 협의한 회의. 공유 가능한 범위에서 확인된 사실과 양측 입장, 합의 사항만 정리하며 참석자는 기관·역할 단위로 표기함.</p>
   </div>
   <div class="meta">
-    <b>회의</b> 온라인 · 일자 미확인(2026.10)<br>
+    <b>회의</b> 온라인 · 2026.10.00 (일자 미확인, 10.01 이후 · 10.14 이전)<br>
     <b>참석</b> 대한결핵협회 정보화운영팀·검사 담당 / 마이허브 경영진·기술·의학전략<br>
     <b>정리</b> 마이허브 의학전략실 · 2026.10.14<br>
     <b>성격</b> 공유용 요약본. 녹취 원문은 양 기관 내부 보관
@@ -180,7 +179,7 @@ table th{background:transparent;color:#4a5068;font-size:11.5px;letter-spacing:.0
 </section>
 
 <div class="foot">
-  <b>작성 기준</b> · 온라인 협의 녹취(일자 미확인, 2026.10). 개인 발언, 타사 제품에 대한 현장 평가, 내부 검토 의견은 공유용 요약에서 제외함.<br>
+  <b>작성 기준</b> · 온라인 협의 녹취(2026.10.00, 일자 미확인). 개인 발언, 타사 제품에 대한 현장 평가, 내부 검토 의견은 공유용 요약에서 제외함.<br>
   <b>용어</b> · 확진은 배양검사 양성을 기준으로 함. 수치는 협회 제시 기준이며 검수 전 규모임.
 </div>
 

@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>흉부 X-ray AI 경쟁 제품 비교 분석 · TB 공동연구</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0f1222;--sub:#4a5068;--mute:#7a8094;--line:#e3e6ef;--bg:#fbfbfd;--panel:#fff;
+--blue:#5170FF;--red:#e0453f;--amber:#c7861c;--green:#1f9d5a;
+--blue2:#eef1ff;--red2:#fdeeed;--green2:#eaf8f0;--amber2:#fff6e6}
+*{box-sizing:border-box}
+html{zoom:1.12}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.7 "DM Sans","Noto Sans KR",sans-serif;word-break:keep-all}
+.wrap{max-width:1120px;margin:0 auto;padding:48px 24px 72px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:700}
+h1{font-family:"DM Serif Display","Noto Sans KR",serif;font-weight:400;font-size:42px;line-height:1.2;margin:10px 0 14px}
+.lead{font-size:16.5px;color:var(--sub);max-width:860px;margin:0}
+.meta{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--ink);margin-top:26px}
+.meta div{padding:12px 14px 12px 0;font-size:13px;color:var(--sub)}
+.meta b{display:block;color:var(--ink);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.strip{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);background:var(--panel);margin:32px 0 8px}
+.kpi{padding:20px 22px;border-right:1px solid var(--line)}.kpi:last-child{border-right:0}
+.kpi .n{font-family:"DM Serif Display",serif;font-size:38px;line-height:1.1}
+.kpi .n small{font-family:"DM Sans","Noto Sans KR",sans-serif;font-size:14px;color:var(--mute);margin-left:4px}
+.kpi .l{font-size:13px;color:var(--sub);margin-top:6px}
+.kpi.red .n{color:var(--red)}.kpi.green .n{color:var(--green)}.kpi.blue .n{color:var(--blue)}.kpi.amber .n{color:var(--amber)}
+section{position:relative;border-top:1px solid var(--line);padding:42px 0 30px 144px}
+section .num{position:absolute;left:0;top:34px;font-family:"DM Serif Display",serif;font-size:64px;color:#d9dce6;line-height:1}
+h2{font-family:"DM Serif Display","Noto Sans KR",serif;font-weight:400;font-size:28px;margin:0 0 12px}
+h3{font-size:15px;margin:22px 0 8px}
+p{margin:0 0 12px}
+.big{font-family:"DM Serif Display","Noto Sans KR",serif;font-size:23px;line-height:1.45;margin:18px 0}
+.big em{font-style:normal;background:linear-gradient(transparent 62%,var(--blue2) 62%)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.panel{background:var(--panel);border:1px solid var(--line);padding:16px 18px}
+.panel.blue{background:var(--blue2);border-color:#d6ddff}.panel.amber{background:var(--amber2);border-color:#f3e0bb}.panel.green{background:var(--green2);border-color:#cdeedb}.panel.red{background:var(--red2);border-color:#f6d3d1}
+.panel.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+.panel h4{margin:0 0 6px;font-size:14px}
+.panel ul{margin:4px 0 0;padding-left:18px;font-size:14px}.panel li{margin:3px 0}
+.verdict{margin-top:10px;padding-top:10px;border-top:1px solid rgba(0,0,0,.08);font-weight:700;font-size:13.5px}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;padding:1px 8px;border-radius:3px;white-space:nowrap}
+.tag.red{background:var(--red2);color:var(--red)}.tag.green{background:var(--green2);color:var(--green)}
+.tag.amber{background:var(--amber2);color:var(--amber)}.tag.blue{background:var(--blue2);color:var(--blue)}.tag.grey{background:#eef0f4;color:var(--sub)}
+table{width:100%;border-collapse:collapse;border-top:2px solid var(--ink);font-size:13px;background:var(--panel);margin:8px 0 6px}
+th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--sub);text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);font-weight:700}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+td.k{font-weight:700}
+td small{display:block;color:var(--mute);font-size:11.5px}
+tr.me td{background:var(--blue2)}
+.fig{background:var(--panel);border:1px solid var(--line);padding:16px 18px 12px;margin:18px 0}
+.fig .t{font-size:12.5px;font-weight:700;color:var(--sub);margin-bottom:8px}
+.fig svg{width:100%;height:auto;display:block}
+.cap{font-size:13px;color:var(--sub);margin-top:8px}.cap b{color:var(--ink)}
+.note{font-size:12.5px;color:var(--mute)}
+.foot{border-top:1px solid var(--line);padding-top:22px;margin-top:20px;font-size:12.5px;color:var(--sub)}
+.foot ol{padding-left:18px}.foot li{margin:3px 0}
+@media(max-width:860px){
+ section{padding-left:0}section .num{position:static;font-size:40px;margin-bottom:6px}
+ .strip,.meta{grid-template-columns:repeat(2,1fr)}.grid3,.grid2{grid-template-columns:1fr}
+ h1{font-size:30px}.wrap{padding:30px 16px 56px}table{display:block;overflow-x:auto}
+}
+@media print{.fig,.panel{break-inside:avoid}}
+</style>
+<style id="tb-theme">
+/* TB 공동연구 문서 테마 v4 (Pretendard) · 2026-11-13 · 09_도구/sync_theme.py 가 관리함 (직접 수정하지 말 것) */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+:root{
+ --tb-font:'Pretendard Variable',Pretendard,'Malgun Gothic','Apple SD Gothic Neo',system-ui,sans-serif;
+ --ink:#1c2940!important;--ink-1:#1c2940!important;--text:#1c2940!important;--navy:#1c2940!important;--brand-dark:#1c2940!important;
+ --muted:#53627a!important;--mute:#53627a!important;--sub:#53627a!important;--slate:#6c7890!important;
+ --line:#dfe5ef!important;--line-dark:#cbd5e3!important;
+ --bg:#f5f7fb!important;--canvas:#f5f7fb!important;--paper:#fff!important;--surface:#fff!important;--panel:#fff!important;
+ --blue:#365ee8!important;--brand:#365ee8!important;--accent:#365ee8!important;
+ --blue2:#edf2ff!important;--blue-soft:#edf2ff!important;--brand-soft:#edf2ff!important;--tint:#edf2ff!important;
+ --green:#177749!important;--green2:#edf8f1!important;--green-soft:#edf8f1!important;
+ --amber:#b45309!important;--amber2:#fffbeb!important;--orange:#b45309!important;--orange-soft:#fffbeb!important;--warn:#b45309!important;--warn-soft:#fffbeb!important;
+ --red:#b91c1c!important;--red2:#fef2f2!important;--danger:#b91c1c!important;--danger-soft:#fef2f2!important;
+ --grey2:#f0f3f9!important;--slate-soft:#f0f3f9!important
+}
+html,body{background:#f5f7fb!important}
+html{zoom:1.12}  /* 글씨 크기 확대 (2026-11-13) */
+body{font-family:var(--tb-font)!important;color:#1c2940!important;-webkit-font-smoothing:antialiased}
+body *:not(code,pre,kbd,samp,.mono,svg *){font-family:var(--tb-font)!important}
+body h1{font-weight:800!important;letter-spacing:-.035em!important;line-height:1.35!important;color:#1c2940!important}
+body h2{font-weight:750!important;letter-spacing:-.03em!important;line-height:1.45!important}
+body h3{font-weight:700!important}
+body :is(.big){font-weight:700!important;letter-spacing:-.03em!important;line-height:1.55!important}
+body :is(.kpi .n,.no,.num){font-weight:800!important;letter-spacing:-.03em!important}
+body .no{color:#cbd5e3!important}
+a{color:#365ee8}
+table th{background:#f0f3f9;color:#53627a}
+:focus-visible{outline:3px solid #93adff;outline-offset:3px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="eyebrow">Research · Competitive analysis</div>
+<h1>흉부 X-ray AI<br>경쟁 제품 비교 분석</h1>
+<p class="lead">국내 식약처 허가 흉부 X-ray AI 제품과 해외 결핵 판독 AI의 검출 범위, 학습 규모, 허가 등급, 결핵 관련 성능을 비교하고, 본 과제(결핵 진단 AI모델 개발)의 위치와 차별화 방향을 정리함.</p>
+<div class="meta">
+ <div><b>기준일</b>2026.11.13</div>
+ <div><b>비교 대상</b>국내 허가 12종 · 해외 · WHO 평가 3종</div>
+ <div><b>자사 전제</b>이상소견 검출 모델 우선 (임상시험 교육 11.11)</div>
+ <div><b>문서 상태</b>초안 v1</div>
+</div>
+
+<div class="strip">
+ <div class="kpi"><div class="n">12<small>종</small></div><div class="l">국내 허가 흉부 X-ray AI 검출 · 판독보조 제품 (2026.06 기준)</div></div>
+ <div class="kpi blue"><div class="n">22<small>만 장</small></div><div class="l">최대 학습 규모 (Lunit INSIGHT CXR). VUNO 12만 장</div></div>
+ <div class="kpi amber"><div class="n">2<small>종</small></div><div class="l">국내 허가 중 폐결핵 · 활동성 결핵을 검출 대상으로 명시한 제품 (3등급)</div></div>
+ <div class="kpi red"><div class="n">2<small>/ 8</small></div><div class="l">외부 평가에서 민감도 90% 지점 특이도가 WHO 목표 70%를 넘은 사례</div></div>
+</div>
+
+<!-- 01 -->
+<section>
+<div class="num">01</div>
+<h2>요약</h2>
+<p>국내 시장은 소견 검출형 판독보조(2등급)가 주류이며, 결핵을 직접 표방한 허가는 3등급으로 소수임. Lunit · VUNO는 10~20만 장 규모의 학습 데이터와 다수 소견을 갖췄고, 결핵 선별은 소견 조합(VUNO 혁신의료기기) 또는 해외 CE · WHO 경로(Lunit)로 제공함. 해외 결핵 AI도 확진 기준 독립 평가에서는 WHO 목표 특이도를 넘지 못한 사례가 많음.</p>
+<div class="grid3">
+ <div class="panel"><h4>시장 구조</h4><ul><li>소견 검출형 2등급이 주류</li><li>결핵 명시 허가는 3등급 2종</li><li>생성형 예비소견서(41~57종) 등장</li></ul></div>
+ <div class="panel amber"><h4>자사 불리한 점</h4><ul><li>학습 데이터 규모 격차 (협회 결핵 관련 4,835건 vs 10~20만 장)</li><li>다기관 · 다장비 외부검증 자료 미확보</li><li>확진 기준 결핵 성능 입증 어려움</li></ul></div>
+ <div class="panel blue"><h4>자사 차별화 후보</h4><ul><li>공동(cavitation) 소견: 공개 자료상 국내 허가 제품의 검출 소견에 없음</li><li>결핵 검진 집단 데이터 · 협회 검진망</li><li>해외(몽골 · 라오스) 검진 사업 연계</li></ul></div>
+</div>
+<div class="big">경쟁 구도상 현실적인 진입 경로는 <em>소견 검출형 허가</em>를 먼저 받고, <em>결핵 특화 기능</em>으로 차별화하는 순서임.</div>
+</section>
+
+<!-- 02 -->
+<section>
+<div class="num">02</div>
+<h2>포지셔닝</h2>
+<div class="fig">
+ <div class="t">Fig 1 · 검출 범위와 결핵 기능 수준에 따른 제품 위치</div>
+ <svg viewBox="0 0 760 300" font-family="Pretendard Variable, Pretendard, Malgun Gothic, sans-serif">
+  <g stroke="#e3e6ef"><line x1="170" y1="70" x2="730" y2="70"/><line x1="170" y1="150" x2="730" y2="150"/><line x1="170" y1="230" x2="730" y2="230"/></g>
+  <line x1="170" y1="40" x2="170" y2="255" stroke="#0f1222"/><line x1="170" y1="255" x2="730" y2="255" stroke="#0f1222"/>
+  <g font-size="12" fill="#4a5068" text-anchor="end"><text x="160" y="66">결핵 · 폐결핵 명시</text><text x="160" y="80" font-size="10.5" fill="#7a8094">허가 사용목적</text><text x="160" y="146">결핵 선별 보조</text><text x="160" y="160" font-size="10.5" fill="#7a8094">소견 조합 · 해외 경로</text><text x="160" y="226">소견 검출만</text><text x="160" y="240" font-size="10.5" fill="#7a8094">결핵 언급 없음</text></g>
+  <g font-size="11" fill="#7a8094" text-anchor="middle"><text x="170" y="272">1</text><text x="263.1" y="272">2</text><text x="386.2" y="272">5</text><text x="479.3" y="272">10</text><text x="572.4" y="272">20</text><text x="695.5" y="272">50</text><text x="450" y="292">검출 소견 · 질환 수 (로그 축)</text></g>
+  <g fill="#7a8094"><circle cx="175" cy="224" r="6"/><circle cx="263.1" cy="236" r="6"/><circle cx="317.6" cy="224" r="6"/><circle cx="356.2" cy="236" r="6"/><circle cx="386.2" cy="224" r="6"/><circle cx="542.4" cy="230" r="6"/><circle cx="668.9" cy="230" r="6"/></g>
+  <g font-size="10.5" fill="#4a5068"><text x="183" y="214">삼성 · 프로메디우스</text><text x="250" y="252" text-anchor="end">LuCAS</text><text x="317.6" y="214" text-anchor="middle">뷰웍스</text><text x="356.2" y="252" text-anchor="middle">DCXA</text><text x="392" y="214">DEEP:CHEST</text><text x="560" y="252" text-anchor="start">JVIEWER-X</text><text x="668.9" y="218" text-anchor="middle">M4CXR</text></g>
+  <circle cx="386.2" cy="150" r="7" fill="#c7861c"/><text x="378" y="138" font-size="11.5" font-weight="700" fill="#c7861c" text-anchor="end">VUNO</text>
+  <circle cx="479.3" cy="150" r="7" fill="#c7861c"/><text x="479.3" y="138" font-size="11.5" font-weight="700" fill="#c7861c" text-anchor="middle">Lunit</text>
+  <circle cx="356.2" cy="70" r="7" fill="#e0453f"/><text x="356.2" y="58" font-size="11.5" font-weight="700" fill="#e0453f" text-anchor="middle">O-View AI</text>
+  <circle cx="713.1" cy="70" r="7" fill="#e0453f"/><text x="705" y="58" font-size="11.5" font-weight="700" fill="#e0453f" text-anchor="end">AIRead-CXR</text>
+  <g><circle cx="492.1" cy="230" r="9" fill="#fff" stroke="#5170FF" stroke-width="3"/><text x="504" y="200" font-size="12" font-weight="700" fill="#5170FF">자사 1단계</text><text x="504" y="214" font-size="10.5" fill="#5170FF">이상소견 11종 (인허가)</text></g>
+  <g><circle cx="492.1" cy="150" r="9" fill="#fff" stroke="#5170FF" stroke-width="3" stroke-dasharray="3 2"/><text x="504" y="154" font-size="12" font-weight="700" fill="#5170FF">자사 2단계 (활동성 결핵, 연구용)</text></g>
+  <line x1="492.1" y1="219" x2="492.1" y2="161" stroke="#5170FF" stroke-width="1.5" stroke-dasharray="4 3"/>
+ </svg>
+ <div class="cap"><b>해석:</b> 대부분의 국내 제품은 결핵을 언급하지 않는 소견 검출형임. 결핵을 직접 명시한 허가(O-View AI, AIRead-CXR)는 3등급이며, Lunit · VUNO는 소견 조합이나 해외 경로로 결핵 선별을 보조함. 자사는 식약처 질의의 사용목적(이상소견 11종)으로 1단계 허가를 받고, 활동성 결핵 기능은 확진 데이터 확보 후 연구용으로 올리는 경로임. 소견 수는 허가 사항 · 공개 자료 기준 근사치임.</div>
+</div>
+</section>
+
+<!-- 03 -->
+<section>
+<div class="num">03</div>
+<h2>국내 허가 제품 비교</h2>
+<table>
+ <thead><tr><th>제품 · 제조사</th><th>허가</th><th>검출 대상</th><th>학습 데이터</th><th>허가 시 제시 성능</th></tr></thead>
+ <tbody>
+  <tr><td class="k">O-View AI<small>오톰</small></td><td>2023.07 · 3등급</td><td>폐암 · 폐렴 · <b>폐결핵</b> · 기흉</td><td>비공개</td><td>AUROC ≥0.937, 민감도 ≥84.59%, 특이도 ≥96.6% (19~90세)</td></tr>
+  <tr><td class="k">Lunit INSIGHT CXR<small>루닛</small></td><td>2020.10 · 2등급</td><td>결절 · 경화 · 기흉 · 흉수 · 무기폐 · 석회화 · 심비대 · 기복증 · 섬유화 등 9~10종</td><td>220,000장</td><td>AUROC ≥0.85, 민감도 ≥70%, 특이도 ≥70% (≥14세)</td></tr>
+  <tr><td class="k">Lunit INSIGHT CXR Triage<small>루닛</small></td><td>2등급 · 수출용</td><td>흉막삼출 · 기흉 (판독 우선순위 보조)</td><td>—</td><td>—</td></tr>
+  <tr><td class="k">VUNO Med-Chest X-ray<small>뷰노</small></td><td>2019.08 · 2등급<small>2025 혁신의료기기 통합 84호</small></td><td>결절 · 경화 · 간질성 음영 · 흉수 · 기흉 5종. 소견 조합으로 폐렴 · <b>폐결핵 선별 보조</b></td><td>120,000장 · 6개 기관</td><td>민감도 ≥80%, 검사당 위양성 ≤1.5 (≥19세)</td></tr>
+  <tr><td class="k">DEEP:CHEST<small>딥노이드</small></td><td>2021.10</td><td>흉수 · 기흉 · 경화 · 섬유화 · 결절</td><td>비공개</td><td>소견별 민감도 60~92% 이상, 특이도 ≥70% (18~74세)</td></tr>
+  <tr><td class="k">JVIEWER-X<small>제이엘케이</small></td><td>2020.01</td><td>폐 이상 소견 16종</td><td>비공개</td><td>정확도 94.82%</td></tr>
+  <tr><td class="k">DCXA<small>DK메디칼시스템</small></td><td>2023.01</td><td>심비대 · 흉수 · 기흉 · 결절</td><td>13,000장 · 9개 기관</td><td>소견별 민감도 60~92% 이상, 특이도 ≥70% (≥19세)</td></tr>
+  <tr><td class="k">LuCAS-CXR<small>모니터코퍼레이션</small></td><td>2022.07</td><td>음영 증가 · 감소 이상 영역</td><td>8,000장 · 단일 기관</td><td>민감도 ≥85%, 특이도 ≥85%</td></tr>
+  <tr><td class="k">Auto Lung Nodule Detection<small>삼성전자</small></td><td>2019.06</td><td>폐결절</td><td>17,210장 · 단일 기관</td><td>민감도 ≥80%, 검사당 위양성 0.15 (≥18세)</td></tr>
+  <tr><td class="k">PROS CXR:01<small>프로메디우스</small></td><td>2023.12</td><td>기흉</td><td>국내 기관 + 공개 DB</td><td>민감도 ≥70%, 특이도 ≥70% (≥19세)</td></tr>
+  <tr><td class="k">VXCAD-CXR<small>뷰웍스</small></td><td>2024.08</td><td>흉수 · 기흉 · 결절</td><td>—</td><td>—</td></tr>
+  <tr><td class="k">AIRead-CXR<small>숨빗AI</small></td><td>2026.04 · 3등급</td><td>생성형 예비소견서 57종, <b>활동성 결핵</b> 포함</td><td>—</td><td>—</td></tr>
+  <tr><td class="k">M4CXR<small>딥노이드</small></td><td>2026.06 · 3등급</td><td>생성형 예비소견서 41종</td><td>—</td><td>—</td></tr>
+  <tr class="me"><td class="k">자사 (계획)<small>마이허브 × 대한결핵협회</small></td><td>3등급 예상 · 질의 중</td><td>무기폐 · 석회화 · 심장비대 · 경화 · 섬유화 · 종격동확장 · 결절/종괴 · 흉막삼출 · 기복증 · 기흉 · <b>공동</b> (11종)</td><td>협회 데이터 (확정 전)</td><td>식약처 질의 Q3 회신 후 확정</td></tr>
+ </tbody>
+</table>
+<p class="note">허가 성능은 허가 시 제시한 기준값이며 참조표준(전문의 판독 · CT 등)은 제품별로 다름. 2026년 허가 제품과 Triage의 세부 성능 · 학습 규모는 공개 자료에서 확인하지 못함.</p>
+</section>
+
+<!-- 04 -->
+<section>
+<div class="num">04</div>
+<h2>학습 데이터 규모</h2>
+<div class="fig">
+ <div class="t">Fig 2 · 공개된 학습 데이터 규모 (로그 축)</div>
+ <svg viewBox="0 0 760 330" font-family="Pretendard Variable, Pretendard, Malgun Gothic, sans-serif">
+  <g stroke="#e3e6ef"><line x1="307.5" y1="14" x2="307.5" y2="296"/><line x1="445" y1="14" x2="445" y2="296"/><line x1="582.5" y1="14" x2="582.5" y2="296"/></g>
+  <g font-size="12" fill="#0f1222" text-anchor="end"><text x="160" y="32">qXR (Qure.ai)</text><text x="160" y="66">Lunit INSIGHT CXR</text><text x="160" y="100">VUNO Med-Chest X-ray</text><text x="160" y="134">Hwang 2019 (결핵 특화)</text><text x="160" y="168">삼성 폐결절</text><text x="160" y="202">DCXA</text><text x="160" y="236">LuCAS-CXR</text><text x="160" y="270" font-weight="700" fill="#5170FF">협회 결핵 판독코드</text><text x="160" y="290" font-size="10.5" fill="#7a8094">(1차 제공 협의 2만 장+)</text></g>
+  <g fill="#7a8094"><rect x="170" y="20" width="495.3" height="18"/><rect x="170" y="54" width="322.1" height="18"/><rect x="170" y="88" width="285.9" height="18"/><rect x="170" y="122" width="245.5" height="18"/><rect x="170" y="156" width="169.9" height="18"/><rect x="170" y="190" width="153.2" height="18"/><rect x="170" y="224" width="124.2" height="18"/></g>
+  <rect x="170" y="258" width="94.1" height="18" fill="#5170FF"/>
+  <rect x="264.1" y="258" width="84.8" height="18" fill="#eef1ff" stroke="#5170FF" stroke-dasharray="3 2"/>
+  <g font-size="11.5" font-weight="700" fill="#0f1222"><text x="671" y="33">400만 장+</text><text x="498" y="67">220,000</text><text x="462" y="101">120,000</text><text x="421" y="135">60,989 (활동성 6,768)</text><text x="346" y="169">17,210</text><text x="329" y="203">13,000</text><text x="300" y="237">8,000</text><text x="355" y="271" fill="#5170FF">4,835 / 20,000+</text></g>
+  <line x1="170" y1="12" x2="170" y2="300" stroke="#0f1222"/>
+  <g font-size="11" fill="#7a8094" text-anchor="middle"><text x="170" y="316">1천</text><text x="307.5" y="316">1만</text><text x="445" y="316">10만</text><text x="582.5" y="316">100만</text><text x="720" y="316">1,000만</text></g>
+ </svg>
+ <div class="cap"><b>해석:</b> 국내 주요 경쟁 제품은 10~20만 장, 해외 qXR은 수백만 장 규모로 학습함. 협회의 결핵 관련 판독코드 데이터는 4,835건, 1차 제공 협의 규모는 2만 장 이상으로 Lunit 대비 1/10 수준임. 협회 전체 보유량(약 787만 건)을 정상 · 기타 소견 학습에 활용할 수 있는지가 규모 격차를 줄이는 핵심 변수임. 건수 단위(영상 · 환자)는 제품마다 다를 수 있음.</div>
+</div>
+</section>
+
+<!-- 05 -->
+<section>
+<div class="num">05</div>
+<h2>해외 결핵 AI의 확진 기준 성능</h2>
+<p>WHO가 컴퓨터 보조 판독(CAD) 권고 근거로 검토한 제품(CAD4TB, Lunit, qXR)은 미생물학적 확진을 참조표준으로, 민감도 90% 지점의 특이도로 비교함.</p>
+<div class="fig">
+ <div class="t">Fig 3 · 민감도 90% 고정 시 특이도 (독립 평가 3건)</div>
+ <svg viewBox="0 0 760 330" font-family="Pretendard Variable, Pretendard, Malgun Gothic, sans-serif">
+  <g font-size="11.5" fill="#4a5068" font-weight="700"><text x="10" y="18">Tavaziva 2022 · 4개국 3,727명</text><text x="10" y="128">Qin 2021 · 방글라데시 전향</text><text x="10" y="208">PLOS GPH 2023 · 이주민 18개국</text></g>
+  <g font-size="12" fill="#0f1222" text-anchor="end"><text x="160" y="40">CAD4TB v6</text><text x="160" y="66">Lunit 3.1</text><text x="160" y="92">qXR v2</text><text x="160" y="150">qXR v3</text><text x="160" y="176">CAD4TB v7</text><text x="160" y="230">Lunit 4.9</text><text x="160" y="256">qXR v2</text><text x="160" y="282">CAD4TB v6</text></g>
+  <g fill="#7a8094"><rect x="170" y="28" width="313" height="16"/><rect x="170" y="54" width="297.6" height="16"/><rect x="170" y="80" width="332.8" height="16"/><rect x="170" y="218" width="299.8" height="16"/><rect x="170" y="244" width="178.2" height="16"/><rect x="170" y="270" width="126.5" height="16"/></g>
+  <g fill="#1f9d5a"><rect x="170" y="138" width="408.7" height="16"/><rect x="170" y="164" width="401" height="16"/></g>
+  <g font-size="11.5" font-weight="700"><text x="489" y="41" fill="#0f1222">56.9%</text><text x="474" y="67" fill="#0f1222">54.1%</text><text x="509" y="93" fill="#0f1222">60.5%</text><text x="585" y="151" fill="#1f9d5a">74.3%</text><text x="577" y="177" fill="#1f9d5a">72.9%</text><text x="476" y="231" fill="#0f1222">54.5%</text><text x="354" y="257" fill="#0f1222">32.4%</text><text x="303" y="283" fill="#0f1222">23.0%</text></g>
+  <line x1="555" y1="20" x2="555" y2="296" stroke="#e0453f" stroke-dasharray="5 4"/><text x="560" y="306" font-size="11.5" font-weight="700" fill="#e0453f">WHO TPP 최소 특이도 70%</text>
+  <line x1="170" y1="20" x2="170" y2="296" stroke="#0f1222"/>
+  <g font-size="11" fill="#7a8094" text-anchor="middle"><text x="170" y="322">0%</text><text x="445" y="322">50%</text><text x="720" y="322">100%</text></g>
+ </svg>
+ <div class="cap"><b>해석:</b> 8개 측정값 중 TPP 최소 특이도 70%를 넘은 것은 방글라데시 연구의 2건뿐임. 확진 기준 결핵 선별 성능은 세계적 제품도 달성이 어려운 수준이며, 집단 · 환경에 따라 크게 달라짐. 본 과제가 결핵 확진 성능을 1단계 허가 목표로 두기 어려운 근거가 됨.</div>
+</div>
+</section>
+
+<!-- 06 -->
+<section>
+<div class="num">06</div>
+<h2>자사 비교와 차별화 방향</h2>
+<div class="grid2">
+ <div class="panel"><span class="tag blue">경쟁 요소</span>
+  <table style="margin-top:8px">
+   <thead><tr><th>요소</th><th>Lunit · VUNO</th><th>자사 (계획)</th></tr></thead>
+   <tbody>
+    <tr><td class="k">검출 소견</td><td>5~10종</td><td>11종 (공동 포함)</td></tr>
+    <tr><td class="k">학습 규모</td><td>12~22만 장</td><td>2만 장+ (확대 협의)</td></tr>
+    <tr><td class="k">결핵 기능</td><td>소견 조합 · 해외 경로</td><td>공동 소견 + 2단계 연구용</td></tr>
+    <tr><td class="k">허가 등급</td><td>2등급 (VUNO 혁신의료기기)</td><td>3등급 예상 · 질의 중</td></tr>
+    <tr><td class="k">외부 검증</td><td>다기관 · 다국가</td><td>미확보</td></tr>
+    <tr><td class="k">현장 연계</td><td>병원 PACS 중심</td><td>협회 검진망 · 해외 사업</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <div class="panel dark"><h4>차별화 방향</h4>
+  <ul>
+   <li><b>공동(cavitation) 소견</b>: 결핵 특이 소견으로 공개 자료상 국내 허가 제품 검출 목록에 없음. 임상 자문의와 정의 확정 필요</li>
+   <li><b>검진 환경 특화</b>: 이동 · 집단검진 영상 중심의 학습 · 검증으로 검진 현장 성능을 강점으로 제시</li>
+   <li><b>협회 검진망 · 해외 사업</b>: 국내 검진 기관과 몽골 · 라오스 사업을 초기 레퍼런스로 활용</li>
+   <li><b>단계적 결핵 기능</b>: 1단계 소견 검출 허가 후, 확진 데이터 확보 시 활동성 결핵 기능을 연구용으로 추가</li>
+  </ul>
+  <div class="verdict" style="border-color:rgba(255,255,255,.2)">판정: 규모 경쟁보다 결핵 특이 소견과 검진 현장 적합성으로 차별화하는 전략이 현실적임.</div>
+ </div>
+</div>
+</section>
+
+<!-- 07 -->
+<section>
+<div class="num">07</div>
+<h2>확인이 필요한 사항</h2>
+<table>
+ <thead><tr><th>항목</th><th>내용</th><th>확인 방법</th></tr></thead>
+ <tbody>
+  <tr><td class="k">허가증 원문</td><td>Lunit · VUNO 국내 사용목적 원문, 결핵 관련 문구 허용 범위</td><td>의료기기안심책방 · 식약처 질의 Q2 회신</td></tr>
+  <tr><td class="k">공동 소견 검출 제품</td><td>국내외 허가 제품 중 공동을 검출 소견으로 명시한 사례 유무</td><td>FDA 510(k) · CE 자료 조사</td></tr>
+  <tr><td class="k">2026년 허가 제품</td><td>AIRead-CXR · M4CXR의 성능 · 학습 규모 · 참조표준</td><td>허가 공개 자료 · 보도자료</td></tr>
+  <tr><td class="k">가격 · 수가</td><td>경쟁 제품의 판매 가격, 비급여 · 혁신의료기술 적용 현황</td><td>시장 조사</td></tr>
+  <tr><td class="k">협회 데이터 활용 범위</td><td>약 787만 건 중 정상 · 기타 소견 학습 활용 가능 여부</td><td>협회 협의</td></tr>
+ </tbody>
+</table>
+</section>
+
+<div class="foot">
+<b>근거 및 가정</b>
+<ol>
+<li>국내 허가 목록: 황의진, 「흉부 X선 판독 보조 인공지능 의료기기의 임상 적용」, 대한영상의학회지 2024;85(4):693-704 Table 1 (식약처 의료기기안심책방 기준, 2024.06). 2024.06 이후 허가(뷰웍스 · 숨빗AI · 딥노이드)는 2026.10 내부 검토 자료(협회 미팅 설득자료 v8) 기준.</li>
+<li>Lunit INSIGHT CXR Triage · 소견 목록 · 학습 규모 일부: 결핵 AI 개발을 위한 임상시험 교육 정리(Confluence, 2026.11.11).</li>
+<li>VUNO 혁신의료기기 통합 제84호(2025.02) 및 비급여 사용: 데일리팜 · 데일리메디 · 메디게이트뉴스 보도.</li>
+<li>해외 평가: Tavaziva G. et al., Clin Infect Dis 2022;74:1390-1400; Qin ZZ et al., Lancet Digit Health 2021;3:e543-554; PLOS Glob Public Health 2023;3(7):e0000402. qXR 학습 규모는 제조사 발표치. Hwang S. et al., Clin Infect Dis 2019;69(5):739-747.</li>
+<li>자사 계획: 2026.11.04 식약처 민원 질의 사용목적(이상소견 11종), 2026.11 협회 회신(결핵 관련 판독코드 4,835건). 포지셔닝 그림의 소견 수는 허가 사항 · 공개 자료 기준 근사치이며 설명용임.</li>
+<li>허가 성능은 허가 시 제시 기준값으로 제품 간 직접 비교는 참조표준 · 평가 집단이 달라 제한적임.</li>
+</ol>
+</div>
+
+</div>
+</body>
+</html>
