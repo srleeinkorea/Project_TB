@@ -59,7 +59,7 @@
   <button type="button" onclick="window.print()">인쇄 / PDF</button>
 </div>
 <div class="toast" id="toast" role="status"></div>
-<div class="editbar">수정 모드: 본문을 직접 고친 뒤 <b>저장</b>을 누르면 수정된 HTML 파일이 내려받아집니다. 그 파일을 docs/briefs/minutes/ 에 덮어쓰고 커밋하면 사이트에 반영됩니다. GitHub 계정이 있으면 <b>GitHub에서 편집</b>으로 바로 고칠 수 있습니다.</div>
+<div class="editbar">수정 모드: 본문을 직접 고친 뒤 <b>저장</b>을 누르면 수정된 HTML 파일이 내려받아집니다. 그 파일을 02_회의록/ 폴더에 같은 이름으로 덮어쓰고 커밋하면 사이트에 반영됩니다. GitHub 계정이 있으면 <b>GitHub에서 편집</b>으로 바로 고칠 수 있습니다.</div>
 <div class="wrap">
 
 <div class="cover">
@@ -184,9 +184,8 @@
 </div>
 <script>
 (function(){
-  var path = location.pathname.replace(/^.*\/(docs\/briefs\/minutes\/[^/]+)$/,'$1');
-  if(!/^docs\//.test(path)) path = 'docs/briefs/minutes/' + location.pathname.split('/').pop();
-  var ghEdit = 'https://github.com/srleeinkorea/Project_TB/edit/main/' + path;
+  var path = '02_회의록/' + decodeURIComponent(location.pathname.split('/').pop());
+  var ghEdit = 'https://github.com/srleeinkorea/Project_TB/edit/main/' + encodeURI(path);
   var editBtn = document.getElementById('editBtn'), saveBtn = document.getElementById('saveBtn'), ghBtn = document.getElementById('ghBtn');
   var wrap = document.querySelector('.wrap'), toastEl = document.getElementById('toast'), toastT;
   function toast(msg){ toastEl.textContent = msg; toastEl.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(function(){ toastEl.classList.remove('show'); }, 2600); }

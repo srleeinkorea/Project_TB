@@ -1,7 +1,7 @@
 """단일 HTML 문서를 비밀번호로 암호화해 공개 사이트용 잠금 페이지로 만든다.
 
 사용:
-    python tools/lock_doc.py <원본.html> <출력디렉터리> [제목]
+    python 09_도구/lock_doc.py <원본.html> <출력디렉터리> [제목]
     VAULT_PASSWORD=... 환경변수가 없으면 비밀번호를 물어본다.
 
 출력: <출력디렉터리>/doc.bin (암호문), params.json (salt·iter), index.html (잠금 뷰어)

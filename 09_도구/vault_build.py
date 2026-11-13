@@ -1,11 +1,11 @@
 """기밀 문서 암호화 보관함 빌드.
 
-confidential/manifest.txt 에 적힌 파일을 비밀번호로 암호화해 confidential/vault/ 에 쓴다.
-평문은 저장소에 올리지 않고(.gitignore), 암호문과 뷰어(confidential/index.html)만 올린다.
+비공개_기밀문서함/manifest.txt 에 적힌 파일을 비밀번호로 암호화해 비공개_기밀문서함/vault/ 에 쓴다.
+평문은 저장소에 올리지 않고(.gitignore), 암호문과 뷰어(비공개_기밀문서함/index.html)만 올린다.
 
 사용:
-    python tools/vault_build.py            # 비밀번호를 물어본다
-    VAULT_PASSWORD=... python tools/vault_build.py
+    python 09_도구/vault_build.py            # 비밀번호를 물어본다
+    VAULT_PASSWORD=... python 09_도구/vault_build.py
 
 manifest.txt 형식 (한 줄에 하나, '|' 구분, '#'은 주석):
     경로 | 표시 제목 | 분류
@@ -27,7 +27,7 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.primitives import hashes
 
 ROOT = Path(__file__).resolve().parent.parent
-CONF = ROOT / "confidential"
+CONF = ROOT / "비공개_기밀문서함"
 VAULT = CONF / "vault"
 MANIFEST = CONF / "manifest.txt"
 ITER = 600_000

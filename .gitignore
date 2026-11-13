@@ -1,8 +1,9 @@
-# ── 기밀·원본 (평문은 올리지 않는다. 암호화본은 confidential/vault/ 로 올린다) ──
-source/
-docs/internal/
+# ── 기밀·원본 (평문은 올리지 않는다. 암호화본은 비공개_기밀문서함/vault/ 로 올린다) ──
+비공개_원본자료/
+비공개_내부검토/
 
 # ── 작업용·임시 ──
+작업용_임시/
 working/
 tmp/
 .tmp_*/
@@ -23,14 +24,14 @@ desktop.ini
 !.claude/skills/
 
 # ── tb-wbs-dashboard (Next.js) ──
-tb-wbs-dashboard/node_modules/
-tb-wbs-dashboard/.next/
-tb-wbs-dashboard/.vinext/
-tb-wbs-dashboard/dist/
-tb-wbs-dashboard/.wrangler/
-tb-wbs-dashboard/.openai/
-tb-wbs-dashboard/next-env.d.ts
-tb-wbs-dashboard/.env*
+04_WBS_대시보드/node_modules/
+04_WBS_대시보드/.next/
+04_WBS_대시보드/.vinext/
+04_WBS_대시보드/dist/
+04_WBS_대시보드/.wrangler/
+04_WBS_대시보드/.openai/
+04_WBS_대시보드/next-env.d.ts
+04_WBS_대시보드/.env*
 
-# ── 기밀 문서함: 별도 저장소 (confidential/.repo-name 참조) ──
-confidential/
+# ── 기밀 문서함: 별도 저장소 (비공개_기밀문서함/.repo-name 참조) ──
+비공개_기밀문서함/
