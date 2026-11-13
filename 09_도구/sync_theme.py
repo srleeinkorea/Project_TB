@@ -59,7 +59,7 @@ SVG_FONT = re.compile(r'font-family="(?:DM Sans|DM Serif Display)[^"]*"')
 
 # 문서별 제목 (문서함 메뉴 이름과 맞춤). 새 문서는 여기에 한 줄 추가함
 TITLES = {
-    "261113_흉부X-ray_AI_경쟁제품_비교분석_v1.html": "흉부 X-ray AI 경쟁 제품 비교 분석",
+    "261113_흉부X-ray_AI_경쟁제품_비교분석_v1.html": "유사제품 비교분석",
     "프로젝트_상세현황.html": "프로젝트 상세 현황",
     "결핵_의학_가이드.html": "결핵 의학 가이드",
     "결핵진단_AI_프로젝트_WBS_개요.html": "WBS 개요",
