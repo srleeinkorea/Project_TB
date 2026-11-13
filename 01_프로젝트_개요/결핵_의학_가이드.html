@@ -33,7 +33,7 @@
       margin: 0;
       background: var(--paper);
       color: var(--ink);
-      font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+      font-family: 'DM Sans', 'Noto Sans KR', sans-serif;
       line-height: 1.78;
       word-break: keep-all;
     }
@@ -87,7 +87,7 @@
     }
     nav { position: sticky; top: 1.2rem; align-self: start; }
     .toc {
-      padding: 1.1rem; border: 1px solid var(--line); border-radius: 15px;
+      padding: 1.1rem; border: 1px solid var(--line); border-radius: 4px;
       background: rgba(255,255,255,.78); box-shadow: var(--shadow); backdrop-filter: blur(8px);
     }
     .toc strong { display: block; margin-bottom: .6rem; font-size: .9rem; color: var(--muted); }
@@ -112,7 +112,7 @@
       border-radius: 0 12px 12px 0; background: var(--brand-soft); font-size: 1.07rem;
     }
     .notice, .warning, .emergency {
-      margin: 1.25rem 0; padding: 1rem 1.15rem; border: 1px solid; border-radius: 12px;
+      margin: 1.25rem 0; padding: 1rem 1.15rem; border: 1px solid; border-radius: 4px;
     }
     .notice { background: var(--blue-soft); border-color: #b8cfdd; }
     .warning { background: var(--warn-soft); border-color: #e6bd92; }
@@ -125,20 +125,20 @@
       color: var(--brand-dark); font-weight: 800; font-size: .84rem;
     }
     .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1.25rem 0; }
-    .card { padding: 1.15rem; border: 1px solid var(--line); border-radius: 14px; background: #fff; box-shadow: 0 8px 24px rgba(20,52,42,.04); }
+    .card { padding: 1.15rem; border: 1px solid var(--line); border-radius: 4px; background: #fff;  }
     .card h3, .card h4 { margin-top: 0; }
 
     .figure {
       margin: 1.5rem 0 1.8rem; overflow: hidden;
-      border: 1px solid var(--line); border-radius: 16px; background: #fff;
+      border: 1px solid var(--line); border-radius: 4px; background: #fff;
       box-shadow: 0 10px 28px rgba(20,52,42,.05);
     }
-    .figure svg { display: block; width: 100%; height: auto; background: linear-gradient(180deg, #fbfdf9, #f4f8f3); }
+    .figure svg { display: block; width: 100%; height: auto; background: #fbfbfd; }
     .figure figcaption { padding: .85rem 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
     .figure figcaption strong { display: block; margin-bottom: .18rem; }
     .figure-note { color: var(--muted); font-size: .86rem; }
 
-    .table-wrap { margin: 1.3rem 0; overflow-x: auto; border: 1px solid var(--line); border-radius: 13px; background: #fff; }
+    .table-wrap { margin: 1.3rem 0; overflow-x: auto; border: 1px solid var(--line); border-radius: 4px; background: #fff; }
     table { width: 100%; border-collapse: collapse; min-width: 650px; font-size: .93rem; }
     caption { padding: .75rem 1rem; text-align: left; font-weight: 700; color: var(--muted); }
     th, td { padding: .75rem .85rem; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
@@ -147,13 +147,13 @@
     blockquote { margin: 1.3rem 0; padding: 1rem 1.2rem; border-left: 5px solid var(--brand); background: var(--surface); font-size: 1.12rem; font-weight: 700; }
 
     .flow { counter-reset: flow; display: grid; gap: .75rem; margin: 1.2rem 0; }
-    .flow > div { position: relative; padding: .9rem 1rem .9rem 3.6rem; border: 1px solid var(--line); border-radius: 11px; background: #fff; }
+    .flow > div { position: relative; padding: .9rem 1rem .9rem 3.6rem; border: 1px solid var(--line); border-radius: 4px; background: #fff; }
     .flow > div::before {
       counter-increment: flow; content: counter(flow);
       position: absolute; left: .9rem; top: .8rem; display: grid; place-items: center;
       width: 1.85rem; height: 1.85rem; border-radius: 50%; background: var(--brand); color: #fff; font-weight: 800;
     }
-    details { margin: .85rem 0; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+    details { margin: .85rem 0; border: 1px solid var(--line); border-radius: 4px; background: #fff; }
     summary { padding: .9rem 1rem; cursor: pointer; font-weight: 750; color: #173f35; }
     details > div { padding: 0 1rem 1rem; }
 
@@ -259,7 +259,7 @@
         <div>
           <p class="eyebrow">EVIDENCE-BASED TUBERCULOSIS GUIDE</p>
           <h1 id="page-title">결핵, 기초부터 전문 진료까지</h1>
-          <p class="subtitle">기본 개념부터 진단 알고리즘, 약제감수성·내성결핵 치료와 특수상황까지 단계적으로 설명합니다. 국내 결핵 진료지침 제5판(2024)을 중심으로 WHO·ATS/CDC/ERS/IDSA 2025 지침을 구분해 반영했습니다.</p>
+          <p class="subtitle">기본 개념부터 진단 알고리즘, 약제감수성·내성결핵 치료와 특수상황까지 단계적으로 설명한다. 국내 결핵 진료지침 제5판(2024)을 중심으로 WHO·ATS/CDC/ERS/IDSA 2025 지침을 구분해 반영했다.</p>
         </div>
         <div class="intro-actions" aria-label="빠른 이동">
           <a class="button primary" href="#summary" target="_self">핵심부터 읽기</a>
@@ -269,7 +269,7 @@
       <section aria-label="문서 안내">
         <div class="warning">
           <strong>의학적 사용 범위</strong>
-          <p>이 문서는 교육자료이며 개인 진단이나 처방을 대신하지 않습니다. 실제 치료는 체중, 임신, HIV, 간·신장 기능, 약제감수성, 복용 약물과 국내 허가·급여 기준에 따라 달라집니다.</p>
+          <p>이 문서는 교육자료이며 개인 진단이나 처방을 대신하지 않는다. 실제 치료는 체중, 임신, HIV, 간·신장 기능, 약제감수성, 복용 약물과 국내 허가·급여 기준에 따라 달라진다.</p>
         </div>
       </section>
 
@@ -340,9 +340,9 @@
               </g>
               <text x="75" y="244" text-anchor="middle" font-size="19" font-weight="700" fill="#173f35">들이마신 사람의 폐</text>
             </g>
-            <text x="450" y="361" text-anchor="middle" font-size="17" fill="#53635e">악수·식기·변기 공유가 아니라, 같은 공간의 공기를 통해 전파됩니다.</text>
+            <text x="450" y="361" text-anchor="middle" font-size="17" fill="#53635e">악수·식기·변기 공유가 아니라, 같은 공간의 공기를 통해 전파된다.</text>
           </svg>
-          <figcaption><strong>그림 1. 결핵의 공기 전파</strong>전염성 폐·후두 결핵에서 배출된 작은 입자를 다른 사람이 들이마시는 과정의 개념도입니다. 실제 위험은 노출시간, 환기, 객담 균량과 치료 효과에 따라 달라집니다.</figcaption>
+          <figcaption><strong>그림 1. 결핵의 공기 전파</strong>전염성 폐·후두 결핵에서 배출된 작은 입자를 다른 사람이 들이마시는 과정의 개념도이다. 실제 위험은 노출시간, 환기, 객담 균량과 치료 효과에 따라 달라진다.</figcaption>
         </figure>
         <div class="cards">
           <article class="card">
@@ -384,10 +384,10 @@
               <circle cx="776" cy="125" r="39" fill="#f5cfca" stroke="#9e2f2f" stroke-width="3"/>
               <circle cx="761" cy="114" r="8" fill="#9e2f2f"/><circle cx="783" cy="111" r="8" fill="#9e2f2f"/><circle cx="794" cy="133" r="8" fill="#9e2f2f"/><circle cx="770" cy="139" r="7" fill="#9e2f2f"/>
               <text x="776" y="252" font-size="18" font-weight="700" fill="#173f35">활동성 결핵</text><text x="776" y="277" font-size="16" fill="#53635e">증상·조직 손상 가능</text>
-              <text x="450" y="319" font-size="16" fill="#53635e">실제 생물학은 딱 잘라 나뉘지 않으며 치료·면역상태에 따라 이동할 수 있습니다.</text>
+              <text x="450" y="319" font-size="16" fill="#53635e">실제 생물학은 딱 잘라 나뉘지 않으며 치료·면역상태에 따라 이동할 수 있다.</text>
             </g>
           </svg>
-          <figcaption><strong>그림 2. 결핵은 연속적인 스펙트럼</strong>‘잠복’과 ‘활동성’은 진료에 유용한 구분이지만, 실제 감염 상태는 여러 중간단계를 포함합니다.</figcaption>
+          <figcaption><strong>그림 2. 결핵은 연속적인 스펙트럼</strong>‘잠복’과 ‘활동성’은 진료에 유용한 구분이지만, 실제 감염 상태는 여러 중간단계를 포함한다.</figcaption>
         </figure>
         <p>여러 약을 같이 쓰는 이유는 결핵균 중 일부가 한 가지 약을 견딜 수 있기 때문이다. 서로 다른 약으로 동시에 공격하면 균이 살아남을 가능성이 크게 줄어든다.</p>
         <div class="notice">
@@ -525,7 +525,7 @@
               <text x="495" y="246" text-anchor="middle" font-size="17" fill="#53635e">매일 복용 · 감수성 결과, 병변 위치, 반응과 부작용에 따라 조정</text>
             </g>
           </svg>
-          <figcaption><strong>그림 3. 국내 약제감수성 폐결핵의 대표적 6개월 치료</strong>개념도이며 실제 기간과 약제 조합은 감수성, 폐외결핵 여부, 장기기능과 치료반응에 따라 달라집니다.</figcaption>
+          <figcaption><strong>그림 3. 국내 약제감수성 폐결핵의 대표적 6개월 치료</strong>개념도이며 실제 기간과 약제 조합은 감수성, 폐외결핵 여부, 장기기능과 치료반응에 따라 달라진다.</figcaption>
         </figure>
         <p>H는 isoniazid, R은 rifampin, Z는 pyrazinamide, E는 ethambutol이다. H·R 감수성이 확인되면 E를 중단할 수 있다. 감수성이 확인되지 않았거나 배양음성이면 국내 지침에 따라 E를 더 유지할 수 있다. 원칙적으로 매일 복용한다.<sup><a href="#ref-1">[1]</a></sup></p>
 
@@ -756,7 +756,7 @@
   </div>
 
   <footer>
-    <div>교육용 의학정보 · 최종 업데이트 2026-09-01 · 근거지침 개정 시 내용이 달라질 수 있습니다.</div>
+    <div>교육용 의학정보 · 최종 업데이트 2026-09-01 · 근거지침 개정 시 내용이 달라질 수 있다.</div>
   </footer>
 </body>
 </html>
