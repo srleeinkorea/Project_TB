@@ -12,56 +12,56 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;font-family:'Pretendard Variable',Pretendard,"Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif;background:var(--bg)}
 body{display:flex;height:100dvh;overflow:hidden}
-nav{flex:0 0 272px;background:var(--side);color:var(--text);display:flex;flex-direction:column;padding:20px 12px 10px;overflow:hidden}
+nav{flex:0 0 300px;background:var(--side);color:var(--text);display:flex;flex-direction:column;padding:20px 12px 10px;overflow:hidden}
 .brand{display:flex;align-items:center;gap:10px;padding:0 10px 18px}
 .logo{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#4338ca,#0891b2);display:grid;place-items:center;font-weight:800;font-size:12px;color:#fff;flex:none}
-.brand b{font-size:16px}.brand small{display:block;font-size:11px;color:var(--muted);margin-top:4px}
+.brand b{font-size:18px}.brand small{display:block;font-size:12.5px;color:var(--muted);margin-top:4px}
 .nav-search{display:block;margin:0 4px 14px}
-.nav-search input{width:100%;padding:10px 12px;border:1px solid #334155;border-radius:9px;background:#1e293b;color:#f8fafc;font:inherit;font-size:12px}
+.nav-search input{width:100%;padding:11px 13px;border:1px solid #334155;border-radius:9px;background:#1e293b;color:#f8fafc;font:inherit;font-size:14px}
 .nav-search input::placeholder{color:#94a3b8}
 .nav-list{flex:1;min-height:0;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#475569 transparent;padding:0 2px 12px}
 .nav-group{margin-bottom:8px}
-.nav-group summary{display:flex;align-items:center;gap:8px;padding:11px 8px;color:#cbd5e1;cursor:pointer;font-size:12px;font-weight:700;list-style:none;border-radius:7px}
+.nav-group summary{display:flex;align-items:center;gap:8px;padding:11px 8px;color:#cbd5e1;cursor:pointer;font-size:14px;font-weight:700;list-style:none;border-radius:7px}
 .nav-group summary::-webkit-details-marker{display:none}
 .nav-group summary::before{content:'›';font-size:18px;line-height:12px;transition:transform .15s}
 .nav-group[open]>summary::before{transform:rotate(90deg)}
 .nav-group summary:hover{background:#1e293b}
-.group-count{margin-left:auto;color:#94a3b8;font-size:10px;font-weight:400}
+.group-count{margin-left:auto;color:#94a3b8;font-size:12px;font-weight:400}
 .group-links{border-left:1px solid #334155;margin-left:14px;padding-left:7px}
-nav a{display:flex;align-items:center;gap:9px;color:var(--text);text-decoration:none;font-size:12px;line-height:1.6;padding:9px 10px;margin:2px 0;border-radius:8px;overflow-wrap:anywhere}
+nav a{display:flex;align-items:center;gap:9px;color:var(--text);text-decoration:none;font-size:14.5px;line-height:1.55;padding:10px 11px;margin:2px 0;border-radius:8px;overflow-wrap:anywhere}
 nav a:hover{background:var(--side-2)}
 nav a[aria-current=page]{background:#312e81;box-shadow:inset 3px 0 #a5b4fc;color:#eef2ff;font-weight:700}
 nav :focus-visible{outline:2px solid #a5b4fc;outline-offset:2px}
 .nav-list [hidden]{display:none!important}
-.admin-heading{border-top:1px solid #334155;margin-top:16px;padding:18px 8px 8px;color:#fbbf24;font-size:11px;font-weight:700}
+.admin-heading{border-top:1px solid #334155;margin-top:16px;padding:18px 8px 8px;color:#fbbf24;font-size:13px;font-weight:700}
 body:not(.admin) .admin-only{display:none!important}
-#nav-empty{padding:16px 10px;font-size:12px;color:#94a3b8;line-height:1.7}
+#nav-empty{padding:16px 10px;font-size:14px;color:#94a3b8;line-height:1.7}
 .tools{flex:none;margin-top:8px;padding-top:12px;border-top:1px solid #334155;display:flex;flex-direction:column;gap:6px}
-.tools button{font:inherit;font-size:12px;font-weight:700;border:1px solid #334155;background:var(--side-2);color:var(--text);border-radius:8px;padding:8px 10px;cursor:pointer;text-align:left}
+.tools button{font:inherit;font-size:14px;font-weight:700;border:1px solid #334155;background:var(--side-2);color:var(--text);border-radius:8px;padding:8px 10px;cursor:pointer;text-align:left}
 .tools button:hover{border-color:var(--muted)}
 .tools button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 .tools button[hidden]{display:none}
-.tools .who{font-size:10px;color:var(--muted);padding:0 4px;line-height:1.6}
+.tools .who{font-size:12px;color:var(--muted);padding:0 4px;line-height:1.6}
 .tools .who:empty{display:none}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 main{flex:1;min-width:0;display:flex;flex-direction:column}
-.location-bar{display:flex;align-items:center;gap:9px;min-height:43px;padding:10px 20px;background:#fff;border-bottom:1px solid #e2e8f0;font-size:12px;color:#64748b}
+.location-bar{display:flex;align-items:center;gap:9px;min-height:48px;padding:11px 22px;background:#fff;border-bottom:1px solid #e2e8f0;font-size:14px;color:#64748b}
 #current-document{font-weight:700;color:#334155}
-.location-bar .lockmark{margin-left:auto;font-size:11px;font-weight:700;color:#b45309;background:#fffbeb;border:1px solid #fde68a;border-radius:999px;padding:1px 9px}
-.editbar{display:none;background:#fef3c7;color:#78350f;border-bottom:1px solid #fcd34d;padding:8px 14px;font-size:12px;line-height:1.5}
+.location-bar .lockmark{margin-left:auto;font-size:12.5px;font-weight:700;color:#b45309;background:#fffbeb;border:1px solid #fde68a;border-radius:999px;padding:1px 9px}
+.editbar{display:none;background:#fef3c7;color:#78350f;border-bottom:1px solid #fcd34d;padding:9px 16px;font-size:14px;line-height:1.5}
 body.editing .editbar{display:block}
 iframe{flex:1;border:0;width:100%;min-height:0;background:#fff}
 dialog{margin:auto;border:0;border-radius:14px;padding:22px;width:min(440px,calc(100% - 32px));box-shadow:0 20px 50px rgba(15,23,42,.3);color:#0f172a;font-family:inherit}
 dialog::backdrop{background:rgba(15,23,42,.5)}
-dialog h2{font-size:16px;margin-bottom:6px}
-dialog p{font-size:12px;color:#475569;line-height:1.7;margin-bottom:12px}
-dialog input{width:100%;font:13px Consolas,monospace;padding:10px;border:1px solid #cbd5e1;border-radius:8px}
+dialog h2{font-size:18px;margin-bottom:6px}
+dialog p{font-size:14px;color:#475569;line-height:1.7;margin-bottom:12px}
+dialog input{width:100%;font:15px Consolas,monospace;padding:10px;border:1px solid #cbd5e1;border-radius:8px}
 dialog .row{display:flex;gap:8px;justify-content:flex-end;margin-top:14px}
-dialog button{font:inherit;font-size:12px;font-weight:700;border:1px solid #cbd5e1;background:#fff;border-radius:8px;padding:8px 14px;cursor:pointer}
+dialog button{font:inherit;font-size:14px;font-weight:700;border:1px solid #cbd5e1;background:#fff;border-radius:8px;padding:8px 14px;cursor:pointer}
 dialog button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 dialog button:disabled{opacity:.6}
-dialog .err{color:#b91c1c;font-size:12px;margin-top:8px;min-height:1em}
-.toast{position:fixed;right:16px;bottom:16px;max-width:360px;background:#0f172a;color:#fff;font-size:12px;line-height:1.6;padding:12px 14px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);opacity:0;transform:translateY(8px);transition:.2s;pointer-events:none;z-index:10}
+dialog .err{color:#b91c1c;font-size:13.5px;margin-top:8px;min-height:1em}
+.toast{position:fixed;right:16px;bottom:16px;max-width:400px;background:#0f172a;color:#fff;font-size:14px;line-height:1.6;padding:12px 14px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);opacity:0;transform:translateY(8px);transition:.2s;pointer-events:none;z-index:10}
 .toast.show{opacity:1;transform:none}
 @media(max-width:760px){
  body{flex-direction:column}
@@ -72,8 +72,8 @@ dialog .err{color:#b91c1c;font-size:12px;margin-top:8px;min-height:1em}
  .nav-group{flex:0 0 220px;margin:0}.nav-group summary{padding:9px 6px}
  .admin-heading{flex:0 0 110px;border:0;margin:0;padding:10px}
  .tools{margin:4px 0 0;flex-direction:row;flex-wrap:wrap;padding:8px 0 0}
- .tools button{font-size:11px}.tools .who{display:none}
- .location-bar{padding:8px 12px;font-size:11px;flex-wrap:wrap;gap:5px}
+ .tools button{font-size:13px}.tools .who{display:none}
+ .location-bar{padding:8px 12px;font-size:13px;flex-wrap:wrap;gap:5px}
  main{min-height:0}
 }
 </style>

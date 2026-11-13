@@ -17,7 +17,7 @@ SKIP = {"프로젝트_현황.html"}
 TARGETS = sorted(ROOT.glob("01_프로젝트_개요/*.html")) + sorted(ROOT.glob("02_회의록/*.html"))
 
 THEME = """<style id="tb-theme">
-/* TB 공동연구 문서 테마 v1 · 2026-11-13 · 09_도구/sync_theme.py 가 관리함 (직접 수정하지 말 것) */
+/* TB 공동연구 문서 테마 v2 · 2026-11-13 · 09_도구/sync_theme.py 가 관리함 (직접 수정하지 말 것) */
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
 :root{
  --tb-font:'Pretendard Variable',Pretendard,'Malgun Gothic','Apple SD Gothic Neo',system-ui,sans-serif;
@@ -33,6 +33,7 @@ THEME = """<style id="tb-theme">
  --grey2:#f0f3f9!important;--slate-soft:#f0f3f9!important
 }
 html,body{background:#f5f7fb!important}
+html{zoom:1.12}  /* 글씨 크기 확대 (2026-11-13) */
 body{font-family:var(--tb-font)!important;color:#1c2940!important;-webkit-font-smoothing:antialiased}
 body *:not(code,pre,kbd,samp,.mono,svg *){font-family:var(--tb-font)!important}
 body h1{font-weight:800!important;letter-spacing:-.035em!important;line-height:1.35!important;color:#1c2940!important}
