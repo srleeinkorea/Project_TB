@@ -59,6 +59,18 @@ h2 small{font-size:11px;font-weight:500;color:var(--text-3);margin-left:auto}
 .fw td.std small{display:block;font-weight:500;color:var(--text-3);font-size:11px}
 .fw-intro{font-size:12.5px;color:var(--text-2);margin:-4px 0 12px}
 .fw-src{font-size:11px;color:var(--text-3);margin-top:10px;line-height:1.7}
+.dset table td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+.dset tr.sum td{background:var(--surface-2);font-weight:800}
+.ratio{position:relative;height:10px;background:var(--surface-2);border-radius:99px;margin:12px 0 4px;overflow:visible}
+.ratio i{position:absolute;left:0;top:0;bottom:0;min-width:4px;background:#b91c1c;border-radius:99px}
+.ratio span{position:absolute;left:0;top:14px;font-size:11.5px;color:var(--text-3)}
+.note-s{font-size:12px;color:var(--text-3);margin-top:26px}
+.sub-h{font-size:13.5px;font-weight:800;margin:16px 0 8px}
+.codes{display:flex;flex-wrap:wrap;gap:6px}
+.codes em{font-style:normal;font-size:12px;font-weight:600;color:#4338ca;background:#eef2ff;border:1px solid #c7d2fe;border-radius:8px;padding:3px 9px}
+ul.chk{list-style:none;display:grid;gap:6px}
+ul.chk li{font-size:12.5px;color:var(--text-2);padding:8px 12px 8px 30px;border-radius:9px;background:var(--amber-bg);border:1px solid var(--amber-bd);position:relative}
+ul.chk li::before{content:"!";position:absolute;left:11px;top:8px;font-weight:900;color:var(--amber)}
 /* 일정표 */
 .gantt{position:relative;margin-top:4px}
 .g-axis{position:relative;height:20px;border-bottom:1px solid var(--border);margin-left:120px}
@@ -121,7 +133,7 @@ td.who{white-space:nowrap;font-weight:700}
 <section class="kpis" aria-label="핵심 수치">
  <div class="kpi" style="--c:var(--cyan)"><span>현재 단계</span><b>1<small>/ 7단계</small></b><p>계획·승인 (데이터 계획)</p></div>
  <div class="kpi" style="--c:var(--accent)"><span>공동연구 기간 경과</span><b>10<small>%</small></b><div class="meter"><i style="width:10%"></i></div><p>34개월 중 약 3.5개월</p></div>
- <div class="kpi" style="--c:var(--green)"><span>완료한 주요 절차</span><b>8<small>건</small></b><p>계약 · IRB · DRB 회신 · 킥오프 등</p></div>
+ <div class="kpi" style="--c:var(--green)"><span>완료한 주요 절차</span><b>9<small>건</small></b><p>계약 · IRB · 킥오프 · 데이터 현황 회신 등</p></div>
  <div class="kpi" style="--c:var(--amber)"><span>진행 · 확인 중 과제</span><b>6<small>건</small></b><p>협회 4건 · 마이허브 2건</p></div>
  <div class="kpi" style="--c:#4338ca"><span>제공 가능 CXR</span><b>20,000<small>장+</small></b><p>검수 전 규모 · 배양 확진 약 400건 포함</p></div>
 </section>
@@ -179,9 +191,32 @@ td.who{white-space:nowrap;font-weight:700}
 </section>
 
 <section class="three">
- <div class="note now"><b>지금 하고 있는 일</b><ul><li>추가 데이터의 규모 · 제공 시점 확인</li><li>협회 데이터 구성과 판독 기준 검토</li><li>레이블링 기준 · 인력 분담 협의</li></ul></div>
+ <div class="note now"><b>지금 하고 있는 일</b><ul><li>협회 데이터 건수 단위 · 비결핵 대조군 구성 확인</li><li>추가 데이터의 규모 · 제공 시점 확인</li><li>협회 데이터 구성과 판독 기준 검토</li><li>레이블링 기준 · 인력 분담 협의</li></ul></div>
  <div class="note next"><b>다음 단계</b><ul><li>데이터 요구 사양 · 판정 기준 확정</li><li>개발 · 평가 계획과 임상 · 인허가 로드맵 수립</li><li>후속 킥오프 개최</li></ul></div>
  <div class="note check"><b>확인이 필요한 사항</b><ul><li>몽골 검진 영상과 확진 결과의 연결 가능 건수</li><li>해외 데이터 익명화 · 국외 이전 절차</li><li>국가별 추가 데이터 제공 일정</li></ul></div>
+</section>
+
+<section class="card">
+ <h2>협회 데이터 현황<small>2026.11 협회 회신 · 흉부 X-ray 판독코드 기준 집계</small></h2>
+ <div class="dset">
+  <table>
+   <thead><tr><th>구분</th><th style="text-align:right">건수</th><th style="text-align:right">비율</th></tr></thead>
+   <tbody>
+    <tr><td><b>결핵 관련 14개 판독코드 해당</b></td><td class="num">4,835</td><td class="num">약 0.06%</td></tr>
+    <tr><td>14개 판독코드 외</td><td class="num">7,872,235</td><td class="num">약 99.94%</td></tr>
+    <tr class="sum"><td>합계</td><td class="num">7,877,070</td><td class="num">100%</td></tr>
+   </tbody>
+  </table>
+  <div class="ratio" aria-label="비율 막대"><i style="width:0.06%"></i><span>14개 코드 해당 4,835건은 전체의 약 0.06%</span></div>
+ </div>
+ <p class="note-s">판독코드 기준 집계 결과이며, 비율은 작성자 산출값임. 상단의 &lsquo;제공 가능 CXR 2만 장+&rsquo;는 1차 제공 협의 규모로, 이 표의 전체 보유 집계와는 다른 수치임.</p>
+ <h3 class="sub-h">14개 판독코드</h3>
+ <div class="codes"><em>결핵성 폐렴</em><em>삼출성 흉막염(결핵성)</em><em>폐결핵 경증</em><em>폐결핵 중등증</em><em>폐결핵 중등증(공동)</em><em>폐결핵 중등증(공동의심)</em><em>폐결핵 중증</em><em>폐결핵 중증(공동)</em><em>폐결핵 중증(공동의심)</em><em>결핵종의심</em><em>결핵의심</em><em>폐결핵 활동성미정(경증)</em><em>폐결핵 활동성미정(중등증)</em><em>폐결핵 활동성미정(중증)</em></div>
+ <h3 class="sub-h">확인 필요 사항</h3>
+ <ul class="chk">
+  <li>건수 단위(영상 수 / 환자 수 / 검사 수)가 회신에 기재되지 않음</li>
+  <li>&lsquo;14개 코드 외&rsquo;에 정상 외 다른 질환 소견이 포함될 가능성이 있음(추정) → 비결핵 대조군 구성은 별도 확인 필요</li>
+ </ul>
 </section>
 
 <section class="card">
@@ -213,7 +248,7 @@ td.who{white-space:nowrap;font-weight:700}
   </table>
  </div>
  <div class="card">
-  <h2>완료한 주요 절차<small>8건</small></h2>
+  <h2>완료한 주요 절차<small>9건</small></h2>
   <ul class="done-list">
    <li>공동연구 추진 협의<span class="dt">2025.12.11</span></li>
    <li>질병관리청 소관 아님 확인<span class="dt">2026.05.20</span></li>
@@ -223,6 +258,7 @@ td.who{white-space:nowrap;font-weight:700}
    <li>레이블링 도구 개발<span class="dt">2026.06~08</span></li>
    <li>실무 킥오프 · DRB 불필요 회신<span class="dt">2026.09.04 · 09.08</span></li>
    <li>KHIDI 인허가 사전 컨설팅<span class="dt">2026.09.15</span></li>
+   <li>협회 데이터 현황 회신 · DICOM 샘플 수령<span class="dt">2026.11</span></li>
   </ul>
  </div>
 </section>
