@@ -63,7 +63,15 @@ dialog button:disabled{opacity:.6}
 dialog .err{color:#b91c1c;font-size:13.5px;margin-top:8px;min-height:1em}
 .toast{position:fixed;right:16px;bottom:16px;max-width:400px;background:#0f172a;color:#fff;font-size:14px;line-height:1.6;padding:12px 14px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);opacity:0;transform:translateY(8px);transition:.2s;pointer-events:none;z-index:10}
 .toast.show{opacity:1;transform:none}
+nav{transition:margin-left .22s ease}
+#nav-toggle{flex:none;width:34px;height:34px;margin:-4px 4px -4px -8px;border:1px solid #e2e8f0;border-radius:8px;background:#fff;color:#334155;cursor:pointer;display:grid;place-items:center}
+#nav-toggle:hover{background:#f1f5f9;border-color:#cbd5e1}
+#nav-toggle span,#nav-toggle span::before,#nav-toggle span::after{display:block;width:16px;height:2px;background:currentColor;border-radius:1px;position:relative;content:""}
+#nav-toggle span::before{position:absolute;top:-5px}#nav-toggle span::after{position:absolute;top:5px}
+body.nav-collapsed nav{margin-left:-300px}
 @media(max-width:760px){
+ body.nav-collapsed nav{display:none;margin-left:0}
+ nav{transition:none}
  body{flex-direction:column}
  nav{flex:none;display:block;padding:10px 12px;max-height:40dvh;overflow-y:auto}
  .brand{padding:0 4px 10px}.brand small{display:none}.logo{width:28px;height:28px}
@@ -79,7 +87,7 @@ dialog .err{color:#b91c1c;font-size:13.5px;margin-top:8px;min-height:1em}
 </style>
 </head>
 <body>
-<nav aria-label="문서 탐색">
+<nav id="lnb" aria-label="문서 탐색">
  <div class="brand"><span class="logo">TB</span><div><b>TB 공동연구</b><small>대한결핵협회 × 마이허브 문서함</small></div></div>
  <label class="nav-search"><span class="sr-only">문서 찾기</span><input id="nav-search" type="search" placeholder="문서 찾기" autocomplete="off"></label>
  <div class="nav-list" id="nav-list">
@@ -117,7 +125,7 @@ dialog .err{color:#b91c1c;font-size:13.5px;margin-top:8px;min-height:1em}
  </div>
 </nav>
 <main>
- <div class="location-bar" aria-label="현재 문서"><span id="current-group"></span><span aria-hidden="true">/</span><span id="current-document"></span><span class="lockmark" id="lockmark" hidden>관리자 전용 · 브라우저 안에서만 복호화됨</span></div>
+ <div class="location-bar" aria-label="현재 문서"><button id="nav-toggle" type="button" aria-controls="lnb" aria-expanded="true" title="메뉴 접기/펼치기 (Ctrl+B)"><span></span><b class="sr-only">메뉴 접기/펼치기</b></button><span id="current-group"></span><span aria-hidden="true">/</span><span id="current-document"></span><span class="lockmark" id="lockmark" hidden>관리자 전용 · 브라우저 안에서만 복호화됨</span></div>
  <div class="editbar">편집 모드 · 고칠 글자를 클릭해 바로 수정함. 문구만 바뀌며, 저장하면 GitHub에 커밋되고 1~2분 뒤 사이트에 반영됨.</div>
  <iframe id="view" title="문서 보기"></iframe>
 </main>
@@ -383,6 +391,23 @@ $('nav-search').addEventListener('input',e=>{
   let pw=null;try{pw=sessionStorage.getItem('tb-admin');}catch{}
   if(pw){try{await unlock(pw);await loadToken(pw);$('who').textContent='관리자 로그인됨 · 문서 기준 '+admin.built+(token?' · 편집 가능':'');}catch{try{sessionStorage.removeItem('tb-admin');}catch{}}}
   go();
+})();
+</script>
+<script>
+/* 좌측 메뉴(LNB) 접기 · 펼치기 */
+(()=>{
+ const btn=document.getElementById('nav-toggle'),mq=matchMedia('(max-width:760px)');
+ let saved=null;try{saved=localStorage.getItem('tb-lnb')}catch(e){}
+ const set=(open,save)=>{
+  document.body.classList.toggle('nav-collapsed',!open);
+  btn.setAttribute('aria-expanded',String(open));
+  if(save&&!mq.matches){saved=open?'1':'0';try{localStorage.setItem('tb-lnb',saved)}catch(e){}}
+ };
+ set(mq.matches?false:saved!=='0');
+ btn.addEventListener('click',()=>set(document.body.classList.contains('nav-collapsed'),true));
+ mq.addEventListener('change',e=>set(!e.matches&&saved!=='0'));
+ document.getElementById('lnb').addEventListener('click',e=>{if(mq.matches&&e.target.closest('a[href^="#"]'))set(false)});
+ addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&!e.shiftKey&&e.key.toLowerCase()==='b'){e.preventDefault();btn.click()}});
 })();
 </script>
 </body>
